@@ -10,5 +10,6 @@ Prerequisitos: Tener Node Instalado
 
 1. Se clonan el repo: **git clone https://gitlab.com/proyecto-finalUTN/tinder-de-mascotas.git** (sino con sus software de escritorio también se debe poder)
 2. Entran a la carpeta cliente: **cd client-react** (si o si desde la consola de comandos se tienen que ubicar dentro de la carpeta)
+3. Instalar las dependencias: **npm install**
 3. Inicializan: **npm start** 
 
