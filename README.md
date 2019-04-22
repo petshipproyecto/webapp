@@ -12,4 +12,14 @@ Prerequisitos: Tener Node Instalado
 2. Entran a la carpeta cliente: **cd client-react** (si o si desde la consola de comandos se tienen que ubicar dentro de la carpeta)
 3. Instalar las dependencias: **npm install**
 3. Inicializan: **npm start** 
+4. 
+
+
+Documentación de Tecnologías que usamos: 
+
+React : https://reactjs.org/
+
+Librería Componentes UI: https://material-ui.com/
+
+
 
