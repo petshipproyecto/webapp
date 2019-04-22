@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+
+import Grid from '@material-ui/core/Grid';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+import Search from './components/basic/basicLayoutComponents/search'
+import Notifications from './components/basic/basicLayoutComponents/notifications'
+import Swipe from './components/basic/basicLayoutComponents/swipe'
+import Profile from './components/basic/basicLayoutComponents/profile'
+import PrivateRoute from './components/auth/PrivateRoute'
+import Login from './components/auth/login'
+import BasicLayout from './components/basic/BasicLayout'
+
+
 
 class App extends Component {
+  
+  
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <Router>
+      <Grid container >
+        <Grid  xs={12}>
+                <div className="App">
+                <Route path='/basicLayout' component={BasicLayout}></Route>
+                {/* PrivateRoute 
+                <Route path="/login" component={Login}/> */}
+                
+                </div>
+        </Grid>
+        
+      </Grid>
+        
+
+    </Router>
     );
   }
 }
