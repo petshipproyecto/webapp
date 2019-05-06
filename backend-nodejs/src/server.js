@@ -8,6 +8,9 @@ const myConnection = require('express-myconnection');
 
 const app = express(); // inicializamos express a través de una constante app
 
+// importar rutas
+const tipoMascotaRoutes = require('./routes/tipoMascota');
+
 // settings
 //app.set('port', process.env.PORT || 3001); //busca un puerto libre en el SO sino, utiliza el 3001
 app.set('port', 3001);
@@ -19,7 +22,7 @@ app.use(morgan('dev')); // con el parametro dev muestra mensajes por consola de 
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'petship',
     port: 3306,
     database: 'petship'
 }, 'single'));
@@ -27,7 +30,7 @@ app.use(myConnection(mysql, {
 
 // routes
 // son las peticiones de los usuarios
-
+app.use('/', tipoMascotaRoutes);
 
 // inicializa el servidor
 app.listen(app.get('port'), () => {
