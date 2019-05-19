@@ -2,7 +2,7 @@ const controller = {};
 
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM petship.tipomascota', (err, rows) => {
+        conn.query('SELECT * FROM petship.perfil', (err, rows) => {
             if (err) {
                 res.json(err); // next(err)
             }
@@ -15,7 +15,7 @@ controller.list = (req, res) => {
 controller.save = (req, res) => {
     data = req.query
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO petship.tipomascota SET ?', [data], (err, rows) => {
+        conn.query('INSERT INTO petship.perfil SET ?', [data], (err, rows) => {
             console.log(rows);
             res.send('Done');
         });

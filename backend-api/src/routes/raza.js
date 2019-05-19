@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router(); //devuelve un objeto de js al cual se le puede ir agregando rutas
 
-const tipoMascotaController = require('../controllers/tipoMascotaController')
+const razaController = require('../controllers/razaController')
 
-router.get('/tipomascota', tipoMascotaController.list);
-router.post('/tipomascota/add', tipoMascotaController.save);
+router.get('/raza', razaController.list);
+router.post('/raza/add', razaController.save);
 
 module.exports = router; // exporto la variable que contiene las rutas

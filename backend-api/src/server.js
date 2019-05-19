@@ -10,6 +10,9 @@ const app = express(); // inicializamos express a través de una constante app
 
 // importar rutas
 const tipoMascotaRoutes = require('./routes/tipoMascota');
+const razaRoutes = require('./routes/raza');
+const usuarioRoutes = require('./routes/usuario');
+const perfilRoutes = require('./routes/perfil');
 
 // settings
 //app.set('port', process.env.PORT || 3001); //busca un puerto libre en el SO sino, utiliza el 3001
@@ -26,11 +29,15 @@ app.use(myConnection(mysql, {
     port: 3306,
     database: 'petship'
 }, 'single'));
-
+app.use(express.urlencoded({extended: false}));
 
 // routes
 // son las peticiones de los usuarios
+// TODO: Ver si se están definiendo correctamente
 app.use('/', tipoMascotaRoutes);
+app.use('/', razaRoutes);
+app.use('/', usuarioRoutes);
+app.use('/', perfilRoutes);
 
 // inicializa el servidor
 app.listen(app.get('port'), () => {
