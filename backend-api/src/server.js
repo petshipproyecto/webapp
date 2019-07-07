@@ -39,6 +39,12 @@ app.use('/', razaRoutes);
 app.use('/', usuarioRoutes);
 app.use('/', perfilRoutes);
 
+const admin = require('firebase-admin');const functions = require('firebase-functions');
+
+admin.initializeApp(functions.config().firebase);
+
+var db = admin.firestore();
+
 // inicializa el servidor
 app.listen(app.get('port'), () => {
     console.log('server on port 3001');
