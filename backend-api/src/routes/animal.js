@@ -1,26 +1,26 @@
 module.exports = app => {
+  
+  const Animal = app.db.models.Animal;
 
-  const Raza = app.db.models.Raza;
-
-  app.route('/raza')
+  app.route('/animal')
     .get((req, res) => {
-      Raza.findAll({})
+      Animal.findAll({})
         .then(result => res.json(result))
         .catch(error => {
           res.status(412).json({msg: error.message});
         });
     })
     .post((req, res) => {
-      Raza.create(req.body)
+      Animal.create(req.body)
         .then(result => res.json(result))
         .catch(error => {
           res.status(412).json({msg: error.message});
         });
     });
 
-    app.route('/raza/:id')
+  app.route('/animal/:id')
     .get((req, res) => {
-      Raza.findOne({where: req.params})
+      Animal.findOne({where: req.params})
         .then(result => {
           if (result) {
             res.json(result);
@@ -33,17 +33,18 @@ module.exports = app => {
         });
     })
     .put((req, res) => {
-      Raza.update(req.body, {where: req.params})
+      Animal.update(req.body, {where: req.params})
         .then(result => res.sendStatus(204))
         .catch(error => {
           res.status(412).json({msg: error.message});
         });
     })
     .delete((req, res) => {
-      Raza.destroy({where: req.params})
+      Animal.destroy({where: req.params})
         .then(result => res.sendStatus(204))
         .catch(error => {
           res.status(204).json({msg: error.message});
         });
     });
+
 };

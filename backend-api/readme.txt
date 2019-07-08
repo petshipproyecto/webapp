@@ -14,7 +14,8 @@ PATH:
 - Abrir propiedades del sistema
 - Variables del entorno > Variables del sistema > Path > Editar
 - Nuevo: C:\Program Files\MySQL\MySQL Server 8.0\bin
-Migración de DB:
+Ejecución del servidor, ejecutar en una terminal ubicada en backend-api: npm run dev
+Migración de DB (Cuando sea necesario migrar datos):
 - Verificar que el servicio de MySQL se esté ejecutando
 - Abrir MySQL Workbench
 - Conectar con Local instance MySQL80
