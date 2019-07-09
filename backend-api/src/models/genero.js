@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataType) => {
 
-    const Raza = sequelize.define('Raza', {
+    const Genero = sequelize.define('Genero', {
       Id: {
         type: DataType.INTEGER,
         primaryKey: true,
@@ -12,10 +12,9 @@ module.exports = (sequelize, DataType) => {
       }
     });
   
-    Raza.associate = (models) => {
-        Raza.belongsTo(models.Animal, {foreignKey: "AnimalId"});
-        Raza.hasMany(models.Perfil)
+    Genero.associate = (models) => {
+        Genero.hasMany(models.Perfil);
     };
   
-    return Raza;
+    return Genero;
   };

@@ -13,6 +13,7 @@ module.exports = {
         collate: 'utf8_spanish2_ci'
       },
       timestamps: false
-    }
+    },
+    force: true
   }
 };
