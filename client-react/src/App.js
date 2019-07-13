@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 
 
 import Grid from '@material-ui/core/Grid';
@@ -13,10 +13,10 @@ import Search from './components/basic/basicLayoutComponents/search'
 import Notifications from './components/basic/basicLayoutComponents/notifications'
 import Swipe from './components/basic/basicLayoutComponents/swipe'
 import Profile from './components/basic/basicLayoutComponents/profile'
-import PrivateRoute from './components/auth/PrivateRoute'
-import Login from './components/auth/login'
+//simport PrivateRoute from './components/auth/PrivateRoute'
+//import Login from './components/auth/login'
 import BasicLayout from './components/basic/BasicLayout'
-
+import signUpForm from './components/signUp/signUpForm'
 
 
 class App extends Component {
@@ -30,6 +30,8 @@ class App extends Component {
         <Grid  xs={12}>
                 <div className="App">
                 <Route path='/basicLayout' component={BasicLayout}></Route>
+                <Route path='/signUp' component={signUpForm}></Route>
+
                 {/* PrivateRoute 
                 <Route path="/login" component={Login}/> */}
                 
