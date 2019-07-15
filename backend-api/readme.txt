@@ -1,3 +1,11 @@
+Instalar Dependencias:
+- Ejecutar en una terminal ubicada en backend-api: npm install
+Ejecución del servidor:
+- Ejecutar en una terminal ubicada en backend-api: npm run dev
+
+
+
+// No usamos más MySQL, pero lo dejo por las dudas
 Instalador MySQL: https://dev.mysql.com/downloads/file/?id=486088
 Instalación MySQL:
 - Setup type: "Developer Default", o bien "Custom": MySQL Server; MySQL Workbench.
@@ -20,5 +28,3 @@ Migración de DB:
 - Conectar con Local instance MySQL80
 - File > Open MySQL Script (Seleccionar /directorio_del_repositorio/backend-api/database/db.sql)
 - Ejecutar Script.
-Ejecución del servidor:
-- Ejecutar en una terminal ubicada en backend-api: npm run dev
