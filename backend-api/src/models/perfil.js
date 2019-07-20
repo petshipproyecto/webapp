@@ -1,25 +1,25 @@
 module.exports = (sequelize, DataType) => {
 
     const Perfil = sequelize.define('Perfil', {
-      Id: {
-        type: DataType.INTEGER,
+      Id_perfil: {
+        type: DataType.BIGINT,
         primaryKey: true,
         autoIncrement: true
       },
       Nombre: {
-        type: DataType.STRING,
+        type: DataType.STRING(100),
         allowNull: false,
       },
-      FechaNacimiento: {
-        type: DataType.DATE,
+      Edad: {
+        type: DataType.INTEGER,
         allowNull: false,
       }
     });
   
     Perfil.associate = (models) => {
-        Perfil.belongsTo(models.Raza, { foreignKey: 'RazaId' });
-        Perfil.belongsTo(models.Genero, { foreignKey: 'GeneroId'});
-        Perfil.belongsTo(models.Usuario, { foreignKey: 'UsuarioId'});
+        Perfil.belongsTo(models.Raza, { foreignKey: 'Id_raza' });
+        Perfil.belongsTo(models.Genero, { foreignKey: 'Id_genero'});
+        Perfil.belongsTo(models.Usuario, { foreignKey: 'Id_usuario'});
     };
   
     return Perfil;

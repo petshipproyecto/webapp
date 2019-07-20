@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataType) => {
 
     const Animal = sequelize.define('Animal', {
-      Id: {
-        type: DataType.INTEGER,
+      Id_animal: {
+        type: DataType.BIGINT,
         primaryKey: true,
         autoIncrement: true
       },

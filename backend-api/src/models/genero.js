@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataType) => {
 
     const Genero = sequelize.define('Genero', {
-      Id: {
-        type: DataType.INTEGER,
+      Id_genero: {
+        type: DataType.BIGINT,
         primaryKey: true,
         autoIncrement: true
       },
       Descripcion: {
-        type: DataType.STRING,
+        type: DataType.STRING(50),
         allowNull: false,
       }
     });
