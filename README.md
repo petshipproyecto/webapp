@@ -24,6 +24,6 @@ Librería Componentes UI: https://material-ui.com/
 Librería para Motion: https://www.react-spring.io/
 
 
-** App Hosteada: ** 
+**App Hosteada:** 
 Link Frontend en Firebase: https://petship-front.firebaseapp.com/
 
