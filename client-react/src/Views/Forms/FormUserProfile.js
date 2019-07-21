@@ -14,6 +14,7 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar-2.jpg";
 
+
 class FormUserProfile extends React.Component {
   render() {
     return (
