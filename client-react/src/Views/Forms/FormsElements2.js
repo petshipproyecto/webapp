@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 import Aux from "../../hoc/_Aux";
 
-class FormsElements extends React.Component {
+class FormUserProfile extends React.Component {
     render() {
         return (
             <Formik
@@ -83,4 +83,4 @@ class FormsElements extends React.Component {
     
 }
 
-export default FormsElements;
+export default FormUserProfile;

@@ -13,7 +13,7 @@ const [validated, setValidated] = useState(false);
 
     setValidated(true);
   };
-class FormsElements extends React.Component {
+class FormUserProfile extends React.Component {
 
 
     render() {
@@ -95,4 +95,4 @@ class FormsElements extends React.Component {
     }
 }
 
-export default FormsElements;
+export default FormUserProfile;

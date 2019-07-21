@@ -45,14 +45,14 @@ export default {
                             id: 'perfilUsuario',
                             title: 'Perfil de Usuario',
                             type: 'item',
-                            url: '/forms/form-basic',
+                            url: '/forms/formUserProfile',
                          
                         },
                         {
                             id: 'perfilMascota',
                             title: 'Perfil de Mascota',
                             type: 'item',
-                            url: '/forms/form-basic',
+                            url: '/forms/formUserProfile',
                        
                         }
                     ]

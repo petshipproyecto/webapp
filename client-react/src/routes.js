@@ -5,26 +5,26 @@ window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
 
-const DashboardDefault = React.lazy(() => import('./Demo/Dashboard/Default'));
+const DashboardDefault = React.lazy(() => import('./Views/Dashboard/Default'));
 
-const UIBasicButton = React.lazy(() => import('./Demo/UIElements/Basic/Button'));
-const UIBasicBadges = React.lazy(() => import('./Demo/UIElements/Basic/Badges'));
-const UIBasicBreadcrumbPagination = React.lazy(() => import('./Demo/UIElements/Basic/BreadcrumbPagination'));
+const UIBasicButton = React.lazy(() => import('./Views/UIElements/Basic/Button'));
+const UIBasicBadges = React.lazy(() => import('./Views/UIElements/Basic/Badges'));
+const UIBasicBreadcrumbPagination = React.lazy(() => import('./Views/UIElements/Basic/BreadcrumbPagination'));
 
-const UIBasicCollapse = React.lazy(() => import('./Demo/UIElements/Basic/Collapse'));
-const UIBasicTabsPills = React.lazy(() => import('./Demo/UIElements/Basic/TabsPills'));
-const UIBasicBasicTypography = React.lazy(() => import('./Demo/UIElements/Basic/Typography'));
+const UIBasicCollapse = React.lazy(() => import('./Views/UIElements/Basic/Collapse'));
+const UIBasicTabsPills = React.lazy(() => import('./Views/UIElements/Basic/TabsPills'));
+const UIBasicBasicTypography = React.lazy(() => import('./Views/UIElements/Basic/Typography'));
 
-const FormsElements = React.lazy(() => import('./Demo/Forms/FormsElements'));
+const FormUserProfile = React.lazy(() => import('./Views/Forms/FormUserProfile'));
 
-const BootstrapTable = React.lazy(() => import('./Demo/Tables/BootstrapTable'));
+const BootstrapTable = React.lazy(() => import('./Views/Tables/BootstrapTable'));
 
-const Nvd3Chart = React.lazy(() => import('./Demo/Charts/Nvd3Chart/index'));
+const Nvd3Chart = React.lazy(() => import('./Views/Charts/Nvd3Chart/index'));
 
-const GoogleMap = React.lazy(() => import('./Demo/Maps/GoogleMap/index'));
+const GoogleMap = React.lazy(() => import('./Views/Maps/GoogleMap/index'));
 
-const OtherSamplePage = React.lazy(() => import('./Demo/Other/SamplePage'));
-const OtherDocs = React.lazy(() => import('./Demo/Other/Docs'));
+const OtherSamplePage = React.lazy(() => import('./Views/Other/SamplePage'));
+const OtherDocs = React.lazy(() => import('./Views/Other/Docs'));
 
 const routes = [
     { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
@@ -34,7 +34,7 @@ const routes = [
     { path: '/basic/collapse', exact: true, name: 'Basic Collapse', component: UIBasicCollapse },
     { path: '/basic/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
     { path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
-    { path: '/forms/form-basic', exact: true, name: 'Forms Elements', component: FormsElements },
+    { path: '/forms/formUserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
     { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
     { path: '/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     { path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },

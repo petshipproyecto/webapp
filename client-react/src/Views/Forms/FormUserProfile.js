@@ -14,7 +14,7 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar-2.jpg";
 
-class FormsElements extends React.Component {
+class FormUserProfile extends React.Component {
   render() {
     return (
       <Aux>
@@ -53,17 +53,17 @@ class FormsElements extends React.Component {
                     <Form>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="email" placeholder="Nombre" />
+                        <Form.Control type="email" placeholder="John" />
                         <Form.Text className="text-muted" />
                       </Form.Group>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Apellido</Form.Label>
-                        <Form.Control type="email" placeholder="Apellido" />
+                        <Form.Control type="email" placeholder="Doe" />
                         <Form.Text className="text-muted" />
                       </Form.Group>
                       <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Email" />
+                        <Form.Control type="email" placeholder="johnDoe@gmail.com" />
                         <Form.Text className="text-muted" />
                       </Form.Group>
                       <Form.Group controlId="exampleForm.ControlSelect1">
@@ -124,4 +124,4 @@ class FormsElements extends React.Component {
   }
 }
 
-export default FormsElements;
+export default FormUserProfile;

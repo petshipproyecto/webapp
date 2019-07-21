@@ -22,8 +22,12 @@ class SignUp1 extends React.Component {
           password: ""
         }}
         validationSchema={Yup.object().shape({
-          firstName: Yup.string().required("El nombre es obligatorio"),
-          lastName: Yup.string().required("El apellido es obligatorio"),
+          firstName: Yup.string()
+          .trim()
+          .required("El nombre es obligatorio"),
+          lastName: Yup.string()
+          .trim()
+          .required("El apellido es obligatorio"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio"),
