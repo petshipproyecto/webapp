@@ -11,7 +11,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
-class SignUp1 extends React.Component {
+class SignUp extends React.Component {
   render() {
     return (
       <Formik
@@ -23,11 +23,11 @@ class SignUp1 extends React.Component {
         }}
         validationSchema={Yup.object().shape({
           firstName: Yup.string()
-          .trim()
-          .required("El nombre es obligatorio"),
+            .trim()
+            .required("El nombre es obligatorio"),
           lastName: Yup.string()
-          .trim()
-          .required("El apellido es obligatorio"),
+            .trim()
+            .required("El apellido es obligatorio"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio"),
@@ -132,7 +132,7 @@ class SignUp1 extends React.Component {
                       </div>
                       <p className="mb-0 text-muted">
                         Tiene una cuenta?{" "}
-                        <NavLink to="/auth/signin-1">Iniciar Sesión</NavLink>
+                        <NavLink to="/auth/signin">Iniciar Sesión</NavLink>
                       </p>
                     </div>
                   </div>
@@ -146,4 +146,4 @@ class SignUp1 extends React.Component {
   }
 }
 
-export default SignUp1;
+export default SignUp;

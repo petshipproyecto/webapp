@@ -10,7 +10,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
-class SignUp1 extends React.Component {
+class SignIn extends React.Component {
   render() {
     return (
       <Formik
@@ -72,13 +72,13 @@ class SignUp1 extends React.Component {
                   </div>
                     <p className="mb-2 text-muted">
                       Olvidaste tu contraseña?{" "}
-                      <NavLink to="/auth/reset-password-1">
+                      <NavLink to="/auth/resetPassword">
                         Recupera tu Contraseña
                       </NavLink>
                     </p>
                     <p className="mb-0 text-muted">
                       No tienes cuenta?{" "}
-                      <NavLink to="/auth/signup-1">Registrate</NavLink>
+                      <NavLink to="/auth/signup">Registrate</NavLink>
                     </p>
                   </div>
                 </div>
@@ -92,4 +92,4 @@ class SignUp1 extends React.Component {
   }
 }
 
-export default SignUp1;
+export default SignIn;
