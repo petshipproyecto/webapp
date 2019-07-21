@@ -52,7 +52,7 @@ export default {
                             id: 'perfilMascota',
                             title: 'Perfil de Mascota',
                             type: 'item',
-                            url: '/forms/formUserProfile',
+                            url: '/forms/formPetProfile',
                        
                         }
                     ]
