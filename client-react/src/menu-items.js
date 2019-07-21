@@ -1,122 +1,69 @@
 export default {
     items: [
         {
-            id: 'navigation',
-            title: 'Navigation',
+            id: 'menu',
+            title: 'Menu',
             type: 'group',
             icon: 'icon-navigation',
             children: [
                 {
-                    id: 'dashboard',
-                    title: 'Dashboard',
+                    id: 'inicio',
+                    title: 'Inicio',
                     type: 'item',
                     url: '/dashboard/default',
                     icon: 'feather icon-home',
-                }
-            ]
-        },
-        {
-            id: 'ui-element',
-            title: 'UI ELEMENT',
-            type: 'group',
-            icon: 'icon-ui',
-            children: [
+                },
                 {
-                    id: 'basic',
-                    title: 'Component',
+                    id: 'buscarPareja',
+                    title: 'Buscar Pareja',
+                    type: 'item',
+                    url: '/sample-page',
+                    icon: 'feather icon-heart-on'
+                },
+                {
+                    id: 'buscarAmigo',
+                    title: 'Buscar Amigos',
+                    type: 'item',
+                    icon: 'feather icon-star-on',
+                    url: '/sample-page'
+                },
+                {
+                    id: 'match',
+                    title: 'Matchs',
+                    type: 'item',
+                    url: '/sample-page',
+                    classes: 'nav-item',
+                    icon: 'feather icon-users'
+                },
+                {
+                    id: 'forms',
+                    title: 'Perfiles',
                     type: 'collapse',
-                    icon: 'feather icon-box',
+                    icon: 'feather icon-user',
                     children: [
                         {
-                            id: 'button',
-                            title: 'Button',
+                            id: 'perfilUsuario',
+                            title: 'Perfil de Usuario',
                             type: 'item',
-                            url: '/basic/button'
+                            url: '/forms/form-basic',
+                         
                         },
                         {
-                            id: 'badges',
-                            title: 'Badges',
+                            id: 'perfilMascota',
+                            title: 'Perfil de Mascota',
                             type: 'item',
-                            url: '/basic/badges'
-                        },
-                        {
-                            id: 'breadcrumb-pagination',
-                            title: 'Breadcrumb & Pagination',
-                            type: 'item',
-                            url: '/basic/breadcrumb-paging'
-                        },
-                        {
-                            id: 'collapse',
-                            title: 'Collapse',
-                            type: 'item',
-                            url: '/basic/collapse'
-                        },
-                        {
-                            id: 'tabs-pills',
-                            title: 'Tabs & Pills',
-                            type: 'item',
-                            url: '/basic/tabs-pills'
-                        },
-                        {
-                            id: 'typography',
-                            title: 'Typography',
-                            type: 'item',
-                            url: '/basic/typography'
+                            url: '/forms/form-basic',
+                       
                         }
                     ]
-                }
-            ]
-        },
-        {
-            id: 'ui-forms',
-            title: 'Forms & Tables',
-            type: 'group',
-            icon: 'icon-group',
-            children: [
-                {
-                    id: 'form-basic',
-                    title: 'Form Elements',
-                    type: 'item',
-                    url: '/forms/form-basic',
-                    icon: 'feather icon-file-text'
                 },
                 {
-                    id: 'bootstrap',
-                    title: 'Table',
+                    id: 'configuracion',
+                    title: 'Configuración',
                     type: 'item',
-                    icon: 'feather icon-server',
+                    icon: 'feather icon-settings',
                     url: '/tables/bootstrap'
-                }
-            ]
-        },
-        {
-            id: 'chart-maps',
-            title: 'Chart & Maps',
-            type: 'group',
-            icon: 'icon-charts',
-            children: [
-                {
-                    id: 'charts',
-                    title: 'Charts',
-                    type: 'item',
-                    icon: 'feather icon-pie-chart',
-                    url: '/charts/nvd3'
                 },
-                {
-                    id: 'maps',
-                    title: 'Map',
-                    type: 'item',
-                    icon: 'feather icon-map',
-                    url: '/maps/google-map'
-                }
-            ]
-        },
-        {
-            id: 'pages',
-            title: 'Pages',
-            type: 'group',
-            icon: 'icon-pages',
-            children: [
                 {
                     id: 'auth',
                     title: 'Authentication',
@@ -154,91 +101,11 @@ export default {
                     ]
                 },
 
-                {
-                    id: 'sample-page',
-                    title: 'Sample Page',
-                    type: 'item',
-                    url: '/sample-page',
-                    classes: 'nav-item',
-                    icon: 'feather icon-sidebar'
-                },
-                {
-                    id: 'docs',
-                    title: 'Documentation',
-                    type: 'item',
-                    url: '/docs',
-                    classes: 'nav-item',
-                    icon: 'feather icon-help-circle'
-                },
-                {
-                    id: 'menu-level',
-                    title: 'Menu Levels',
-                    type: 'collapse',
-                    icon: 'feather icon-menu',
-                    children: [
-                        {
-                            id: 'menu-level-1.1',
-                            title: 'Menu Level 1.1',
-                            type: 'item',
-                            url: '#!',
-                        },
-                        {
-                            id: 'menu-level-1.2',
-                            title: 'Menu Level 2.2',
-                            type: 'collapse',
-                            children: [
-                                {
-                                    id: 'menu-level-2.1',
-                                    title: 'Menu Level 2.1',
-                                    type: 'item',
-                                    url: '#',
-                                },
-                                {
-                                    id: 'menu-level-2.2',
-                                    title: 'Menu Level 2.2',
-                                    type: 'collapse',
-                                    children: [
-                                        {
-                                            id: 'menu-level-3.1',
-                                            title: 'Menu Level 3.1',
-                                            type: 'item',
-                                            url: '#',
-                                        },
-                                        {
-                                            id: 'menu-level-3.2',
-                                            title: 'Menu Level 3.2',
-                                            type: 'item',
-                                            url: '#',
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 'disabled-menu',
-                    title: 'Disabled Menu',
-                    type: 'item',
-                    url: '#',
-                    classes: 'nav-item disabled',
-                    icon: 'feather icon-power'
-                },
-                /*{
-                    id: 'buy-now',
-                    title: 'Buy Now',
-                    type: 'item',
-                    icon: 'feather icon-user',
-                    classes: 'nav-item',
-                    url: 'https://codedthemes.com',
-                    target: true,
-                    external: true,
-                    badge: {
-                        title: 'v1.0',
-                        type: 'label-primary'
-                    }
-                }*/
+                
+
+              
+                
             ]
-        }
+        },        
     ]
 }
