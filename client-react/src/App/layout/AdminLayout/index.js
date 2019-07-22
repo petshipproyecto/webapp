@@ -12,6 +12,9 @@ import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
+import Background from '../../../assets/images/fondoPrincipal/pets.jpg';
+
+
 import './app.scss';
 
 class AdminLayout extends Component {
@@ -31,6 +34,21 @@ class AdminLayout extends Component {
     mobileOutClickHandler() {
         if (this.props.windowWidth < 992 && this.props.collapseMenu) {
             this.props.onComponentWillMount();
+        }
+    }
+
+    getPcodedMainCotainerProps() {
+        return {
+            className:"pcoded-main-container",  
+            onClick:() => this.mobileOutClickHandler,
+            style: {
+                backgroundImage: "url(" + Background + ")",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                backgroundAttachment: "fixed",
+                backgroundColor: "#464646"
+            }
         }
     }
 
@@ -57,15 +75,17 @@ class AdminLayout extends Component {
 
         return (
             <Aux>
+                
                 <Fullscreen enabled={this.props.isFullScreen}>
                     <Navigation />
                     <NavBar />
-                    <div className="pcoded-main-container" onClick={() => this.mobileOutClickHandler}>
+                    <div {...this.getPcodedMainCotainerProps()}>
                         <div className="pcoded-wrapper">
                             <div className="pcoded-content">
                                 <div className="pcoded-inner-content">
                                     <Breadcrumb />
                                     <div className="main-body">
+                                    
                                         <div className="page-wrapper">
                                             <Suspense fallback={<Loader/>}>
                                                 <Switch>
