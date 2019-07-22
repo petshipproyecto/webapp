@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
-import path from 'path';
-import fs from 'fs';
+const Sequelize = require('sequelize');
+const path = require('path');
+const fs = require('fs');
 
 let db = null;
 

@@ -1,8 +1,9 @@
-module.exports = app => {
+const express = require('express');
+const router = express.Router();
   
-  const Animal = app.db.models.Animal;
+  const Animal = require('../models/animal');
 
-  app.route('/animal')
+  router.route('/')
     .get((req, res) => {
       Animal.findAll({})
         .then(result => res.json(result))
@@ -18,7 +19,7 @@ module.exports = app => {
         });
     });
 
-  app.route('/animal/:id')
+    router.route('/animal/:id')
     .get((req, res) => {
       Animal.findOne({where: req.params})
         .then(result => {
@@ -47,4 +48,8 @@ module.exports = app => {
         });
     });
 
-};
+    router.get('someAnimal',function(req,res){
+      res.send('animal!')
+    });
+
+    module.exports = router;

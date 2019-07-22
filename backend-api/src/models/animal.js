@@ -1,13 +1,14 @@
-module.exports = (sequelize, DataType) => {
 
+const sequelize = require('../libs/config');
+const Sequelize = require('sequelize');
     const Animal = sequelize.define('Animal', {
-      Id: {
-        type: DataType.INTEGER,
+      Id_animal: {
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       Descripcion: {
-        type: DataType.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       }
     });
@@ -16,5 +17,5 @@ module.exports = (sequelize, DataType) => {
         Animal.hasMany(models.Raza);
     };
   
-    return Animal;
-  };
+    module.exports =  Animal;
+  

@@ -1,4 +1,6 @@
-module.exports = {
+
+const Sequelize = require('sequelize');
+const configs = {
   database: 'ddde8q29bhrpuq',
   username: 'ssucdiniqlkyrr',
   password: '0eee54f5d4418c5b4fa007f63abaa7babd80d69a639e120d7aea31107cadfe5c',
@@ -16,3 +18,5 @@ module.exports = {
         }
     }
 };
+
+module.exports =  new Sequelize(configs.database,configs.username,configs.password,configs.params);
