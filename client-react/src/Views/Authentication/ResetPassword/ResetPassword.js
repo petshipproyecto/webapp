@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
@@ -10,13 +9,12 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
-class SignUp1 extends React.Component {
+class ResetPassword extends React.Component {
   render() {
     return (
       <Formik
         initialValues={{
-          email: "",
-          password: ""
+          email: ""
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -74,4 +72,4 @@ class SignUp1 extends React.Component {
   }
 }
 
-export default SignUp1;
+export default ResetPassword;
