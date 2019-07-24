@@ -27,6 +27,7 @@ class FormNewPet extends React.Component {
         <Formik
         initialValues={{
           name: "",
+          tipoAnimal:"",
           raza: "",
           edad:"",
           genero: "",
@@ -36,6 +37,9 @@ class FormNewPet extends React.Component {
           name: Yup.string()
             .trim()
             .required("El nombre es obligatorio"),
+          tipoAnimal: Yup.string()
+            .trim()
+            .required("El tipo de animal es obligatorio"),
           raza: Yup.string()
             .trim()
             .required("La raza es obligatoria"),
@@ -95,6 +99,25 @@ class FormNewPet extends React.Component {
                         />
                         <ErrorMessage
                           name="name"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                      <FormB.Group>
+                        <FormB.Label>Tipo de Animal</FormB.Label>
+                        <Field
+                          placeholder="Tipo de Animal"
+                          name="tipoAnimal"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.tipoAnimal && touched.tipoAnimal
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="tipoAnimal"
                           component="div"
                           className="invalid-feedback"
                         />
