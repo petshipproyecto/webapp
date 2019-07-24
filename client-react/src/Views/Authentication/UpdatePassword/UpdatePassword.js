@@ -27,14 +27,14 @@ class UpdatePassword extends React.Component {
         }}
         validationSchema={Yup.object().shape({
             password: Yup.string()
-            .min(6, 'Password must be at least 6 characters')
+            .min(6, 'La contraseña al menos debe tener 6 caracteres')
             .required('Password is required'),
              confirmPassword:  Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
-            .required('Confirm Password is required')
+            .oneOf([Yup.ref('password'), null], 'Las contraseñas deben ser iguales')
+            .required('La confirmacion de la contraseña es obligatoria')
         })}
         onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          
         }}
         render={({ errors, status, touched }) => (
             <Form>
@@ -60,13 +60,10 @@ class UpdatePassword extends React.Component {
                           type="submit"
                           className="btn btn-primary shadow-2 mb-4"
                         >
-                          Guardar
+                          Cambiar Contraseña
                         </button>
                       </div>
                     <Form inline>
-                      <Form.Group>
-                        <Button className="mb-0">Cambiar Contraseña</Button>
-                      </Form.Group>
                     </Form>
                   </Col>
                 </Row>
