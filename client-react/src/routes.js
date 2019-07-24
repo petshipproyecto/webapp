@@ -17,6 +17,7 @@ const UIBasicBasicTypography = React.lazy(() => import('./Views/UIElements/Basic
 
 const FormUserProfile = React.lazy(() => import('./Views/Forms/FormUserProfile'));
 const FormPetProfile = React.lazy(() => import('./Views/Forms/FormPetProfile'));
+const FormNewPet = React.lazy(() => import('./Views/Forms/FormNewPet'));
 
 const BootstrapTable = React.lazy(() => import('./Views/Tables/BootstrapTable'));
 
@@ -35,8 +36,9 @@ const routes = [
     { path: '/basic/collapse', exact: true, name: 'Basic Collapse', component: UIBasicCollapse },
     { path: '/basic/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
     { path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
-    { path: '/forms/formUserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
-    { path: '/forms/formPetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
+    { path: '/forms/UserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
+    { path: '/forms/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
+    { path: '/forms/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
     { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
     { path: '/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     { path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },

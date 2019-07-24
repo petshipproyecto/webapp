@@ -36,6 +36,14 @@ export default {
                     icon: 'feather icon-users'
                 },
                 {
+                    id: 'nuevaMascota',
+                    title: 'Agregar Mascota',
+                    type: 'item',
+                    url: '/forms/NewPet',
+                    classes: 'nav-item',
+                    icon: 'feather icon-plus-circle'
+                },
+                {
                     id: 'forms',
                     title: 'Perfiles',
                     type: 'collapse',
@@ -45,14 +53,14 @@ export default {
                             id: 'perfilUsuario',
                             title: 'Perfil de Usuario',
                             type: 'item',
-                            url: '/forms/formUserProfile',
+                            url: '/forms/UserProfile',
                          
                         },
                         {
                             id: 'perfilMascota',
                             title: 'Perfil de Mascota',
                             type: 'item',
-                            url: '/forms/formPetProfile',
+                            url: '/forms/PetProfile',
                        
                         }
                     ]
