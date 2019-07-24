@@ -181,7 +181,6 @@ class FormUserProfile extends React.Component {
                 </Row>
               </Card.Body>
             </Card>
-          {/* <UpdatePassword>  </UpdatePassword> */}
           </Col>
         </Row>
       </Aux>

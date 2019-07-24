@@ -33,9 +33,9 @@ $Menu-collapsed-width: 80px;
 
 // color list for build layouts
 // temp variables
-$theme-color: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
+$theme-color: linear-gradient(-135deg,#f47386 0%, #f47386 100%);
 $theme-color2: linear-gradient(-135deg, #899FD4 0%, #A389D4 100%);
-$primary-color: #04a9f5;
+$primary-color: #f47386;
 $warning-color: #f4c22b;
 $danger-color: #f44236;
 $success-color: #1de9b6;
@@ -61,7 +61,7 @@ $menu-dark-background: #3f4d67;
 $menu-dark-text-color: #a9b7d0;
 $menu-light-background: #fff;
 $menu-light-text-color: #3f4d67;
-$menu-active-color: #04a9f5;
+$menu-active-color: #f47386;
 
 // dark layout colors
 $dark-layout: #212224;
@@ -69,7 +69,7 @@ $dark-layout-font: #adb7be;
 
 
 // Menu icon
-$menu-icon-color: $primary-color, #ff5252, #01a9ac ,#9575CD , #23b7e5, $warning-color;
+$menu-icon-color: $primary-color, #ff5252, #01a9ac ,#9575CD ,#f47386, $warning-color;
 // Header background
 $color-header-name: blue, red, purple, lightblue, dark;
 $color-header-color: $primary-color, #ff5252, #9575CD ,#23b7e5,lighten($dark-layout,7%);
@@ -78,7 +78,7 @@ $color-menu-name: blue, red, purple, lightblue, dark;
 $color-menu-color: $primary-color, #ff5252, #9575CD ,#23b7e5,lighten($dark-layout,7%);
 // Active background color
 $color-active-name: blue, red, purple, lightblue, dark;
-$color-active-color: $primary-color, #ff5252, #9575CD ,#23b7e5,lighten($dark-layout,7%);
+$color-active-color: $primary-color, #ff5252, #9575CD ,#f47386,lighten($dark-layout,7%);
  // Menu title color
 $color-title-name: blue, red, purple, lightblue, dark;
 $color-title-color: $primary-color, #ff5252, #9575CD ,#23b7e5,lighten($dark-layout,7%);
