@@ -92,31 +92,6 @@ class FormPetProfile extends React.Component {
                 </Row>
               </Card.Body>
             </Card>
-            <Card>
-              <Card.Header>
-                <Card.Title as="h5">Modificar Contraseña</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col md={12}>
-                    <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Contraseña</Form.Label>
-                      <Form.Control type="password" placeholder="Contraseña" />
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Confirmar Contraseña</Form.Label>
-                      <Form.Control type="password" placeholder="Contraseña" />
-                    </Form.Group>
-                    <Form inline>
-                      <Form.Group>
-                        <Button className="mb-0">Cambiar Contraseña</Button>
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
           </Col>
         </Row>
       </Aux>

@@ -18,6 +18,7 @@ class SignUp extends React.Component {
         initialValues={{
           firstName: "",
           lastName: "",
+          ubicacion:"",
           email: "",
           password: ""
         }}
@@ -28,6 +29,9 @@ class SignUp extends React.Component {
           lastName: Yup.string()
             .trim()
             .required("El apellido es obligatorio"),
+            ubicacion: Yup.string()
+            .trim()
+            .required("La ubicación es obligatoria"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio"),
@@ -82,6 +86,24 @@ class SignUp extends React.Component {
                         />
                         <ErrorMessage
                           name="lastName"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <Field
+                          placeholder="Ubicación"
+                          name="ubicacion"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.ubicacion && touched.ubicacion
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="ubicacion"
                           component="div"
                           className="invalid-feedback"
                         />

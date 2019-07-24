@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   Card,
-  Form,
   Button,
   InputGroup,
   FormControl,
@@ -14,14 +13,53 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar-2.jpg";
 
+import { Form as FormB } from 'react-bootstrap';
+
+//-----------Para la validacion importar estos elementos--------------
+import { Formik, Field,Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+//---------------------------------------------------------------------
+
+import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
 
 class FormUserProfile extends React.Component {
   render() {
     return (
+        <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          ubicacion:"",
+          email: "",
+          password: ""
+        }}
+        validationSchema={Yup.object().shape({
+          firstName: Yup.string()
+            .trim()
+            .required("El nombre es obligatorio"),
+          lastName: Yup.string()
+            .trim()
+            .required("El apellido es obligatorio"),
+            ubicacion: Yup.string()
+            .trim()
+            .required("La ubicación es obligatoria"),
+          email: Yup.string()
+            .email("El email tiene un formato invalido")
+            .required("El email es obligatorio"),
+          password: Yup.string()
+            .min(6, "La contraseña debe tener al menos 6 caracteres")
+            .required("La contraseña es obligatoria")
+        })}
+        onSubmit={fields => {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        }}
+        render={({ errors, status, touched }) => (
+          <Form>
+      
       <Aux>
         <Row>
           <Col md={4}>
-            <Card>
+          <Card>
               <Card.Header>
                 <Card.Title as="h5">Perfil</Card.Title>
               </Card.Header>
@@ -34,12 +72,12 @@ class FormUserProfile extends React.Component {
                     alt="activity-user"
                   />
                 </center>
-                <Form.Group>
+                <FormB.Group>
                   <center>
                     {" "}
                     <Button className="mb-0">Cambiar Imagen</Button>
                   </center>
-                </Form.Group>
+                </FormB.Group>
               </Card.Body>
             </Card>
           </Col>
@@ -51,78 +89,108 @@ class FormUserProfile extends React.Component {
               <Card.Body>
                 <Row>
                   <Col md={12}>
-                    <Form>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="email" placeholder="John" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Apellido</Form.Label>
-                        <Form.Control type="email" placeholder="Doe" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="johnDoe@gmail.com" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Provincia</Form.Label>
-                        <Form.Control as="select">
-                          <option>Chaco</option>
-                          <option>Misiones</option>
-                          <option>Formosa</option>
-                          <option>Buenos Aires</option>
-                          <option>Cordoba</option>
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Ciudad</Form.Label>
-                        <Form.Control as="select">
-                          <option>Resistencia</option>
-                          <option>Corrientes</option>
-                          <option>Barranqueras</option>
-                          <option>Saenz Peña</option>
-                        </Form.Control>
-                      </Form.Group>
+<FormB>
+<FormB.Group controlId="formBasicEmail">
+                        <FormB.Label>Nombre</FormB.Label>
+                        <Field
+                          placeholder="Nombre"
+                          name="firstName"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.firstName && touched.firstName
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="firstName"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                      <FormB.Group controlId="formBasicEmail">
+                        <FormB.Label>Apellido</FormB.Label>
+                        <Field
+                          placeholder="Apellido"
+                          name="lastName"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.lastName && touched.lastName
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="lastName"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                      <FormB.Group>
+                        <FormB.Label>Ubicación</FormB.Label>
+                        <Field
+                          placeholder="Ubicación"
+                          name="ubicacion"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.ubicacion && touched.ubicacion
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="ubicacion"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
 
-                      <Button variant="primary">Guardar</Button>
-                    </Form>
+                      <FormB.Group controlId="formBasicEmail">
+                        <FormB.Label>Email</FormB.Label>
+                        <Field
+                          name="email"
+                          placeholder="Email"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.email && touched.email ? " is-invalid" : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                    
+             
+
+                       <div className="form-group">
+                        <button
+                          type="submit"
+                          className="btn btn-primary shadow-2 mb-4"
+                        >
+                          Guardar
+                        </button>
+                      </div>
+                      </FormB>
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
-            <Card>
-              <Card.Header>
-                <Card.Title as="h5">Modificar Contraseña</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col md={12}>
-                    <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Contraseña</Form.Label>
-                      <Form.Control type="password" placeholder="Contraseña" />
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                      <Form.Label>Confirmar Contraseña</Form.Label>
-                      <Form.Control type="password" placeholder="Contraseña" />
-                    </Form.Group>
-                    <Form inline>
-                      <Form.Group>
-                        <Button className="mb-0">Cambiar Contraseña</Button>
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
+          {/* <UpdatePassword>  </UpdatePassword> */}
           </Col>
         </Row>
       </Aux>
+      </Form>
+        )}
+      />
     );
   }
 }
+
 
 export default FormUserProfile;
