@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   Card,
-  Form,
   Button,
   InputGroup,
   FormControl,
@@ -12,15 +11,53 @@ import {
 } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
+import avatar2 from "../../assets/images/user/avatar-6.jpg";
+
+import { Form as FormB } from 'react-bootstrap';
+
+//-----------Para la validacion importar estos elementos--------------
+import { Formik, Field,Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+//---------------------------------------------------------------------
 import avatar1 from "../../assets/images/user/avatar-6.jpg";
 
 class FormPetProfile extends React.Component {
   render() {
     return (
+        <Formik
+        initialValues={{
+          name: "",
+          raza: "",
+          edad:"",
+          genero: "",
+
+        }}
+        validationSchema={Yup.object().shape({
+          name: Yup.string()
+            .trim()
+            .required("El nombre es obligatorio"),
+          raza: Yup.string()
+            .trim()
+            .required("La raza es obligatoria"),
+            edad: Yup.string()
+            .trim()
+            .required("La edad es obligatoria"),
+            genero: Yup.string()
+            .trim()
+            .required("El genero es obligatorio")
+      
+      
+        })}
+        onSubmit={fields => {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        }}
+        render={({ errors, status, touched }) => (
+          <Form>
+      
       <Aux>
         <Row>
           <Col md={4}>
-            <Card>
+          <Card>
               <Card.Header>
                 <Card.Title as="h5">Perfil</Card.Title>
               </Card.Header>
@@ -29,74 +66,129 @@ class FormPetProfile extends React.Component {
                   <img
                     className="rounded-circle"
                     style={{ width: "150px" }}
-                    src={avatar1}
+                    src={avatar2}
                     alt="activity-user"
                   />
                 </center>
-                <Form.Group>
+                <FormB.Group>
                   <center>
                     {" "}
                     <Button className="mb-0">Cambiar Imagen</Button>
                   </center>
-                </Form.Group>
+                </FormB.Group>
               </Card.Body>
             </Card>
           </Col>
           <Col md={8}>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Información de la mascota</Card.Title>
+                <Card.Title as="h5">Información de la Mascota</Card.Title>
               </Card.Header>
               <Card.Body>
                 <Row>
                   <Col md={12}>
-                    <Form>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Nombre</Form.Label>
-                        <Form.Control type="email" placeholder="Loli" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Raza</Form.Label>
-                        <Form.Control type="email" placeholder="Golden Retriever" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Edad</Form.Label>
-                        <Form.Control type="email" placeholder="3 meses" />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Provincia</Form.Label>
-                        <Form.Control as="select">
-                          <option>Chaco</option>
-                          <option>Misiones</option>
-                          <option>Formosa</option>
-                          <option>Buenos Aires</option>
-                          <option>Cordoba</option>
-                        </Form.Control>
-                      </Form.Group>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Ciudad</Form.Label>
-                        <Form.Control as="select">
-                          <option>Resistencia</option>
-                          <option>Corrientes</option>
-                          <option>Barranqueras</option>
-                          <option>Saenz Peña</option>
-                        </Form.Control>
-                      </Form.Group>
+<FormB>
+<FormB.Group>
+                        <FormB.Label>Nombre</FormB.Label>
+                        <Field
+                          placeholder="Nombre"
+                          name="name"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.name && touched.name
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="name"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                      <FormB.Group>
+                        <FormB.Label>Raza</FormB.Label>
+                        <Field
+                          placeholder="Raza"
+                          name="raza"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.raza && touched.raza
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="raza"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                      <FormB.Group>
+                        <FormB.Label>Edad</FormB.Label>
+                        <Field
+                          placeholder="Edad"
+                          name="edad"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.edad && touched.edad
+                              ? " is-invalid"
+                              : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="edad"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
 
-                      <Button variant="primary">Guardar</Button>
-                    </Form>
+                      <FormB.Group >
+                        <FormB.Label>Genero</FormB.Label>
+                        <Field
+                          name="genero"
+                          placeholder="Genero"
+                          type="text"
+                          className={
+                            "form-control" +
+                            (errors.genero && touched.genero ? " is-invalid" : "")
+                          }
+                        />
+                        <ErrorMessage
+                          name="genero"
+                          component="div"
+                          className="invalid-feedback"
+                        />
+                      </FormB.Group>
+                    
+             
+
+                       <div className="form-group">
+                        <button
+                          type="submit"
+                          className="btn btn-primary shadow-2 mb-4"
+                        >
+                          Guardar
+                        </button>
+                      </div>
+                      </FormB>
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
+          {/* <UpdatePassword>  </UpdatePassword> */}
           </Col>
         </Row>
       </Aux>
+      </Form>
+        )}
+      />
     );
   }
 }
+
 
 export default FormPetProfile;

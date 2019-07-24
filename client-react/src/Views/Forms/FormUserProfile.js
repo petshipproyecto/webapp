@@ -90,7 +90,7 @@ class FormUserProfile extends React.Component {
                 <Row>
                   <Col md={12}>
 <FormB>
-<FormB.Group controlId="formBasicEmail">
+<FormB.Group>
                         <FormB.Label>Nombre</FormB.Label>
                         <Field
                           placeholder="Nombre"
@@ -109,7 +109,7 @@ class FormUserProfile extends React.Component {
                           className="invalid-feedback"
                         />
                       </FormB.Group>
-                      <FormB.Group controlId="formBasicEmail">
+                      <FormB.Group>
                         <FormB.Label>Apellido</FormB.Label>
                         <Field
                           placeholder="Apellido"
@@ -148,7 +148,7 @@ class FormUserProfile extends React.Component {
                         />
                       </FormB.Group>
 
-                      <FormB.Group controlId="formBasicEmail">
+                      <FormB.Group>
                         <FormB.Label>Email</FormB.Label>
                         <Field
                           name="email"
