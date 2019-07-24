@@ -14,7 +14,6 @@ module.exports = (sequelize, DataType) => {
   
     Raza.associate = (models) => {
         Raza.belongsTo(models.Animal, {foreignKey: "Id_animal"});
-        Raza.hasMany(models.Perfil)
     };
   
     return Raza;

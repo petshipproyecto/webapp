@@ -25,7 +25,7 @@ module.exports = (sequelize, DataType) => {
     });
   
     Usuario.associate = (models) => {
-        Usuario.hasMany(models.Perfil);
+        Usuario.belongsTo(models.Ubicacion, {foreignKey: "Id_ubicacion"});
     };
   
     return Usuario;

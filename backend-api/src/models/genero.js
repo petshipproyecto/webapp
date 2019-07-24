@@ -12,8 +12,8 @@ module.exports = (sequelize, DataType) => {
       }
     });
   
-    Genero.associate = (models) => {
-        Genero.hasMany(models.Perfil);
+   Genero.associate = (models) => {
+      
     };
   
     return Genero;

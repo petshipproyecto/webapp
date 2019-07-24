@@ -13,7 +13,11 @@ module.exports = (sequelize, DataType) => {
       Edad: {
         type: DataType.INTEGER,
         allowNull: false,
-      }
+      },
+      Imagen: {
+        type: DataType.STRING,
+        allowNull: false,
+      },
     });
   
     Perfil.associate = (models) => {
