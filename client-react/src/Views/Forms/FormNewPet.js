@@ -16,11 +16,10 @@ import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import { Form as FormB } from "react-bootstrap";
 
 //-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage,HandleChange } from "formik";
+import { Formik, Field, Form, ErrorMessage, HandleChange } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 import avatar1 from "../../assets/images/user/avatar-6.jpg";
-
 
 class FormNewPet extends React.Component {
   render() {
@@ -35,8 +34,8 @@ class FormNewPet extends React.Component {
           file: ""
         }}
         validationSchema={Yup.object().shape({
-          file: Yup.mixed().required('La imagen es obligatoria'),
-        
+          file: Yup.mixed().required("La imagen es obligatoria"),
+
           name: Yup.string()
             .trim()
             .required("El nombre es obligatorio"),
@@ -56,7 +55,7 @@ class FormNewPet extends React.Component {
         onSubmit={fields => {
           alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
-        render={({ errors, status, touched,handleChange }) => (
+        render={({ errors, status, touched, handleChange }) => (
           <Form>
             <Aux>
               <Row className="justify-content-md-center">
@@ -77,31 +76,29 @@ class FormNewPet extends React.Component {
                                 alt="activity-user"
                               />
                             </center>
-                            
-                            <FormB.Group > 
-                      <br></br>
 
-                        <input 
-                                
-    id="file"
-    name="file"
-    type="file"
-    onChange={handleChange}
-    className={
-      "form-control" +
-      (errors.file && touched.file
-        ? " is-invalid"
-        : "")
-    }
-   
-/><ErrorMessage
+                            <FormB.Group>
+                              <br></br>
+
+                              <input
+                                id="file"
+                                name="file"
+                                type="file"
+                                onChange={handleChange}
+                                className={
+                                  "form-control" +
+                                  (errors.file && touched.file
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
                                 name="file"
                                 component="div"
                                 className="invalid-feedback"
                               />
-                
-                      </FormB.Group>
-                      
+                            </FormB.Group>
+
                             <FormB.Group>
                               <FormB.Label>Nombre</FormB.Label>
                               <Field
