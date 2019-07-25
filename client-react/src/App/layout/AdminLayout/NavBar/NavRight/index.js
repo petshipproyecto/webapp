@@ -76,9 +76,9 @@ class NavRight extends Component {
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
-                    <li className={this.props.rtlLayout ? 'm-r-15' : 'm-l-15'}>
+                    {/* <li className={this.props.rtlLayout ? 'm-r-15' : 'm-l-15'}>
                         <a href={DEMO.BLANK_LINK} className="displayChatbox" onClick={() => {this.setState({listOpen: true});}}><i className="icon feather icon-mail"/></a>
-                    </li>
+                    </li> */}
                     <li>
                         <Dropdown alignRight={!this.props.rtlLayout} className="drp-user">
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
@@ -93,9 +93,9 @@ class NavRight extends Component {
                                     </a>
                                 </div>
                                 <ul className="pro-body">
-                                    <li><a href={DEMO.BLANK_LINK} className="dropdown-item"><i className="feather icon-settings"/>Configuración</a></li>
                                     <li><a href={DEMO.BLANK_LINK} className="dropdown-item"><i className="feather icon-user"/>Mi Perfil</a></li>
                                     <li><a href={DEMO.BLANK_LINK} className="dropdown-item"><i className="feather icon-mail"/>Mis Mensajes</a></li>
+                                    <li><a href={DEMO.BLANK_LINK} className="dropdown-item"><i className="feather icon-settings"/>Configuración</a></li>
                                     <li><a href={DEMO.BLANK_LINK} className="dropdown-item"><i className="feather icon-lock"/>Cerrar Sesión</a></li>
                                 </ul>
                             </Dropdown.Menu>
