@@ -13,11 +13,11 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar-2.jpg";
 
-import { Form as FormB } from 'react-bootstrap';
+import { Form as FormB } from "react-bootstrap";
 
 //-----------Para la validacion importar estos elementos--------------
-import { Formik, Field,Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
@@ -25,11 +25,11 @@ import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
 class FormUserProfile extends React.Component {
   render() {
     return (
-        <Formik
+      <Formik
         initialValues={{
           firstName: "",
           lastName: "",
-          ubicacion:"",
+          ubicacion: "",
           email: "",
           password: ""
         }}
@@ -40,7 +40,7 @@ class FormUserProfile extends React.Component {
           lastName: Yup.string()
             .trim()
             .required("El apellido es obligatorio"),
-            ubicacion: Yup.string()
+          ubicacion: Yup.string()
             .trim()
             .required("La ubicación es obligatoria"),
           email: Yup.string()
@@ -55,141 +55,145 @@ class FormUserProfile extends React.Component {
         }}
         render={({ errors, status, touched }) => (
           <Form>
-      
-      <Aux>
-        <Row>
-          <Col md={4}>
-          <Card>
-              <Card.Header>
-                <Card.Title as="h5">Perfil</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <center>
-                  <img
-                    className="rounded-circle"
-                    style={{ width: "150px" }}
-                    src={avatar1}
-                    alt="activity-user"
-                  />
-                </center>
-                <FormB.Group>
-                  <center>
-                    {" "}
-                    <Button className="mb-0">Cambiar Imagen</Button>
-                  </center>
-                </FormB.Group>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={8}>
-            <Card>
-              <Card.Header>
-                <Card.Title as="h5">Información del Usuario</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col md={12}>
-<FormB>
-<FormB.Group>
-                        <FormB.Label>Nombre</FormB.Label>
-                        <Field
-                          placeholder="Nombre"
-                          name="firstName"
-                          type="text"
-                          className={
-                            "form-control" +
-                            (errors.firstName && touched.firstName
-                              ? " is-invalid"
-                              : "")
-                          }
+            <Aux>
+              <Row>
+                <Col md={4}>
+                  <Card>
+                    <Card.Header>
+                      <Card.Title as="h5">Perfil</Card.Title>
+                    </Card.Header>
+                    <Card.Body>
+                      <center>
+                        <img
+                          className="rounded-circle"
+                          style={{ width: "150px" }}
+                          src={avatar1}
+                          alt="activity-user"
                         />
-                        <ErrorMessage
-                          name="firstName"
-                          component="div"
-                          className="invalid-feedback"
-                        />
-                      </FormB.Group>
+                      </center>
                       <FormB.Group>
-                        <FormB.Label>Apellido</FormB.Label>
-                        <Field
-                          placeholder="Apellido"
-                          name="lastName"
-                          type="text"
-                          className={
-                            "form-control" +
-                            (errors.lastName && touched.lastName
-                              ? " is-invalid"
-                              : "")
-                          }
-                        />
-                        <ErrorMessage
-                          name="lastName"
-                          component="div"
-                          className="invalid-feedback"
-                        />
+                      <br></br>
+                        <center>
+                          <input
+                            id="file"
+                            name="file"
+                            type="file"
+                            className="form-control"
+                          />
+                        </center>
                       </FormB.Group>
-                      <FormB.Group>
-                        <FormB.Label>Ubicación</FormB.Label>
-                        <Field
-                          placeholder="Ubicación"
-                          name="ubicacion"
-                          type="text"
-                          className={
-                            "form-control" +
-                            (errors.ubicacion && touched.ubicacion
-                              ? " is-invalid"
-                              : "")
-                          }
-                        />
-                        <ErrorMessage
-                          name="ubicacion"
-                          component="div"
-                          className="invalid-feedback"
-                        />
-                      </FormB.Group>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={8}>
+                  <Card>
+                    <Card.Header>
+                      <Card.Title as="h5">Información del Usuario</Card.Title>
+                    </Card.Header>
+                    <Card.Body>
+                      <Row>
+                        <Col md={12}>
+                          <FormB>
+                            <FormB.Group>
+                              <FormB.Label>Nombre</FormB.Label>
+                              <Field
+                                placeholder="Nombre"
+                                name="firstName"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.firstName && touched.firstName
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
+                                name="firstName"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </FormB.Group>
+                            <FormB.Group>
+                              <FormB.Label>Apellido</FormB.Label>
+                              <Field
+                                placeholder="Apellido"
+                                name="lastName"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.lastName && touched.lastName
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
+                                name="lastName"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </FormB.Group>
+                            <FormB.Group>
+                              <FormB.Label>Ubicación</FormB.Label>
+                              <Field
+                                placeholder="Ubicación"
+                                name="ubicacion"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.ubicacion && touched.ubicacion
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
+                                name="ubicacion"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </FormB.Group>
 
-                      <FormB.Group>
-                        <FormB.Label>Email</FormB.Label>
-                        <Field
-                          name="email"
-                          placeholder="Email"
-                          type="text"
-                          className={
-                            "form-control" +
-                            (errors.email && touched.email ? " is-invalid" : "")
-                          }
-                        />
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className="invalid-feedback"
-                        />
-                      </FormB.Group>
-                    
-             
+                            <FormB.Group>
+                              <FormB.Label>Email</FormB.Label>
+                              <Field
+                                name="email"
+                                placeholder="Email"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.email && touched.email
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
+                                name="email"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </FormB.Group>
 
-                       <div className="form-group">
-                        <button
-                          type="submit"
-                          className="btn btn-primary shadow-2 mb-4"
-                        >
-                          Guardar
-                        </button>
-                      </div>
-                      </FormB>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Aux>
-      </Form>
+                            <div className="form-group">
+                              <button
+                                type="submit"
+                                className="btn btn-primary shadow-2 mb-4"
+                              >
+                                Guardar
+                              </button>
+                            </div>
+                          </FormB>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                  <UpdatePassword></UpdatePassword>
+                </Col>
+              </Row>
+            </Aux>
+          </Form>
         )}
       />
     );
   }
 }
-
 
 export default FormUserProfile;

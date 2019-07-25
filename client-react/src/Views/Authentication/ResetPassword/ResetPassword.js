@@ -5,12 +5,13 @@ import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 
 //-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik , Field, Form , ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 class ResetPassword extends React.Component {
   render() {
+
     return (
       <Formik
         initialValues={{
@@ -21,8 +22,12 @@ class ResetPassword extends React.Component {
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio")
         })}
-        onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 500);
         }}
         render={({ errors, status, touched }) => (
           <Form>
