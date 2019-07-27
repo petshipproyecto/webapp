@@ -8,6 +8,8 @@ import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions";
 
+import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
+
 class NavLeft extends Component {
 
     render() {
@@ -31,13 +33,21 @@ class NavLeft extends Component {
                     <li className={navItemClass.join(' ')}>
                         <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
-                                Dropdown
+                                Selecionar Perfil de Mascota
                             </Dropdown.Toggle>
                             <ul>
                                 <Dropdown.Menu>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Action</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Another action</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Something else here</a></li>
+                                    
+                                        <li>
+                                            <img className="img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <div className="media-body">
+                                                <p><strong>John Doe</strong></p>
+                                            </div>
+                                            {/* <img src={Avatar1} className="img-radius" alt="Generic placeholder"/><a className="dropdown-item" href={DEMO.BLANK_LINK}>Firulais</a></li> */}
+                                        </li>
+                                        <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Kitty</a></li>
+                                        <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Pepe</a></li>
+                                    
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
