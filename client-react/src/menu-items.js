@@ -83,7 +83,7 @@ export default {
                     },
                     children: [
                         {
-                            id: 'signup-1',
+                            id: 'signup',
                             title: 'Sign up',
                             type: 'item',
                             url: '/auth/signup',
@@ -91,7 +91,7 @@ export default {
                             breadcrumbs: false
                         },
                         {
-                            id: 'signin-1',
+                            id: 'signin',
                             title: 'Sign in',
                             type: 'item',
                             url: '/auth/signin',
@@ -99,10 +99,18 @@ export default {
                             breadcrumbs: false
                         },
                         {
-                            id: 'signin-1',
+                            id: 'resetPassword',
                             title: 'Reset Password',
                             type: 'item',
                             url: '/auth/resetPassword',
+                            target: true,
+                            breadcrumbs: false
+                        },
+                        {
+                            id: 'choosePet',
+                            title: 'Elegir Mascota',
+                            type: 'item',
+                            url: '/auth/choosePet',
                             target: true,
                             breadcrumbs: false
                         }
