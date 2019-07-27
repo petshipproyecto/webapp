@@ -36,18 +36,21 @@ class NavLeft extends Component {
                                 Selecionar Perfil de Mascota
                             </Dropdown.Toggle>
                             <ul>
-                                <Dropdown.Menu>
-                                    
-                                        <li>
+                                <Dropdown.Menu alignRight className="notification">
+                                <ul className="noti-body">
+                                    <li className="notification">
+                                        <div className="media">
                                             <img className="img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p><strong>John Doe</strong></p>
+                                                <br/>
+                                                <p href="/auth/signup">Kitty</p>
                                             </div>
-                                            {/* <img src={Avatar1} className="img-radius" alt="Generic placeholder"/><a className="dropdown-item" href={DEMO.BLANK_LINK}>Firulais</a></li> */}
-                                        </li>
-                                        <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Kitty</a></li>
-                                        <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Pepe</a></li>
-                                    
+                                        </div>
+                                    </li>
+                                   
+                                </ul>
+                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Kitty</a></li>
+                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Pepe</a></li>
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
