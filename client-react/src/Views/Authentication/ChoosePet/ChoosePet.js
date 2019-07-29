@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import "./../../../assets/scss/style.scss";
 import "./../../../assets/scss/partials/pages/gallery.scss";
-
+import Background from "../../../assets/images/user/avatarHamster.jpg";
 import Aux from "../../../hoc/_Aux";
+
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 
@@ -25,7 +26,7 @@ class ChoosePet extends React.Component {
   render() {
     return (
       <Aux>
-        <div className="auth-wrapper aut-bg-img">
+        <div className="auth-wrapper aut-bg-img-new">
           <div class="content">
             <Container>
               <Row>
