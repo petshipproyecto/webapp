@@ -40,17 +40,33 @@ class NavLeft extends Component {
                                 <ul className="noti-body">
                                     <li className="notification">
                                         <div className="media">
-                                            <img className="img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <br/>
-                                                <p href="/auth/signup">Kitty</p>
+                                                <p  href="/datta-able/react/default/dashboard/default" class="pt-3">Firulais</p>
                                             </div>
                                         </div>
                                     </li>
-                                   
                                 </ul>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Kitty</a></li>
-                                    <li><a className="dropdown-item" href={DEMO.BLANK_LINK}>Pepe</a></li>
+                                <ul className="noti-body">
+                                    <li className="notification">
+                                        <div className="media">
+                                            <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <div className="media-body">
+                                                <p href="/auth/signup" class="pt-3">Kitty</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul className="noti-body">
+                                    <li className="notification">
+                                        <div className="media">
+                                            <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <div className="media-body">
+                                                <p href="/auth/signup" class="pt-3">Lola</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
