@@ -20,11 +20,11 @@ class Dashboard extends React.Component {
             
             <Aux>
                 <Row>
-                    <div>
+                    {/* <div>
                     <img src={avatar1} />
                     </div>
                                     
-                    pegue su texto aqui
+                    pegue su texto aqui */}
                     
                 </Row>
             </Aux>

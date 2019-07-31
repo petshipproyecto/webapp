@@ -28,6 +28,10 @@ class ChoosePet extends React.Component {
         <div className="auth-wrapper aut-bg-img">
           <div class="content">
             <Container>
+              <center>
+                <h2>Quien busca amigo o pareja?</h2>
+              </center>
+              <br></br>
               <Row>
                 <Col>
                   <Figure class="effect-selena">
@@ -35,6 +39,9 @@ class ChoosePet extends React.Component {
                       <Image src={avatar1} rounded width={171} height={180} />
                     </a>
                   </Figure>
+                  <p>
+                    <center>Tortuga</center>
+                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
@@ -42,6 +49,9 @@ class ChoosePet extends React.Component {
                       <Image src={avatar2} rounded width={171} height={180} />
                     </a>
                   </Figure>
+                  <p>
+                    <center>Tortuga</center>
+                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
@@ -49,6 +59,9 @@ class ChoosePet extends React.Component {
                       <Image src={avatar3} rounded width={171} height={180} />
                     </a>
                   </Figure>
+                  <p>
+                    <center>Tortuga</center>
+                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
@@ -56,6 +69,9 @@ class ChoosePet extends React.Component {
                       <Image src={avatar4} rounded width={171} height={180} />
                     </a>
                   </Figure>
+                  <p>
+                    <center>Tortuga</center>
+                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
@@ -63,21 +79,28 @@ class ChoosePet extends React.Component {
                       <Image src={avatar5} rounded width={171} height={180} />
                     </a>
                   </Figure>
-                  <a href="/auth/signup"></a>
+                  <p>
+                    <center>Tortuga</center>
+                  </p>
                 </Col>
 
                 <Col>
                   <br></br>
                   <br></br>
                   <br></br>
-                  <a href="/forms/NewPet">
-                    <button
-                      type="button"
-                      class="btn-icon btn-rounded btn btn-primary "
-                    >
-                      <i class="feather icon-plus"></i>
-                    </button>
-                  </a>
+                  <center>
+                    <a href="/forms/NewPet">
+                      <button
+                        type="button"
+                        class="btn-icon btn-rounded btn btn-primary "
+                      >
+                        <i class="feather icon-plus"></i>
+                      </button>
+                    </a>
+                  </center>
+                  <p>
+                    <center>Agregar Mascota</center>
+                  </p>
                 </Col>
               </Row>
             </Container>
