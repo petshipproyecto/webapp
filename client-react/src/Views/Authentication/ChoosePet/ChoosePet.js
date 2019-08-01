@@ -78,7 +78,7 @@ class ChoosePet extends React.Component {
                   <br></br>
                   <br></br>
                   <center>
-                    <a href="/forms/NewPet">
+                    <a href="/NewPet">
                       <button
                         type="button"
                         class="btn-icon btn-rounded btn btn-primary "
