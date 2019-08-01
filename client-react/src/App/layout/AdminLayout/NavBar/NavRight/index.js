@@ -23,7 +23,7 @@ class NavRight extends Component {
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
             <a href="/NewPet">
               <OverlayTrigger
-                placement="left-start"
+                placement="left"
                 delay={{ show: 250, hide: 400 }}
                 overlay={<Tooltip>Agregar Mascota</Tooltip>}
               >

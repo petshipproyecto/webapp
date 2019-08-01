@@ -8,7 +8,7 @@ import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions";
 
-import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
+import Avatar1 from '../../../../../assets/images/user/avatar1.jpg';
 
 class NavLeft extends Component {
 
