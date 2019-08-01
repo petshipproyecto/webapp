@@ -39,7 +39,7 @@ export default {
                     id: 'nuevaMascota',
                     title: 'Agregar Mascota',
                     type: 'item',
-                    url: '/forms/NewPet',
+                    url: '/NewPet',
                     classes: 'nav-item',
                     icon: 'feather icon-plus-circle'
                 },
@@ -53,14 +53,14 @@ export default {
                             id: 'perfilUsuario',
                             title: 'Perfil de Usuario',
                             type: 'item',
-                            url: '/forms/UserProfile',
+                            url: '/UserProfile',
                          
                         },
                         {
                             id: 'perfilMascota',
                             title: 'Perfil de Mascota',
                             type: 'item',
-                            url: '/forms/PetProfile',
+                            url: '/PetProfile',
                        
                         }
                     ]
@@ -86,7 +86,7 @@ export default {
                             id: 'signup',
                             title: 'Sign up',
                             type: 'item',
-                            url: '/auth/signup',
+                            url: '/signUp',
                             target: true,
                             breadcrumbs: false
                         },
@@ -94,7 +94,7 @@ export default {
                             id: 'signin',
                             title: 'Sign in',
                             type: 'item',
-                            url: '/auth/signin',
+                            url: '/signIn',
                             target: true,
                             breadcrumbs: false
                         },
@@ -102,7 +102,7 @@ export default {
                             id: 'resetPassword',
                             title: 'Reset Password',
                             type: 'item',
-                            url: '/auth/resetPassword',
+                            url: '/resetPassword',
                             target: true,
                             breadcrumbs: false
                         },
@@ -110,7 +110,7 @@ export default {
                             id: 'choosePet',
                             title: 'Elegir Mascota',
                             type: 'item',
-                            url: '/auth/choosePet',
+                            url: '/choosePet',
                             target: true,
                             breadcrumbs: false
                         }

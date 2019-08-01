@@ -53,7 +53,7 @@ class FormNewPet extends React.Component {
           <Form>
             <Aux>
               <Row className="justify-content-md-center">
-                <Col md={8}>
+                <Col md={6}>
                   <Card>
                     <Card.Header>
                       <Card.Title as="h5">Agregar Nueva Mascota</Card.Title>
@@ -152,22 +152,22 @@ class FormNewPet extends React.Component {
                             </FormB.Group>
                             <FormB.Group>
                               <FormB.Label>Edad</FormB.Label>
-                              <Field
-                                placeholder="Edad"
-                                name="edad"
-                                type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.edad && touched.edad
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              />
-                              <ErrorMessage
-                                name="edad"
-                                component="div"
-                                className="invalid-feedback"
-                              />
+                              <FormB.Control name="edad " as="select">
+                                <option value="1 año" label="1 año" />
+                                <option value="2 años" label="2 años" />
+                                <option value="3 años" label="3 años" />
+                                <option value="4 años" label="4 años" />
+                                <option value="5 años" label="5 años" />
+                                <option value="6 años" label="6 años" />
+                                <option value="7 años" label="7 años" />
+                                <option value="8 años" label="8 años" />
+                                <option value="9 años" label="9 años" />
+                                <option value="10 años" label="10 años" />
+                                <option value="11 años" label="11 años" />
+                                <option value="12 años" label="12 años" />
+                                <option value="13 años" label="13 años" />
+                                <option value="14 años" label="14 años" />
+                              </FormB.Control>
                             </FormB.Group>
 
                             <FormB.Group>

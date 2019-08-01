@@ -28,8 +28,12 @@ class SignIn extends React.Component {
             .required("La contraseña es obligatoria"),
 
         })}
-        onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        onSubmit = {(values, actions) => {
+          actions.setSubmitting(true)
+          console.log(values)
+          console.log(actions)
+          const { history } = this.props
+          history.push('/choosePet')
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -72,13 +76,13 @@ class SignIn extends React.Component {
                   </div>
                     <p className="mb-2 text-muted">
                       Olvidaste tu contraseña?{" "}
-                      <NavLink to="/auth/resetPassword">
+                      <NavLink to="/resetPassword">
                         Recupera tu Contraseña
                       </NavLink>
                     </p>
                     <p className="mb-0 text-muted">
                       No tienes cuenta?{" "}
-                      <NavLink to="/auth/signup">Registrate</NavLink>
+                      <NavLink to="/signUp">Registrate</NavLink>
                     </p>
                   </div>
                 </div>

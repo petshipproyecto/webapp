@@ -29,21 +29,24 @@ const OtherSamplePage = React.lazy(() => import('./Views/Other/SamplePage'));
 const OtherDocs = React.lazy(() => import('./Views/Other/Docs'));
 
 const routes = [
-    { path: '/dashboard/default', exact: true, name: 'Default', component: DashboardDefault },
+   //Rutas del template
     { path: '/basic/button', exact: true, name: 'Basic Button', component: UIBasicButton },
     { path: '/basic/badges', exact: true, name: 'Basic Badges', component: UIBasicBadges },
     { path: '/basic/breadcrumb-paging', exact: true, name: 'Basic Breadcrumb Pagination', component: UIBasicBreadcrumbPagination },
     { path: '/basic/collapse', exact: true, name: 'Basic Collapse', component: UIBasicCollapse },
     { path: '/basic/tabs-pills', exact: true, name: 'Basic Tabs & Pills', component: UIBasicTabsPills },
     { path: '/basic/typography', exact: true, name: 'Basic Typography', component: UIBasicBasicTypography },
-    { path: '/forms/UserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
-    { path: '/forms/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
-    { path: '/forms/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
     { path: '/tables/bootstrap', exact: true, name: 'Bootstrap Table', component: BootstrapTable },
     { path: '/charts/nvd3', exact: true, name: 'Nvd3 Chart', component: Nvd3Chart },
     { path: '/maps/google-map', exact: true, name: 'Google Map', component: GoogleMap },
     { path: '/sample-page', exact: true, name: 'Sample Page', component: OtherSamplePage },
     { path: '/docs', exact: true, name: 'Documentation', component: OtherDocs },
+    //Rutas utilizadas
+    { path: '/dashboard', exact: true, name: 'Default', component: DashboardDefault },
+    { path: '/UserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
+    { path: '/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
+    { path: '/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
+    
 ];
 
 export default routes;

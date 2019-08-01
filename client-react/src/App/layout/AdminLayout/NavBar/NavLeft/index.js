@@ -24,8 +24,6 @@ class NavLeft extends Component {
         if (this.props.rtlLayout) {
             dropdownRightAlign = true;
         }
-
-
         return (
             <Aux>
                 <ul className="navbar-nav mr-auto">
@@ -38,6 +36,7 @@ class NavLeft extends Component {
                             <ul>
                                 <Dropdown.Menu alignRight className="notification">
                                 <ul className="noti-body">
+                                <a href="/choosePet"> 
                                     <li className="notification">
                                         <div className="media">
                                             <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
@@ -46,18 +45,22 @@ class NavLeft extends Component {
                                             </div>
                                         </div>
                                     </li>
+                                    </a> 
                                 </ul>
                                 <ul className="noti-body">
+                                <a href="/choosePet">
                                     <li className="notification">
                                         <div className="media">
                                             <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p href="/auth/signup" class="pt-3">Kitty</p>
+                                                <p class="pt-3">Kitty</p>
                                             </div>
                                         </div>
                                     </li>
+                                    </a>
                                 </ul>
                                 <ul className="noti-body">
+                                <a href="/choosePet"> 
                                     <li className="notification">
                                         <div className="media">
                                             <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
@@ -66,6 +69,7 @@ class NavLeft extends Component {
                                             </div>
                                         </div>
                                     </li>
+                                    </a> 
                                 </ul>
                                 </Dropdown.Menu>
                             </ul>

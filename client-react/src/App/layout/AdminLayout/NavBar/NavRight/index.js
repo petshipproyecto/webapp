@@ -21,7 +21,7 @@ class NavRight extends Component {
       <Aux>
         <ul className="navbar-nav ml-auto">
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
-            <a href="/forms/NewPet">
+            <a href="/NewPet">
               <OverlayTrigger
                 placement="left-start"
                 delay={{ show: 250, hide: 400 }}

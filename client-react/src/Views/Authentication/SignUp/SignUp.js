@@ -39,8 +39,12 @@ class SignUp extends React.Component {
             .min(6, "La contraseña debe tener al menos 6 caracteres")
             .required("La contraseña es obligatoria")
         })}
-        onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        onSubmit = {(values, actions) => {
+          actions.setSubmitting(true)
+          console.log(values)
+          console.log(actions)
+          const { history } = this.props
+          history.push('/dashboard')
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -154,7 +158,7 @@ class SignUp extends React.Component {
                       </div>
                       <p className="mb-0 text-muted">
                         Tiene una cuenta?{" "}
-                        <NavLink to="/auth/signin">Iniciar Sesión</NavLink>
+                        <NavLink to="/signIn">Iniciar Sesión</NavLink>
                       </p>
                     </div>
                   </div>
