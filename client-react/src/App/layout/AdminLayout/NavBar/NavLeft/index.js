@@ -5,7 +5,7 @@ import windowSize from 'react-window-size';
 
 import NavSearch from './NavSearch';
 import Aux from "../../../../../hoc/_Aux";
-import DEMO from "../../../../../store/constant";
+// import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions";
 
 import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
@@ -13,8 +13,8 @@ import Avatar1 from '../../../../../assets/images/user/avatar-1.jpg';
 class NavLeft extends Component {
 
     render() {
-        let iconFullScreen = ['feather'];
-        iconFullScreen = (this.props.isFullScreen) ? [...iconFullScreen, 'icon-minimize'] : [...iconFullScreen, 'icon-maximize'];
+        // let iconFullScreen = ['feather'];
+        // iconFullScreen = (this.props.isFullScreen) ? [...iconFullScreen, 'icon-minimize'] : [...iconFullScreen, 'icon-maximize'];
 
         let navItemClass = ['nav-item'];
         if (this.props.windowWidth <= 575) {
@@ -29,7 +29,7 @@ class NavLeft extends Component {
         return (
             <Aux>
                 <ul className="navbar-nav mr-auto">
-                    <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li>
+                    {/* <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li> */}
                     <li className={navItemClass.join(' ')}>
                         <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
