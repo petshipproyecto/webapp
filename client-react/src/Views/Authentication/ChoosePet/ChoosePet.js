@@ -1,26 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 import "./../../../assets/scss/style.scss";
 import "./../../../assets/scss/partials/pages/gallery.scss";
-import Background from "../../../assets/images/user/avatarHamster.jpg";
 import Aux from "../../../hoc/_Aux";
 
-import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 
-//-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-//---------------------------------------------------------------------
 import avatar1 from "../../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../../assets/images/user/avatarTortuga.jpg";
 import avatar4 from "../../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../../assets/images/user/avatarHamster.jpg";
 
-import FigureImage from "react-bootstrap/FigureImage";
-import FigureCaption from "react-bootstrap/FigureCaption";
 
 class ChoosePet extends React.Component {
   render() {
@@ -29,9 +20,6 @@ class ChoosePet extends React.Component {
         <div className="auth-wrapper aut-bg-img-new">
           <div class="content">
             <Container>
-              <center>
-                <h2>Quien busca amigo o pareja?</h2>
-              </center>
               <br></br>
               <Row>
                 <Col>
@@ -41,7 +29,7 @@ class ChoosePet extends React.Component {
                     </a>
                   </Figure>
                   <p>
-                    <center>Tortuga</center>
+                    <center>Michu</center>
                   </p>
                 </Col>
                 <Col>
@@ -51,7 +39,7 @@ class ChoosePet extends React.Component {
                     </a>
                   </Figure>
                   <p>
-                    <center>Tortuga</center>
+                    <center>Firulai</center>
                   </p>
                 </Col>
                 <Col>
@@ -61,7 +49,7 @@ class ChoosePet extends React.Component {
                     </a>
                   </Figure>
                   <p>
-                    <center>Tortuga</center>
+                    <center>Tortu</center>
                   </p>
                 </Col>
                 <Col>
@@ -71,17 +59,17 @@ class ChoosePet extends React.Component {
                     </a>
                   </Figure>
                   <p>
-                    <center>Tortuga</center>
+                    <center>Chinchi</center>
                   </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
-                    <a href="/auth/signup">
-                      <Image src={avatar5} rounded width={171} height={180} />
+                  <a href="/dashboard/default">
+                      <Image  src={avatar5} rounded width={171} height={180} />
                     </a>
                   </Figure>
                   <p>
-                    <center>Tortuga</center>
+                    <center>Hamsty</center>
                   </p>
                 </Col>
 

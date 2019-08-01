@@ -2,16 +2,11 @@ import React from "react";
 import {
   Row,
   Col,
-  Card,
-  Button,
-  InputGroup,
-  FormControl,
-  DropdownButton,
-  Dropdown
+  Card
 } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
-import avatar1 from "../../assets/images/user/avatar-2.jpg";
+import avatar1 from "../../assets/images/user/avatar1.jpg";
 
 import { Form as FormB } from "react-bootstrap";
 
@@ -66,7 +61,7 @@ class FormUserProfile extends React.Component {
                       <center>
                         <img
                           className="rounded-circle"
-                          style={{ width: "150px" }}
+                          style={{ width: "150px" , border:"solid 4px #f47386"}}
                           src={avatar1}
                           alt="activity-user"
                         />

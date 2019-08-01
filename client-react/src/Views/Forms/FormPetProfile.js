@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card,
-  Button,
-  InputGroup,
-  FormControl,
-  DropdownButton,
-  Dropdown
-} from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
@@ -19,7 +10,6 @@ import { Form as FormB } from "react-bootstrap";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
-import avatar1 from "../../assets/images/user/avatar-6.jpg";
 
 class FormPetProfile extends React.Component {
   render() {
@@ -42,9 +32,11 @@ class FormPetProfile extends React.Component {
           raza: Yup.string()
             .trim()
             .required("La raza es obligatoria"),
-          edad: Yup.string()
-            .trim()
-            .required("La edad es obligatoria"),
+          edad: Yup.number("La edad debe ser un número")
+            .typeError("La edad debe ser un número")
+            .required("La edad es obligatoria")
+            .positive("Tiene que ser un número  positivo")
+            .integer("La edad debe ser un entero"),
           genero: Yup.string().required("El genero es obligatorio")
         })}
         onSubmit={fields => {
@@ -63,14 +55,16 @@ class FormPetProfile extends React.Component {
                       <center>
                         <img
                           className="rounded-circle"
-                          style={{ width: "150px" }}
+                          style={{
+                            width: "150px",
+                            border: "solid 4px #f47386"
+                          }}
                           src={avatar2}
                           alt="activity-user"
                         />
-                        
                       </center>
                       <FormB.Group>
-                      <br></br>
+                        <br></br>
                         <center>
                           <input
                             id="file"
@@ -168,7 +162,6 @@ class FormPetProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </FormB.Group>
-
                             <FormB.Group>
                               <FormB.Label>Genero</FormB.Label>
                               <FormB.Control name="genero " as="select">
@@ -190,7 +183,6 @@ class FormPetProfile extends React.Component {
                       </Row>
                     </Card.Body>
                   </Card>
-                  {/* <UpdatePassword>  </UpdatePassword> */}
                 </Col>
               </Row>
             </Aux>

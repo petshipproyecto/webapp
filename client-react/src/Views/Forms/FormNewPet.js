@@ -2,12 +2,7 @@ import React from "react";
 import {
   Row,
   Col,
-  Card,
-  Button,
-  InputGroup,
-  FormControl,
-  DropdownButton,
-  Dropdown
+  Card
 } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
@@ -16,10 +11,9 @@ import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import { Form as FormB } from "react-bootstrap";
 
 //-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage, HandleChange } from "formik";
+import { Formik, Field, Form, ErrorMessage} from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
-import avatar1 from "../../assets/images/user/avatar-6.jpg";
 
 class FormNewPet extends React.Component {
   render() {
@@ -71,7 +65,7 @@ class FormNewPet extends React.Component {
                             <center>
                               <img
                                 className="rounded-circle"
-                                style={{ width: "150px" }}
+                                style={{ width: "180px" , border:"solid 4px #f47386" }}
                                 src={avatar2}
                                 alt="activity-user"
                               />
