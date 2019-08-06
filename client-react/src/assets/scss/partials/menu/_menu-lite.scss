@@ -20,9 +20,9 @@
 
     .b-title {
         margin-left: 10px;
-        font-weight: 100;
-        color: #fff;
-        font-size: 18px;
+        font-weight: 400;
+        color:#f47386;
+        font-size: 20px;
     }
 }
 
@@ -837,8 +837,7 @@
     color: $menu-dark-text-color;
 
     .pcoded-submenu {
-        background: darken($header-dark-background,3%);
-        padding: 15px 0;
+        padding: 2px 0;
     }
 
     a {
@@ -1089,7 +1088,7 @@
     }
 
     .pcoded-menu-caption {
-        color: #e8edf7;
+        color: #4A4A4A;
     }
 
     .pcoded-inner-navbar {
@@ -1098,7 +1097,7 @@
             &:focus,
             &:hover {
 
-                    color: #fff;
+                    color: #f47386;
 
             }
 
@@ -1644,7 +1643,6 @@
         position: fixed;
         height: 100%;
         box-shadow: none;
-
         .datta-scroll.navbar-content {
             height: 100%;
         }

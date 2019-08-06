@@ -46,7 +46,7 @@
 
 .nav-pills {
     padding: 15px;
-    background-color: #fff;
+    background-color: #f47386;
     box-shadow: 0 3px 10px 0 rgba(0,0,0,0.05);
     .nav-link {
         border-radius: 5px;
@@ -54,7 +54,7 @@
 
     .nav-link.active,
     .show > .nav-link {
-        color: #fff;
+        color: #f47386;
         background: $primary-color;
         box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
     }

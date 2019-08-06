@@ -12,7 +12,7 @@ import routes from "../../../routes";
 import Aux from "../../../hoc/_Aux";
 import * as actionTypes from "../../../store/actions";
 
-import Background from '../../../assets/images/fondoPrincipal/fondoBanner.png';
+import Background from '../../../assets/images/fondoPrincipal/FondoPatron.png';
 
 
 import './app.scss';
