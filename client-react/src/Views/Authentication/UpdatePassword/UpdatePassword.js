@@ -6,7 +6,6 @@ import {
   Button
 } from "react-bootstrap";
 
-import { Form as FormB } from "react-bootstrap";
 //-----------Para la validacion importar estos elementos--------------
 import { Formik as Formik1 } from "formik";
 import { Field as Field1 } from "formik";
@@ -20,7 +19,8 @@ class UpdatePassword extends React.Component {
   render() {
     return (
       <Formik1
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(fields,{ setSubmitting }) => {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         
         }}
         initialValues={{
@@ -47,8 +47,8 @@ class UpdatePassword extends React.Component {
               <Card.Body>
                 <Row>
                   <Col md={12}>
-                    <FormB.Group controlId="formBasicEmail">
-                      <FormB.Label>Contraseña</FormB.Label>
+                  <div className="form-group">
+                              <label>Contraseña</label>
                       <Field1
                         name="password"
                         type="password"
@@ -64,9 +64,9 @@ class UpdatePassword extends React.Component {
                         component="div"
                         className="invalid-feedback"
                       />
-                    </FormB.Group>
-                    <FormB.Group controlId="formBasicEmail">
-                      <FormB.Label>Confirmar Contraseña</FormB.Label>
+                    </div>
+                    <div className="form-group">
+                              <label>Confirmar Contraseña</label>
                       <Field1
                         name="confirmPassword"
                         type="password"
@@ -82,7 +82,7 @@ class UpdatePassword extends React.Component {
                         component="div"
                         className="invalid-feedback"
                       />
-                    </FormB.Group>
+                    </div>
                     <div className="form-group">
                       <Button
                         className="btn btn-primary shadow-2 mb-4"

@@ -39,12 +39,11 @@ class SignUp extends React.Component {
             .min(6, "La contraseña debe tener al menos 6 caracteres")
             .required("La contraseña es obligatoria")
         })}
-        onSubmit = {(values, actions) => {
-          actions.setSubmitting(true)
-          console.log(values)
-          console.log(actions)
+        onSubmit = {fields => {
+          
           const { history } = this.props
           history.push('/dashboard')
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
         render={({ errors, status, touched }) => (
           <Form>

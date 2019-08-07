@@ -8,7 +8,7 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 
-import { Form as FormB } from "react-bootstrap";
+
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage} from "formik";
@@ -28,8 +28,6 @@ class FormNewPet extends React.Component {
           file: ""
         }}
         validationSchema={Yup.object().shape({
-          file: Yup.mixed().required("La imagen es obligatoria"),
-
           name: Yup.string()
             .trim()
             .required("El nombre es obligatorio"),
@@ -44,14 +42,16 @@ class FormNewPet extends React.Component {
             .required("La edad es obligatoria"),
           genero: Yup.string()
             .trim()
-            .required("El genero es obligatorio")
+            .required("El genero es obligatorio"),
+          file: Yup.mixed().required("La imagen es obligatoria"),
         })}
-        onSubmit={fields => {
+        onSubmit = {(fields) => {
           alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
-        render={({ errors, status, touched, handleChange }) => (
+        render={({ errors, handleChange, touched}) => (
           <Form>
             <Aux>
+              
               <Row className="justify-content-md-center">
                 <Col md={6}>
                   <Card>
@@ -61,20 +61,19 @@ class FormNewPet extends React.Component {
                     <Card.Body>
                       <Row>
                         <Col md={12}>
-                          <FormB>
-                            <center>
+
+                        <Form>
+                        <center>
                               <img
                                 className="rounded-circle"
                                 style={{ width: "180px" , border:"solid 4px #f47386" }}
                                 src={avatar2}
                                 alt="activity-user"
                               />
-                            </center>
-
-                            <FormB.Group>
-                              <br></br>
-
-                              <input
+                            </center></Form> 
+                            <br></br>  
+                            <div className="form-group">
+                            <input
                                 id="file"
                                 name="file"
                                 type="file"
@@ -91,10 +90,9 @@ class FormNewPet extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-
-                            <FormB.Group>
-                              <FormB.Label>Nombre</FormB.Label>
+                            </div>
+                            <div className="form-group">
+                              <label>Nombre</label>
                               <Field
                                 placeholder="Nombre"
                                 name="name"
@@ -111,48 +109,68 @@ class FormNewPet extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-                            <FormB.Group>
-                              <FormB.Label>Tipo de Animal</FormB.Label>
-                              <Field
-                                placeholder="Tipo de Animal"
+                            </div>
+
+                            <div class="form-group">
+                              <label>Tipo de Animal</label>
+                              <select
                                 name="tipoAnimal"
-                                type="text"
+                                onChange={handleChange}
                                 className={
                                   "form-control" +
                                   (errors.tipoAnimal && touched.tipoAnimal
                                     ? " is-invalid"
                                     : "")
                                 }
-                              />
+                              >
+                                <option
+                                  value=""
+                                  label="Seleccionar tipo de animal"
+                                />
+                                <option value="Gato" label="Gato" />
+                                <option value="Perro" label="Perro" />
+                              </select>
                               <ErrorMessage
                                 name="tipoAnimal"
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-                            <FormB.Group>
-                              <FormB.Label>Raza</FormB.Label>
-                              <Field
-                                placeholder="Raza"
+                            </div>
+                            <div class="form-group">
+                              <label>Raza</label>
+                              <select
                                 name="raza"
-                                type="text"
+                                onChange={handleChange}
                                 className={
                                   "form-control" +
                                   (errors.raza && touched.raza
                                     ? " is-invalid"
                                     : "")
                                 }
-                              />
+                              >
+                                <option value="" label="Seleccionar Raza" />
+                                <option value="Raza 1" label="Raza 1" />
+                                <option value="Raza 2" label="Raza 2" />
+                              </select>
                               <ErrorMessage
                                 name="raza"
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-                            <FormB.Group>
-                              <FormB.Label>Edad</FormB.Label>
-                              <FormB.Control name="edad " as="select">
+                            </div>
+                            <div class="form-group">
+                              <label>Edad</label>
+                              <select
+                                name="edad"
+                                onChange={handleChange}
+                                className={
+                                  "form-control" +
+                                  (errors.edad && touched.edad
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              >
+                                <option value="" label="Seleccionar Edad" />
                                 <option value="1 año" label="1 año" />
                                 <option value="2 años" label="2 años" />
                                 <option value="3 años" label="3 años" />
@@ -167,32 +185,56 @@ class FormNewPet extends React.Component {
                                 <option value="12 años" label="12 años" />
                                 <option value="13 años" label="13 años" />
                                 <option value="14 años" label="14 años" />
-                              </FormB.Control>
-                            </FormB.Group>
+                              </select>
+                              <ErrorMessage
+                                name="edad"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
 
-                            <FormB.Group>
-                              <FormB.Label>Genero</FormB.Label>
-                              <FormB.Control name="genero " as="select">
+                            <div class="form-group">
+                              <label>Genero</label>
+                              <select
+                                name="genero"
+                                onChange={handleChange}
+                                className={
+                                  "form-control" +
+                                  (errors.genero && touched.genero
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              >
+                                <option value="" label="Seleccionar Genero" />
                                 <option value="Macho" label="Macho" />
                                 <option value="Hembra" label="Hembra" />
-                              </FormB.Control>
-                            </FormB.Group>
+                              </select>
+                              <ErrorMessage
+                                name="genero"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+
+                    
+                            
+                            
+                            
                             <center>
                               <div className="form-group">
                                 <button
                                   type="submit"
-                                  className="btn btn-primary shadow-2 mb-4"
-                                >
+                                  className="btn btn-primary shadow-2 mb-4">
                                   Guardar
                                 </button>
                               </div>
                             </center>
-                          </FormB>
+                          
                         </Col>
                       </Row>
                     </Card.Body>
                   </Card>
-                  {/* <UpdatePassword>  </UpdatePassword> */}
+              
                 </Col>
               </Row>
             </Aux>

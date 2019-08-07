@@ -17,7 +17,6 @@ class SignIn extends React.Component {
         initialValues={{
           email: "",
           password: ""
-          
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
@@ -28,12 +27,11 @@ class SignIn extends React.Component {
             .required("La contraseña es obligatoria"),
 
         })}
-        onSubmit = {(values, actions) => {
-          actions.setSubmitting(true)
-          console.log(values)
-          console.log(actions)
+        onSubmit = {fields => {
+        
           const { history } = this.props
           history.push('/choosePet')
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -52,7 +50,6 @@ class SignIn extends React.Component {
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                            
                             <Field   placeholder="Contraseña" name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                             <ErrorMessage name="password" component="div" className="invalid-feedback" />
                         </div>

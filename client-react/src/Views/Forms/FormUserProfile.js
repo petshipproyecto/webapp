@@ -8,7 +8,7 @@ import {
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
 
-import { Form as FormB } from "react-bootstrap";
+
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -41,14 +41,12 @@ class FormUserProfile extends React.Component {
           email: Yup.string()
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio"),
-          password: Yup.string()
-            .min(6, "La contraseña debe tener al menos 6 caracteres")
-            .required("La contraseña es obligatoria")
+          
         })}
         onSubmit={fields => {
           alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
-        render={({ errors, status, touched }) => (
+        render={({ errors,touched }) => (
           <Form>
             <Aux>
               <Row>
@@ -66,8 +64,9 @@ class FormUserProfile extends React.Component {
                           alt="activity-user"
                         />
                       </center>
-                      <FormB.Group>
                       <br></br>
+                      <div className="form-group">
+                        <br></br>
                         <center>
                           <input
                             id="file"
@@ -76,7 +75,8 @@ class FormUserProfile extends React.Component {
                             className="form-control"
                           />
                         </center>
-                      </FormB.Group>
+                      </div>
+
                     </Card.Body>
                   </Card>
                 </Col>
@@ -88,9 +88,9 @@ class FormUserProfile extends React.Component {
                     <Card.Body>
                       <Row>
                         <Col md={12}>
-                          <FormB>
-                            <FormB.Group>
-                              <FormB.Label>Nombre</FormB.Label>
+                          <Form>
+                          <div className="form-group">
+                              <label>Nombre</label>
                               <Field
                                 placeholder="Nombre"
                                 name="firstName"
@@ -107,9 +107,9 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-                            <FormB.Group>
-                              <FormB.Label>Apellido</FormB.Label>
+                            </div>
+                            <div className="form-group">
+                              <label>Apellido</label>
                               <Field
                                 placeholder="Apellido"
                                 name="lastName"
@@ -126,9 +126,9 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-                            <FormB.Group>
-                              <FormB.Label>Ubicación</FormB.Label>
+                            </div>
+                            <div className="form-group">
+                              <label>Ubicación</label>
                               <Field
                                 placeholder="Ubicación"
                                 name="ubicacion"
@@ -145,10 +145,9 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
-
-                            <FormB.Group>
-                              <FormB.Label>Email</FormB.Label>
+                            </div>
+                            <div className="form-group">
+                              <label>Email</label>
                               <Field
                                 name="email"
                                 placeholder="Email"
@@ -165,22 +164,22 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </FormB.Group>
 
-                            <div className="form-group">
+                            </div>
+                            
                               <button
                                 type="submit"
                                 className="btn btn-primary shadow-2 mb-4"
                               >
                                 Guardar
                               </button>
-                            </div>
-                          </FormB>
+                          
+                          </Form>
                         </Col>
                       </Row>
                     </Card.Body>
                   </Card>
-                  <UpdatePassword></UpdatePassword>
+                  <UpdatePassword></UpdatePassword> 
                 </Col>
               </Row>
             </Aux>

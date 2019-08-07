@@ -31,7 +31,6 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
-
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
