@@ -116,12 +116,15 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-                                <option
-                                  value=""
-                                  label="Seleccionar tipo de animal"
-                                />
+                                <option value="Ave" label="Ave" />
+                                <option value="Caballo" label="Caballo" />
+                                <option value="Conejo" label="Conejo" />
                                 <option value="Gato" label="Gato" />
+                                <option value="Hamster" label="Hamster" />
                                 <option value="Perro" label="Perro" />
+                                <option value="Pez" label="Pez" />
+                                <option value="Tortuga" label="Tortuga" />
+                                
                               </select>
                               <ErrorMessage
                                 name="tipoAnimal"
