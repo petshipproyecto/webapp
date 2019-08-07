@@ -7,6 +7,7 @@ import {
 
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
+import axios from 'axios'
 
 
 
@@ -28,23 +29,24 @@ class FormUserProfile extends React.Component {
           email: "",
           password: ""
         }}
-        validationSchema={Yup.object().shape({
-          firstName: Yup.string()
-            .trim()
-            .required("El nombre es obligatorio"),
-          lastName: Yup.string()
-            .trim()
-            .required("El apellido es obligatorio"),
-          ubicacion: Yup.string()
-            .trim()
-            .required("La ubicación es obligatoria"),
-          email: Yup.string()
-            .email("El email tiene un formato invalido")
-            .required("El email es obligatorio"),
-          
-        })}
+        
         onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
+              "Email":fields.email,
+              "Password": "somepass",
+              "Nombre": fields.firstName,
+              "Apellido": fields.lastName            
+          }).then(function (response) {
+            // handle success
+            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            console.log(error);
+          })
         }}
         render={({ errors,touched }) => (
           <Form>
@@ -90,7 +92,7 @@ class FormUserProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                           <div className="form-group">
-                              <label>Nombre</label>
+                              <label>Nombre*</label>
                               <Field
                                 placeholder="Nombre"
                                 name="firstName"
@@ -109,7 +111,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Apellido</label>
+                              <label>Apellido*</label>
                               <Field
                                 placeholder="Apellido"
                                 name="lastName"
@@ -128,7 +130,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Ubicación</label>
+                              <label>Ubicación*</label>
                               <Field
                                 placeholder="Ubicación"
                                 name="ubicacion"
@@ -147,7 +149,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email</label>
+                              <label>Email*</label>
                               <Field
                                 name="email"
                                 placeholder="Email"

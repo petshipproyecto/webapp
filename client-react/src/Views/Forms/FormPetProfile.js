@@ -8,7 +8,7 @@ import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
-
+import axios from 'axios'
 class FormPetProfile extends React.Component {
   render() {
     return (
@@ -20,25 +20,22 @@ class FormPetProfile extends React.Component {
           edad: "",
           genero: ""
         }}
-        validationSchema={Yup.object().shape({
-          name: Yup.string()
-            .trim()
-            .required("El nombre es obligatorio"),
-          tipoAnimal: Yup.string()
-            .trim()
-            .required("El tipo de animal es obligatorio"),
-          raza: Yup.string()
-            .trim()
-            .required("La raza es obligatoria"),
-          edad: Yup.string()
-            .trim()
-            .required("La edad es obligatoria"),
-          genero: Yup.string()
-            .trim()
-            .required("El genero es obligatorio")
-        })}
+       
         onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          
+          axios.put('https://petshipt-backend.herokuapp.com/perfil', {           
+              // payload
+              "some":123           
+          }).then(function (response) {
+            // handle success
+            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            console.log(error);
+          })
         }}
         render={({ errors, touched, handleChange }) => (
           <Form>

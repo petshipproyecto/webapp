@@ -7,7 +7,7 @@ import {
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
-
+import axios from 'axios'
 
 
 //-----------Para la validacion importar estos elementos--------------
@@ -27,26 +27,25 @@ class FormNewPet extends React.Component {
           genero: "",
           file: ""
         }}
-        validationSchema={Yup.object().shape({
-          name: Yup.string()
-            .trim()
-            .required("El nombre es obligatorio"),
-          tipoAnimal: Yup.string()
-            .trim()
-            .required("El tipo de animal es obligatorio"),
-          raza: Yup.string()
-            .trim()
-            .required("La raza es obligatoria"),
-          edad: Yup.string()
-            .trim()
-            .required("La edad es obligatoria"),
-          genero: Yup.string()
-            .trim()
-            .required("El genero es obligatorio"),
-          file: Yup.mixed().required("La imagen es obligatoria"),
-        })}
+       
         onSubmit = {(fields) => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          axios.post('https://petshipt-backend.herokuapp.com/perfil', {           
+              // payload
+              "Nombre":fields.name,
+              "Edad": fields.edad,
+              "Imagen": "url"           
+          }).then(function (response) {
+            // handle success
+            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            console.log(error);
+          })
+        
         }}
         render={({ errors, handleChange, touched}) => (
           <Form>
@@ -171,20 +170,20 @@ class FormNewPet extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Edad" />
-                                <option value="1 año" label="1 año" />
-                                <option value="2 años" label="2 años" />
-                                <option value="3 años" label="3 años" />
-                                <option value="4 años" label="4 años" />
-                                <option value="5 años" label="5 años" />
-                                <option value="6 años" label="6 años" />
-                                <option value="7 años" label="7 años" />
-                                <option value="8 años" label="8 años" />
-                                <option value="9 años" label="9 años" />
-                                <option value="10 años" label="10 años" />
-                                <option value="11 años" label="11 años" />
-                                <option value="12 años" label="12 años" />
-                                <option value="13 años" label="13 años" />
-                                <option value="14 años" label="14 años" />
+                                <option value="1" label="1 año" />
+                                <option value="2" label="2 años" />
+                                <option value="3" label="3 años" />
+                                <option value="4" label="4 años" />
+                                <option value="5" label="5 años" />
+                                <option value="6" label="6 años" />
+                                <option value="7" label="7 años" />
+                                <option value="8" label="8 años" />
+                                <option value="9" label="9 años" />
+                                <option value="10" label="10 años" />
+                                <option value="11" label="11 años" />
+                                <option value="12" label="12 años" />
+                                <option value="13" label="13 años" />
+                                <option value="14" label="14 años" />
                               </select>
                               <ErrorMessage
                                 name="edad"
