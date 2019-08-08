@@ -91,7 +91,7 @@ class FormNewPet extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Nombre</label>
+                              <label>Nombre<span style={{color:'red'}}> *</span></label>
                               <Field
                                 placeholder="Nombre"
                                 name="name"
@@ -111,7 +111,7 @@ class FormNewPet extends React.Component {
                             </div>
 
                             <div class="form-group">
-                              <label>Tipo de Animal</label>
+                              <label>Tipo de Mascota<span style={{color:'red'}}> *</span></label>
                               <select
                                 name="tipoAnimal"
                                 onChange={handleChange}
@@ -136,7 +136,7 @@ class FormNewPet extends React.Component {
                               />
                             </div>
                             <div class="form-group">
-                              <label>Raza</label>
+                              <label>Raza <span style={{color:'red'}}> *</span></label>
                               <select
                                 name="raza"
                                 onChange={handleChange}
@@ -158,7 +158,7 @@ class FormNewPet extends React.Component {
                               />
                             </div>
                             <div class="form-group">
-                              <label>Edad</label>
+                              <label>Edad<span style={{color:'red'}}> *</span></label>
                               <select
                                 name="edad"
                                 onChange={handleChange}
@@ -193,7 +193,7 @@ class FormNewPet extends React.Component {
                             </div>
 
                             <div class="form-group">
-                              <label>Genero</label>
+                              <label>Genero<span style={{color:'red'}}> *</span></label>
                               <select
                                 name="genero"
                                 onChange={handleChange}
@@ -215,10 +215,6 @@ class FormNewPet extends React.Component {
                               />
                             </div>
 
-                    
-                            
-                            
-                            
                             <center>
                               <div className="form-group">
                                 <button
@@ -228,7 +224,7 @@ class FormNewPet extends React.Component {
                                 </button>
                               </div>
                             </center>
-                          
+                            <label><span style={{color:'red'}}>*</span> Campo Obligatorio</label>
                         </Col>
                       </Row>
                     </Card.Body>

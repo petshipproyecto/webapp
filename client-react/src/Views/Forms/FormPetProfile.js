@@ -15,25 +15,41 @@ class FormPetProfile extends React.Component {
       <Formik
         initialValues={{
           name: "",
-          tipoAnimal: "",
+          tipoAnimal: "Ave",
           raza: "",
-          edad: "",
-          genero: ""
+          edad: "1 año",
+          genero: "Macho"
         }}
-       
+        validationSchema={Yup.object().shape({
+          name: Yup.string()
+            .trim()
+            .required("El nombre es obligatorio"),
+          tipoAnimal: Yup.string()
+            .trim()
+            .required("El tipo de animal es obligatorio"),
+          raza: Yup.string()
+            .trim()
+            .required("La raza es obligatoria"),
+          edad: Yup.string()
+            .trim()
+            .required("La edad es obligatoria"),
+          genero: Yup.string()
+            .trim()
+            .required("El genero es obligatorio")
+        })}
         onSubmit={fields => {
-          
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios.put('https://petshipt-backend.herokuapp.com/perfil', {           
               // payload
               "some":123           
           }).then(function (response) {
             // handle success
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
           .catch(function (error) {
             // handle error
-            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+           // alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           })
         }}
@@ -81,8 +97,9 @@ class FormPetProfile extends React.Component {
                       <Row>
                         <Col md={12}>
                           <Form>
+                          
                             <div className="form-group">
-                              <label>Nombre</label>
+                              <label>Nombre <span style={{color:'red'}}>*</span></label> 
                               <Field
                                 placeholder="Nombre"
                                 name="name"
@@ -100,9 +117,8 @@ class FormPetProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-
                             <div class="form-group">
-                              <label>Tipo de Animal</label>
+                              <label>Tipo de Mascota <span style={{color:'red'}}>*</span></label>
                               <select
                                 name="tipoAnimal"
                                 onChange={handleChange}
@@ -130,7 +146,7 @@ class FormPetProfile extends React.Component {
                               />
                             </div>
                             <div class="form-group">
-                              <label>Raza</label>
+                              <label>Raza <span style={{color:'red'}}>*</span></label>
                               <select
                                 name="raza"
                                 onChange={handleChange}
@@ -152,7 +168,7 @@ class FormPetProfile extends React.Component {
                               />
                             </div>
                             <div class="form-group">
-                              <label>Edad</label>
+                              <label>Edad <span style={{color:'red'}}>*</span></label>
                               <select
                                 name="edad"
                                 onChange={handleChange}
@@ -187,7 +203,7 @@ class FormPetProfile extends React.Component {
                             </div>
 
                             <div class="form-group">
-                              <label>Genero</label>
+                              <label>Genero <span style={{color:'red'}}>*</span></label>
                               <select
                                 name="genero"
                                 onChange={handleChange}
@@ -217,6 +233,7 @@ class FormPetProfile extends React.Component {
                                 Guardar
                               </button>
                             </div>
+                            <label><span style={{color:'red'}}>*</span> Campo Obligatorio</label>
                           </Form>
                         </Col>
                       </Row>

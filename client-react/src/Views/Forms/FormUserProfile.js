@@ -92,7 +92,7 @@ class FormUserProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                           <div className="form-group">
-                              <label>Nombre*</label>
+                              <label>Nombre<span style={{color:'red'}}> *</span></label>
                               <Field
                                 placeholder="Nombre"
                                 name="firstName"
@@ -111,7 +111,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Apellido*</label>
+                              <label>Apellido<span style={{color:'red'}}> *</span></label>
                               <Field
                                 placeholder="Apellido"
                                 name="lastName"
@@ -130,7 +130,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Ubicación*</label>
+                              <label>Ubicación<span style={{color:'red'}}> *</span></label>
                               <Field
                                 placeholder="Ubicación"
                                 name="ubicacion"
@@ -149,7 +149,7 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email*</label>
+                              <label>Email<span style={{color:'red'}}> *</span></label>
                               <Field
                                 name="email"
                                 placeholder="Email"
@@ -175,9 +175,11 @@ class FormUserProfile extends React.Component {
                               >
                                 Guardar
                               </button>
-                          
+                              
                           </Form>
+                          <label><span style={{color:'red'}}>*</span> Campo Obligatorio</label>
                         </Col>
+                        
                       </Row>
                     </Card.Body>
                   </Card>
