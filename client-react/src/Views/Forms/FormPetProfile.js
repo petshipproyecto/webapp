@@ -23,9 +23,14 @@ class FormPetProfile extends React.Component {
        
         onSubmit={fields => {
           
-          axios.put('https://petshipt-backend.herokuapp.com/perfil', {           
+          axios.put('https://petshipt-backend.herokuapp.com/perfil/1', {           
               // payload
-              "some":123           
+              "Nombre":fields.name,
+              "Edad": fields.edad,
+              "Imagen": fields.urlImagen,
+              "Id_raza": fields.raza,
+              "Id_genero": fields.genero
+
           }).then(function (response) {
             // handle success
             alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
@@ -142,8 +147,8 @@ class FormPetProfile extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Raza" />
-                                <option value="Raza 1" label="Raza 1" />
-                                <option value="Raza 2" label="Raza 2" />
+                                <option value="1" label="Raza 1" />
+                                <option value="2" label="Raza 2" />
                               </select>
                               <ErrorMessage
                                 name="raza"
@@ -164,20 +169,20 @@ class FormPetProfile extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Edad" />
-                                <option value="1 año" label="1 año" />
-                                <option value="2 años" label="2 años" />
-                                <option value="3 años" label="3 años" />
-                                <option value="4 años" label="4 años" />
-                                <option value="5 años" label="5 años" />
-                                <option value="6 años" label="6 años" />
-                                <option value="7 años" label="7 años" />
-                                <option value="8 años" label="8 años" />
-                                <option value="9 años" label="9 años" />
-                                <option value="10 años" label="10 años" />
-                                <option value="11 años" label="11 años" />
-                                <option value="12 años" label="12 años" />
-                                <option value="13 años" label="13 años" />
-                                <option value="14 años" label="14 años" />
+                                <option value="1" label="1 año" />
+                                <option value="2" label="2 años" />
+                                <option value="3" label="3 años" />
+                                <option value="4" label="4 años" />
+                                <option value="5" label="5 años" />
+                                <option value="6" label="6 años" />
+                                <option value="7" label="7 años" />
+                                <option value="8" label="8 años" />
+                                <option value="9" label="9 años" />
+                                <option value="10" label="10 años" />
+                                <option value="11" label="11 años" />
+                                <option value="12" label="12 años" />
+                                <option value="13" label="13 años" />
+                                <option value="14" label="14 años" />
                               </select>
                               <ErrorMessage
                                 name="edad"
@@ -199,8 +204,8 @@ class FormPetProfile extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Genero" />
-                                <option value="Macho" label="Macho" />
-                                <option value="Hembra" label="Hembra" />
+                                <option value="1" label="Macho" />
+                                <option value="2" label="Hembra" />
                               </select>
                               <ErrorMessage
                                 name="genero"

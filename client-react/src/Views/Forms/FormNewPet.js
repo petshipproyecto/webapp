@@ -25,7 +25,7 @@ class FormNewPet extends React.Component {
           raza: "",
           edad: "",
           genero: "",
-          file: ""
+          urlImagen: ""
         }}
        
         onSubmit = {(fields) => {
@@ -34,7 +34,10 @@ class FormNewPet extends React.Component {
               // payload
               "Nombre":fields.name,
               "Edad": fields.edad,
-              "Imagen": "url"           
+              "Imagen": fields.urlImagen,
+              "Id_raza": fields.raza,
+              "Id_genero": fields.genero,
+              "Id_Animal": fields.tipoAnimal           
           }).then(function (response) {
             // handle success
             alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
@@ -148,8 +151,8 @@ class FormNewPet extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Raza" />
-                                <option value="Raza 1" label="Raza 1" />
-                                <option value="Raza 2" label="Raza 2" />
+                                <option value="1" label="Raza 1" />
+                                <option value="2" label="Raza 2" />
                               </select>
                               <ErrorMessage
                                 name="raza"
@@ -205,8 +208,8 @@ class FormNewPet extends React.Component {
                                 }
                               >
                                 <option value="" label="Seleccionar Genero" />
-                                <option value="Macho" label="Macho" />
-                                <option value="Hembra" label="Hembra" />
+                                <option value="1" label="Macho" />
+                                <option value="2" label="Hembra" />
                               </select>
                               <ErrorMessage
                                 name="genero"
