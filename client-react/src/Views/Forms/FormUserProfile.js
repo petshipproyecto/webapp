@@ -31,12 +31,13 @@ class FormUserProfile extends React.Component {
         }}
         
         onSubmit={fields => {
+
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-          axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
+          axios.put('https://petshipt-backend.herokuapp.com/usuario/4', {           
               "Email":fields.email,
-              "Password": "somepass",
               "Nombre": fields.firstName,
-              "Apellido": fields.lastName            
+              "Apellido": fields.lastName,
+
           }).then(function (response) {
             // handle success
             alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
