@@ -21,10 +21,10 @@ class FormNewPet extends React.Component {
       <Formik
         initialValues={{
           name: "",
-          tipoAnimal: "",
-          raza: "",
-          edad: "",
-          genero: "",
+          tipoAnimal: "Ave",
+          raza: "Akita",
+          edad: "1 año",
+          genero: "Macho",
           file: ""
         }}
        
@@ -122,12 +122,14 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option
-                                  value=""
-                                  label="Seleccionar tipo de animal"
-                                />
+                                <option value="Ave" label="Ave" />
+                                <option value="Caballo" label="Caballo" />
+                                <option value="Conejo" label="Conejo" />
                                 <option value="Gato" label="Gato" />
+                                <option value="Hamster" label="Hamster" />
                                 <option value="Perro" label="Perro" />
+                                <option value="Pez" label="Pez" />
+                                <option value="Tortuga" label="Tortuga" />
                               </select>
                               <ErrorMessage
                                 name="tipoAnimal"
@@ -147,9 +149,26 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Raza" />
-                                <option value="Raza 1" label="Raza 1" />
-                                <option value="Raza 2" label="Raza 2" />
+                                <option value="Akita" label="Akita" />
+                                <option value="Akita Americano" label="Akita Americano" />
+                                <option value="Afgano" label="Afgano" />
+                                <option value="Airelade Terrier" label="Airelade Terrier" />
+                                <option value="Alaskan Malamute" label="Alaskan Malamute" />
+                                <option value="American Pitt Bull Terrier" label="American Pitt Bull Terrier" />
+                                <option value="American Staffordshire Terrier" label="American Staffordshire Terrier" />
+                                <option value="Abisinio" label="Abisinio" />
+                                <option value="Ashera" label="Ashera" />
+                                <option value="Australian Mist" label="Australian Mist" />
+                                <option value="Azul rojo" label="Azul rojo" />
+                                <option value="Balines" label="Balines" />
+                                <option value="Bengala o Bengali" label="Bengala o Bengali" />
+                                <option value="Birmano" label="Birmano" />
+                                <option value="Bombay" label="Bombay" />
+                                <option value="Carey" label="Carey" />
+                                <option value="Cumberland" label="Cumberland" />
+                                <option value="Laud" label="Laud" />
+                                <option value="Mediterranea" label="Mediterranea" />
+                                <option value="Orejas Rojas" label="Orejas Rojas" />
                               </select>
                               <ErrorMessage
                                 name="raza"
@@ -169,7 +188,6 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Edad" />
                                 <option value="1" label="1 año" />
                                 <option value="2" label="2 años" />
                                 <option value="3" label="3 años" />
@@ -204,7 +222,6 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Genero" />
                                 <option value="Macho" label="Macho" />
                                 <option value="Hembra" label="Hembra" />
                               </select>
@@ -229,7 +246,6 @@ class FormNewPet extends React.Component {
                       </Row>
                     </Card.Body>
                   </Card>
-              
                 </Col>
               </Row>
             </Aux>
