@@ -16,6 +16,49 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 class FormNewPet extends React.Component {
+
+  state = {
+    initialValues : {
+      name: "",
+      raza: "",
+      edad: "",
+      genero: ""
+    },
+    idtipoAnimal: "",
+    generos : [],
+    razas : [],
+    animales : [],
+    edades : ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
+  }
+
+  componentDidMount() {
+    // Obtiene TODOS los tipos de animales
+    axios.get('https://petshipt-backend.herokuapp.com/genero')
+    .then(response =>{
+      this.setState({
+       generos: response.data
+      })
+    });
+   // Obtiene TODAS las razas
+   axios.get('https://petshipt-backend.herokuapp.com/raza')
+   .then(response =>{
+     this.setState({
+      razas: response.data
+     })
+   });
+   // Obtiene TODOS los tipos de animales
+   axios.get('https://petshipt-backend.herokuapp.com/animal')
+   .then(response =>{
+     this.setState({
+      animales: response.data
+     })
+   });
+  }
+
+  _handleChangeAnimal = (event) => {
+    this.setState({ idtipoAnimal: event.target.value })
+  }
+
   render() {
     return (
       <Formik
@@ -117,7 +160,7 @@ class FormNewPet extends React.Component {
                               <label>Tipo de Animal</label>
                               <select
                                 name="tipoAnimal"
-                                onChange={handleChange}
+                                onChange={this._handleChangeAnimal}
                                 className={
                                   "form-control" +
                                   (errors.tipoAnimal && touched.tipoAnimal
@@ -125,12 +168,17 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option
+                                {(this.state.animales && this.state.animales.length > 0) ?
+                                  this.state.animales.map((animal) => {
+                                    return <option key={animal.Id_animal} value={animal.Id_animal}>{animal.Descripcion}</option>
+                                  }) : (<option key={1}>No se han encontrado animales</option>)
+                                }
+                                {/* <option
                                   value=""
                                   label="Seleccionar tipo de animal"
                                 />
                                 <option value="Gato" label="Gato" />
-                                <option value="Perro" label="Perro" />
+                                <option value="Perro" label="Perro" /> */}
                               </select>
                               <ErrorMessage
                                 name="tipoAnimal"
@@ -150,9 +198,16 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Raza" />
+                                {(this.state.razas && this.state.razas.length > 0) ?
+                                  this.state.razas.map((raza) => {
+                                    if (raza.Id_animal === this.state.idtipoAnimal){
+                                      return <option key={raza.Id_raza} value={raza.Id_raza}>{raza.Descripcion}</option>
+                                    }
+                                  }) : (<option key={1}>No se han encontrado razas</option>)
+                              }
+                                {/* <option value="" label="Seleccionar Raza" />
                                 <option value="1" label="Raza 1" />
-                                <option value="2" label="Raza 2" />
+                                <option value="2" label="Raza 2" /> */}
                               </select>
                               <ErrorMessage
                                 name="raza"
@@ -207,9 +262,14 @@ class FormNewPet extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Genero" />
+                                {(this.state.generos && this.state.generos.length > 0) ?
+                                  this.state.generos.map((genero) => {
+                                    return <option key={genero.Id_genero} value={genero.Id_genero}>{genero.Descripcion}</option>
+                                  }) : (<option key={1}>No se han encontrado géneros</option>)
+                                }
+                                {/* <option value="" label="Seleccionar Genero" />
                                 <option value="1" label="Macho" />
-                                <option value="2" label="Hembra" />
+                                <option value="2" label="Hembra" /> */}
                               </select>
                               <ErrorMessage
                                 name="genero"
