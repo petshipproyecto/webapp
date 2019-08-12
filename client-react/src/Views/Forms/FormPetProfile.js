@@ -10,9 +10,21 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 import axios from 'axios'
 class FormPetProfile extends React.Component {
+
+    state = {
+      razas : []
+    }
+
+    componentDidMount(){
+      console.log(this.state)
+    }
+
   render() {
+    const generos = [{value:1, descripcion: "Macho"},{value:2, descripcion: "Hembra"}];
+    
     return (
       <Formik
+        enableReinitialize
         initialValues={{
           name: "",
           tipoAnimal: "",
@@ -203,9 +215,11 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Genero" />
-                                <option value="1" label="Macho" />
-                                <option value="2" label="Hembra" />
+                              
+                              {generos.map(element =>{
+                                return element.value == 1 ? <option value={element.value} label={element.descripcion} selected/> : <option value={element.value} label={element.descripcion} />
+                              }) }
+                                
                               </select>
                               <ErrorMessage
                                 name="genero"

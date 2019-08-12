@@ -17,18 +17,43 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
+import Axios from "axios";
 
 class FormUserProfile extends React.Component {
-  render() {
-    return (
-      <Formik
-        initialValues={{
-          firstName: "",
-          lastName: "",
+  state = {
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      ubicacion: "",
+      email: "",
+      password: ""
+    }
+  }
+
+
+  componentWillMount(){
+   axios.get('http://localhost:3001/').then(response =>{
+     this.setState(
+       {
+        initialValues:{
+          firstName: response.data.Nombre,
+          lastName: response.data.Apellido,
           ubicacion: "",
           email: "",
           password: ""
-        }}
+        }
+       }
+     )
+     console.log(response)
+   })
+ }
+
+
+  render() {
+    return (
+      <Formik
+        enableReinitialize
+        initialValues={this.state.initialValues}
         
         onSubmit={fields => {
 
