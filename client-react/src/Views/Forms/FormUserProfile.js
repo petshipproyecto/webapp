@@ -18,17 +18,55 @@ import * as Yup from "yup";
 
 import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
 
+
+
 class FormUserProfile extends React.Component {
+
+  state = {
+    initialValues : {
+      firstName: "",
+      lastName: "",
+      idubicacion: "",
+      ubicacion: "",
+      email: "",
+      password: ""
+    }
+  }
+  componentDidMount(){
+    // Obtiene los datos de usuario
+    axios.get('https://petshipt-backend.herokuapp.com/usuario/4')
+      .then(response =>{
+        var idubicacion = response.data.Id_ubicacion
+        this.setState({
+          initialValues: {
+            firstName: response.data.Nombre,
+            lastName: response.data.Apellido,
+            idubicacion: response.data.Id_ubicacion,
+            email: response.data.Email,
+            password: response.data.Password
+          }
+        });
+        //Obtiene los datos de ubicacion
+        axios.get('https://petshipt-backend.herokuapp.com/ubicacion/'+idubicacion)
+          .then(response =>{
+            this.setState({
+              initialValues: {
+                ubicacion: response.data.Descripcion
+              }
+            })
+          });
+      })
+    
+  }
+
   render() {
+    
     return (
+
       <Formik
-        initialValues={{
-          firstName: "",
-          lastName: "",
-          ubicacion: "",
-          email: "",
-          password: ""
-        }}
+        enableReinitialize
+        // Setea los valores iniciales de los inputs
+        initialValues = {this.state.initialValues}
         
         onSubmit={fields => {
 
