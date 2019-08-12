@@ -61,7 +61,49 @@ class FormNewPet extends React.Component {
     })
   }
 
-  render() {
+  state = {
+    initialValues : {
+      name: "",
+      raza: "",
+      edad: "",
+      genero: ""
+    },
+    idtipoAnimal: "",
+    generos : [],
+    razas : [],
+    animales : [],
+    edades : ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
+  }
+
+  componentDidMount() {
+    // Obtiene TODOS los tipos de animales
+    axios.get('https://petshipt-backend.herokuapp.com/genero')
+    .then(response =>{
+      this.setState({
+       generos: response.data
+      })
+    });
+   // Obtiene TODAS las razas
+   axios.get('https://petshipt-backend.herokuapp.com/raza')
+   .then(response =>{
+     this.setState({
+      razas: response.data
+     })
+   });
+   // Obtiene TODOS los tipos de animales
+   axios.get('https://petshipt-backend.herokuapp.com/animal')
+   .then(response =>{
+     this.setState({
+      animales: response.data
+     })
+   });
+  }
+
+  _handleChangeAnimal = (event) => {
+    this.setState({ idtipoAnimal: event.target.value })
+  };
+
+  render(){
     return (
       <Formik
         initialValues={{

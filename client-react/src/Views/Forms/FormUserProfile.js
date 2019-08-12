@@ -19,41 +19,55 @@ import * as Yup from "yup";
 import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
 import Axios from "axios";
 
+
+
 class FormUserProfile extends React.Component {
+
   state = {
-    initialValues: {
+    initialValues : {
       firstName: "",
       lastName: "",
+      idubicacion: "",
       ubicacion: "",
       email: "",
       password: ""
     }
   }
-
-
-  componentWillMount(){
-   axios.get('http://localhost:3001/').then(response =>{
-     this.setState(
-       {
-        initialValues:{
-          firstName: response.data.Nombre,
-          lastName: response.data.Apellido,
-          ubicacion: "",
-          email: "",
-          password: ""
-        }
-       }
-     )
-     console.log(response)
-   })
- }
-
+  componentDidMount(){
+    // Obtiene los datos de usuario
+    axios.get('https://petshipt-backend.herokuapp.com/usuario/4')
+      .then(response =>{
+        var idubicacion = response.data.Id_ubicacion
+        this.setState({
+          initialValues: {
+            firstName: response.data.Nombre,
+            lastName: response.data.Apellido,
+            idubicacion: response.data.Id_ubicacion,
+            email: response.data.Email,
+            password: response.data.Password
+          }
+        });
+        //Obtiene los datos de ubicacion
+        axios.get('https://petshipt-backend.herokuapp.com/ubicacion/'+idubicacion)
+          .then(response =>{
+            this.setState({
+              initialValues: {
+                ubicacion: response.data.Descripcion
+              }
+            })
+          });
+      })
+    
+  }
 
   render() {
+    
     return (
+
       <Formik
         enableReinitialize
-        initialValues={this.state.initialValues}
+        // Setea los valores iniciales de los inputs
+        initialValues = {this.state.initialValues}
         
         onSubmit={fields => {
 
