@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import axios from 'axios'
 class FormPetProfile extends React.Component {
   state = {
-    initialValues: {
+    initialValues : {
       name: "",
       raza: "",
       edad: "",
@@ -21,17 +21,51 @@ class FormPetProfile extends React.Component {
     tipoAnimalDesc: "",
     razaDesc: "",
     generoDesc: "",
-    razas: [],
-    animales: [],
-    edades: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
+    generos : [],
+    razas : [],
+    animales : [],
+    edades : [{valor: "0"},
+              {valor: "1"},
+              {valor: "2"},
+              {valor: "3"},
+              {valor: "4"},
+              {valor: "5"},
+              {valor: "6"},
+              {valor: "7"},
+              {valor: "8"},
+              {valor: "9"},
+              {valor: "10"},
+              {valor: "11"},
+              {valor: "12"},
+              {valor: "13"},
+              {valor: "14"}]
   }
-
-
-
-  componentDidMount() {
+  
+  componentDidMount(){
+    // Obtiene TODOS los tipos de animales
+     axios.get('https://petshipt-backend.herokuapp.com/genero')
+     .then(response =>{
+       this.setState({
+        generos: response.data
+       })
+     });
+    // Obtiene TODAS las razas
+    axios.get('https://petshipt-backend.herokuapp.com/raza')
+    .then(response =>{
+      this.setState({
+       razas: response.data
+      })
+    });
+    // Obtiene TODOS los tipos de animales
+    axios.get('https://petshipt-backend.herokuapp.com/animal')
+    .then(response =>{
+      this.setState({
+       animales: response.data
+      })
+    });
     // Obtiene los datos del perfil
     axios.get('https://petshipt-backend.herokuapp.com/perfil/1')
-      .then(response => {
+      .then(response =>{
         var idtipoanimal = ""
         var idraza = response.data.Id_raza
         var idgenero = response.data.Id_genero
@@ -43,45 +77,30 @@ class FormPetProfile extends React.Component {
             genero: response.data.Id_genero
           }
         });
-        // Obtiene TODAS las razas
-        axios.get('https://petshipt-backend.herokuapp.com/raza')
-          .then(response => {
-            this.setState({
-              razas: response.data
-            })
-          });
-        // Obtiene TODOS los tipos de animales
-        axios.get('https://petshipt-backend.herokuapp.com/animal')
-          .then(response => {
-            this.setState({
-              animales: response.data
-            })
-          });
-
         // Obtiene los datos de la raza
-        axios.get('https://petshipt-backend.herokuapp.com/raza/' + idraza)
-          .then(response => {
+        axios.get('https://petshipt-backend.herokuapp.com/raza/'+idraza)
+          .then(response =>{
             idtipoanimal = response.data.Id_animal
             this.setState({
               idtipoAnimal: response.data.Id_animal,
               razaDesc: response.data.Descripcion
-            })
+            })            
           });
         // Obtiene los datos del tipo de animal
-        axios.get('https://petshipt-backend.herokuapp.com/animal/' + idtipoanimal)
-          .then(response => {
-            this.setState({
-              tipoAnimalDesc: response.data.Descripcion
-            })
-          });
+        axios.get('https://petshipt-backend.herokuapp.com/animal/'+idtipoanimal)
+        .then(response =>{
+          this.setState({
+            tipoAnimalDesc: response.data.Descripcion
+          })            
+        });
         // Obtiene los datos del genero
-        axios.get('https://petshipt-backend.herokuapp.com/genero/' + idgenero)
-          .then(response => {
-            this.setState({
-              genero: response.data.Id_genero,
-              generoDesc: response.data.Descripcion
-            })
-          });
+        axios.get('https://petshipt-backend.herokuapp.com/genero/'+idgenero)
+        .then(response =>{
+          this.setState({
+            genero: response.data.Id_genero,
+            generoDesc: response.data.Descripcion
+          })            
+        });
       })
   }
 
@@ -90,43 +109,35 @@ class FormPetProfile extends React.Component {
   }
 
   render() {
-
+    
     console.log(this.state)
-    const generos = [{
-      "value": "1",
-      "Descripcion": "Macho"
-    },
-    {
-      "value": "2",
-      "Descripcion": "Hembra"
-    }]
 
     return (
-
+      
       <Formik
         enableReinitialize
         initialValues={this.state.initialValues}
-
+       
         onSubmit={fields => {
-
-          axios.put('https://petshipt-backend.herokuapp.com/perfil/1', {
-            // payload
-            "Nombre": fields.name,
-            "Edad": fields.edad,
-            "Imagen": fields.urlImagen,
-            "Id_raza": fields.raza,
-            "Id_genero": fields.genero
+          
+          axios.put('https://petshipt-backend.herokuapp.com/perfil/1', {           
+              // payload
+              "Nombre": fields.name,
+              "Edad": fields.edad,
+              "Imagen": fields.urlImagen,
+              "Id_raza": fields.raza,
+              "Id_genero": fields.genero
 
           }).then(function (response) {
             // handle success
             alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
-            .catch(function (error) {
-              // handle error
-              alert("ERROR!! :-(\n\n" + JSON.stringify(error))
-              console.log(error);
-            })
+          .catch(function (error) {
+            // handle error
+            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            console.log(error);
+          })
         }}
         render={({ errors, touched, handleChange }) => (
           <Form>
@@ -203,12 +214,24 @@ class FormPetProfile extends React.Component {
                                     ? " is-invalid"
                                     : "")
                                 }
-
+                                options= {this.state.animales}
                               >
-
-                                {this.state.animales.map(element => {
-                                  return element.Id_animal == this.state.idtipoAnimal ? <option value={element.Id_animal} label={element.Descripcion} selected /> : <option value={element.Id_animal} label={element.Descripcion} />
-                                })}
+                                {this.state.animales.map((animal) => {
+                                    if (animal.Id_animal === this.state.idtipoAnimal) {
+                                      return <option selected="selected" key={animal.Id_animal} value={animal.Id_animal}>{animal.Descripcion}</option>
+                                    } else {
+                                      return <option key={animal.Id_animal} value={animal.Id_animal}>{animal.Descripcion}</option>
+                                    }
+                                  })
+                                }
+                                {/* <option value="Ave" label="Ave" />
+                                <option value="Caballo" label="Caballo" />
+                                <option value="Conejo" label="Conejo" />
+                                <option value="Gato" label="Gato" />
+                                <option value="Hamster" label="Hamster" />
+                                <option value="Perro" label="Perro" />
+                                <option value="Pez" label="Pez" />
+                                <option value="Tortuga" label="Tortuga" /> */}
                               </select>
                               <ErrorMessage
                                 name="tipoAnimal"
@@ -228,18 +251,17 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-                                {(this.state.razas && this.state.razas.length > 0) ?
-                                  this.state.razas.map((raza) => {
+                                {this.state.razas.map((raza) => {
                                     if (raza.Id_raza === this.state.initialValues.raza && raza.Id_animal === this.state.idtipoAnimal) {
                                       return <option selected="selected" key={raza.Id_raza} value={raza.Id_raza}>{raza.Descripcion}</option>
                                     } else {
-                                      if (raza.Id_animal === this.state.idtipoAnimal) {
+                                      if (raza.Id_animal === this.state.idtipoAnimal){
                                         return <option key={raza.Id_raza} value={raza.Id_raza}>{raza.Descripcion}</option>
                                       }
                                     }
-                                  }) : (<option key={1}>No se han encontrado razas</option>)
-                                }
-                                {/* <option value="" label="Seleccionar Raza" />
+                                  })
+                              }
+                              {/* <option value="" label="Seleccionar Raza" />
                               <option value="1" label="Raza 1" />
                               <option value="2" label="Raza 2" /> */}
                               </select>
@@ -261,21 +283,13 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Edad" />
-                                <option value="1" label="1 año" />
-                                <option value="2" label="2 años" />
-                                <option value="3" label="3 años" />
-                                <option value="4" label="4 años" />
-                                <option value="5" label="5 años" />
-                                <option value="6" label="6 años" />
-                                <option value="7" label="7 años" />
-                                <option value="8" label="8 años" />
-                                <option value="9" label="9 años" />
-                                <option value="10" label="10 años" />
-                                <option value="11" label="11 años" />
-                                <option value="12" label="12 años" />
-                                <option value="13" label="13 años" />
-                                <option value="14" label="14 años" />
+                                {this.state.edades.map(edad => {
+                                  if (edad.valor == this.state.initialValues.edad){
+                                    return <option selected="selected" key={edad.valor} value={edad.valor} label={edad.valor}  /> 
+                                  } else {
+                                    return <option key={edad.valor} value={edad.valor} label={edad.valor}  /> 
+                                  }
+                                })}
                               </select>
                               <ErrorMessage
                                 name="edad"
@@ -296,11 +310,17 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-
-                                {generos.map(element => {
-                                  return element.value == this.state.initialValues.genero ? <option value={element.value} label={element.Descripcion} selected /> : <option value={element.value} label={element.Descripcion} />
-                                })}
-
+                              {this.state.generos.map((genero) => {
+                                    if (genero.Id_genero === this.state.initialValues.genero) {
+                                      return <option selected="selected" key={genero.Id_genero} value={genero.Id_genero}>{genero.Descripcion}</option>
+                                    } else {
+                                      return <option key={genero.Id_genero} value={genero.Id_genero}>{genero.Descripcion}</option>
+                                    }
+                                  })
+                                }
+                              {/* <option value="" label="Seleccionar Genero" />
+                                <option value="1" label="Macho" />
+                                <option value="2" label="Hembra" /> */}
                               </select>
                               <ErrorMessage
                                 name="genero"
