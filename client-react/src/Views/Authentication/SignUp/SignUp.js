@@ -47,8 +47,7 @@ class SignUp extends React.Component {
               "Email":fields.email,
               "Nombre": fields.firstName,
               "Apellido": fields.lastName,
-              "Password": fields.password,
-              "Id_usuario":2
+              "Password": fields.password
 
           }).then(function (response) {
             // handle success

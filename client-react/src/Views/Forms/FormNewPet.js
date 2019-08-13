@@ -16,18 +16,15 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 class FormNewPet extends React.Component {
-  state = {
-    razas: [{ Id_animal: "4", Descripcion: "Siames", Id_raza: "4" }],
-    todasRazas: [{ Id_animal: "4", Descripcion: "Siames", Id_raza: "4" }]
+ 
 
-  }
-
-  handleChangeTipoAnimal(event) {
+  _handleChangeAnimal= (event) =>{
     let razas = []
     console.log(event.target.value)
     this.state.todasRazas.forEach(element => {
       console.log(element)
-      if (element.Id_animal == event.target.value) {
+      if (element.Id_animal == (event.target.value).toString()) {
+        console.log("entra")
         razas.push(element);
       }
     });
@@ -38,57 +35,50 @@ class FormNewPet extends React.Component {
     )
     console.log('state' + JSON.stringify(this.state))
   }
+  
 
-  componentDidMount() {
-    axios.get('http://localhost:3001/raza').then(response => {
-
-      let razas = []
-      response.data.forEach(element => {
-
-        if (element.Id_animal === 4) {
-          console.log(element)
-          razas.push(element);
-        }
-
-        this.setState(
-          {
-            todasRazas: response.data,
-            razas: razas
-          }
-        )
-
-      });
-    })
-  }
+ 
 
   state = {
     initialValues : {
       name: "",
       raza: "",
-      edad: "",
-      genero: ""
+      edad: "1",
+      genero: "",
+      tipoAnimal:"4"
     },
-    idtipoAnimal: "",
+    todasRazas:[],
+    idtipoAnimal:4,
     generos : [],
     razas : [],
+    todasRazas:[],
     animales : [],
     edades : ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
   }
 
   componentDidMount() {
-    // Obtiene TODOS los tipos de animales
-    axios.get('https://petshipt-backend.herokuapp.com/genero')
-    .then(response =>{
-      this.setState({
-       generos: response.data
-      })
-    });
+    
+   
    // Obtiene TODAS las razas
    axios.get('https://petshipt-backend.herokuapp.com/raza')
    .then(response =>{
      this.setState({
-      razas: response.data
+      todasRazas: response.data
      })
+     let razas = [];
+   this.state.todasRazas.forEach(element => {
+    console.log(element)
+    if (element.Id_animal == 4) {
+      razas.push(element);
+    }
+  });
+  this.setState(
+    {
+      razas: razas
+    }
+  )
+  console.log('state' + JSON.stringify(this.state))
+
    });
    // Obtiene TODOS los tipos de animales
    axios.get('https://petshipt-backend.herokuapp.com/animal')
@@ -97,23 +87,25 @@ class FormNewPet extends React.Component {
       animales: response.data
      })
    });
+   
+  
   }
 
-  _handleChangeAnimal = (event) => {
-    this.setState({ idtipoAnimal: event.target.value })
-  };
+  
 
   render(){
+    const generos = [{
+      "value": 1,
+      "Descripcion": "Macho"
+    },
+    {
+      "value": 2,
+      "Descripcion": "Hembra"
+    }]
     return (
       <Formik
-        initialValues={{
-          name: "",
-          tipoAnimal: "",
-          raza: "",
-          edad: "",
-          genero: "",
-          urlImagen: ""
-        }}
+      enableReinitialize
+        initialValues={this.state.initialValues}
 
         onSubmit={(fields) => {
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
@@ -121,9 +113,9 @@ class FormNewPet extends React.Component {
             // payload
             "Nombre": fields.name,
             "Edad": fields.edad,
-            "Imagen": fields.urlImagen,
+            "Imagen": "fields.urlImagen",
             "Id_raza": fields.raza,
-            "Id_genero": fields.genero,
+            "Id_genero":fields.genero,
             "Id_animal": fields.tipoAnimal
           }).then(function (response) {
             // handle success
@@ -204,7 +196,7 @@ class FormNewPet extends React.Component {
                             <label>Tipo de Animal</label>
                             <select
                               name="tipoAnimal"
-                              onChange={this.handleChangeTipoAnimal.bind(this)}
+                              onChange={this._handleChangeAnimal}
                               className={
                                 "form-control" +
                                 (errors.tipoAnimal && touched.tipoAnimal
@@ -213,9 +205,9 @@ class FormNewPet extends React.Component {
                               }
                             >
 
-                              <option value="4" label="Gato" />
-                              <option value="6" label="Perro" />
-                              <option value="8" label="Tortuga" />
+{this.state.animales.map(element => {
+                                  return <option key={element.Id_animal} value={element.Id_animal} label={element.Descripcion}  /> 
+                                })}
                             </select>
                             <ErrorMessage
                               name="tipoAnimal"
@@ -235,9 +227,9 @@ class FormNewPet extends React.Component {
                                   : "")
                               }
                             >
-                              {this.state.razas.map(element => {
-                                return <option value={element.Id_raza} label={element.Descripcion} key={element.Id_raza} />
-                              })}
+                             {this.state.razas.map(element => {
+                                  return  <option key={element.Id_raza} value={element.Id_raza} label={element.Descripcion}  /> 
+                                })}
                             </select>
                             <ErrorMessage
                               name="raza"
@@ -291,8 +283,12 @@ class FormNewPet extends React.Component {
                                   : "")
                               }
                             >
-                              <option value="1" label="Macho" />
-                              <option value="2" label="Hembra" />
+                             
+                             {generos.map(element => {
+                                  return <option value={element.value} label={element.Descripcion}  />
+                                })}
+                               
+
                             </select>
                             <ErrorMessage
                               name="genero"
