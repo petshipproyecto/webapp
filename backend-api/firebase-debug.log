@@ -1,0 +1,884 @@
+[debug] [2019-07-21T22:32:04.721Z] ----------------------------------------------------------------------
+[debug] [2019-07-21T22:32:04.724Z] Command:       C:\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-07-21T22:32:04.725Z] CLI Version:   7.1.0
+[debug] [2019-07-21T22:32:04.725Z] Platform:      win32
+[debug] [2019-07-21T22:32:04.725Z] Node Version:  v10.15.1
+[debug] [2019-07-21T22:32:04.728Z] Time:          Sun Jul 21 2019 19:32:04 GMT-0300 (GMT-03:00)
+[debug] [2019-07-21T22:32:04.728Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-21T22:32:04.763Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-21T22:32:04.764Z] > authorizing via signed-in user
+[debug] [2019-07-21T22:32:04.764Z] [iam] checking project petship-backend for permissions ["firebase.projects.get"]
+[debug] [2019-07-21T22:32:04.767Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/petship-backend:testIamPermissions  
+
+[debug] [2019-07-21T22:32:06.205Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-21T22:32:06.207Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend  
+ 
+[debug] [2019-07-21T22:32:07.483Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\nodejs\petship\webapp\backend-api'...
+[info] 
+[debug] [2019-07-21T22:32:07.727Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[debug] [2019-07-21T22:32:08.710Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/adminSdkConfig  
+ 
+[debug] [2019-07-21T22:32:09.893Z] <<< HTTP RESPONSE 200
+[info] +  functions: Emulator started at http://localhost:5001
+[debug] [2019-07-21T22:32:10.327Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "C:\nodejs\petship\webapp\backend-api\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-07-21T22:32:11.654Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:32:11.654Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:32:11.703Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:32:11.716Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:32:11.718Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:32:12.203Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:32:12.812Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] i  functions: HTTP trigger initialized at http://localhost:5001/petship-backend/us-central1/app
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:32:33.563Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-21T22:32:34.487Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:32:34.489Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:32:34.496Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:32:34.499Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:32:34.501Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:32:34.619Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:32:34.703Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-21T22:32:35.502Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-21T22:32:35.502Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-21T22:32:35.502Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-21T22:32:35.503Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-21T22:32:35.503Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-21T22:32:35.528Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11368"}
+[debug] [2019-07-21T22:32:35.531Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11368"}
+[debug] [2019-07-21T22:32:35.580Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-21T22:32:35.591Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[debug] [2019-07-21T22:34:37.276Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-21T22:34:39.979Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:34:39.980Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:34:39.986Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:34:39.989Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:34:39.990Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:34:40.091Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:34:40.178Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:34:41.008Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-21T22:34:42.123Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:34:42.125Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:34:42.130Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:34:42.132Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:34:42.134Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:34:42.205Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:34:42.271Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-21T22:34:42.990Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-21T22:34:42.990Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-21T22:34:42.990Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-21T22:34:42.991Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-21T22:34:42.992Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-21T22:34:43.000Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7148"}
+[debug] [2019-07-21T22:34:43.002Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7148"}
+[debug] [2019-07-21T22:34:43.020Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-21T22:34:43.030Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[debug] [2019-07-21T22:35:06.145Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-21T22:35:09.407Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:35:09.408Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:35:09.415Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:09.417Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:09.419Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:09.508Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:09.586Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:35:10.587Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-21T22:35:11.381Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:35:11.384Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:35:11.391Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:11.395Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:11.396Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:11.474Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:11.554Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-21T22:35:12.295Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-21T22:35:12.295Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-21T22:35:12.295Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-21T22:35:12.296Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-21T22:35:12.296Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-21T22:35:12.309Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\13172"}
+[debug] [2019-07-21T22:35:12.311Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\13172"}
+[debug] [2019-07-21T22:35:12.331Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-21T22:35:12.336Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:35:18.542Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-21T22:35:19.325Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:35:19.327Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:35:19.332Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:19.335Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:19.336Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:19.424Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:19.498Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-21T22:35:20.365Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-21T22:35:20.365Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-21T22:35:20.365Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-21T22:35:20.366Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-21T22:35:20.366Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-21T22:35:20.374Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10452"}
+[debug] [2019-07-21T22:35:20.376Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10452"}
+[debug] [2019-07-21T22:35:20.393Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-21T22:35:20.398Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[debug] [2019-07-21T22:35:39.217Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-21T22:35:41.587Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:35:41.588Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:35:41.596Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:41.599Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:41.601Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:41.675Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:41.740Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:35:42.069Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[warn] !  ReferenceError: conection is not defined
+    at Object.<anonymous> (C:\nodejs\petship\webapp\backend-api\functions\index.js:27:3)
+    at Module._compile (internal/modules/cjs/loader.js:689:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (internal/modules/cjs/helpers.js:22:18)
+    at C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:615:33
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:4:58)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:745:11)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)
+[warn] !  We were unable to load your functions code. (see above)
+[debug] [2019-07-21T22:35:43.733Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:35:43.736Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:35:43.744Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:43.748Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:43.749Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:35:43.843Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:35:43.926Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[warn] !  ReferenceError: conection is not defined
+    at Object.<anonymous> (C:\nodejs\petship\webapp\backend-api\functions\index.js:27:3)
+    at Module._compile (internal/modules/cjs/loader.js:689:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (internal/modules/cjs/helpers.js:22:18)
+    at C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:615:33
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:4:58)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:745:11)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)
+[warn] !  We were unable to load your functions code. (see above)
+[debug] [2019-07-21T22:36:26.053Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-21T22:36:29.345Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:36:29.346Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:36:29.354Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:36:29.359Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:36:29.361Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:36:29.497Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:36:29.604Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-21T22:36:52.898Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-21T22:36:54.885Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-21T22:36:54.887Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:36:54.894Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:36:54.899Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:36:54.900Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:36:55.003Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:36:55.086Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-21T22:36:55.817Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-21T22:36:55.817Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-21T22:36:55.818Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-21T22:36:55.819Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-21T22:36:55.819Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-21T22:36:55.832Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10420"}
+[debug] [2019-07-21T22:36:55.834Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10420"}
+[debug] [2019-07-21T22:36:55.854Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-21T22:36:55.861Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T00:15:35.253Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T00:15:44.695Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T00:15:44.714Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:15:44.732Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:15:44.747Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:15:44.749Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:15:45.334Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:15:45.948Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T00:15:51.670Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T00:15:51.670Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T00:15:51.671Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T00:15:51.671Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T00:15:51.672Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T00:15:51.696Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\2724"}
+[debug] [2019-07-22T00:15:51.699Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\2724"}
+[debug] [2019-07-22T00:15:51.720Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T00:15:51.728Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[info] Shutting down...
+[debug] [2019-07-22T00:16:49.465Z] ----------------------------------------------------------------------
+[debug] [2019-07-22T00:16:49.470Z] Command:       C:\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-07-22T00:16:49.471Z] CLI Version:   7.1.0
+[debug] [2019-07-22T00:16:49.471Z] Platform:      win32
+[debug] [2019-07-22T00:16:49.471Z] Node Version:  v10.15.1
+[debug] [2019-07-22T00:16:49.475Z] Time:          Sun Jul 21 2019 21:16:49 GMT-0300 (GMT-03:00)
+[debug] [2019-07-22T00:16:49.475Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-22T00:16:49.542Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-22T00:16:49.543Z] > authorizing via signed-in user
+[debug] [2019-07-22T00:16:49.543Z] [iam] checking project petship-backend for permissions ["firebase.projects.get"]
+[debug] [2019-07-22T00:16:49.546Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-07-22T00:16:49.546Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-07-22T00:16:49.919Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T00:16:49.990Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/petship-backend:testIamPermissions  
+
+[debug] [2019-07-22T00:16:51.252Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T00:16:51.254Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend  
+ 
+[debug] [2019-07-22T00:16:52.531Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\nodejs\petship\webapp\backend-api'...
+[info] 
+[debug] [2019-07-22T00:16:52.547Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[debug] [2019-07-22T00:16:52.605Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/adminSdkConfig  
+ 
+[debug] [2019-07-22T00:16:53.855Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T00:16:54.051Z] <<< HTTP RESPONSE 200
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\nodejs\petship\webapp\backend-api\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-07-22T00:16:55.268Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-22T00:16:55.268Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:16:55.274Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:16:55.276Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:16:55.277Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:16:55.335Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:16:55.404Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] i  functions: HTTP trigger initialized at http://localhost:5001/petship-backend/us-central1/app
+[debug] [2019-07-22T00:18:23.302Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-22T00:18:25.993Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-22T00:18:25.995Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:18:26.003Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:18:26.007Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:18:26.009Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:18:26.109Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:18:26.172Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T00:18:32.027Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T00:18:33.229Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T00:18:33.231Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:18:33.236Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:18:33.239Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:18:33.240Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:18:33.312Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:18:33.387Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T00:18:34.055Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T00:18:34.055Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T00:18:34.055Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T00:18:34.056Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T00:18:34.056Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T00:18:34.066Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\12072"}
+[debug] [2019-07-22T00:18:34.069Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\12072"}
+[debug] [2019-07-22T00:18:34.090Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T00:18:34.096Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Error: SequelizeConnectionError: no pg_hba.conf entry for host "190.183.128.250", user "ssucdiniqlkyrr", database "ddde8q29bhrpuq", SSL off
+[info] i  functions: Finished "app" in ~1s
+[debug] [2019-07-22T00:20:46.627Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-22T00:20:49.076Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-22T00:20:49.077Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:20:49.085Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:20:49.088Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:20:49.089Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:20:49.175Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:20:49.262Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T00:20:50.035Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T00:20:51.914Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T00:20:51.916Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T00:20:51.922Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:20:51.924Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:20:51.925Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T00:20:52.006Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T00:20:52.098Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T00:20:52.752Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T00:20:52.753Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T00:20:52.753Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T00:20:52.754Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T00:20:52.754Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T00:20:52.949Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4120"}
+[debug] [2019-07-22T00:20:52.952Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4120"}
+[debug] [2019-07-22T00:20:52.966Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T00:20:52.972Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT 1+1 AS result
+[info] >  Executing (default): SELECT 1+1 AS result
+[info] >  Database connected...
+[info] i  functions: Finished "app" in ~3s
+[debug] [2019-07-22T02:46:28.172Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-22T02:46:28.260Z] File C:\nodejs\petship\webapp\backend-api\functions\index.js changed, reloading triggers
+[debug] [2019-07-22T02:46:38.376Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-22T02:46:38.379Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T02:46:38.446Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:46:38.447Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:46:38.447Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:46:38.942Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:46:39.722Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T02:47:28.805Z] ----------------------------------------------------------------------
+[debug] [2019-07-22T02:47:28.808Z] Command:       C:\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-07-22T02:47:28.809Z] CLI Version:   7.1.0
+[debug] [2019-07-22T02:47:28.809Z] Platform:      win32
+[debug] [2019-07-22T02:47:28.809Z] Node Version:  v10.15.1
+[debug] [2019-07-22T02:47:28.811Z] Time:          Sun Jul 21 2019 23:47:28 GMT-0300 (GMT-03:00)
+[debug] [2019-07-22T02:47:28.811Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-22T02:47:28.901Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-22T02:47:28.904Z] > authorizing via signed-in user
+[debug] [2019-07-22T02:47:28.905Z] [iam] checking project petship-backend for permissions ["firebase.projects.get"]
+[debug] [2019-07-22T02:47:28.914Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-07-22T02:47:28.915Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-07-22T02:47:29.376Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T02:47:29.466Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/petship-backend:testIamPermissions  
+
+[debug] [2019-07-22T02:47:30.765Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T02:47:30.766Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend  
+ 
+[debug] [2019-07-22T02:47:32.029Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\nodejs\petship\webapp\backend-api'...
+[info] 
+[debug] [2019-07-22T02:47:32.037Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[debug] [2019-07-22T02:47:32.056Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/adminSdkConfig  
+ 
+[debug] [2019-07-22T02:47:33.224Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-22T02:47:33.329Z] <<< HTTP RESPONSE 200
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\nodejs\petship\webapp\backend-api\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-07-22T02:47:35.149Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-22T02:47:35.149Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T02:47:35.155Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:47:35.157Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:47:35.158Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:47:35.220Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:47:35.270Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] i  functions: HTTP trigger initialized at http://localhost:5001/petship-backend/us-central1/app
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T02:48:08.657Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T02:48:09.814Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T02:48:09.818Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T02:48:09.836Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:09.841Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:09.843Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:09.979Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:10.070Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T02:48:11.491Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T02:48:11.492Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T02:48:11.492Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T02:48:11.493Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T02:48:11.493Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T02:48:11.569Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4920"}
+[debug] [2019-07-22T02:48:11.576Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4920"}
+[debug] [2019-07-22T02:48:11.601Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T02:48:11.623Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T02:48:33.794Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T02:48:35.696Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T02:48:35.698Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T02:48:35.705Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:35.708Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:35.710Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:35.804Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:35.885Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T02:48:37.337Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T02:48:37.379Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T02:48:37.379Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T02:48:37.379Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T02:48:37.379Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T02:48:37.381Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\9476"}
+[debug] [2019-07-22T02:48:37.383Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\9476"}
+[debug] [2019-07-22T02:48:37.392Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T02:48:37.404Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T02:48:47.764Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T02:48:49.177Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T02:48:49.180Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T02:48:49.188Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:49.191Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:49.193Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T02:48:49.286Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T02:48:49.368Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T02:48:50.800Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T02:48:50.800Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T02:48:50.800Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T02:48:50.801Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T02:48:50.801Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T02:48:50.813Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\168"}
+[debug] [2019-07-22T02:48:50.815Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\168"}
+[debug] [2019-07-22T02:48:50.832Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T02:48:50.847Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /ja to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:14:32.233Z] Accepted request GET /petship-backend/us-central1/app/ja --> app
+[debug] [2019-07-22T03:14:33.575Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:14:33.576Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:14:33.583Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:14:33.586Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:14:33.587Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:14:33.682Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:14:33.768Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:14:35.046Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:14:35.046Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:14:35.046Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:14:35.047Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:14:35.047Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:14:35.061Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4568"}
+[debug] [2019-07-22T03:14:35.062Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4568"}
+[debug] [2019-07-22T03:14:35.079Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:14:35.112Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:14:40.746Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:14:41.799Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:14:41.802Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:14:41.811Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:14:41.816Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:14:41.818Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:14:41.930Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:14:42.008Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:14:43.430Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:14:43.430Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:14:43.430Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:14:43.431Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:14:43.431Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:14:43.442Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\9628"}
+[debug] [2019-07-22T03:14:43.444Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\9628"}
+[debug] [2019-07-22T03:14:43.462Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:14:43.473Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /connection to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:22:28.285Z] Accepted request GET /petship-backend/us-central1/app/connection --> app
+[debug] [2019-07-22T03:22:33.737Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:22:33.739Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:22:33.747Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:22:33.752Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:22:33.756Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:22:33.865Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:22:33.957Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:22:43.142Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:22:43.142Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:22:43.142Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:22:43.142Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:22:43.143Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:22:43.151Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10560"}
+[debug] [2019-07-22T03:22:43.152Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10560"}
+[debug] [2019-07-22T03:22:43.177Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:22:43.328Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT 1+1 AS result
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /someAnimal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:23:07.207Z] Accepted request GET /petship-backend/us-central1/app/someAnimal --> app
+[debug] [2019-07-22T03:23:07.914Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:23:07.916Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:23:07.921Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:23:07.923Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:23:07.924Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:23:07.992Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:23:08.067Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:23:09.374Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:23:09.374Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:23:09.374Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:23:09.374Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:23:09.375Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:23:09.384Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11316"}
+[debug] [2019-07-22T03:23:09.385Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11316"}
+[debug] [2019-07-22T03:23:09.392Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:23:09.401Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal/someAnimal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:31:46.078Z] Accepted request GET /petship-backend/us-central1/app/animal/someAnimal --> app
+[debug] [2019-07-22T03:31:47.213Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:31:47.215Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:31:47.224Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:31:47.227Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:31:47.229Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:31:47.327Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:31:47.397Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:31:48.666Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:31:48.666Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:31:48.666Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:31:48.668Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:31:48.668Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:31:48.811Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7192"}
+[debug] [2019-07-22T03:31:48.812Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7192"}
+[debug] [2019-07-22T03:31:48.821Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:31:48.837Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:33:28.310Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:33:29.484Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:33:29.486Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:33:29.493Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:33:29.496Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:33:29.498Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:33:29.585Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:33:29.659Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:33:30.783Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:33:30.783Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:33:30.783Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:33:30.784Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:33:30.784Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:33:30.796Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\12080"}
+[debug] [2019-07-22T03:33:30.797Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\12080"}
+[debug] [2019-07-22T03:33:30.807Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:33:30.819Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal/animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:33:32.287Z] Accepted request GET /petship-backend/us-central1/app/animal/animal --> app
+[debug] [2019-07-22T03:33:33.008Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:33:33.010Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:33:33.018Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:33:33.021Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:33:33.023Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:33:33.120Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:33:33.174Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:33:34.412Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:33:34.412Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:33:34.412Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:33:34.414Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:33:34.414Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:33:34.428Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\1380"}
+[debug] [2019-07-22T03:33:34.429Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\1380"}
+[debug] [2019-07-22T03:33:34.440Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:33:34.450Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal/someAnimal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:34:08.810Z] Accepted request GET /petship-backend/us-central1/app/animal/someAnimal --> app
+[debug] [2019-07-22T03:34:09.812Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:34:09.814Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:34:09.822Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:34:09.826Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:34:09.828Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:34:09.920Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:34:09.988Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:34:11.188Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:34:11.189Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:34:11.189Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:34:11.189Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:34:11.190Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:34:11.202Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\13104"}
+[debug] [2019-07-22T03:34:11.203Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\13104"}
+[debug] [2019-07-22T03:34:11.213Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:34:11.227Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal/someAnimal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:34:55.609Z] Accepted request GET /petship-backend/us-central1/app/animal/someAnimal --> app
+[debug] [2019-07-22T03:34:56.585Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:34:56.589Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:34:56.600Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:34:56.607Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:34:56.609Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:34:56.738Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:34:56.813Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:34:58.242Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:34:58.243Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:34:58.243Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:34:58.244Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:34:58.244Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:34:58.256Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\2620"}
+[debug] [2019-07-22T03:34:58.257Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\2620"}
+[debug] [2019-07-22T03:34:58.267Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:34:58.282Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal/animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:35:13.102Z] Accepted request GET /petship-backend/us-central1/app/animal/animal --> app
+[debug] [2019-07-22T03:35:14.034Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:35:14.036Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:35:14.045Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:35:14.049Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:35:14.051Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:35:14.144Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:35:14.213Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:35:15.486Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:35:15.487Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:35:15.487Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:35:15.488Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:35:15.488Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:35:15.500Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10580"}
+[debug] [2019-07-22T03:35:15.502Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\10580"}
+[debug] [2019-07-22T03:35:15.512Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:35:15.521Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal/animal/1 to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:36:13.123Z] Accepted request GET /petship-backend/us-central1/app/animal/animal/1 --> app
+[debug] [2019-07-22T03:36:14.152Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:36:14.154Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:36:14.159Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:36:14.162Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:36:14.164Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:36:14.250Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:36:14.330Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:36:15.532Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:36:15.532Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:36:15.532Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:36:15.533Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:36:15.534Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:36:15.546Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\6596"}
+[debug] [2019-07-22T03:36:15.547Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\6596"}
+[debug] [2019-07-22T03:36:15.557Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:36:15.569Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal" WHERE "Animal"."id" = '1' LIMIT 1;
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal/animal/2 to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:36:23.799Z] Accepted request GET /petship-backend/us-central1/app/animal/animal/2 --> app
+[debug] [2019-07-22T03:36:24.804Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:36:24.805Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:36:24.812Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:36:24.814Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:36:24.816Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:36:24.885Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:36:24.940Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:36:26.159Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:36:26.159Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:36:26.159Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:36:26.160Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:36:26.160Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:36:26.168Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\8376"}
+[debug] [2019-07-22T03:36:26.169Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\8376"}
+[debug] [2019-07-22T03:36:26.175Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:36:26.183Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal" WHERE "Animal"."id" = '2' LIMIT 1;
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal/ to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:37:26.051Z] Accepted request GET /petship-backend/us-central1/app/animal/ --> app
+[debug] [2019-07-22T03:37:26.970Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:37:26.971Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:37:26.978Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:37:26.981Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:37:26.982Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:37:27.069Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:37:27.148Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:37:28.366Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:37:28.366Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:37:28.367Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:37:28.367Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:37:28.367Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:37:28.375Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4104"}
+[debug] [2019-07-22T03:37:28.376Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4104"}
+[debug] [2019-07-22T03:37:28.384Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:37:28.390Z] [runtime-status] Ephemeral server survived. {}
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:37:29.370Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:37:30.751Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:37:30.753Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:37:30.759Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:37:30.762Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:37:30.763Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:37:30.844Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:37:30.922Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[debug] [2019-07-22T03:37:32.150Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:37:32.150Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:37:32.150Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:37:32.151Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:37:32.151Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:37:32.161Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4696"}
+[debug] [2019-07-22T03:37:32.214Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\4696"}
+[debug] [2019-07-22T03:37:32.222Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:37:32.231Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:39:01.976Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:39:03.618Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:39:03.621Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:39:03.627Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:03.630Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:03.631Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:03.701Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:03.756Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:39:05.241Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:39:05.241Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:39:05.241Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:39:05.242Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:39:05.242Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:39:05.255Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7920"}
+[debug] [2019-07-22T03:39:05.256Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\7920"}
+[debug] [2019-07-22T03:39:05.267Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:39:05.277Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id_animal", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[info] [hosting] Rewriting /animal/1 to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:39:20.060Z] Accepted request GET /petship-backend/us-central1/app/animal/1 --> app
+[debug] [2019-07-22T03:39:21.805Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:39:21.807Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:39:21.816Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:21.819Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:21.821Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:21.921Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:21.982Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:39:23.182Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:39:23.182Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:39:23.182Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:39:23.183Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:39:23.183Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:39:23.190Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\5872"}
+[debug] [2019-07-22T03:39:23.192Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\5872"}
+[debug] [2019-07-22T03:39:23.201Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:39:23.213Z] [runtime-status] Ephemeral server survived. {}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:39:30.353Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:39:31.288Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:39:31.290Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:39:31.297Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:31.300Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:31.302Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:31.404Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:31.472Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2019-07-22T03:39:32.794Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:39:32.795Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:39:32.795Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:39:32.796Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:39:32.796Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:39:32.809Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\8088"}
+[debug] [2019-07-22T03:39:32.811Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\8088"}
+[debug] [2019-07-22T03:39:32.822Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:39:32.833Z] [runtime-status] Ephemeral server survived. {}
+[info] [hosting] Rewriting /animal to http://localhost:5001/petship-backend/us-central1/app for local Function app
+[debug] [2019-07-22T03:39:34.053Z] Accepted request GET /petship-backend/us-central1/app/animal --> app
+[debug] [2019-07-22T03:39:35.363Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-07-22T03:39:35.366Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-22T03:39:35.373Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:35.376Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:35.378Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-22T03:39:35.471Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-22T03:39:35.544Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[info] >  Executing (default): SELECT "Id_animal", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s
+[debug] [2019-07-22T03:39:36.698Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-07-22T03:39:36.699Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-07-22T03:39:36.699Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-07-22T03:39:36.699Z] [default-admin-app-used]  {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[debug] [2019-07-22T03:39:36.699Z] [runtime-status] Intializing default app. {"databaseURL":"https://petship-backend.firebaseio.com","storageBucket":"petship-backend.appspot.com","projectId":"petship-backend","credential":{}}
+[info] i  Your code does not appear to initialize the 'firebase-admin' module, so we've done it automatically.
+   - Learn more: https://firebase.google.com/docs/admin/setup
+[debug] [2019-07-22T03:39:36.709Z] {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11048"}
+[debug] [2019-07-22T03:39:36.709Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\C:\\nodejs\\petship\\webapp\\backend-api\\functions\\11048"}
+[debug] [2019-07-22T03:39:36.719Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-07-22T03:39:36.728Z] [runtime-status] Ephemeral server survived. {}
+[info] >  Executing (default): SELECT "Id_animal", "Descripcion" FROM "Animals" AS "Animal";
+[info] i  functions: Finished "app" in ~3s

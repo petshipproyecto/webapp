@@ -5,6 +5,7 @@ import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 //import DEMO from "../../../store/constant";
+import axios from 'axios'
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -39,11 +40,25 @@ class SignUp extends React.Component {
             .min(6, "La contraseña debe tener al menos 6 caracteres")
             .required("La contraseña es obligatoria")
         })}
-        onSubmit = {fields => {
-          
-          const { history } = this.props
-          history.push('/dashboard')
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+        onSubmit={fields => {
+
+          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
+              "Email":fields.email,
+              "Nombre": fields.firstName,
+              "Apellido": fields.lastName,
+              "Password": fields.password
+
+          }).then(function (response) {
+            // handle success
+            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            console.log(error);
+          })
         }}
         render={({ errors, status, touched }) => (
           <Form>

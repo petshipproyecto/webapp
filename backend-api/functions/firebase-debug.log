@@ -1,0 +1,33 @@
+[debug] [2019-07-21T22:00:51.610Z] ----------------------------------------------------------------------
+[debug] [2019-07-21T22:00:51.613Z] Command:       C:\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-07-21T22:00:51.613Z] CLI Version:   7.1.0
+[debug] [2019-07-21T22:00:51.613Z] Platform:      win32
+[debug] [2019-07-21T22:00:51.614Z] Node Version:  v10.15.1
+[debug] [2019-07-21T22:00:51.616Z] Time:          Sun Jul 21 2019 19:00:51 GMT-0300 (GMT-03:00)
+[debug] [2019-07-21T22:00:51.616Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-21T22:00:51.626Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-21T22:00:51.626Z] > authorizing via signed-in user
+[debug] [2019-07-21T22:00:51.626Z] [iam] checking project petship-backend for permissions ["firebase.projects.get"]
+[debug] [2019-07-21T22:00:51.628Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/petship-backend:testIamPermissions  
+
+[debug] [2019-07-21T22:00:52.926Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-21T22:00:52.932Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend  
+ 
+[debug] [2019-07-21T22:00:54.189Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\nodejs\petship\webapp\backend-api'...
+[info] 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[debug] [2019-07-21T22:00:54.245Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petship-backend/adminSdkConfig  
+ 
+[debug] [2019-07-21T22:00:55.414Z] <<< HTTP RESPONSE 200
+[info] +  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "C:\nodejs\petship\webapp\backend-api\functions" for Cloud Functions...
+[debug] [2019-07-21T22:00:56.775Z] [runtime-status] Functions runtime initialized. {"cwd":"C:\\nodejs\\petship\\webapp\\backend-api\\functions","node_version":"10.15.1"}
+[debug] [2019-07-21T22:00:56.775Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true} {}
+[debug] [2019-07-21T22:00:56.781Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:00:56.783Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:00:56.784Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.1.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-07-21T22:00:56.871Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-07-21T22:00:56.937Z] [runtime-status] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.2.0","resolution":"C:\\nodejs\\petship\\webapp\\backend-api\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
