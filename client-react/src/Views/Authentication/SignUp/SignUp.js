@@ -57,7 +57,10 @@ class SignUp extends React.Component {
                         <i className="feather icon-user-plus auth-icon" />
                       </div>
                       <h3 className="mb-4">Registrarse</h3>
-                      <div className="form-group">
+                      
+                        <h7>Todos los campos son obligatorios<span style={{color:'red'}}> *</span></h7>
+                                          
+                      <div className="form-group">                       
                         <Field
                           placeholder="Nombre"
                           name="firstName"
@@ -94,6 +97,7 @@ class SignUp extends React.Component {
                         />
                       </div>
                       <div className="form-group">
+                        
                         <Field
                           placeholder="Ubicación"
                           name="ubicacion"
@@ -146,7 +150,7 @@ class SignUp extends React.Component {
                           className="invalid-feedback"
                         />
                       </div>
-
+                           
                       <div className="form-group">
                         <button
                           type="submit"
