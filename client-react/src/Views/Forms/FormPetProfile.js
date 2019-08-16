@@ -23,7 +23,7 @@ class FormPetProfile extends React.Component {
     generoDesc: "",
     razas: [],
     animales: [],
-    edades: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
+    edades: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
   }
 
 
@@ -250,7 +250,7 @@ class FormPetProfile extends React.Component {
                               />
                             </div>
                             <div class="form-group">
-                              <label>Edad</label>
+                              <label>Edad (años)</label>
                               <select
                                 name="edad"
                                 onChange={handleChange}
@@ -261,21 +261,9 @@ class FormPetProfile extends React.Component {
                                     : "")
                                 }
                               >
-                                <option value="" label="Seleccionar Edad" />
-                                <option value="1" label="1 año" />
-                                <option value="2" label="2 años" />
-                                <option value="3" label="3 años" />
-                                <option value="4" label="4 años" />
-                                <option value="5" label="5 años" />
-                                <option value="6" label="6 años" />
-                                <option value="7" label="7 años" />
-                                <option value="8" label="8 años" />
-                                <option value="9" label="9 años" />
-                                <option value="10" label="10 años" />
-                                <option value="11" label="11 años" />
-                                <option value="12" label="12 años" />
-                                <option value="13" label="13 años" />
-                                <option value="14" label="14 años" />
+                                {this.state.edades.map(element => {
+                                  return element == this.state.initialValues.edad ? <option value={element} label={element} selected /> : <option value={element} label={element} />
+                                })}
                               </select>
                               <ErrorMessage
                                 name="edad"

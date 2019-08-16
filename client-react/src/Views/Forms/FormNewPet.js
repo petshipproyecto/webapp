@@ -42,13 +42,13 @@ class FormNewPet extends React.Component {
   state = {
     initialValues : {
       name: "",
-      raza: "",
+      raza: "1",
       edad: "1",
-      genero: "",
-      tipoAnimal:"4"
+      genero: "1",
+      tipoAnimal:"6"
     },
     todasRazas:[],
-    idtipoAnimal:4,
+    idtipoAnimal:"6",
     generos : [],
     razas : [],
     todasRazas:[],
@@ -86,9 +86,7 @@ class FormNewPet extends React.Component {
      this.setState({
       animales: response.data
      })
-   });
-   
-  
+   });    
   }
 
   
