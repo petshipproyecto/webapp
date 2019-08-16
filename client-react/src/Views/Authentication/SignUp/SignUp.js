@@ -42,6 +42,8 @@ class SignUp extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
+          const { history } = this.props;
+          history.push("/dashboard");
 
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
@@ -52,12 +54,14 @@ class SignUp extends React.Component {
 
           }).then(function (response) {
             // handle success
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            alert('Se registro correctamente el Usuario');
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
           .catch(function (error) {
             // handle error
-            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            alert('Error al registrar el usuario');
+            //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           })
         }}
@@ -76,13 +80,13 @@ class SignUp extends React.Component {
                       <div className="form-group">
                         <SocialIcon
                           network="facebook"
-                          url="http://linkedin.com/in/jaketrent"
+                          url="http://facebook.com"
                           style={{ height: 32, width: 32 }}
                         />
                         &nbsp;&nbsp;
                         <SocialIcon
                           network="google"
-                          url="http://linkedin.com/in/jaketrent"
+                          url="http://google.com"
                           style={{ height: 32, width: 32 }}
                         />
                       </div>

@@ -29,7 +29,7 @@ class NavLeft extends Component {
                 <ul className="navbar-nav mr-auto">
                     {/* <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li> */}
                     <li className={navItemClass.join(' ')}>
-                        <Dropdown alignRight={dropdownRightAlign}>
+                        {/* <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
                                 Selecionar Perfil de Mascota
                             </Dropdown.Toggle>
@@ -73,7 +73,7 @@ class NavLeft extends Component {
                                 </ul>
                                 </Dropdown.Menu>
                             </ul>
-                        </Dropdown>
+                        </Dropdown> */}
                     </li>
                     <li className="nav-item"><NavSearch/></li>
                 </ul>

@@ -67,14 +67,14 @@ export default {
                     children: [
                         {
                             id: 'perfilUsuario',
-                            title: 'Perfil de Usuario',
+                            title: 'Ver Perfil de Usuario',
                             type: 'item',
                             url: '/UserProfile',
                          
                         },
                         {
                             id: 'perfilMascota',
-                            title: 'Perfil de Mascota',
+                            title: 'Ver Perfil de Mascota',
                             type: 'item',
                             url: '/PetProfile',
                        

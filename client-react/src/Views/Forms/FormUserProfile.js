@@ -79,12 +79,14 @@ class FormUserProfile extends React.Component {
 
           }).then(function (response) {
             // handle success
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            alert('Los datos del usuario se guardaron correctamente');
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
           .catch(function (error) {
             // handle error
-            alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+            alert('Error al guardar los datos del usuario');
+            //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           })
         }}

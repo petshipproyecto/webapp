@@ -48,13 +48,13 @@ class SignIn extends React.Component {
                       <div className="form-group">
                         <SocialIcon
                           network="facebook"
-                          url="http://linkedin.com/in/jaketrent"
+                          url="http://facebook.com"
                           style={{ height: 32, width: 32 }}
                         />
                         &nbsp;&nbsp;
                         <SocialIcon
                           network="google"
-                          url="http://linkedin.com/in/jaketrent"
+                          url="http://google.com"
                           style={{ height: 32, width: 32 }}
                         />
                       </div>

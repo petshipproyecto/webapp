@@ -119,12 +119,14 @@ class FormPetProfile extends React.Component {
 
           }).then(function (response) {
             // handle success
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            alert('Los datos de la mascota se guardaron correctamente');
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
             .catch(function (error) {
               // handle error
-              alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+              alert('Error al guardar los datos de la mascota');
+              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
             })
         }}

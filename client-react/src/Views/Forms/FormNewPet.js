@@ -133,12 +133,14 @@ class FormNewPet extends React.Component {
             "Id_animal": fields.tipoAnimal
           }).then(function (response) {
             // handle success
-            alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+            alert('Se agrego correctamente la mascota');
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
           })
             .catch(function (error) {
               // handle error
-              alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+              alert('Error al agregar una nueva mascota');
+              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
             })
 
