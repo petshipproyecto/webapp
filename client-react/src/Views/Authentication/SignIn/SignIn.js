@@ -9,6 +9,8 @@ import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
+import { SocialIcon } from "react-social-icons";
+
 
 class SignIn extends React.Component {
   render() {
