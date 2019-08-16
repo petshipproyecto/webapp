@@ -26,6 +26,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
     "react-select": "^3.0.4",
+    "react-social-icons": "^4.1.0",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
     "yup": "^0.27.0"
