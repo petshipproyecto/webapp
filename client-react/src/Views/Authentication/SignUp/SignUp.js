@@ -11,6 +11,7 @@ import axios from 'axios'
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
+import { SocialIcon } from "react-social-icons";
 
 class SignUp extends React.Component {
   render() {
@@ -71,7 +72,21 @@ class SignUp extends React.Component {
                       <div className="mb-4">
                         <i className="feather icon-user-plus auth-icon" />
                       </div>
-                      <h3 className="mb-4">Registrarse</h3>
+                     <h3 className="mb-4">Registrarse con</h3>
+                      <div className="form-group">
+                        <SocialIcon
+                          network="facebook"
+                          url="http://linkedin.com/in/jaketrent"
+                          style={{ height: 32, width: 32 }}
+                        />
+                        &nbsp;&nbsp;
+                        <SocialIcon
+                          network="google"
+                          url="http://linkedin.com/in/jaketrent"
+                          style={{ height: 32, width: 32 }}
+                        />
+                      </div>
+                      <h7>Todos los campos son obligatorios<span style={{color:'red'}}> *</span></h7>
                       <div className="form-group">
                         <Field
                           placeholder="Nombre"
