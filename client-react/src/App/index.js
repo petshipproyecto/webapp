@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import PrivateRoute from '../Middleware/PrivateRoute'
 
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
 
@@ -35,7 +36,7 @@ class App extends Component {
                     <Suspense fallback={<Loader/>}>
                         <Switch>
                             {menu}
-                            <Route path="/" component={AdminLayout} />
+                            <PrivateRoute path="/" component={AdminLayout} user={null}  />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>

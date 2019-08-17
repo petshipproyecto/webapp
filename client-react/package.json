@@ -29,7 +29,8 @@
     "react-social-icons": "^4.1.0",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
-    "yup": "^0.27.0"
+    "yup": "^0.27.0",
+    "firebase": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

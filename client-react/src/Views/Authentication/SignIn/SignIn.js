@@ -10,6 +10,9 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 import { SocialIcon } from "react-social-icons";
+import { connect } from 'react-redux';
+import { requestSignIn, signedIn } from '../../../store/actions/user'
+import { auth } from '../../../store/firebase';
 
 
 class SignIn extends React.Component {
@@ -30,7 +33,7 @@ class SignIn extends React.Component {
         })}
         onSubmit={fields => {
           const { history } = this.props;
-          history.push("/choosePet");
+          //history.push("/choosePet");
           alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
         render={({ errors, status, touched }) => (

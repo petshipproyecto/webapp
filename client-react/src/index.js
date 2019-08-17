@@ -6,10 +6,10 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App/index";
 import * as serviceWorker from "./serviceWorker";
-import reducer from "./store/reducer";
+import reducers from "./store/reducers/index";
 import config from "./config";
 
-const store = createStore(reducer);
+const store = createStore(reducers);
 
 const app = (
   <Provider store={store}>
