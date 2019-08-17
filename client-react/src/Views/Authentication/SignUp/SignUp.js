@@ -27,9 +27,13 @@ class SignUp extends React.Component {
         validationSchema={Yup.object().shape({
           firstName: Yup.string()
             .trim()
+            .min(2,"El nombre debe tener como mínimo 2 caracteres")
+            .max(20,"El nombre debe tener como máximo 20 caracteres")
             .required("El nombre es obligatorio"),
           lastName: Yup.string()
             .trim()
+            .min(2,"El nombre debe tener como mínimo 2 caracteres")
+            .max(20,"El nombre debe tener como máximo 20 caracteres")
             .required("El apellido es obligatorio"),
             ubicacion: Yup.string()
             .trim()
@@ -39,6 +43,7 @@ class SignUp extends React.Component {
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
+            .max(20,"La contraseña debe tener como máximo 20 caracteres")
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
