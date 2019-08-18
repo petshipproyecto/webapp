@@ -29,6 +29,7 @@ class SignIn extends React.Component {
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
+            .max(20,"La contraseña debe tener como máximo 20 caracteres")
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
