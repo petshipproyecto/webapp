@@ -16,6 +16,7 @@ const UIBasicTabsPills = React.lazy(() => import('./Views/UIElements/Basic/TabsP
 const UIBasicBasicTypography = React.lazy(() => import('./Views/UIElements/Basic/Typography'));
 
 const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile'));
+const TablaMascotas = React.lazy(() => import('./Views/Usuario/TablaMascotas/TablaMascotas'));
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 
@@ -46,7 +47,7 @@ const routes = [
     { path: '/UserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
     { path: '/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
     { path: '/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
-    
+    { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
 ];
 
 export default routes;

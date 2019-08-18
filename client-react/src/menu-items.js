@@ -17,7 +17,7 @@ export default {
                      id: 'buscarPareja',
                      title: 'Buscar Pareja',
                      type: 'item',
-                     url: '/sample-page',
+                     url: '/ComingSoon',
                      icon: 'feather icon-heart-on'
                  },
                  {
@@ -25,13 +25,13 @@ export default {
                      title: 'Buscar Amigos',
                      type: 'item',
                      icon: 'feather icon-star-on',
-                     url: '/sample-page'
+                     url: '/ComingSoon'
                  },
                  {
                      id: 'match',
                      title: 'Matchs',
                      type: 'item',
-                     url: '/sample-page',
+                     url: '/ComingSoon',
                      classes: 'nav-item',
                      icon: 'feather icon-users'
                  },
@@ -55,7 +55,7 @@ export default {
                      id: 'swipe',
                      title: 'Swipe',
                      type: 'item',
-                     url: '/Swipe',
+                     url: '/ComingSoon',
                      classes: 'nav-item',
                      icon: 'feather icon-plus-circle'
                 },
@@ -82,11 +82,11 @@ export default {
                     ]
                 },
                  {
-                     id: 'configuracion',
-                     title: 'Configuración',
+                     id: 'administrarMascotas',
+                     title: 'Administrar Mascotas',
                      type: 'item',
                      icon: 'feather icon-settings',
-                     url: '/tables/bootstrap'
+                     url: '/TablaMascotas'
                  },
                  {
                      id: 'auth',
