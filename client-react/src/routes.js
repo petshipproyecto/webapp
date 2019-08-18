@@ -15,9 +15,9 @@ const UIBasicCollapse = React.lazy(() => import('./Views/UIElements/Basic/Collap
 const UIBasicTabsPills = React.lazy(() => import('./Views/UIElements/Basic/TabsPills'));
 const UIBasicBasicTypography = React.lazy(() => import('./Views/UIElements/Basic/Typography'));
 
-const FormUserProfile = React.lazy(() => import('./Views/Forms/FormUserProfile'));
-const FormPetProfile = React.lazy(() => import('./Views/Forms/FormPetProfile'));
-const FormNewPet = React.lazy(() => import('./Views/Forms/FormNewPet'));
+const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile'));
+const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
+const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 
 const BootstrapTable = React.lazy(() => import('./Views/Tables/BootstrapTable'));
 

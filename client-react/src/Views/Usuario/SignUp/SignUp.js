@@ -13,6 +13,9 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 import { SocialIcon } from "react-social-icons";
 
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
+
 class SignUp extends React.Component {
   render() {
     return (
@@ -59,15 +62,27 @@ class SignUp extends React.Component {
 
           }).then(function (response) {
             // handle success
-            alert('Se registro correctamente el Usuario');
             //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
+            swal({
+              title: "Exito!",
+              text: "Se registro correctamente el Usuario",
+              icon: "success",
+              timer: 2000,
+              button: false
+            });
           })
           .catch(function (error) {
             // handle error
-            alert('Error al registrar el usuario');
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
+            swal({
+              title: "Error!",
+              text: "Error al registrar el usuario",
+              icon: "success",
+              timer: 2000,
+              button: false
+            });
           })
         }}
         render={({ errors, status, touched }) => (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, Alert } from "react-bootstrap";
+import { Row, Col, Card} from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
@@ -8,8 +8,13 @@ import update from "react-addons-update"; // ES6
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+//import * as Yup from "yup";
+
 //---------------------------------------------------------------------
+
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
+
 
 class FormNewPet extends React.Component {
   _handleChangeAnimal = event => {
@@ -19,7 +24,6 @@ class FormNewPet extends React.Component {
     let cont = true;
     this.state.todasRazas.forEach(element => {
       // console.log(element)
-
       if (element.Id_animal == event.target.value.toString()) {
         if (cont) {
           currentRaza = element.Id_raza;
@@ -121,7 +125,6 @@ class FormNewPet extends React.Component {
         enableReinitialize
         initialValues={this.state.initialValues}
         onSubmit={fields => {
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
             .post("https://petshipt-backend.herokuapp.com/perfil", {
               // payload
@@ -133,31 +136,39 @@ class FormNewPet extends React.Component {
               Id_animal: fields.tipoAnimal
             })
             .then(response => {
-              this.setState({ mensaje: "exito" });
+              // this.setState({ mensaje: "exito" });
               // handle success
-              alert("Se agrego correctamente la mascota");
-              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+              swal({
+                title: "Exito!",
+                text: "Se agrego correctamente la mascota",
+                icon: "success",
+                timer: 2000,
+                button: false
+              });
             })
             .catch(error => {
               // handle error
-              alert("Error al agregar una nueva mascota");
-              this.setState({ mensaje: "error" });
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+              //this.setState({ mensaje: "error" });
               console.log(error);
+              swal({
+                title: "Error!",
+                text: "No se agrego correctamente la mascota",
+                icon: "error",
+                timer: 2000,
+                button: false
+              });
             });
         }}
         render={({ errors, touched, handleChange }) => (
           <Form>
             <Aux>
-              {this.state.mensaje == "exito" && (
-                <Alert variant={"success"}>
-                  Se agrego correctamente la mascota
-                </Alert>
-              )}
+              {/* {this.state.mensaje == "exito" && (
+                
+                 <Alert variant={"succes"}>Se agrego la mascota correctamente</Alert>
+              )} 
               {this.state.mensaje == "error" && (
                 <Alert variant={"danger"}>Error al agregar nueva mascota</Alert>
-              )}
-
+              )} */}
               <Row className="justify-content-md-center">
                 <Col md={6}>
                   <Card>
@@ -391,3 +402,4 @@ class FormNewPet extends React.Component {
 }
 
 export default FormNewPet;
+

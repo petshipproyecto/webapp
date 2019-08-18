@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SignUp = React.lazy(() => import('./Views/Authentication/SignUp/SignUp'));
-const Signin = React.lazy(() => import('./Views/Authentication/SignIn/SignIn'));
-const ResetPassword = React.lazy(() => import('./Views/Authentication/ResetPassword/ResetPassword'));
-const ChoosePet = React.lazy(() => import('./Views/Authentication/ChoosePet/ChoosePet'));
+const SignUp = React.lazy(() => import('./Views/Usuario/SignUp/SignUp'));
+const Signin = React.lazy(() => import('./Views/Autenticacion/SignIn/SignIn'));
+const ResetPassword = React.lazy(() => import('./Views/Autenticacion/ResetPassword/ResetPassword'));
+const ChoosePet = React.lazy(() => import('./Views/Mascota/ChoosePet/ChoosePet'));
 
 const route = [
     { path: '/signUp', exact: true, name: 'Signup', component: SignUp },
