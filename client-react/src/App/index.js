@@ -36,7 +36,7 @@ class App extends Component {
                     <Suspense fallback={<Loader/>}>
                         <Switch>
                             {menu}
-                            <PrivateRoute path="/" component={AdminLayout} user={null}  />
+                            <PrivateRoute path="/" component={AdminLayout} user={"Damian"}  />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>

@@ -10,7 +10,7 @@ import reducers from "./store/reducers/index";
 import config from "./config";
 
 const store = createStore(reducers);
-
+console.log(store.getState())
 const app = (
   <Provider store={store}>
     <BrowserRouter basename={config.basename}>

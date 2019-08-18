@@ -6,6 +6,10 @@ import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 //import DEMO from "../../../store/constant";
 import axios from 'axios'
+import { connect } from 'react-redux';
+import { requestSignIn, signedIn } from '../../../store/actions/user'
+import { auth } from '../../../store/firebase';
+import { withRouter } from 'react-router-dom';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -47,11 +51,16 @@ class SignUp extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          const { history } = this.props;
-          history.push("/dashboard");
-
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          //const { history } = this.props;
+          //history.push("/dashboard");
+          
+          auth.doCreateUserWithEmailAndPassword(fields.email, fields.password).then(response => {
+            alert(JSON.stringify(response))
+            console.log(JSON.stringify(response))
+            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
+              "Id_usuario": response.user.uid,
               "Email":fields.email,
               "Nombre": fields.firstName,
               "Apellido": fields.lastName,
@@ -68,7 +77,11 @@ class SignUp extends React.Component {
             alert('Error al registrar el usuario');
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
-          })
+          }) 
+
+          } ).catch(e => alert(e)
+            );
+          
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -210,4 +223,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default withRouter(connect()(SignUp));

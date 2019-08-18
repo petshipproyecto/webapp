@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actions';
 import config from '../../config';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
     isFullScreen: false, // static can't change
 };
 
-const reducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action){
     let trigger = [];
     let open = [];
 
@@ -88,4 +88,3 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export default reducer;
