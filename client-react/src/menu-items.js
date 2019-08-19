@@ -25,7 +25,7 @@ export default {
                      title: 'Buscar Amigos',
                      type: 'item',
                      icon: 'feather icon-star-on',
-                     url: '/ComingSoon'
+                     url: '/GaleriaMascotas'
                  },
                  {
                      id: 'match',

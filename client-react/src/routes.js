@@ -19,6 +19,7 @@ const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile
 const TablaMascotas = React.lazy(() => import('./Views/Usuario/TablaMascotas/TablaMascotas'));
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
+const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
 
 const BootstrapTable = React.lazy(() => import('./Views/Tables/BootstrapTable'));
 
@@ -48,6 +49,7 @@ const routes = [
     { path: '/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
     { path: '/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
     { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
+    { path: '/GaleriaMascotas', exact: true, name: 'Forms Elements', component: GaleriaMascotas },
 ];
 
 export default routes;

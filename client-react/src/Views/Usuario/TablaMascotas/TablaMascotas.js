@@ -42,7 +42,10 @@ class TablaMascotas extends React.Component {
                                         <td>Sin Raza</td>
                                         <td>Hembra</td>
                                         <td>3 años</td>
-                                        <td><a class="text-white label theme-bg f-12" href="#!">Eliminar</a></td>
+                                        <td>
+                                            <a class="text-white label theme-bg2 f-12" href="/PetProfile">Editar</a>
+                                            <a class="text-white label theme-bg f-12" href="#!">Eliminar</a>
+                                        </td>
                                     </tr>
                                     <tr>
                                     <td>
@@ -55,7 +58,11 @@ class TablaMascotas extends React.Component {
                                         <td>Siames</td>
                                         <td>Hembra</td>
                                         <td>3 años</td>
-                                        <td><a class="text-white label theme-bg f-12" href="#!">Eliminar</a></td>
+                                        <td>
+                                            <a class="text-white label theme-bg2 f-12" href="/PetProfile">Editar</a>
+                                            <a class="text-white label theme-bg f-12" href="#!">Eliminar</a>
+                                        </td>
+                                       
                                     </tr>
                                     <tr>
                                     <td>
@@ -68,7 +75,10 @@ class TablaMascotas extends React.Component {
                                         <td>Sin raza</td>
                                         <td>Hembra</td>
                                         <td>1 años</td>
-                                        <td><a class="text-white label theme-bg f-12" href="#!">Eliminar</a></td>
+                                        <td>
+                                            <a class="text-white label theme-bg2 f-12" href="/PetProfile">Editar</a>
+                                            <a class="text-white label theme-bg f-12" href="#!">Eliminar</a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </Table>
