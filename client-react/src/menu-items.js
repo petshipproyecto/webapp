@@ -22,7 +22,7 @@ export default {
                  },
                  {
                      id: 'buscarAmigo',
-                     title: 'Buscar Amigos',
+                     title: 'Amigos Favoritos',
                      type: 'item',
                      icon: 'feather icon-star-on',
                      url: '/GaleriaMascotas'
@@ -55,7 +55,7 @@ export default {
                      id: 'swipe',
                      title: 'Swipe',
                      type: 'item',
-                     url: '/ComingSoon',
+                     url: '/Swipe',
                      classes: 'nav-item',
                      icon: 'feather icon-plus-circle'
                 },
