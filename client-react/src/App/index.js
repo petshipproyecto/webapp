@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import PrivateRoute from '../Middleware/PrivateRoute'
-
+import { connect } from 'react-redux';
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
 
 import Loader from './layout/Loader'
@@ -36,7 +36,7 @@ class App extends Component {
                     <Suspense fallback={<Loader/>}>
                         <Switch>
                             {menu}
-                            <PrivateRoute path="/" component={AdminLayout} user={"Damian"}  />
+                            <PrivateRoute path="/" component={AdminLayout}  user={this.props.user}  />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
@@ -45,4 +45,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+      user: state.user.user
+    };
+  }
+  
+  export default connect(mapStateToProps)(App);

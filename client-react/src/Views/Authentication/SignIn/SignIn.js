@@ -13,6 +13,7 @@ import { SocialIcon } from "react-social-icons";
 import { connect } from 'react-redux';
 import { requestSignIn, signedIn } from '../../../store/actions/user'
 import { auth } from '../../../store/firebase';
+import { Link, withRouter } from 'react-router-dom';
 
 
 class SignIn extends React.Component {
@@ -139,4 +140,10 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(SignIn));
