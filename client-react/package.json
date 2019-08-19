@@ -20,6 +20,7 @@
     "react-dom": "^16.8.6",
     "react-full-screen": "^0.2.4",
     "react-loadable": "^5.5.0",
+    "react-notifications-component": "^1.1.1",
     "react-nvd3": "^0.5.7",
     "react-perfect-scrollbar": "^1.5.3",
     "react-redux": "^7.1.0",
@@ -29,6 +30,7 @@
     "react-social-icons": "^4.1.0",
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
+    "sweetalert": "^2.1.2",
     "yup": "^0.27.0"
   },
   "scripts": {

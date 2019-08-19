@@ -32,7 +32,7 @@ class SignIn extends React.Component {
         onSubmit={fields => {
           const { history } = this.props;
           history.push("/choosePet");
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
         render={({ errors, status, touched }) => (
           <Form>

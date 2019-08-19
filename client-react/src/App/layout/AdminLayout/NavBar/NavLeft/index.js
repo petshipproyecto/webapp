@@ -8,7 +8,13 @@ import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions";
 
-import Avatar1 from '../../../../../assets/images/user/avatar1.jpg';
+import Avatar1 from '../../../../../assets/images/user/avatarCat.jpg';
+import Avatar2 from '../../../../../assets/images/user/avatarDog.jpg';
+import Avatar3 from '../../../../../assets/images/user/avatarChinchilla.jpg';
+
+
+
+
 
 class NavLeft extends Component {
 
@@ -29,29 +35,34 @@ class NavLeft extends Component {
                 <ul className="navbar-nav mr-auto">
                     {/* <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li> */}
                     <li className={navItemClass.join(' ')}>
-                        {/* <Dropdown alignRight={dropdownRightAlign}>
+                        <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
                                 Selecionar Perfil de Mascota
                             </Dropdown.Toggle>
                             <ul>
                                 <Dropdown.Menu alignRight className="notification">
+                                <div className="noti-head">
+                  <h6 className="d-inline-block m-b-0">Perfiles de Mascota</h6>
+                  
+                </div>
                                 <ul className="noti-body">
-                                <a href="/choosePet"> 
+                                <a href="/dashboard/default"> 
                                     <li className="notification">
+                                        
                                         <div className="media">
                                             <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p  href="/datta-able/react/default/dashboard/default" class="pt-3">Firulais</p>
+                                                <p class="pt-3">Firulais</p>
                                             </div>
                                         </div>
                                     </li>
                                     </a> 
                                 </ul>
                                 <ul className="noti-body">
-                                <a href="/choosePet">
+                                <a href="/dashboard/default">
                                     <li className="notification">
                                         <div className="media">
-                                            <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <img className="media-object img-radius" src={Avatar2} alt="Generic placeholder"/>
                                             <div className="media-body">
                                                 <p class="pt-3">Kitty</p>
                                             </div>
@@ -60,12 +71,12 @@ class NavLeft extends Component {
                                     </a>
                                 </ul>
                                 <ul className="noti-body">
-                                <a href="/choosePet"> 
+                                <a href="/dashboard/default"> 
                                     <li className="notification">
                                         <div className="media">
-                                            <img className="media-object img-radius" src={Avatar1} alt="Generic placeholder"/>
+                                            <img className="media-object img-radius" src={Avatar3} alt="Generic placeholder"/>
                                             <div className="media-body">
-                                                <p href="/auth/signup" class="pt-3">Lola</p>
+                                                <p class="pt-3">Lola</p>
                                             </div>
                                         </div>
                                     </li>
@@ -73,7 +84,7 @@ class NavLeft extends Component {
                                 </ul>
                                 </Dropdown.Menu>
                             </ul>
-                        </Dropdown> */}
+                        </Dropdown>
                     </li>
                     <li className="nav-item"><NavSearch/></li>
                 </ul>

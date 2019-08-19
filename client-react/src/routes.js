@@ -15,9 +15,10 @@ const UIBasicCollapse = React.lazy(() => import('./Views/UIElements/Basic/Collap
 const UIBasicTabsPills = React.lazy(() => import('./Views/UIElements/Basic/TabsPills'));
 const UIBasicBasicTypography = React.lazy(() => import('./Views/UIElements/Basic/Typography'));
 
-const FormUserProfile = React.lazy(() => import('./Views/Forms/FormUserProfile'));
-const FormPetProfile = React.lazy(() => import('./Views/Forms/FormPetProfile'));
-const FormNewPet = React.lazy(() => import('./Views/Forms/FormNewPet'));
+const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile'));
+const TablaMascotas = React.lazy(() => import('./Views/Usuario/TablaMascotas/TablaMascotas'));
+const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
+const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 
 const BootstrapTable = React.lazy(() => import('./Views/Tables/BootstrapTable'));
 
@@ -46,7 +47,7 @@ const routes = [
     { path: '/UserProfile', exact: true, name: 'Forms Elements', component: FormUserProfile },
     { path: '/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
     { path: '/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
-    
+    { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
 ];
 
 export default routes;

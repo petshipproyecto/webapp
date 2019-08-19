@@ -13,28 +13,28 @@ export default {
                     url: '/dashboard/default',
                     icon: 'feather icon-home',
                 },
-                // {
-                //     id: 'buscarPareja',
-                //     title: 'Buscar Pareja',
-                //     type: 'item',
-                //     url: '/sample-page',
-                //     icon: 'feather icon-heart-on'
-                // },
-                // {
-                //     id: 'buscarAmigo',
-                //     title: 'Buscar Amigos',
-                //     type: 'item',
-                //     icon: 'feather icon-star-on',
-                //     url: '/sample-page'
-                // },
-                // {
-                //     id: 'match',
-                //     title: 'Matchs',
-                //     type: 'item',
-                //     url: '/sample-page',
-                //     classes: 'nav-item',
-                //     icon: 'feather icon-users'
-                // },
+                 {
+                     id: 'buscarPareja',
+                     title: 'Buscar Pareja',
+                     type: 'item',
+                     url: '/ComingSoon',
+                     icon: 'feather icon-heart-on'
+                 },
+                 {
+                     id: 'buscarAmigo',
+                     title: 'Buscar Amigos',
+                     type: 'item',
+                     icon: 'feather icon-star-on',
+                     url: '/ComingSoon'
+                 },
+                 {
+                     id: 'match',
+                     title: 'Matchs',
+                     type: 'item',
+                     url: '/ComingSoon',
+                     classes: 'nav-item',
+                     icon: 'feather icon-users'
+                 },
                 {
                     id: 'nuevaMascota',
                     title: 'Agregar Mascota',
@@ -51,14 +51,14 @@ export default {
                     classes: 'nav-item',
                     icon: 'feather icon-plus-circle'
                 },
-                // {
-                //     id: 'swipe',
-                //     title: 'Swipe',
-                //     type: 'item',
-                //     url: '/Swipe',
-                //     classes: 'nav-item',
-                //     icon: 'feather icon-plus-circle'
-                // },
+                 {
+                     id: 'swipe',
+                     title: 'Swipe',
+                     type: 'item',
+                     url: '/ComingSoon',
+                     classes: 'nav-item',
+                     icon: 'feather icon-plus-circle'
+                },
                 {
                     id: 'forms',
                     title: 'Perfiles',
@@ -81,57 +81,57 @@ export default {
                         }
                     ]
                 },
-                // {
-                //     id: 'configuracion',
-                //     title: 'Configuración',
-                //     type: 'item',
-                //     icon: 'feather icon-settings',
-                //     url: '/tables/bootstrap'
-                // },
-                // {
-                //     id: 'auth',
-                //     title: 'Autenticación',
-                //     type: 'collapse',
-                //     icon: 'feather icon-lock',
-                //     badge: {
-                //         title: 'New',
-                //         type: 'label-danger'
-                //     },
-                //     children: [
-                //         {
-                //             id: 'signup',
-                //             title: 'Registrar Usuario',
-                //             type: 'item',
-                //             url: '/signUp',
-                //             target: true,
-                //             breadcrumbs: false
-                //         },
-                //         // {
-                        //     id: 'signin',
-                        //     title: 'Sign in',
-                        //     type: 'item',
-                        //     url: '/signIn',
-                        //     target: true,
-                        //     breadcrumbs: false
-                        // },
-                        // {
-                        //     id: 'resetPassword',
-                        //     title: 'Reset Password',
-                        //     type: 'item',
-                        //     url: '/resetPassword',
-                        //     target: true,
-                        //     breadcrumbs: false
-                        // },
-                        // {
-                        //     id: 'choosePet',
-                        //     title: 'Elegir Mascota',
-                        //     type: 'item',
-                        //     url: '/choosePet',
-                        //     target: true,
-                        //     breadcrumbs: false
-                        // }
-                //     ]
-                // },
+                 {
+                     id: 'administrarMascotas',
+                     title: 'Administrar Mascotas',
+                     type: 'item',
+                     icon: 'feather icon-settings',
+                     url: '/TablaMascotas'
+                 },
+                 {
+                     id: 'auth',
+                     title: 'Autenticación',
+                     type: 'collapse',
+                     icon: 'feather icon-lock',
+                     badge: {
+                         title: 'New',
+                         type: 'label-danger'
+                     },
+                     children: [
+                         {
+                             id: 'signup',
+                             title: 'Registrar Usuario',
+                             type: 'item',
+                             url: '/signUp',
+                             target: true,
+                             breadcrumbs: false
+                         },
+                         {
+                             id: 'signin',
+                             title: 'Sign in',
+                             type: 'item',
+                             url: '/signIn',
+                             target: true,
+                             breadcrumbs: false
+                        },
+                        {
+                             id: 'resetPassword',
+                             title: 'Reset Password',
+                             type: 'item',
+                             url: '/resetPassword',
+                             target: true,
+                             breadcrumbs: false
+                         },
+                         {
+                             id: 'choosePet',
+                             title: 'Elegir Mascota',
+                             type: 'item',
+                             url: '/choosePet',
+                             target: true,
+                             breadcrumbs: false
+                         }
+                     ]
+                 },
 
                 
 

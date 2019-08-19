@@ -1,33 +1,30 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card
-} from "react-bootstrap";
+import { Row, Col, Card} from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
-import axios from 'axios'
-import update from 'react-addons-update'; // ES6
-
+import axios from "axios";
+import update from "react-addons-update"; // ES6
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+//import * as Yup from "yup";
+
 //---------------------------------------------------------------------
 
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
+
+
 class FormNewPet extends React.Component {
-
-
-  _handleChangeAnimal = (event) => {
-    let razas = []
+  _handleChangeAnimal = event => {
+    let razas = [];
     let currentRaza;
     //console.log(event.target.value)
     let cont = true;
     this.state.todasRazas.forEach(element => {
       // console.log(element)
-
-      if (element.Id_animal == (event.target.value).toString()) {
+      if (element.Id_animal == event.target.value.toString()) {
         if (cont) {
           currentRaza = element.Id_raza;
         }
@@ -35,33 +32,28 @@ class FormNewPet extends React.Component {
         razas.push(element);
         cont = false;
 
-        console.log(currentRaza + "raza")
+        console.log(currentRaza + "raza");
       }
     });
-    this.setState(
-      {
-        razas: razas
-      }
-    )
+    this.setState({
+      razas: razas
+    });
     var newState = update(this.state, {
-      initialValues: { raza: {$set: currentRaza} }
+      initialValues: { raza: { $set: currentRaza } }
     });
     this.setState(newState);
 
     //this.handleChangeRaza()
-    console.log('state' + JSON.stringify(this.state))
-  }
+    console.log("state" + JSON.stringify(this.state));
+  };
 
-  handleChangeRaza = (event) => {
-    console.log("evento" + event)
+  handleChangeRaza = event => {
+    console.log("evento" + event);
     var newState = update(this.state, {
-      initialValues: { raza: {$set: event.target.value} }
+      initialValues: { raza: { $set: event.target.value } }
     });
     this.setState(newState);
-  }
-
-
-
+  };
 
   state = {
     initialValues: {
@@ -71,6 +63,7 @@ class FormNewPet extends React.Component {
       genero: "1",
       tipoAnimal: "6"
     },
+    mensaje: "hola",
     todasRazas: [],
     idtipoAnimal: 4,
     currentRaza: "1",
@@ -78,77 +71,104 @@ class FormNewPet extends React.Component {
     razas: [],
     todasRazas: [],
     animales: [],
-    edades: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
-  }
+    edades: [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  };
 
   componentDidMount() {
-
-
     // Obtiene TODAS las razas
-    axios.get('https://petshipt-backend.herokuapp.com/raza')
-      .then(response => {
-        this.setState({
-          todasRazas: response.data,
-          razas: response.data
-        })
-        // console.log('state' + JSON.stringify(this.state.todasRazas))
-
+    axios.get("https://petshipt-backend.herokuapp.com/raza").then(response => {
+      this.setState({
+        todasRazas: response.data,
+        razas: response.data
       });
+      // console.log('state' + JSON.stringify(this.state.todasRazas))
+    });
     // Obtiene TODOS los tipos de animales
-    axios.get('https://petshipt-backend.herokuapp.com/animal')
+    axios
+      .get("https://petshipt-backend.herokuapp.com/animal")
       .then(response => {
         this.setState({
           animales: response.data
-        })
+        });
       });
-
-
   }
 
-
-
   render() {
-    const generos = [{
-      "value": 1,
-      "Descripcion": "Macho"
-    },
-    {
-      "value": 2,
-      "Descripcion": "Hembra"
-    }]
+    const generos = [
+      {
+        value: 1,
+        Descripcion: "Macho"
+      },
+      {
+        value: 2,
+        Descripcion: "Hembra"
+      }
+    ];
     return (
       <Formik
         enableReinitialize
         initialValues={this.state.initialValues}
-
-        onSubmit={(fields) => {
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-          axios.post('https://petshipt-backend.herokuapp.com/perfil', {
-            // payload
-            "Nombre": fields.name,
-            "Edad": fields.edad,
-            "Imagen": "fields.urlImagen",
-            "Id_raza": fields.raza,
-            "Id_genero": fields.genero,
-            "Id_animal": fields.tipoAnimal
-          }).then(function (response) {
-            // handle success
-            alert('Se agrego correctamente la mascota');
-            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
-            console.log(response);
-          })
-            .catch(function (error) {
-              // handle error
-              alert('Error al agregar una nueva mascota');
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
-              console.log(error);
+        onSubmit={fields => {
+          axios
+            .post("https://petshipt-backend.herokuapp.com/perfil", {
+              // payload
+              Nombre: fields.name,
+              Edad: fields.edad,
+              Imagen: "fields.urlImagen",
+              Id_raza: fields.raza,
+              Id_genero: fields.genero,
+              Id_animal: fields.tipoAnimal
             })
-
+            .then(response => {
+              // this.setState({ mensaje: "exito" });
+              // handle success
+              swal({
+                title: "Exito!",
+                text: "Se agrego correctamente la mascota",
+                icon: "success",
+                timer: 2000,
+                button: false
+              });
+            })
+            .catch(error => {
+              // handle error
+              //this.setState({ mensaje: "error" });
+              console.log(error);
+              swal({
+                title: "Error!",
+                text: "No se agrego correctamente la mascota",
+                icon: "error",
+                timer: 2000,
+                button: false
+              });
+            });
         }}
         render={({ errors, touched, handleChange }) => (
           <Form>
             <Aux>
-
+              {/* {this.state.mensaje == "exito" && (
+                
+                 <Alert variant={"succes"}>Se agrego la mascota correctamente</Alert>
+              )} 
+              {this.state.mensaje == "error" && (
+                <Alert variant={"danger"}>Error al agregar nueva mascota</Alert>
+              )} */}
               <Row className="justify-content-md-center">
                 <Col md={6}>
                   <Card>
@@ -158,16 +178,19 @@ class FormNewPet extends React.Component {
                     <Card.Body>
                       <Row>
                         <Col md={12}>
-
                           <Form>
                             <center>
                               <img
                                 className="rounded-circle"
-                                style={{ width: "180px", border: "solid 4px #f47386" }}
+                                style={{
+                                  width: "180px",
+                                  border: "solid 4px #f47386"
+                                }}
                                 src={avatar2}
                                 alt="activity-user"
                               />
-                            </center></Form>
+                            </center>
+                          </Form>
                           <br></br>
                           <div className="form-group">
                             <input
@@ -189,7 +212,9 @@ class FormNewPet extends React.Component {
                             />
                           </div>
                           <div className="form-group">
-                            <label>Nombre <span style={{color:'red'}}>*</span> </label>
+                            <label>
+                              Nombre <span style={{ color: "red" }}>*</span>{" "}
+                            </label>
                             <Field
                               placeholder="Nombre"
                               name="name"
@@ -210,7 +235,10 @@ class FormNewPet extends React.Component {
                           </div>
 
                           <div class="form-group">
-                            <label>Tipo de Animal <span style={{color:'red'}}>*</span></label>
+                            <label>
+                              Tipo de Animal{" "}
+                              <span style={{ color: "red" }}>*</span>
+                            </label>
                             <select
                               name="tipoAnimal"
                               onChange={this._handleChangeAnimal}
@@ -221,11 +249,22 @@ class FormNewPet extends React.Component {
                                   : "")
                               }
                             >
-
                               {this.state.animales.map(element => {
-                                return element.Id_animal == this.state.initialValues.tipoAnimal ?
-                                  <option key={element.Id_animal} value={element.Id_animal} label={element.Descripcion} selected /> :
-                                  <option key={element.Id_animal} value={element.Id_animal} label={element.Descripcion} />
+                                return element.Id_animal ==
+                                  this.state.initialValues.tipoAnimal ? (
+                                  <option
+                                    key={element.Id_animal}
+                                    value={element.Id_animal}
+                                    label={element.Descripcion}
+                                    selected
+                                  />
+                                ) : (
+                                  <option
+                                    key={element.Id_animal}
+                                    value={element.Id_animal}
+                                    label={element.Descripcion}
+                                  />
+                                );
                               })}
                             </select>
                             <ErrorMessage
@@ -235,7 +274,9 @@ class FormNewPet extends React.Component {
                             />
                           </div>
                           <div class="form-group">
-                            <label>Raza <span style={{color:'red'}}>*</span></label>
+                            <label>
+                              Raza <span style={{ color: "red" }}>*</span>
+                            </label>
                             <select
                               name="raza"
                               onChange={this.handleChangeRaza}
@@ -248,9 +289,21 @@ class FormNewPet extends React.Component {
                             >
                               {this.state.razas.map(element => {
                                 //console.log(this.state.currentRaza + " == " +  element.Id_raza)
-                                return this.state.initialValues.raza == element.Id_raza ?
-                                  <option key={element.Id_raza} value={element.Id_raza} label={element.Descripcion} selected /> :
-                                  <option key={element.Id_raza} value={element.Id_raza} label={element.Descripcion} />
+                                return this.state.initialValues.raza ==
+                                  element.Id_raza ? (
+                                  <option
+                                    key={element.Id_raza}
+                                    value={element.Id_raza}
+                                    label={element.Descripcion}
+                                    selected
+                                  />
+                                ) : (
+                                  <option
+                                    key={element.Id_raza}
+                                    value={element.Id_raza}
+                                    label={element.Descripcion}
+                                  />
+                                );
                               })}
                             </select>
                             <ErrorMessage
@@ -260,7 +313,9 @@ class FormNewPet extends React.Component {
                             />
                           </div>
                           <div class="form-group">
-                            <label>Edad <span style={{color:'red'}}>*</span></label>
+                            <label>
+                              Edad <span style={{ color: "red" }}>*</span>
+                            </label>
                             <select
                               name="edad"
                               onChange={handleChange}
@@ -294,7 +349,9 @@ class FormNewPet extends React.Component {
                           </div>
 
                           <div class="form-group">
-                            <label>Genero <span style={{color:'red'}}>*</span></label>
+                            <label>
+                              Genero <span style={{ color: "red" }}>*</span>
+                            </label>
                             <select
                               name="genero"
                               onChange={handleChange}
@@ -305,12 +362,14 @@ class FormNewPet extends React.Component {
                                   : "")
                               }
                             >
-
                               {generos.map(element => {
-                                return <option value={element.value} label={element.Descripcion} />
+                                return (
+                                  <option
+                                    value={element.value}
+                                    label={element.Descripcion}
+                                  />
+                                );
                               })}
-
-
                             </select>
                             <ErrorMessage
                               name="genero"
@@ -322,17 +381,16 @@ class FormNewPet extends React.Component {
                             <div className="form-group">
                               <button
                                 type="submit"
-                                className="btn btn-primary shadow-2 mb-4">
+                                className="btn btn-primary shadow-2 mb-4"
+                              >
                                 Guardar
-                                </button>
+                              </button>
                             </div>
                           </center>
-
                         </Col>
                       </Row>
                     </Card.Body>
                   </Card>
-
                 </Col>
               </Row>
             </Aux>
@@ -344,3 +402,4 @@ class FormNewPet extends React.Component {
 }
 
 export default FormNewPet;
+
