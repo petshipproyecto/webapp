@@ -19,6 +19,7 @@ import { Link, withRouter } from 'react-router-dom';
 class SignIn extends React.Component {
   render() {
     return (
+      
       <Formik
         initialValues={{
           email: "",
@@ -34,9 +35,24 @@ class SignIn extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          const { history } = this.props;
+          const {
+            history,
+          } = this.props;
+
+          this.props.dispatch(requestSignIn())
+          
+          auth.doSignInWithEmailAndPassword(fields.email, fields.password).then(response => {
+            this.props.dispatch(signedIn(response.user));
+            if (response.user === undefined) {
+              history.push('/signin');
+            } else {
+              history.push('/dashboard');
+            }
+          }).catch(e =>{
+            alert(e)
+          })
           //history.push("/choosePet");
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          
         }}
         render={({ errors, status, touched }) => (
           <Form>

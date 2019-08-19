@@ -58,7 +58,7 @@ class SignUp extends React.Component {
             alert(JSON.stringify(response))
             console.log(JSON.stringify(response))
             //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-          
+          /*
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
               "Id_usuario": response.user.uid,
               "Email":fields.email,
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           }) 
-
+*/
           } ).catch(e => alert(e)
             );
           
