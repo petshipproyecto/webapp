@@ -43,22 +43,24 @@ class Swipe extends React.Component {
       </div>
     );
   }
+
+  
   render() {
     return (
-          <Form>
+          
             <Aux>
               <Row className="justify-content-md-center">
               <div >
               <MotionStack
-          data={data}
-          onSwipeEnd={this.onSwipeEnd}
-          render={props => props.element}
-          renderButtons={this.renderButtons}
+              data={data}
+              onSwipeEnd={this.onSwipeEnd}
+              render={props => props.element}
+              renderButtons={this.renderButtons}
         />
         </div>
               </Row>
             </Aux>
-          </Form>
+          
         )}
     
     
