@@ -13,9 +13,15 @@ import MotionStack from "react-motion-stack";
 import "react-motion-stack/build/motion-stack.css";
 import "./index.css";
 
+const dislikeStyle = {
+ 
+};
+
 const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
+
+    
     <Card>
       <Card.Img
         variant="top"
@@ -38,8 +44,8 @@ class Swipe extends React.Component {
   renderButtons(props) {
     return (
       <div className="btn-group">
-        <button children="👎" onClick={props.reject} />
-        <button children="👍" onClick={props.accept} />
+        <button style={{dislikeStyle}}  onClick={props.reject}><i class="feather icon-x"></i></button>
+        <button  onClick={props.accept}><i class="feather icon-heart"></i></button>
       </div>
     );
   }
