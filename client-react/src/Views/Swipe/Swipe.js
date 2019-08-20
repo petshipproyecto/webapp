@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  Row,
-} from "react-bootstrap";
+import { Row, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 
-
-
-
 //-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage} from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
@@ -21,18 +16,23 @@ import "./index.css";
 const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
-    <img
-      draggable={false}
-      src={`https://source.unsplash.com/random/${i + 1}`}
-    />
+    <Card>
+      <Card.Img
+        variant="top"
+        draggable={false}
+        src={`https://source.unsplash.com/random/${i + 1}`}
+      />
+      <Card.Body>
+        <h5>Michifu</h5>
+        <Card.Text>Me gustaria jugar contigo.</Card.Text>
+      </Card.Body>
+    </Card>
   )
 }));
 
-
 class Swipe extends React.Component {
-  
   onSwipeEnd = ({ data }) => {
-   // console.log("data", data);
+    // console.log("data", data);
   };
 
   renderButtons(props) {
@@ -44,27 +44,22 @@ class Swipe extends React.Component {
     );
   }
 
-  
   render() {
     return (
-          
-            <Aux>
-              <Row className="justify-content-md-center">
-              <div >
-              <MotionStack
+      <Aux>
+        <Row className="justify-content-md-center">
+          <div>
+            <MotionStack
               data={data}
               onSwipeEnd={this.onSwipeEnd}
               render={props => props.element}
               renderButtons={this.renderButtons}
-        />
-        </div>
-              </Row>
-            </Aux>
-          
-        )}
-    
-    
+            />
+          </div>
+        </Row>
+      </Aux>
+    );
   }
-
+}
 
 export default Swipe;
