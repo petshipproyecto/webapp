@@ -79,7 +79,7 @@ class SignUp extends React.Component {
             swal({
               title: "Error!",
               text: "Error al registrar el usuario",
-              icon: "success",
+              icon: "error",
               timer: 2000,
               button: false
             });
