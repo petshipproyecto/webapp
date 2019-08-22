@@ -60,9 +60,32 @@ class FormUserProfile extends React.Component {
   render() {
     return (
       <Formik
+        
         enableReinitialize
         // Setea los valores iniciales de los inputs
         initialValues={this.state.initialValues}
+         validationSchema={Yup.object().shape({
+          firstName: Yup.string()
+            .trim()
+            .min(2,"El nombre debe tener como mínimo 2 caracteres")
+            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .required("El nombre es obligatorio"),
+          lastName: Yup.string()
+            .trim()
+            .min(2,"El nombre debe tener como mínimo 2 caracteres")
+            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .required("El apellido es obligatorio"),
+            ubicacion: Yup.string()
+            .trim()
+            .required("La ubicación es obligatoria"),
+          email: Yup.string()
+            .email("El email tiene un formato invalido")
+            .required("El email es obligatorio"),
+          password: Yup.string()
+            .min(6, "La contraseña debe tener al menos 6 caracteres")
+            .max(20,"La contraseña debe tener como máximo 20 caracteres")
+            .required("La contraseña es obligatoria")
+        })}
         onSubmit={fields => {
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
@@ -153,7 +176,7 @@ class FormUserProfile extends React.Component {
                                     ? " is-invalid"
                                     : "")
                                 }
-                                required
+                                //required
                               />
                               <ErrorMessage
                                 name="firstName"
@@ -173,7 +196,7 @@ class FormUserProfile extends React.Component {
                                     ? " is-invalid"
                                     : "")
                                 }
-                                required
+                                //required
                               />
                               <ErrorMessage
                                 name="lastName"
@@ -213,7 +236,7 @@ class FormUserProfile extends React.Component {
                                     ? " is-invalid"
                                     : "")
                                 }
-                                required
+                                //required
                               />
                               <ErrorMessage
                                 name="email"
