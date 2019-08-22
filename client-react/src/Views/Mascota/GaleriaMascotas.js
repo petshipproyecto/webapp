@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, Table, Tabs, Tab } from "react-bootstrap";
+import { Row, Col, Card, Badge } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import DEMO from "../../store/constant";
@@ -8,171 +8,129 @@ import avatar1 from "../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../assets/images/user/avatarChinchilla.jpg";
 
+const styleImage={
+  maxWidth: 378,
+  maxHeight: 378,
+  minWidth: 378,
+  minHeight: 378,
+  borderRadius: 20,
+ 
+};
+const styleBadge={
+  backgroundColor:"#f47386"
+};
+
 class GaleriaMascotas extends React.Component {
   render() {
     return (
       <Aux>
         <Row>
-          
-        <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar1} />
+          <Col md={6} xl={4}>
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+               style={styleImage}
+                variant="top"
+                src={avatar1}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center>  <h3>
+ <Badge style={styleBadge}pill variant="secondary">Michu</Badge>
+  </h3></center>
+                <Card.Text>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar2} />
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+                style={styleImage}
+                variant="top"
+                src={avatar2}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center><h5><dt>Michifu</dt></h5></center>
+                <Card.Text>
+              <p><i class="fa fa-info m-r-5"></i> Nombre: Lola</p>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar3} />
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+               style={styleImage}
+                variant="top"
+                src={avatar1}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center><h5><dt>Michifu</dt></h5></center>
+                <Card.Text>
+              <p><i class="fa fa-info m-r-5"></i> Nombre: Lola</p>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar1} />
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+               style={styleImage}
+                variant="top"
+                src={avatar3}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center><h5><dt>Michifu</dt></h5></center>
+                <Card.Text>
+              <p><i class="fa fa-info m-r-5"></i> Nombre: Lola</p>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar3} />
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+               style={styleImage}
+                variant="top"
+                src={avatar2}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center><h5><dt>Michifu</dt></h5></center>
+                <Card.Text>
+              <p><i class="fa fa-info m-r-5"></i> Nombre: Lola</p>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card>
-              <Card.Img variant="top" src={avatar2} />
+            <Card style={{ borderRadius: 20 }}>
+              <Card.Img
+                style={styleImage}
+                variant="top"
+                src={avatar3}
+              />
               <Card.Body>
-                <h5>Michifu</h5>
-                <Card.Text>Me gustaria jugar contigo.</Card.Text>
-                <div class="row m-t-30">
-                  <div class="col-6 p-r-0">
-                    <a
-                      href="#!"
-                      class="btn btn-primary text-uppercase btn-block"
-                    >
-                      Me Gusta
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a
-                      href="#!"
-                      class="btn text-uppercase border btn-block btn-outline-secondary"
-                    >
-                      Eliminar
-                    </a>
-                  </div>
-                </div>
+            <center><h5><dt>Michifu</dt></h5></center>
+                <Card.Text>
+              <p><i class="fa fa-info m-r-5"></i> Nombre: Lola</p>
+                <p><i class="fa fa-paw m-r-5"></i> Raza: Pitbull</p>
+                <p><i class="fa fa-calendar m-r-5"></i> Edad: 2 años</p>
+                <p><i class="fa fa-star m-r-5"></i> Me gusta como pareja</p>
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
