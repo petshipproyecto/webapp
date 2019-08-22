@@ -15,14 +15,14 @@ export default {
                 },
                  {
                      id: 'buscarPareja',
-                     title: 'Buscar Pareja',
+                     title: 'Buscar Pareja/Amigo',
                      type: 'item',
-                     url: '/ComingSoon',
+                     url: '/Swipe',
                      icon: 'feather icon-heart-on'
                  },
                  {
-                     id: 'buscarAmigo',
-                     title: 'Amigos Favoritos',
+                     id: 'favoritos',
+                     title: 'Favoritos',
                      type: 'item',
                      icon: 'feather icon-star-on',
                      url: '/GaleriaMascotas'
@@ -50,14 +50,6 @@ export default {
                     url: '/SignUp',
                     classes: 'nav-item',
                     icon: 'feather icon-plus-circle'
-                },
-                 {
-                     id: 'swipe',
-                     title: 'Swipe',
-                     type: 'item',
-                     url: '/Swipe',
-                     classes: 'nav-item',
-                     icon: 'feather icon-plus-circle'
                 },
                 {
                     id: 'forms',
