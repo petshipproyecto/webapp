@@ -2,8 +2,8 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import Aux from "../../hoc/_Aux";
 import WOW from "wowjs";
-import logo from "../../assets/images/LogoPrueba.png";
-import nombre from "../../assets/images/nombre.png";
+import logo from "../../assets/images/logoP.png";
+import nombre from "../../assets/images/nombreP.png";
 
 class Dashboard extends React.Component {
   componentDidMount() {

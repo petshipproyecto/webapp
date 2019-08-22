@@ -7,17 +7,12 @@ import DEMO from "../../store/constant";
 import avatar1 from "../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../assets/images/user/avatarChinchilla.jpg";
+import "./../../assets/scss/partials/theme-elements/galeria.scss";
 
-const styleImage = {
-  
-   maxHeight: 380,
-  
-   minHeight: 380,
-  borderRadius: 20
-};
-const styleBadge = {
-  backgroundColor: "#f47386"
-};
+//--------Color de los iconos-------------------------
+const colorEstrella = {color: "#f7bd0f"};
+const colorCalendario ={color:"red"}
+//----------------------------------------------------
 
 class GaleriaMascotas extends React.Component {
   render() {
@@ -25,34 +20,33 @@ class GaleriaMascotas extends React.Component {
       <Aux>
         <Row>
           <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar1} />
+            <Card className = "cardGaleria">
+              <Card.Img className="imagenGaleria" variant="top" src={avatar1} />
               <Card.Body>
                 <center>
-                  {" "}
                   <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
+                    <Badge className="badgeGaleria" pill variant="secondary">
                       Michu
                     </Badge>
                   </h3>
                 </center>
                 <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
+                  <p className="pGaleria">
+                    <i class="fa fa-paw m-r-5"></i>
+                    <b>Raza:</b> Siames
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#de0101" }}
+                      style={colorCalendario}
                       class="fa fa-calendar m-r-5"
-                    ></i>{" "}
+                    ></i>
                     <b>Edad:</b> 2 años
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#f7bd0f" }}
+                      style={colorEstrella}
                       class="fa fa-star m-r-5"
-                    ></i>{" "}
+                    ></i>
                     <b>Me gusta como amigo</b>
                   </p>
                 </Card.Text>
@@ -60,174 +54,33 @@ class GaleriaMascotas extends React.Component {
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card  style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar2} />
+            <Card className = "cardGaleria">
+              <Card.Img className="imagenGaleria" variant="top" src={avatar3} />
               <Card.Body>
                 <center>
-                  {" "}
                   <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
-                   Lola
-                    </Badge>
-                  </h3>
-                </center>
-                <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#de0101" }}
-                      class="fa fa-calendar m-r-5"
-                    ></i>{" "}
-                    <b>Edad:</b> 2 años
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#f7bd0f" }}
-                      class="fa fa-star m-r-5"
-                    ></i>{" "}
-                    <b>Me gusta como pareja</b>
-                  </p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar3} />
-              <Card.Body>
-                <center>
-                  {" "}
-                  <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
-                      Pelusa
-                    </Badge>
-                  </h3>
-                </center>
-                <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#de0101" }}
-                      class="fa fa-calendar m-r-5"
-                    ></i>{" "}
-                    <b>Edad:</b> 2 años
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#f7bd0f" }}
-                      class="fa fa-star m-r-5"
-                    ></i>{" "}
-                    <b>Me gusta como amigo</b>
-                  </p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar1} />
-              <Card.Body>
-                <center>
-                  {" "}
-                  <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
-                      Terry
-                    </Badge>
-                  </h3>
-                </center>
-                <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#de0101" }}
-                      class="fa fa-calendar m-r-5"
-                    ></i>{" "}
-                    <b>Edad:</b> 2 años
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#f7bd0f" }}
-                      class="fa fa-star m-r-5"
-                    ></i>{" "}
-                    <b>Me gusta como pareja</b>
-                  </p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar2} />
-              <Card.Body>
-                <center>
-                  {" "}
-                  <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
-                      Firulai
-                    </Badge>
-                  </h3>
-                </center>
-                <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#de0101" }}
-                      class="fa fa-calendar m-r-5"
-                    ></i>{" "}
-                    <b>Edad:</b> 2 años
-                  </p>
-                  <p style={{ color: "black" }}>
-                    <i
-                      style={{ color: "#f7bd0f" }}
-                      class="fa fa-star m-r-5"
-                    ></i>{" "}
-                    <b>Me gusta como pareja</b>
-                  </p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar3} />
-              <Card.Body>
-                <center>
-                  {" "}
-                  <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
+                    <Badge className="badgeGaleria" pill variant="secondary">
                       Foxi
                     </Badge>
                   </h3>
                 </center>
                 <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
-                    <b>Raza:</b> Pitbull
+                  <p className="pGaleria">
+                    <i class="fa fa-paw m-r-5"></i>
+                    <b>Raza:</b> Chinchilla
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#de0101" }}
+                      style={colorCalendario}
                       class="fa fa-calendar m-r-5"
-                    ></i>{" "}
+                    ></i>
                     <b>Edad:</b> 2 años
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#f7bd0f" }}
+                      style={colorEstrella}
                       class="fa fa-star m-r-5"
-                    ></i>{" "}
+                    ></i>
                     <b>Me gusta como pareja</b>
                   </p>
                 </Card.Text>
@@ -235,35 +88,34 @@ class GaleriaMascotas extends React.Component {
             </Card>
           </Col>
           <Col md={6} xl={4}>
-            <Card style={{ borderRadius: 20 }}>
-              <Card.Img style={styleImage} variant="top" src={avatar1} />
+            <Card className = "cardGaleria">
+              <Card.Img className="imagenGaleria" variant="top" src={avatar2} />
               <Card.Body>
                 <center>
-                  {" "}
                   <h3>
-                    <Badge style={styleBadge} pill variant="secondary">
-                      Michu
+                    <Badge className="badgeGaleria" pill variant="secondary">
+                      Lola
                     </Badge>
                   </h3>
                 </center>
                 <Card.Text>
-                  <p style={{ color: "black" }}>
-                    <i style={{ color: "#7b3838" }} class="fa fa-paw m-r-5"></i>{" "}
+                  <p className="pGaleria">
+                    <i class="fa fa-paw m-r-5"></i>
                     <b>Raza:</b> Pitbull
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#de0101" }}
+                      style={colorCalendario}
                       class="fa fa-calendar m-r-5"
-                    ></i>{" "}
+                    ></i>
                     <b>Edad:</b> 2 años
                   </p>
-                  <p style={{ color: "black" }}>
+                  <p className="pGaleria">
                     <i
-                      style={{ color: "#f7bd0f" }}
+                      style={colorEstrella}
                       class="fa fa-star m-r-5"
-                    ></i>{" "}
-                    <b>Me gusta como pareja</b>
+                    ></i>
+                    <b>Me gusta como amigo</b>
                   </p>
                 </Card.Text>
               </Card.Body>
