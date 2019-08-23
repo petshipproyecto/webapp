@@ -1,11 +1,11 @@
 import React from 'react';
 import {Row, Col, Card, Table} from 'react-bootstrap';
 
-import Aux from "../../../hoc/_Aux";
+import Aux from "../../hoc/_Aux";
 
-import Avatar1 from '../../../assets/images/user/avatarDog.jpg';
-import Avatar2 from '../../../assets/images/user/avatarCat.jpg';
-import Avatar3 from '../../../assets/images/user/avatarChinchilla.jpg';
+import Avatar1 from '../../assets/images/user/avatarDog.jpg';
+import Avatar2 from '../../assets/images/user/avatarCat.jpg';
+import Avatar3 from '../../assets/images/user/avatarChinchilla.jpg';
 
 class TablaMascotas extends React.Component {
     render() {

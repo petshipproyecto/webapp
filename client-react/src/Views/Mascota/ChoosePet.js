@@ -1,16 +1,16 @@
 import React from "react";
 
-import "./../../../assets/scss/style.scss";
-import "./../../../assets/scss/partials/pages/gallery.scss";
-import Aux from "../../../hoc/_Aux";
+import "./../../assets/scss/style.scss";
+import "./../../assets/scss/partials/pages/gallery.scss";
+import Aux from "../../hoc/_Aux";
 
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 
-import avatar1 from "../../../assets/images/user/avatarCat.jpg";
-import avatar2 from "../../../assets/images/user/avatarDog.jpg";
-import avatar3 from "../../../assets/images/user/avatarTortuga.jpg";
-import avatar4 from "../../../assets/images/user/avatarChinchilla.jpg";
-import avatar5 from "../../../assets/images/user/avatarHamster.jpg";
+import avatar1 from "../../assets/images/user/avatarCat.jpg";
+import avatar2 from "../../assets/images/user/avatarDog.jpg";
+import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
+import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
+import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 
 
 class ChoosePet extends React.Component {

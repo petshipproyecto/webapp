@@ -193,13 +193,6 @@ class NavRight extends Component {
                     alt="User Profile"
                   />
                   <span>Eve Doe</span>
-                  <a
-                    href={DEMO.BLANK_LINK}
-                    className="dud-logout"
-                    title="Logout"
-                  >
-                    <i className="feather icon-log-out" />
-                  </a>
                 </div>
                 <ul className="pro-body">
                   <li>
