@@ -172,7 +172,7 @@ class NavRight extends Component {
                   </li>
                 </ul>
                 <div className="noti-footer">
-                  <a href={DEMO.BLANK_LINK}>ver todo</a>
+                  <a href="/Notificaciones">ver todo</a>
                 </div>
               </Dropdown.Menu>
             </Dropdown>

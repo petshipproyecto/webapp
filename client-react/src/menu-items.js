@@ -28,6 +28,13 @@ export default {
                      url: '/GaleriaMascotas'
                  },
                  {
+                    id: 'notificaciones',
+                    title: 'Notificaciones',
+                    type: 'item',
+                    icon: 'feather icon-bell',
+                    url: '/Notificaciones'
+                },
+                 {
                      id: 'match',
                      title: 'Matchs',
                      type: 'item',

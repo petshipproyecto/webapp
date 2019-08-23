@@ -30,6 +30,7 @@ const GoogleMap = React.lazy(() => import('./Views/Maps/GoogleMap/index'));
 const OtherSamplePage = React.lazy(() => import('./Views/Other/SamplePage'));
 const OtherDocs = React.lazy(() => import('./Views/Other/Docs'));
 const Swipe = React.lazy(() => import('./Views/Swipe/Swipe'));
+const Notificaciones = React.lazy(() => import('./Views/Notificaciones/Notificaciones'));
 
 const routes = [
    //Rutas del template
@@ -52,6 +53,7 @@ const routes = [
     { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
     { path: '/GaleriaMascotas', exact: true, name: 'Forms Elements', component: GaleriaMascotas },
     { path: '/Swipe', exact: true, name: 'Forms Elements', component: Swipe },
+    { path: '/Notificaciones', exact: true, name: 'Forms Elements', component: Notificaciones },
 ];
 
 export default routes;
