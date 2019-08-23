@@ -1,26 +1,49 @@
-import {
-    REQUEST_SIGN_IN,
-    SIGNED_IN,
-    SIGN_OUT
-} from '../actions/user';
-
-const initialState = {
+const initState = {
+    authError: null,
     user: null
-}
-
-export default function user(state = initialState, action) {
-    switch (action.type) {
-        case REQUEST_SIGN_IN:
-            return state;
-        case SIGNED_IN:
-            return Object.assign({}, state, {
-                user: action.user
-            });
-        case SIGN_OUT:
-            return Object.assign({}, state, {
-                user: null
-            });
-        default:
-            return state;
+  }
+  
+  const authReducer = (state = initState, action) => {
+    switch(action.type){
+      case 'LOGIN_ERROR':
+        console.log('login error');
+        return {
+          ...state,
+          authError: true
+        }
+  
+      case 'LOGIN_SUCCESS':
+        console.log('login success');
+        //console.log(action)
+        let newState = Object.assign({}, state, {
+            user: action.user,
+            authError:null,
+            a:"f"
+        });
+        console.log("new state " + JSON.stringify(newState))
+        return newState
+  
+      case 'SIGNOUT_SUCCESS':
+        console.log('signout success');
+        return state;
+  
+      case 'SIGNUP_SUCCESS':
+        console.log('signup success')
+        return {
+          ...state,
+          authError: null
+        }
+  
+      case 'SIGNUP_ERROR':
+        console.log('signup error')
+        return {
+          ...state,
+          authError: action.err.message
+        }
+  
+      default:
+        return state
     }
-}
+  };
+  
+  export default authReducer;

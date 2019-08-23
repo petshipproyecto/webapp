@@ -2,6 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import PrivateRoute from '../Middleware/PrivateRoute'
+import PublicRoute from '../Middleware/PublicRoute'
 import { connect } from 'react-redux';
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
 
@@ -17,16 +18,19 @@ const AdminLayout = Loadable({
 
 class App extends Component {
     render() {
+        console.log("app props" + JSON.stringify(this.props))
         const menu = routes.map((route, index) => {
           return (route.component) ? (
-              <Route
+              <PublicRoute
+                  
                   key={index}
                   path={route.path}
                   exact={route.exact}
                   name={route.name}
-                  render={props => (
-                      <route.component {...props} />
-                  )} />
+                  user={this.props.auth}
+                  component={route.component}
+
+                  />
           ) : (null);
         });
 
@@ -36,7 +40,8 @@ class App extends Component {
                     <Suspense fallback={<Loader/>}>
                         <Switch>
                             {menu}
-                            <PrivateRoute path="/" component={AdminLayout}  user={this.props.user}  />
+
+                            <PrivateRoute path="/" component={AdminLayout}  user={this.props.auth}  />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
@@ -46,9 +51,12 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-      user: state.user.user
-    };
+    console.log("state" + JSON.stringify(state))
+    console.log("auth" + JSON.stringify(state.firebase.auth))
+    return{
+      authError: state.auth.authError,
+      auth: state.firebase.auth
+    }
   }
   
   export default connect(mapStateToProps)(App);

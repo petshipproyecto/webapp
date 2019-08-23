@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { signUp } from '../../../store/actions/user'
 // react redux firebase auth - https://github.com/the-road-to-react-with-firebase/react-redux-firebase-authentication
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
@@ -51,12 +52,13 @@ class SignUp extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
+          this.props.signUp(fields)
           //const { history } = this.props;
           //history.push("/dashboard");
-          
+          /*
           auth.doCreateUserWithEmailAndPassword(fields.email, fields.password).then(response => {
             alert(JSON.stringify(response))
-            console.log(JSON.stringify(response))
+            console.log(JSON.stringify(response)) */
             //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           /*
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
@@ -78,10 +80,10 @@ class SignUp extends React.Component {
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           }) 
-*/
+
           } ).catch(e => alert(e)
             );
-          
+          */
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -223,4 +225,17 @@ class SignUp extends React.Component {
   }
 }
 
-export default withRouter(connect()(SignUp));
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  }
+}
+
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    signUp: (userData) => dispatch(signUp(userData))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
