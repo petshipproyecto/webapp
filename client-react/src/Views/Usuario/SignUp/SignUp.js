@@ -18,6 +18,9 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 import { SocialIcon } from "react-social-icons";
 
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
+
 class SignUp extends React.Component {
   render() {
     return (
@@ -25,22 +28,22 @@ class SignUp extends React.Component {
         initialValues={{
           firstName: "",
           lastName: "",
-          ubicacion:"",
+          ubicacion: "",
           email: "",
           password: ""
         }}
         validationSchema={Yup.object().shape({
           firstName: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El nombre es obligatorio"),
           lastName: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El apellido es obligatorio"),
-            ubicacion: Yup.string()
+          ubicacion: Yup.string()
             .trim()
             .required("La ubicación es obligatoria"),
           email: Yup.string()
@@ -48,18 +51,37 @@ class SignUp extends React.Component {
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
-            .max(20,"La contraseña debe tener como máximo 20 caracteres")
+            .max(20, "La contraseña debe tener como máximo 20 caracteres")
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
           this.props.signUp(fields)
+          if (this.props.authError) {
+            swal({
+              title: "Error!",
+              text: "Error al registrar el usuario",
+              icon: "error",
+              timer: 2000,
+              button: false
+            })
+          } else {
+            swal({
+              title: "Exito!",
+              text: "Se registro correctamente el Usuario",
+              icon: "success",
+              timer: 2000,
+              button: false
+            })
+          }
+
+
           //const { history } = this.props;
           //history.push("/dashboard");
           /*
           auth.doCreateUserWithEmailAndPassword(fields.email, fields.password).then(response => {
             alert(JSON.stringify(response))
             console.log(JSON.stringify(response)) */
-            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           /*
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
               "Id_usuario": response.user.uid,
@@ -70,13 +92,11 @@ class SignUp extends React.Component {
 
           }).then(function (response) {
             // handle success
-            alert('Se registro correctamente el Usuario');
             //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
-          })
+           
           .catch(function (error) {
             // handle error
-            alert('Error al registrar el usuario');
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
           }) 
@@ -84,6 +104,7 @@ class SignUp extends React.Component {
           } ).catch(e => alert(e)
             );
           */
+
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -96,7 +117,7 @@ class SignUp extends React.Component {
                       <div className="mb-4">
                         <i className="feather icon-user-plus auth-icon" />
                       </div>
-                     <h3 className="mb-4">Registrarse con</h3>
+                      <h3 className="mb-4">Registrarse con</h3>
                       <div className="form-group">
                         <SocialIcon
                           network="facebook"
@@ -110,7 +131,7 @@ class SignUp extends React.Component {
                           style={{ height: 32, width: 32 }}
                         />
                       </div>
-                      <h7>Todos los campos son obligatorios<span style={{color:'red'}}> *</span></h7>
+                      <h7>Todos los campos son obligatorios<span style={{ color: 'red' }}> *</span></h7>
                       <div className="form-group">
                         <Field
                           placeholder="Nombre"
@@ -232,7 +253,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch) => {
   return {
     signUp: (userData) => dispatch(signUp(userData))
   }

@@ -21,15 +21,13 @@ class App extends Component {
         console.log("app props" + JSON.stringify(this.props))
         const menu = routes.map((route, index) => {
           return (route.component) ? (
-              <PublicRoute
-                  
+              <PublicRoute                  
                   key={index}
                   path={route.path}
                   exact={route.exact}
                   name={route.name}
                   user={this.props.auth}
                   component={route.component}
-
                   />
           ) : (null);
         });

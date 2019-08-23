@@ -1,30 +1,24 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card
-} from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
-import axios from 'axios'
-
-
+import axios from "axios";
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 
-import UpdatePassword from "../Authentication/UpdatePassword/UpdatePassword";
+import UpdatePassword from "../Autenticacion/UpdatePassword/UpdatePassword";
 import Axios from "axios";
 
-
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
 
 class FormUserProfile extends React.Component {
-
   state = {
-    initialValues : {
+    initialValues: {
       firstName: "",
       lastName: "",
       idubicacion: "",
@@ -32,12 +26,13 @@ class FormUserProfile extends React.Component {
       email: "",
       password: ""
     }
-  }
-  componentDidMount(){
+  };
+  componentDidMount() {
     // Obtiene los datos de usuario
-    axios.get('https://petshipt-backend.herokuapp.com/usuario/4')
-      .then(response =>{
-        var idubicacion = response.data.Id_ubicacion
+    axios
+      .get("https://petshipt-backend.herokuapp.com/usuario/4")
+      .then(response => {
+        var idubicacion = response.data.Id_ubicacion;
         this.setState({
           initialValues: {
             firstName: response.data.Nombre,
@@ -48,49 +43,60 @@ class FormUserProfile extends React.Component {
           }
         });
         //Obtiene los datos de ubicacion
-        axios.get('https://petshipt-backend.herokuapp.com/ubicacion/'+idubicacion)
-          .then(response =>{
+        axios
+          .get(
+            "https://petshipt-backend.herokuapp.com/ubicacion/" + idubicacion
+          )
+          .then(response => {
             this.setState({
               initialValues: {
                 ubicacion: response.data.Descripcion
               }
-            })
+            });
           });
-      })
-    
+      });
   }
 
   render() {
-    
     return (
-
       <Formik
         enableReinitialize
         // Setea los valores iniciales de los inputs
-        initialValues = {this.state.initialValues}
-        
+        initialValues={this.state.initialValues}
         onSubmit={fields => {
-
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-          axios.put('https://petshipt-backend.herokuapp.com/usuario/4', {           
-              "Email":fields.email,
-              "Nombre": fields.firstName,
-              "Apellido": fields.lastName,
-
-          }).then(function (response) {
-            // handle success
-            alert('Los datos del usuario se guardaron correctamente');
-            //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
-            console.log(response);
-          })
-          .catch(function (error) {
-            // handle error
-            alert('Error al guardar los datos del usuario');
-            //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
-            console.log(error);
-          })
+          axios
+            .put("https://petshipt-backend.herokuapp.com/usuario/4", {
+              Email: fields.email,
+              Nombre: fields.firstName,
+              Apellido: fields.lastName
+            })
+            .then(function(response) {
+              // handle success
+              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
+              console.log(response);
+              swal({
+                title: "Exito!",
+                text: "Los datos del usuario se guardaron correctamente",
+                icon: "success",
+                timer: 2000,
+                button: false
+              });
+            })
+            .catch(function(error) {
+              // handle error
+              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
+              console.log(error);
+              swal({
+                title: "Error!",
+                text: "Error al guardar los datos del usuario",
+                icon: "error",
+                timer: 2000,
+                button: false
+              });
+            });
         }}
-        render={({ errors,touched }) => (
+        render={({ errors, touched }) => (
           <Form>
             <Aux>
               <Row>
@@ -103,7 +109,10 @@ class FormUserProfile extends React.Component {
                       <center>
                         <img
                           className="rounded-circle"
-                          style={{ width: "150px" , border:"solid 4px #f47386"}}
+                          style={{
+                            width: "150px",
+                            border: "solid 4px #f47386"
+                          }}
                           src={avatar1}
                           alt="activity-user"
                         />
@@ -120,7 +129,6 @@ class FormUserProfile extends React.Component {
                           />
                         </center>
                       </div>
-
                     </Card.Body>
                   </Card>
                 </Col>
@@ -133,7 +141,7 @@ class FormUserProfile extends React.Component {
                       <Row>
                         <Col md={12}>
                           <Form>
-                          <div className="form-group">
+                            <div className="form-group">
                               <label>Nombre*</label>
                               <Field
                                 placeholder="Nombre"
@@ -212,22 +220,20 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-
                             </div>
-                            
-                              <button
-                                type="submit"
-                                className="btn btn-primary shadow-2 mb-4"
-                              >
-                                Guardar
-                              </button>
-                          
+
+                            <button
+                              type="submit"
+                              className="btn btn-primary shadow-2 mb-4"
+                            >
+                              Guardar
+                            </button>
                           </Form>
                         </Col>
                       </Row>
                     </Card.Body>
                   </Card>
-                  <UpdatePassword></UpdatePassword> 
+                  <UpdatePassword></UpdatePassword>
                 </Col>
               </Row>
             </Aux>

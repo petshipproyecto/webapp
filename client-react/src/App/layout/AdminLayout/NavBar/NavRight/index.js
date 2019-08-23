@@ -7,9 +7,9 @@ import DEMO from "../../../../../store/constant";
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
-import Avatar1 from "../../../../../assets/images/user/avatar-1.jpg";
-import Avatar2 from "../../../../../assets/images/user/avatar-2.jpg";
-import Avatar3 from "../../../../../assets/images/user/avatar-3.jpg";
+import Avatar1 from "../../../../../assets/images/user/avatar1.jpg";
+import Avatar2 from "../../../../../assets/images/user/avatar2.jpg";
+import Avatar3 from "../../../../../assets/images/user/avatar3.jpg";
 
 class NavRight extends Component {
   state = {
@@ -137,25 +137,25 @@ class NavRight extends Component {
                 </div>
                 <ul className="pro-body">
                   <li>
-                    <a href={DEMO.BLANK_LINK} className="dropdown-item">
+                    <a href="/UserProfile" className="dropdown-item">
                       <i className="feather icon-user" />
                       Mi Perfil
                     </a>
                   </li>
                   <li>
-                    <a href={DEMO.BLANK_LINK} className="dropdown-item">
-                      <i className="feather icon-mail" />
-                      Mis Mensajes
+                    <a href="/PetProfile" className="dropdown-item">
+                      <i className="feather icon-github" />
+                      Perfil de Mascota
                     </a>
                   </li>
                   <li>
-                    <a href={DEMO.BLANK_LINK} className="dropdown-item">
+                    <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
-                      Configuración
+                      Administrar Mascotas
                     </a>
                   </li>
                   <li>
-                    <a href={DEMO.BLANK_LINK} className="dropdown-item">
+                    <a href="/SignIn" className="dropdown-item">
                       <i className="feather icon-lock" />
                       Cerrar Sesión
                     </a>
