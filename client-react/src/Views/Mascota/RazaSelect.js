@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class DynamicSelect extends Component{
+class RazaSelect extends Component{
     constructor(props){
         super(props)
     }
@@ -14,28 +14,27 @@ class DynamicSelect extends Component{
 
     render(){
         let arrayOfData = this.props.arrayOfData;
-        let defValue = this.props.defaultValue;
         let options = arrayOfData.map((data) =>
-                <option 
-                    key={data.Id_raza}
-                    value={data.Id_raza}
-                >
-                    {data.Descripcion}
-                </option>
-            );
+            <option 
+                key={data.Id_raza}
+                value={data.Id_raza}
+            >
+                {data.Descripcion}
+            </option>
+        );
         
-            return (
+        return (
             <select
                 name="raza"
                 className={
                     "form-control"
                 }
-                defaultValue={defValue}
+                value={this.props.value}
                 onChange={this.handleChange}>
                 {options}
-           </select>
+            </select>
         )
     }
 }
 
-export default DynamicSelect;
+export default RazaSelect;

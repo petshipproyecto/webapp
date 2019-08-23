@@ -3,7 +3,8 @@ import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
-import DynamicSelect from './DynamicSelect';
+import RazaSelect from './RazaSelect';
+import AnimalSelect from './AnimalSelect';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -15,7 +16,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 var rutaapi = "http://localhost:3001"
-/* rutaapi = "https://petshipt-backend.herokuapp.com" */
+rutaapi = "https://petshipt-backend.herokuapp.com"
 
 class FormPetProfile extends React.Component {
   state = {
@@ -25,28 +26,11 @@ class FormPetProfile extends React.Component {
       edad: "",
       genero: ""
     },
-    tipoAnimalDesc: "",
-    razaDesc: "",
-    generoDesc: "",
-    razas: [],
     animales: [],
+    razas: [],
+    raza: [],
     animal: [],
-    edades: [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14"
-    ]
+    edades: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14"]
   };
 
   componentDidMount() {
@@ -77,11 +61,18 @@ class FormPetProfile extends React.Component {
       });
   }
 
-  _handleChangeAnimal = event => {
-    var animal_seleccionado = this.state.animales.find(animal => animal.Id_animal === event.target.value);
+  _handleChangeAnimal = e => {
+    var animal_seleccionado = this.state.animales.find(animal => animal.Id_animal === e);
     this.setState({
       animal : animal_seleccionado,
       razas : animal_seleccionado.Razas
+    });
+  };
+
+  _handleChangeRaza = e => {
+    var raza_seleccionada = this.state.razas.find(raza => raza.Id_raza === e);
+    this.setState({
+      raza : raza_seleccionada,
     });
   };
 
@@ -109,7 +100,7 @@ class FormPetProfile extends React.Component {
               Nombre: fields.name,
               Edad: fields.edad,
               Imagen: fields.urlImagen,
-              Id_raza: fields.raza,
+              Id_raza: this.state.raza.Id_raza,
               Id_genero: fields.genero
             })
             .then(function(response) {
@@ -204,32 +195,7 @@ class FormPetProfile extends React.Component {
 
                             <div class="form-group">
                               <label>Tipo de Animal</label>
-                              <select
-                                name="tipoAnimal"
-                                onChange={this._handleChangeAnimal}
-                                className={
-                                  "form-control" +
-                                  (errors.tipoAnimal && touched.tipoAnimal
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {this.state.animales.map(element => {
-                                  return element.Id_animal ==
-                                    this.state.animal.Id_animal ? (
-                                    <option
-                                      value={element.Id_animal}
-                                      label={element.Descripcion}
-                                      selected
-                                    />
-                                  ) : (
-                                    <option
-                                      value={element.Id_animal}
-                                      label={element.Descripcion}
-                                    />
-                                  );
-                                })}
-                              </select>
+                              <AnimalSelect arrayOfData={this.state.animales} onSelectChange={this._handleChangeAnimal} value={this.state.animal.Id_animal}/>
                               <ErrorMessage
                                 name="tipoAnimal"
                                 component="div"
@@ -238,49 +204,7 @@ class FormPetProfile extends React.Component {
                             </div>
                             <div class="form-group">
                               <label>Raza</label>
-                              <p className="App-intro">
-                                <DynamicSelect arrayOfData={this.state.razas} onSelectChange={handleChange} defaultValue={95}/> <br /><br />
-                              </p>
-
-                              {/* <select
-                                name="raza"
-                                onChange={handleChange}
-                                className={
-                                  "form-control" +
-                                  (errors.raza && touched.raza
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {this.state.razas > 0 ? (
-                                  this.state.razas.map(raza => {
-                                    if (raza.Id_raza === this.state.initialValues.raza) {
-                                      return (
-                                        <option
-                                          selected="selected"
-                                          key={raza.Id_raza}
-                                          value={raza.Id_raza}
-                                        >
-                                          {raza.Descripcion}
-                                        </option>
-                                      );
-                                    } else {
-                                      return (
-                                          <option
-                                            key={raza.Id_raza}
-                                            value={raza.Id_raza}
-                                          >
-                                            {raza.Descripcion}
-                                          </option>
-                                        );
-                                    }
-                                  })
-                                ) : (
-                                  <option key={1}>
-                                    No se han encontrado razas
-                                  </option>
-                                )}
-                              </select> */}
+                              <RazaSelect arrayOfData={this.state.razas} onSelectChange={this._handleChangeRaza} value={this.state.raza.Id_raza}/>
                               <ErrorMessage
                                 name="raza"
                                 component="div"
