@@ -8,7 +8,7 @@ import update from "react-addons-update"; // ES6
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
-//import * as Yup from "yup";
+import * as Yup from "yup";
 
 //---------------------------------------------------------------------
 
@@ -122,7 +122,14 @@ class FormNewPet extends React.Component {
     ];
     return (
       <Formik
-        enableReinitialize
+      validationSchema={Yup.object().shape({
+          name: Yup.string()
+            .trim()
+            .min(2,"El nombre debe tener como mínimo 2 caracteres")
+            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .required("El nombre es obligatorio")
+      })}
+        //enableReinitialize
         initialValues={this.state.initialValues}
         onSubmit={fields => {
           axios
@@ -159,7 +166,8 @@ class FormNewPet extends React.Component {
               });
             });
         }}
-        render={({ errors, touched, handleChange }) => (
+        
+        render={({ errors, touched, handleChange}) => (
           <Form>
             <Aux>
               {/* {this.state.mensaje == "exito" && (
@@ -241,13 +249,7 @@ class FormNewPet extends React.Component {
                             </label>
                             <select
                               name="tipoAnimal"
-                              onChange={this._handleChangeAnimal}
-                              className={
-                                "form-control" +
-                                (errors.tipoAnimal && touched.tipoAnimal
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                              className= "form-control" 
                             >
                               {this.state.animales.map(element => {
                                 return element.Id_animal ==
@@ -267,11 +269,7 @@ class FormNewPet extends React.Component {
                                 );
                               })}
                             </select>
-                            <ErrorMessage
-                              name="tipoAnimal"
-                              component="div"
-                              className="invalid-feedback"
-                            />
+                            
                           </div>
                           <div class="form-group">
                             <label>
@@ -280,12 +278,8 @@ class FormNewPet extends React.Component {
                             <select
                               name="raza"
                               onChange={this.handleChangeRaza}
-                              className={
-                                "form-control" +
-                                (errors.raza && touched.raza
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                              className=
+                                "form-control" 
                             >
                               {this.state.razas.map(element => {
                                 //console.log(this.state.currentRaza + " == " +  element.Id_raza)
@@ -306,11 +300,7 @@ class FormNewPet extends React.Component {
                                 );
                               })}
                             </select>
-                            <ErrorMessage
-                              name="raza"
-                              component="div"
-                              className="invalid-feedback"
-                            />
+                            
                           </div>
                           <div class="form-group">
                             <label>
@@ -319,12 +309,8 @@ class FormNewPet extends React.Component {
                             <select
                               name="edad"
                               onChange={handleChange}
-                              className={
-                                "form-control" +
-                                (errors.edad && touched.edad
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                              className=
+                                "form-control"
                             >
                               <option value="1" label="1 año" />
                               <option value="2" label="2 años" />
@@ -341,11 +327,7 @@ class FormNewPet extends React.Component {
                               <option value="13" label="13 años" />
                               <option value="14" label="14 años" />
                             </select>
-                            <ErrorMessage
-                              name="edad"
-                              component="div"
-                              className="invalid-feedback"
-                            />
+                            
                           </div>
 
                           <div class="form-group">
@@ -355,12 +337,8 @@ class FormNewPet extends React.Component {
                             <select
                               name="genero"
                               onChange={handleChange}
-                              className={
-                                "form-control" +
-                                (errors.genero && touched.genero
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                              className=
+                                "form-control"
                             >
                               {generos.map(element => {
                                 return (
@@ -371,11 +349,7 @@ class FormNewPet extends React.Component {
                                 );
                               })}
                             </select>
-                            <ErrorMessage
-                              name="genero"
-                              component="div"
-                              className="invalid-feedback"
-                            />
+                            
                           </div>
                           <center>
                             <div className="form-group">
