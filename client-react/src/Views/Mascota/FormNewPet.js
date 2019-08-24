@@ -5,6 +5,9 @@ import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
 import update from "react-addons-update"; // ES6
+import RazaSelect from './RazaSelect';
+import AnimalSelect from './AnimalSelect';
+import EdadSelect from './EdadSelect';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -15,98 +18,71 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
+var rutaapi = "http://localhost:3001"
+rutaapi = "https://petshipt-backend.herokuapp.com"
 
 class FormNewPet extends React.Component {
-  _handleChangeAnimal = event => {
-    let razas = [];
-    let currentRaza;
-    //console.log(event.target.value)
-    let cont = true;
-    this.state.todasRazas.forEach(element => {
-      // console.log(element)
-      if (element.Id_animal == event.target.value.toString()) {
-        if (cont) {
-          currentRaza = element.Id_raza;
-        }
-        // console.log("entra")
-        razas.push(element);
-        cont = false;
-
-        console.log(currentRaza + "raza");
-      }
-    });
-    this.setState({
-      razas: razas
-    });
-    var newState = update(this.state, {
-      initialValues: { raza: { $set: currentRaza } }
-    });
-    this.setState(newState);
-
-    //this.handleChangeRaza()
-    console.log("state" + JSON.stringify(this.state));
-  };
-
-  handleChangeRaza = event => {
-    console.log("evento" + event);
-    var newState = update(this.state, {
-      initialValues: { raza: { $set: event.target.value } }
-    });
-    this.setState(newState);
-  };
 
   state = {
     initialValues: {
       name: "",
       raza: "1",
       edad: "1",
-      genero: "1",
-      tipoAnimal: "6"
+      genero: "1"
     },
-    mensaje: "hola",
-    todasRazas: [],
-    idtipoAnimal: 4,
-    currentRaza: "1",
-    generos: [],
-    razas: [],
-    todasRazas: [],
     animales: [],
-    edades: [
-      "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14"
-    ]
+    razas: [],
+    raza: [],
+    animal: [],
+    edad: "1"
+  };
+  
+  componentDidMount() {
+    // Obtiene TODOS los tipos de animales
+    axios
+      .get(rutaapi+"/animal")
+      .then(response => {
+        this.setState({
+          animales: response.data,
+          animal: response.data.find(a => a.Id_animal === 6),// Por defecto selecciona el animal "6 - Perro"
+          razas: response.data.Razas,
+          raza: response.data.Razas.find(r => r.Id_raza === 1) // Por defecto selecciona la raza "1 - Akita"
+        });
+      });
+  }
+
+  _handleChangeAnimal = e => {
+    var animal_seleccionado = this.state.animales.find(animal => animal.Id_animal === e);
+    this.setState({
+      animal : animal_seleccionado,
+      razas : animal_seleccionado.Razas
+    });
+  };
+
+  _handleChangeRaza = e => {
+    var raza_seleccionada = this.state.razas.find(raza => raza.Id_raza === e);
+    this.setState({
+      raza : raza_seleccionada,
+    });
+  };
+
+  _handleChangeEdad = e => {
+    this.setState({
+      edad : e
+    });
   };
 
   componentDidMount() {
-    // Obtiene TODAS las razas
-    axios.get("https://petshipt-backend.herokuapp.com/raza").then(response => {
-      this.setState({
-        todasRazas: response.data,
-        razas: response.data
-      });
-      // console.log('state' + JSON.stringify(this.state.todasRazas))
-    });
     // Obtiene TODOS los tipos de animales
     axios
-      .get("https://petshipt-backend.herokuapp.com/animal")
-      .then(response => {
-        this.setState({
-          animales: response.data
-        });
+    .get(rutaapi+"/animal")
+    .then(response => {
+      var razas_disponibles = response.data.find(animal => animal.Id_animal === this.state.animal.Id_animal);
+      this.setState({
+        animales: response.data,
+        razas: razas_disponibles.Razas
       });
+    });
   }
 
   render() {
@@ -126,12 +102,12 @@ class FormNewPet extends React.Component {
         initialValues={this.state.initialValues}
         onSubmit={fields => {
           axios
-            .post("https://petshipt-backend.herokuapp.com/perfil", {
+            .post(rutaapi+"/perfil", {
               // payload
               Nombre: fields.name,
-              Edad: fields.edad,
+              Edad: this.state.edad,
               Imagen: "fields.urlImagen",
-              Id_raza: fields.raza,
+              Id_raza: this.state.raza.Id_raza,
               Id_genero: fields.genero,
               Id_animal: fields.tipoAnimal
             })
@@ -234,113 +210,32 @@ class FormNewPet extends React.Component {
                             />
                           </div>
 
+                          {/* Select Animales */}
                           <div class="form-group">
-                            <label>
-                              Tipo de Animal{" "}
-                              <span style={{ color: "red" }}>*</span>
-                            </label>
-                            <select
-                              name="tipoAnimal"
-                              onChange={this._handleChangeAnimal}
-                              className={
-                                "form-control" +
-                                (errors.tipoAnimal && touched.tipoAnimal
-                                  ? " is-invalid"
-                                  : "")
-                              }
-                            >
-                              {this.state.animales.map(element => {
-                                return element.Id_animal ==
-                                  this.state.initialValues.tipoAnimal ? (
-                                  <option
-                                    key={element.Id_animal}
-                                    value={element.Id_animal}
-                                    label={element.Descripcion}
-                                    selected
-                                  />
-                                ) : (
-                                  <option
-                                    key={element.Id_animal}
-                                    value={element.Id_animal}
-                                    label={element.Descripcion}
-                                  />
-                                );
-                              })}
-                            </select>
+                            <label>Tipo de Animal</label>
+                            <AnimalSelect arrayOfData={this.state.animales} onSelectChange={this._handleChangeAnimal} value={this.state.animal.Id_animal}/>
                             <ErrorMessage
                               name="tipoAnimal"
                               component="div"
                               className="invalid-feedback"
                             />
                           </div>
+
+                          {/* Select Razas */}
                           <div class="form-group">
-                            <label>
-                              Raza <span style={{ color: "red" }}>*</span>
-                            </label>
-                            <select
-                              name="raza"
-                              onChange={this.handleChangeRaza}
-                              className={
-                                "form-control" +
-                                (errors.raza && touched.raza
-                                  ? " is-invalid"
-                                  : "")
-                              }
-                            >
-                              {this.state.razas.map(element => {
-                                //console.log(this.state.currentRaza + " == " +  element.Id_raza)
-                                return this.state.initialValues.raza ==
-                                  element.Id_raza ? (
-                                  <option
-                                    key={element.Id_raza}
-                                    value={element.Id_raza}
-                                    label={element.Descripcion}
-                                    selected
-                                  />
-                                ) : (
-                                  <option
-                                    key={element.Id_raza}
-                                    value={element.Id_raza}
-                                    label={element.Descripcion}
-                                  />
-                                );
-                              })}
-                            </select>
+                            <label>Raza</label>
+                            <RazaSelect arrayOfData={this.state.razas} onSelectChange={this._handleChangeRaza} value={this.state.raza.Id_raza}/>
                             <ErrorMessage
                               name="raza"
                               component="div"
                               className="invalid-feedback"
                             />
                           </div>
+
+                          {/* Select Edad */}
                           <div class="form-group">
-                            <label>
-                              Edad <span style={{ color: "red" }}>*</span>
-                            </label>
-                            <select
-                              name="edad"
-                              onChange={handleChange}
-                              className={
-                                "form-control" +
-                                (errors.edad && touched.edad
-                                  ? " is-invalid"
-                                  : "")
-                              }
-                            >
-                              <option value="1" label="1 año" />
-                              <option value="2" label="2 años" />
-                              <option value="3" label="3 años" />
-                              <option value="4" label="4 años" />
-                              <option value="5" label="5 años" />
-                              <option value="6" label="6 años" />
-                              <option value="7" label="7 años" />
-                              <option value="8" label="8 años" />
-                              <option value="9" label="9 años" />
-                              <option value="10" label="10 años" />
-                              <option value="11" label="11 años" />
-                              <option value="12" label="12 años" />
-                              <option value="13" label="13 años" />
-                              <option value="14" label="14 años" />
-                            </select>
+                            <label>Edad</label>
+                            <EdadSelect onSelectChange={this._handleChangeEdad} value={this.state.edad}/>
                             <ErrorMessage
                               name="edad"
                               component="div"
