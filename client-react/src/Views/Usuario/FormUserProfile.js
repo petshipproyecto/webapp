@@ -5,6 +5,8 @@ import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
 
+import { connect } from 'react-redux';
+
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -30,7 +32,7 @@ class FormUserProfile extends React.Component {
   componentDidMount() {
     // Obtiene los datos de usuario
     axios
-      .get("https://petshipt-backend.herokuapp.com/usuario/4")
+      .get("https://petshipt-backend.herokuapp.com/usuario/4") //this.props.userId
       .then(response => {
         var idubicacion = response.data.Id_ubicacion;
         this.setState({
@@ -66,7 +68,7 @@ class FormUserProfile extends React.Component {
         onSubmit={fields => {
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
-            .put("https://petshipt-backend.herokuapp.com/usuario/4", {
+            .put("https://petshipt-backend.herokuapp.com/usuario/4", { //this.props.userId
               Email: fields.email,
               Nombre: fields.firstName,
               Apellido: fields.lastName
@@ -244,4 +246,14 @@ class FormUserProfile extends React.Component {
   }
 }
 
-export default FormUserProfile;
+const mapStateToProps = (state) => {
+  console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId : state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+
+
+export default connect(mapStateToProps)(FormUserProfile)

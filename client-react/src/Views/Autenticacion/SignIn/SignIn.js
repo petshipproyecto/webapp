@@ -14,7 +14,8 @@ import { connect } from 'react-redux';
 import { requestSignIn, signedIn } from '../../../store/actions/user'
 import { auth } from '../../../store/firebase';
 import { Link, withRouter } from 'react-router-dom';
-
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
 
 class SignIn extends React.Component {
   render() {
@@ -36,6 +37,15 @@ class SignIn extends React.Component {
         })}
         onSubmit={fields => {
           this.props.signIn({email:fields.email,password:fields.password})
+          if (this.props.authError) {
+            swal({
+              title: "Error!",
+              text: "Error al registrar el usuario",
+              icon: "error",
+              timer: 2000,
+              button: false
+            })
+          } 
          // console.log(this.props.auth)
           /*
           const {
