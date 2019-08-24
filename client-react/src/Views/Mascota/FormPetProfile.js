@@ -9,7 +9,7 @@ import EdadSelect from './EdadSelect';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
-//import * as Yup from "yup";
+import * as Yup from "yup";
 //---------------------------------------------------------------------
 import axios from "axios";
 
@@ -18,6 +18,17 @@ import swal from "sweetalert";
 
 var rutaapi = "http://localhost:3001"
 rutaapi = "https://petshipt-backend.herokuapp.com"
+
+const petValidationSchema = Yup.object().shape({
+  name: Yup.string()
+   .max(40, 'Please enter no more than 40 characters')
+   .required( 'Please enter your first name' ),
+  edad: Yup.string()
+    .required('Please enter an Edad'),
+  raza: Yup.string()
+   .email('Please enter a valid email')
+   .required('Please enter an email')
+ });
 
 class FormPetProfile extends React.Component {
   state = {
@@ -101,6 +112,16 @@ class FormPetProfile extends React.Component {
       <Formik
         enableReinitialize
         initialValues={this.state.initialValues}
+        /* validationSchema={petValidationSchema} */
+        validate={(values) => {
+          let errors = {};
+          console.log(values.edad)
+          if(!values.name)
+              errors.name = 'El nombre es requerido';
+          if(!values.edad === 0)
+              errors.edad = 'La edad es requerida';
+          return errors;
+       }}
         onSubmit={fields => {
           axios
             .put(rutaapi+"/perfil/1", {
@@ -226,7 +247,11 @@ class FormPetProfile extends React.Component {
                             {/* Select Edad */}
                             <div class="form-group">
                               <label>Edad</label>
-                              <EdadSelect onSelectChange={this._handleChangeEdad} value={this.state.edad}/>
+                              <EdadSelect
+                                className={(errors.edad && touched.edad ? " is-invalid" : "")}
+                                onSelectChange={this._handleChangeEdad}
+                                value={this.state.edad}
+                              />
                               <ErrorMessage
                                 name="edad"
                                 component="div"

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 var edades = [
+    {value: "0", label: "Seleccione una edad"},
     {value: "1", label: "1 año"},
     {value: "2", label: "2 años"},
     {value: "3", label: "3 años"},
@@ -26,7 +27,6 @@ class EdadSelect extends Component{
     //On the change event for the select box pass the selected value back to the parent
     handleChange = (event) =>
     {
-        console.log(event.target.value)
         let selectedValue = event.target.value;
         this.props.onSelectChange(selectedValue);
     }
@@ -45,7 +45,7 @@ class EdadSelect extends Component{
             <select
                 name="edad"
                 className={
-                    "form-control"
+                    "form-control"+this.props.className
                 }
                 value={this.props.value}
                 onChange={this.handleChange}>
