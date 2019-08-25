@@ -43,6 +43,7 @@ class SignUp extends React.Component {
             .required("La ubicación es obligatoria"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
+            .max(50,"El email debe tener como máximo 50 caracteres")
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
@@ -52,7 +53,6 @@ class SignUp extends React.Component {
         onSubmit={fields => {
           const { history } = this.props;
           history.push("/dashboard");
-
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
               "Email":fields.email,
@@ -68,9 +68,10 @@ class SignUp extends React.Component {
               title: "Exito!",
               text: "Se registro correctamente el Usuario",
               icon: "success",
-              timer: 2000,
+              timer: 4000,
               button: false
             });
+            
           })
           .catch(function (error) {
             // handle error
@@ -79,11 +80,12 @@ class SignUp extends React.Component {
             swal({
               title: "Error!",
               text: "Error al registrar el usuario",
-              icon: "success",
-              timer: 2000,
+              icon: "error",
+              timer: 4000,
               button: false
             });
           })
+          
         }}
         render={({ errors, status, touched }) => (
           <Form>
