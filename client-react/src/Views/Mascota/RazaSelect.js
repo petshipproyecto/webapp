@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {Field} from "formik";
+
+var emptyOption = <option key={0} value={0}>Seleccione una Raza</option>
 
 class RazaSelect extends Component{
     
@@ -15,25 +18,30 @@ class RazaSelect extends Component{
 
     render(){
         let arrayOfData = this.props.arrayOfData;
-        let options = arrayOfData.map((data) =>
-            <option 
-                key={data.Id_raza}
-                value={data.Id_raza}
-            >
-                {data.Descripcion}
-            </option>
-        );
+        let options = arrayOfData ?
+            // Si tiene razas, las lista
+            this.props.arrayOfData.map((data) =>
+                <option 
+                    key={data.Id_raza}
+                    value={data.Id_raza}
+                >
+                    {data.Descripcion}
+                </option>
+            )
+            // Sino, muestra sólo la opción vacía
+            : null;
         
         return (
-            <select
+            <Field
+                component="select"
                 name="raza"
-                className={
-                    "form-control"
-                }
+                className={"form-control"+this.props.className}
+                disabled={arrayOfData?false:true}
                 value={this.props.value}
                 onChange={this.handleChange}>
+                {emptyOption}
                 {options}
-            </select>
+            </Field>
         )
     }
 }

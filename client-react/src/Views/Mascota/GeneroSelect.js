@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {Field} from "formik";
 
-var emptyOption = <option key={0} value={0}>Seleccione un Tipo de Animal</option>
+var generos = [
+    {value: "0", label: "Seleccione una Género"},
+    {value: "1", label: "Macho"},
+    {value: "2", label: "Hembra"}
+]
 
-class AnimalSelect extends Component{
-    
+class GeneroSelect extends Component{
+
     constructor(props){
         super(props)
     }
@@ -17,29 +21,26 @@ class AnimalSelect extends Component{
     }
 
     render(){
-        let arrayOfData = this.props.arrayOfData ? this.props.arrayOfData : null;
-        let options = arrayOfData.map((data) =>
+        let options = generos.map((data) =>
             <option 
-                key={data.Id_animal}
-                value={data.Id_animal}
+                key={data.value}
+                value={data.value}
             >
-                {data.Descripcion}
+                {data.label}
             </option>
         );
         
         return (
             <Field
                 component="select"
-                name="animal"
+                name="genero"
                 className={"form-control"+this.props.className}
                 value={this.props.value}
-                disabled={arrayOfData?false:true}
                 onChange={this.handleChange}>
-                {emptyOption}
                 {options}
             </Field>
         )
     }
 }
 
-export default AnimalSelect;
+export default GeneroSelect;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Field} from "formik";
 
 var edades = [
     {value: "0", label: "Seleccione una edad"},
@@ -42,15 +43,14 @@ class EdadSelect extends Component{
         );
         
         return (
-            <select
+            <Field
+                component="select"
                 name="edad"
-                className={
-                    "form-control"+this.props.className
-                }
+                className={"form-control"+ this.props.className}
                 value={this.props.value}
                 onChange={this.handleChange}>
                 {options}
-            </select>
+            </Field>
         )
     }
 }

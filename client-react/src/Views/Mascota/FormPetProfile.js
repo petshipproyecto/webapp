@@ -6,6 +6,7 @@ import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import RazaSelect from './RazaSelect';
 import AnimalSelect from './AnimalSelect';
 import EdadSelect from './EdadSelect';
+import GeneroSelect from './GeneroSelect';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -19,17 +20,6 @@ import swal from "sweetalert";
 var rutaapi = "http://localhost:3001"
 rutaapi = "https://petshipt-backend.herokuapp.com"
 
-const petValidationSchema = Yup.object().shape({
-  name: Yup.string()
-   .max(40, 'Please enter no more than 40 characters')
-   .required( 'Please enter your first name' ),
-  edad: Yup.string()
-    .required('Please enter an Edad'),
-  raza: Yup.string()
-   .email('Please enter a valid email')
-   .required('Please enter an email')
- });
-
 class FormPetProfile extends React.Component {
   state = {
     initialValues: {
@@ -40,9 +30,10 @@ class FormPetProfile extends React.Component {
     },
     animales: [],
     razas: [],
-    raza: [],
-    animal: [],
-    edad: ""
+    raza: null,
+    animal: null,
+    edad: "0",
+    genero: "0"
   };
 
   componentDidMount() {
@@ -59,31 +50,35 @@ class FormPetProfile extends React.Component {
           },
           raza: response.data.Raza,
           animal: response.data.Raza.Animal,
-          edad: response.data.Edad
+          edad: response.data.Edad,
+          genero: response.data.Id_genero
         });
         // Obtiene TODOS los tipos de animales
         axios
-          .get(rutaapi+"/animal")
-          .then(response => {
-            var razas_disponibles = response.data.find(animal => animal.Id_animal === this.state.animal.Id_animal);
-            this.setState({
-              animales: response.data,
-              razas: razas_disponibles.Razas
-            });
+        .get(rutaapi+"/animal")
+        .then(response => {
+          var razas_disponibles = null
+          this.state.animal ?
+            razas_disponibles = response.data.find(animal => animal.Id_animal === this.state.animal.Id_animal).Razas :
+            razas_disponibles = null;
+          this.setState({
+            animales: response.data,
+            razas: razas_disponibles
           });
+        });
       });
   }
 
   _handleChangeAnimal = e => {
-    var animal_seleccionado = this.state.animales.find(animal => animal.Id_animal === e);
+    var animal_seleccionado = this.state.animales.find(animal => animal.Id_animal === e, null);
     this.setState({
       animal : animal_seleccionado,
-      razas : animal_seleccionado.Razas
+      razas : animal_seleccionado ? animal_seleccionado.Razas : null
     });
   };
 
   _handleChangeRaza = e => {
-    var raza_seleccionada = this.state.razas.find(raza => raza.Id_raza === e);
+    var raza_seleccionada = this.state.razas.find(raza => raza.Id_raza === e, null);
     this.setState({
       raza : raza_seleccionada,
     });
@@ -95,31 +90,30 @@ class FormPetProfile extends React.Component {
     });
   };
 
+  _handleChangeGenero = e => {
+    this.setState({
+      genero : e
+    });
+  };
+
   render() {
-    console.log(this.state);
-    const generos = [
-      {
-        value: "1",
-        Descripcion: "Macho"
-      },
-      {
-        value: "2",
-        Descripcion: "Hembra"
-      }
-    ];
 
     return (
       <Formik
         enableReinitialize
         initialValues={this.state.initialValues}
-        /* validationSchema={petValidationSchema} */
         validate={(values) => {
           let errors = {};
-          console.log(values.edad)
           if(!values.name)
-              errors.name = 'El nombre es requerido';
-          if(!values.edad === 0)
-              errors.edad = 'La edad es requerida';
+            errors.name = 'El nombre es requerido';
+          if(this.state.edad == "0")
+            errors.edad = 'La edad es requerida';
+          if(this.state.animal == null)
+            errors.animal = 'El Tipo de Animal es requerido';
+          if(this.state.raza == null)
+            errors.raza = 'La Raza es requerida';
+          if(this.state.genero == "0")
+            errors.genero = 'El Género es requerido';
           return errors;
        }}
         onSubmit={fields => {
@@ -130,11 +124,10 @@ class FormPetProfile extends React.Component {
               Edad: this.state.edad,
               Imagen: "fields.urlImagen",
               Id_raza: this.state.raza.Id_raza,
-              Id_genero: fields.genero
+              Id_genero: this.state.genero
             })
             .then(function(response) {
               // handle success
-              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
               console.log(response);
               swal({
                 title: "Exito!",
@@ -146,7 +139,6 @@ class FormPetProfile extends React.Component {
             })
             .catch(function(error) {
               // handle error
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
               swal({
                 title: "Error!",
@@ -202,18 +194,12 @@ class FormPetProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                             <div className="form-group">
-                              <label>Nombre</label>
+                              <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Nombre"
                                 name="name"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.name && touched.name
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={"form-control" + (errors.name && touched.name ? " is-invalid" : "")}
                               />
                               <ErrorMessage
                                 name="name"
@@ -225,9 +211,14 @@ class FormPetProfile extends React.Component {
                             {/* Select Animal */}
                             <div class="form-group">
                               <label>Tipo de Animal</label>
-                              <AnimalSelect arrayOfData={this.state.animales} onSelectChange={this._handleChangeAnimal} value={this.state.animal.Id_animal}/>
+                              <AnimalSelect
+                                className={(errors.animal ? " is-invalid" : "")}
+                                arrayOfData={this.state.animales}
+                                onSelectChange={this._handleChangeAnimal}
+                                value={this.state.animal ? this.state.animal.Id_animal : 0}
+                              />
                               <ErrorMessage
-                                name="tipoAnimal"
+                                name="animal"
                                 component="div"
                                 className="invalid-feedback"
                               />
@@ -235,8 +226,13 @@ class FormPetProfile extends React.Component {
 
                             {/* Select Raza */}
                             <div class="form-group">
-                              <label>Raza</label>
-                              <RazaSelect arrayOfData={this.state.razas} onSelectChange={this._handleChangeRaza} value={this.state.raza.Id_raza}/>
+                              <label>Raza <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <RazaSelect
+                                className={(errors.raza && this.state.razas ? " is-invalid" : "")}
+                                arrayOfData={this.state.razas}
+                                onSelectChange={this._handleChangeRaza}
+                                value={this.state.raza ? this.state.raza.Id_raza : 0}
+                              />
                               <ErrorMessage
                                 name="raza"
                                 component="div"
@@ -246,9 +242,9 @@ class FormPetProfile extends React.Component {
                             
                             {/* Select Edad */}
                             <div class="form-group">
-                              <label>Edad</label>
+                              <label>Edad <span style={{ color: "red" }}>*</span>{" "}</label>
                               <EdadSelect
-                                className={(errors.edad && touched.edad ? " is-invalid" : "")}
+                                className={(errors.edad ? " is-invalid" : "")}
                                 onSelectChange={this._handleChangeEdad}
                                 value={this.state.edad}
                               />
@@ -258,35 +254,15 @@ class FormPetProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-
+                            
+                            {/* Select Genero */}
                             <div class="form-group">
-                              <label>Genero</label>
-                              <select
-                                name="genero"
-                                onChange={handleChange}
-                                className={
-                                  "form-control" +
-                                  (errors.genero && touched.genero
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {generos.map(element => {
-                                  return element.value ===
-                                    this.state.initialValues.genero ? (
-                                    <option
-                                      value={element.value}
-                                      label={element.Descripcion}
-                                      selected
-                                    />
-                                  ) : (
-                                    <option
-                                      value={element.value}
-                                      label={element.Descripcion}
-                                    />
-                                  );
-                                })}
-                              </select>
+                              <label>Género <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <GeneroSelect
+                                className={(errors.genero ? " is-invalid" : "")}
+                                onSelectChange={this._handleChangeGenero}
+                                value={this.state.genero}
+                              />
                               <ErrorMessage
                                 name="genero"
                                 component="div"
