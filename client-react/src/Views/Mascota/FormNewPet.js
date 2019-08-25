@@ -5,6 +5,8 @@ import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
 import update from "react-addons-update"; // ES6
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -47,6 +49,17 @@ class FormNewPet extends React.Component {
     console.log("state" + JSON.stringify(this.state));
   };
 
+  handleUploadSuccess = filename => {
+    //this.setState({ avatar: filename, progress: 100, isUploading: false });
+    
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => this.setState({urlImagen: url}));
+  };
+
   handleChangeRaza = event => {
     console.log("evento" + event);
     var newState = update(this.state, {
@@ -63,6 +76,7 @@ class FormNewPet extends React.Component {
       genero: "1",
       tipoAnimal: "6"
     },
+    urlImagen: avatar2,
     mensaje: "hola",
     todasRazas: [],
     idtipoAnimal: 4,
@@ -130,7 +144,7 @@ class FormNewPet extends React.Component {
               // payload
               Nombre: fields.name,
               Edad: fields.edad,
-              Imagen: "fields.urlImagen",
+              Imagen: this.state.urlImagen,
               Id_raza: fields.raza,
               Id_genero: fields.genero,
               Id_animal: fields.tipoAnimal
@@ -186,24 +200,23 @@ class FormNewPet extends React.Component {
                                   width: "180px",
                                   border: "solid 4px #f47386"
                                 }}
-                                src={avatar2}
+                                src={this.state.urlImagen}
                                 alt="activity-user"
                               />
                             </center>
                           </Form>
                           <br></br>
                           <div className="form-group">
-                            <input
-                              id="file"
-                              name="file"
-                              type="file"
-                              onChange={handleChange}
-                              className={
-                                "form-control" +
-                                (errors.file && touched.file
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                          <FileUploader
+            accept="image/*"
+            name="avatar"
+            randomizeFilename
+            storageRef={firebase.storage().ref("images")}
+            onUploadStart={this.handleUploadStart}
+            onUploadError={this.handleUploadError}
+            onUploadSuccess={this.handleUploadSuccess}
+            onProgress={this.handleProgress}
+          />
                             />
                             <ErrorMessage
                               name="file"

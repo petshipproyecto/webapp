@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Aux from "../../../../../../hoc/_Aux";
 import DEMO from "../../../../../../store/constant";
-import * as actionTypes from "../../../../../../store/actions";
+import * as actionTypes from "../../../../../../store/actions/actions";
 import NavIcon from './../NavIcon';
 import NavBadge from './../NavBadge';
 import NavItem from "../NavItem";
@@ -103,10 +103,12 @@ class NavCollapse extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log("nav: " + JSON.stringify(state))
+    
     return {
-        layout: state.layout,
-        isOpen: state.isOpen,
-        isTrigger: state.isTrigger
+        layout: state.reducer.layout,
+        isOpen: state.reducer.isOpen,
+        isTrigger: state.reducer.isTrigger
     }
 };
 

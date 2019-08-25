@@ -1,11 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import { signUp } from '../../../store/actions/user'
+// react redux firebase auth - https://github.com/the-road-to-react-with-firebase/react-redux-firebase-authentication
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
 //import DEMO from "../../../store/constant";
 import axios from 'axios'
+import { connect } from 'react-redux';
+import { requestSignIn, signedIn } from '../../../store/actions/user'
+import { auth } from '../../../store/firebase';
+import { withRouter } from 'react-router-dom';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -23,22 +28,22 @@ class SignUp extends React.Component {
         initialValues={{
           firstName: "",
           lastName: "",
-          ubicacion:"",
+          ubicacion: "",
           email: "",
           password: ""
         }}
         validationSchema={Yup.object().shape({
           firstName: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El nombre es obligatorio"),
           lastName: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El apellido es obligatorio"),
-            ubicacion: Yup.string()
+          ubicacion: Yup.string()
             .trim()
             .required("La ubicación es obligatoria"),
           email: Yup.string()
@@ -46,15 +51,40 @@ class SignUp extends React.Component {
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
-            .max(20,"La contraseña debe tener como máximo 20 caracteres")
+            .max(20, "La contraseña debe tener como máximo 20 caracteres")
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          const { history } = this.props;
-          history.push("/dashboard");
+          this.props.signUp(fields)
+          if (this.props.authError) {
+            swal({
+              title: "Error!",
+              text: "Error al registrar el usuario",
+              icon: "error",
+              timer: 2000,
+              button: false
+            })
+          } else {
+            swal({
+              title: "Exito!",
+              text: "Se registro correctamente el Usuario",
+              icon: "success",
+              timer: 2000,
+              button: false
+            })
+          }
 
+
+          //const { history } = this.props;
+          //history.push("/dashboard");
+          /*
+          auth.doCreateUserWithEmailAndPassword(fields.email, fields.password).then(response => {
+            alert(JSON.stringify(response))
+            console.log(JSON.stringify(response)) */
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          /*
           axios.post('https://petshipt-backend.herokuapp.com/usuario', {           
+              "Id_usuario": response.user.uid,
               "Email":fields.email,
               "Nombre": fields.firstName,
               "Apellido": fields.lastName,
@@ -64,26 +94,17 @@ class SignUp extends React.Component {
             // handle success
             //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
             console.log(response);
-            swal({
-              title: "Exito!",
-              text: "Se registro correctamente el Usuario",
-              icon: "success",
-              timer: 2000,
-              button: false
-            });
-          })
+           
           .catch(function (error) {
             // handle error
             //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
             console.log(error);
-            swal({
-              title: "Error!",
-              text: "Error al registrar el usuario",
-              icon: "error",
-              timer: 2000,
-              button: false
-            });
-          })
+          }) 
+
+          } ).catch(e => alert(e)
+            );
+          */
+
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -96,7 +117,7 @@ class SignUp extends React.Component {
                       <div className="mb-4">
                         <i className="feather icon-user-plus auth-icon" />
                       </div>
-                     <h3 className="mb-4">Registrarse con</h3>
+                      <h3 className="mb-4">Registrarse con</h3>
                       <div className="form-group">
                         <SocialIcon
                           network="facebook"
@@ -110,7 +131,7 @@ class SignUp extends React.Component {
                           style={{ height: 32, width: 32 }}
                         />
                       </div>
-                      <h7>Todos los campos son obligatorios<span style={{color:'red'}}> *</span></h7>
+                      <h7>Todos los campos son obligatorios<span style={{ color: 'red' }}> *</span></h7>
                       <div className="form-group">
                         <Field
                           placeholder="Nombre"
@@ -225,4 +246,17 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (userData) => dispatch(signUp(userData))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import { signIn } from '../../../store/actions/user'
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
@@ -10,11 +10,17 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 import { SocialIcon } from "react-social-icons";
-
+import { connect } from 'react-redux';
+import { requestSignIn, signedIn } from '../../../store/actions/user'
+import { auth } from '../../../store/firebase';
+import { Link, withRouter } from 'react-router-dom';
+// Sweet Alert para los mensajes de exito y error
+import swal from "sweetalert";
 
 class SignIn extends React.Component {
   render() {
     return (
+      
       <Formik
         initialValues={{
           email: "",
@@ -30,9 +36,37 @@ class SignIn extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          const { history } = this.props;
-          history.push("/choosePet");
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          this.props.signIn({email:fields.email,password:fields.password})
+          if (this.props.authError) {
+            swal({
+              title: "Error!",
+              text: "Error al registrar el usuario",
+              icon: "error",
+              timer: 2000,
+              button: false
+            })
+          } 
+         // console.log(this.props.auth)
+          /*
+          const {
+            history,
+          } = this.props;
+
+          this.props.dispatch(requestSignIn())
+          
+          auth.doSignInWithEmailAndPassword(fields.email, fields.password).then(response => {
+            this.props.dispatch(signedIn(response.user));
+            if (response.user === undefined) {
+              history.push('/signin');
+            } else {
+              history.push('/dashboard');
+            }
+          }).catch(e =>{
+            alert(e)
+          })
+          */
+          //history.push("/choosePet");
+          
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -93,6 +127,7 @@ class SignIn extends React.Component {
                           className="invalid-feedback"
                         />
                       </div>
+                      {this.props.authError == true ? <div >Usuario o Contraseña Incorrecta</div>: <div></div>}
 
                       <div className="form-group text-left">
                         <div className="checkbox checkbox-fill d-inline">
@@ -123,6 +158,7 @@ class SignIn extends React.Component {
                       <p className="mb-0 text-muted">
                         No tienes cuenta?{" "}
                         <NavLink to="/signUp">Registrate</NavLink>
+                        
                       </p>
                     </div>
                   </div>
@@ -136,4 +172,17 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return{
+    authError: state.auth.authError,
+    auth: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
