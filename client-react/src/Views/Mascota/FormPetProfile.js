@@ -48,7 +48,7 @@ class FormPetProfile extends React.Component {
   componentDidMount() {
     // Obtiene los datos del perfil
     axios
-      .get("https://petshipt-backend.herokuapp.com/perfil/1")
+      .get("https://petshipt-backend.herokuapp.com/perfil/27")
       .then(response => {
         var idtipoanimal = "";
         var idraza = response.data.Id_raza;
@@ -58,8 +58,9 @@ class FormPetProfile extends React.Component {
             name: response.data.Nombre,
             raza: response.data.Id_raza,
             edad: response.data.Edad,
-            genero: response.data.Id_genero
-          }
+            genero: response.data.Id_genero,
+          },
+          urlImagen: response.data.Imagen
         });
         // Obtiene TODAS las razas
         axios
@@ -181,7 +182,7 @@ class FormPetProfile extends React.Component {
                             width: "150px",
                             border: "solid 4px #f47386"
                           }}
-                          src={avatar2}
+                          src={this.state.urlImagen}
                           alt="activity-user"
                         />
                       </center>

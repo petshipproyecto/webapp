@@ -76,7 +76,7 @@ class FormNewPet extends React.Component {
       genero: "1",
       tipoAnimal: "6"
     },
-    urlImagen: null,
+    urlImagen: avatar2,
     mensaje: "hola",
     todasRazas: [],
     idtipoAnimal: 4,
@@ -200,7 +200,7 @@ class FormNewPet extends React.Component {
                                   width: "180px",
                                   border: "solid 4px #f47386"
                                 }}
-                                src={avatar2 || this.state.urlImagen}
+                                src={this.state.urlImagen}
                                 alt="activity-user"
                               />
                             </center>
