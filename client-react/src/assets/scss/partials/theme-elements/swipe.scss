@@ -1,0 +1,106 @@
+.center  {
+    align-content: center;
+}
+.card  {
+  padding: 0px 1px 0px 1px;
+  margin-bottom:1px;
+}
+.tinder {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+.card-img-top  {
+    max-height: 300px;
+    
+}
+
+.tinder--card {
+    margin-bottom: 5px;
+    margin-top:30px;
+    display: inline-block;
+    max-width: 40vw;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    background: #FFFFFF;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    position: absolute;
+    will-change: transform;
+    transition: all 0.3s ease-in-out;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+  }
+
+.motion-card-item {
+    padding-top:50px;
+    padding-bottom:20px;
+    width:400px;
+    align-content: auto;
+    max-height: 500px;
+    margin-top:10px;
+    display:inline-block;
+
+  }
+
+.motion-card-stack {  
+  width:fit-content;
+  height: 475px;
+  max-height: 475px;
+  margin:auto;
+  justify-items: center;
+  width:300px;
+}
+
+.like{
+    margin-top:5px;
+    align-items: center;
+    padding-top: 5px; 
+    align-content: center;    
+}
+
+.card-body{
+  padding: 0px 1px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  max-height: 185px;
+}
+
+.img-pequeña{
+  width: 70px; height: 70px;
+}
+button {
+  border: none;
+  background: white;
+  margin: 0.25em;
+  font-size: 2em;
+}
+.btn-group {
+  display: flex;
+  width:auto;
+  justify-content: center;
+  margin:0px 1px 0px 1px;
+} 
+    
+.img {
+  max-width: 100%;
+  height: auto; 
+  user-select: none;
+  min-width: 100px;
+  max-height: 250px;
+}
+.demo-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  align-items: center;  
+  grid-template-columns: 400px;
+}
