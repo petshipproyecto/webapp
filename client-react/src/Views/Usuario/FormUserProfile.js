@@ -34,7 +34,7 @@ class FormUserProfile extends React.Component {
   componentDidMount() {
     // Obtiene los datos de usuario
     axios
-      .get("https://petshipt-backend.herokuapp.com/usuario/4") //this.props.userId
+      .get("https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId) //this.props.userId
       .then(response => {
         var idubicacion = response.data.Id_ubicacion;
         this.setState({
@@ -80,7 +80,7 @@ class FormUserProfile extends React.Component {
         onSubmit={fields => {
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
-            .put("https://petshipt-backend.herokuapp.com/usuario/4", { //this.props.userId
+            .put("https://petshipt-backend.herokuapp.com/usuario/" + this.props.userId, { //this.props.userId
               Email: fields.email,
               Nombre: fields.firstName,
               Apellido: fields.lastName
@@ -263,7 +263,7 @@ class FormUserProfile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError
