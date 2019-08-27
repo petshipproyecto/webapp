@@ -1,58 +1,49 @@
 import React from "react";
-import { Row, Col, Card, Badge } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 import "../../assets/scss/partials/theme-elements/swipe.scss";
 import Aux from "../../hoc/_Aux";
 import like from "../../assets/images/user/si.png";
 import notlike from "../../assets/images/user/no.png";
-//-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-//---------------------------------------------------------------------
-import "./../../assets/scss/partials/theme-elements/galeria.scss"
+import "./../../assets/scss/partials/theme-elements/galeria.scss";
 
-import { render } from "react-dom";
 import MotionStack from "react-motion-stack";
 import "react-motion-stack/build/motion-stack.css";
-const dislikeStyle = {
- 
-};
 
 const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
-  element: (   
-    <Card className = "tinderCard">
+  element: (
+    <Card className="tinderCard">
       <Card.Img
         variant="top"
         draggable={false}
-        src={`https://source.unsplash.com/random/${i + 1}`}
+        src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
       />
       <Card.Body>
-      <center>
-                  <h3>
-                    <Badge className="badgeGaleria" pill variant="secondary">
-                      Tomi
-                    </Badge>
-                  </h3>
-       </center>
+        <center>
+          <h3>
+            <Badge className="badgeGaleria" pill variant="secondary">
+              Tomi
+            </Badge>
+          </h3>
+        </center>
         <Card.Text>
           <p className="pGaleria">
-                    <i class="fa fa-paw m-r-5"></i>
-                    <b>Raza:</b> Siames
+            <i class="fa fa-paw m-r-5"></i>
+            <b>Raza:</b> Siames
           </p>
           <p className="pGaleria">
-                    <i class="fa fa-clock-o m-r-5"></i>
-                    <b>Edad:</b> 2 años
+            <i class="fa fa-clock-o m-r-5"></i>
+            <b>Edad:</b> 2 años
           </p>
           <p className="pGaleria">
-          <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
-                    <b>Distancia:</b> 2 km
+            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
+            <b>Distancia:</b> 2 km
           </p>
         </Card.Text>
       </Card.Body>
     </Card>
-    
   )
-}))
+}));
 
 class Swipe extends React.Component {
   onSwipeEnd = ({ data }) => {
@@ -62,25 +53,27 @@ class Swipe extends React.Component {
   renderButtons(props) {
     return (
       <div className="btn-group like">
-        <button style={{dislikeStyle}}  onClick={props.reject}><img className = "img-pequeña" src={notlike}/></button>
-        <button  onClick={props.accept}><img className = "img-pequeña" src={like}/></button>
+        <button onClick={props.reject}>
+          <img className="img-pequeña" src={notlike} />
+        </button>
+        <button onClick={props.accept}>
+          <img className="img-pequeña" src={like} />
+        </button>
       </div>
     );
   }
 
-  render() {    
-
+  render() {
     return (
-      <Aux>    
-            <MotionStack
-              data={data}
-              onSwipeEnd={this.onSwipeEnd}
-              render={props => props.element}
-              renderButtons={this.renderButtons}
-            />        
+      <Aux>
+        <MotionStack
+          data={data}
+          onSwipeEnd={this.onSwipeEnd}
+          render={props => props.element}
+          renderButtons={this.renderButtons}
+        />
       </Aux>
-      
-    )
+    );
   }
 }
 
