@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Field} from "formik";
 
-var edades = [
+var Edades = [
     {value: "0", label: "Seleccione una edad"},
     {value: "1", label: "1 año"},
     {value: "2", label: "2 años"},
@@ -21,10 +21,6 @@ var edades = [
 
 class EdadSelect extends Component{
 
-    constructor(props){
-        super(props)
-    }
-
     //On the change event for the select box pass the selected value back to the parent
     handleChange = (event) =>
     {
@@ -33,7 +29,7 @@ class EdadSelect extends Component{
     }
 
     render(){
-        let options = edades.map((data) =>
+        let options = Edades.map((data) =>
             <option 
                 key={data.value}
                 value={data.value}
@@ -45,7 +41,7 @@ class EdadSelect extends Component{
         return (
             <Field
                 component="select"
-                name="edad"
+                name="Edad"
                 className={"form-control"+ this.props.className}
                 value={this.props.value}
                 onChange={this.handleChange}>

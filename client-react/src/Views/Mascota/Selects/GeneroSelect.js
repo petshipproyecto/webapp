@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import {Field} from "formik";
 
-var generos = [
+var Generos = [
     {value: "0", label: "Seleccione una Género"},
     {value: "1", label: "Macho"},
     {value: "2", label: "Hembra"}
 ]
 
 class GeneroSelect extends Component{
-
-    constructor(props){
-        super(props)
-    }
 
     //On the change event for the select box pass the selected value back to the parent
     handleChange = (event) =>
@@ -21,7 +17,7 @@ class GeneroSelect extends Component{
     }
 
     render(){
-        let options = generos.map((data) =>
+        let options = Generos.map((data) =>
             <option 
                 key={data.value}
                 value={data.value}
@@ -33,7 +29,7 @@ class GeneroSelect extends Component{
         return (
             <Field
                 component="select"
-                name="genero"
+                name="Genero"
                 className={"form-control"+this.props.className}
                 value={this.props.value}
                 onChange={this.handleChange}>

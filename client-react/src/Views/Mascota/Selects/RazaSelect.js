@@ -4,10 +4,6 @@ import {Field} from "formik";
 var emptyOption = <option key={0} value={0}>Seleccione una Raza</option>
 
 class RazaSelect extends Component{
-    
-    constructor(props){
-        super(props)
-    }
 
     //On the change event for the select box pass the selected value back to the parent
     handleChange = (event) =>
@@ -34,7 +30,7 @@ class RazaSelect extends Component{
         return (
             <Field
                 component="select"
-                name="raza"
+                name="Raza"
                 className={"form-control"+this.props.className}
                 disabled={arrayOfData?false:true}
                 value={this.props.value}
