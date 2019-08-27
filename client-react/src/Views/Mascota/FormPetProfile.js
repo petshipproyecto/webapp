@@ -187,6 +187,8 @@ render() {
                       <Row>
                         <Col md={12}>
                           <Form>
+                            
+                            {/* Nombre */}
                             <div className="form-group">
                               <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field

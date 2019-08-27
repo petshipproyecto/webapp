@@ -177,6 +177,8 @@ class FormNewPet extends React.Component {
                               className="invalid-feedback"
                             />
                           </div>
+
+                          {/* Nombre */}
                           <div className="form-group">
                             <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                             <Field
