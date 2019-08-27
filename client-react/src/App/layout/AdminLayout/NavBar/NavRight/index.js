@@ -8,9 +8,9 @@ import DEMO from "../../../../../store/constant";
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
-import Avatar1 from "../../../../../assets/images/user/avatar1.jpg";
-import Avatar2 from "../../../../../assets/images/user/avatar2.jpg";
-import Avatar3 from "../../../../../assets/images/user/avatar3.jpg";
+import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
+import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
+import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 
 class NavRight extends Component {
   state = {
@@ -31,6 +31,72 @@ class NavRight extends Component {
                 <i className="icon feather icon-plus-circle" />
               </OverlayTrigger>
             </a>
+          </li>
+          <li>
+            <Dropdown alignRight={!this.props.rtlLayout}>
+              <Dropdown.Toggle variant={"link"} id="dropdown-basic">
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
+              >
+                <i className="icon feather icon-gitlab" />
+                </OverlayTrigger>
+              </Dropdown.Toggle>
+              <Dropdown.Menu alignRight className="notification">
+                <div className="noti-head">
+                  <h6 className="d-inline-block m-b-0">Perfiles de Mascotas Disponibles</h6>
+                </div>
+                <ul className="noti-body">
+                    <a href="/dashboard/default">
+                      <li className="notification">
+                        <div className="media">
+                          <img
+                            className="media-object img-radius"
+                            src={Avatar1}
+                            alt="Generic placeholder"
+                          />
+                          <div className="media-body">
+                            <p class="pt-3">Firulais</p>
+                          </div>
+                        </div>
+                      </li>
+                    </a>
+                  </ul>
+                  <ul className="noti-body">
+                    <a href="/dashboard/default">
+                      <li className="notification">
+                        <div className="media">
+                          <img
+                            className="media-object img-radius"
+                            src={Avatar2}
+                            alt="Generic placeholder"
+                          />
+                          <div className="media-body">
+                            <p class="pt-3">Kitty</p>
+                          </div>
+                        </div>
+                      </li>
+                    </a>
+                  </ul>
+                  <ul className="noti-body">
+                    <a href="/dashboard/default">
+                      <li className="notification">
+                        <div className="media">
+                          <img
+                            className="media-object img-radius"
+                            src={Avatar3}
+                            alt="Generic placeholder"
+                          />
+                          <div className="media-body">
+                            <p class="pt-3">Lola</p>
+                          </div>
+                        </div>
+                      </li>
+                    </a>
+                  </ul>
+              </Dropdown.Menu>
+            </Dropdown>
           </li>
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
@@ -95,7 +161,7 @@ class NavRight extends Component {
                       />
                       <div className="media-body">
                         <p>
-                          <strong>Sara Soudein</strong>
+                          <strong>carolina Soudein</strong>
                           <span className="n-time text-muted">
                             <i className="icon feather icon-clock m-r-10" />
                             30 min
@@ -128,13 +194,13 @@ class NavRight extends Component {
                     alt="User Profile"
                   />
                   <span>Eve Doe</span>
-                  <a
+                  {/* <a
                     href={DEMO.BLANK_LINK}
                     className="dud-logout"
                     title="Logout"
                   >
                     <i className="feather icon-log-out" />
-                  </a>
+                  </a> */}
                 </div>
                 <ul className="pro-body">
                   <li>

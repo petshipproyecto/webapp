@@ -11,6 +11,8 @@ import avatar2 from "../../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../../assets/images/user/avatarTortuga.jpg";
 import avatar4 from "../../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../../assets/images/user/avatarHamster.jpg";
+import "../../../assets/scss/partials/theme-elements/choosePet.scss";
+
 
 
 class ChoosePet extends React.Component {
@@ -25,72 +27,92 @@ class ChoosePet extends React.Component {
                 <Col>
                   <Figure class="effect-selena">
                     <a href="/dashboard/default">
-                      <Image src={avatar1} rounded width={171} height={180} />
+                      <Image src={avatar1} className="imagen" />
                     </a>
+                    <p>
+                      <center>
+                        <span>Michu</span>
+                      </center>
+                    </p>
                   </Figure>
-                  <p>
-                    <center>Michu</center>
-                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
                     <a href="/dashboard/default">
-                      <Image src={avatar2} rounded width={171} height={180} />
+                      <Image src={avatar2} className="imagen" />
                     </a>
+                    <p>
+                      <center>
+                        <span>Lola</span>
+                      </center>
+                    </p>
                   </Figure>
-                  <p>
-                    <center>Firulai</center>
-                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
                     <a href="/dashboard/default">
-                      <Image src={avatar3} rounded width={171} height={180} />
+                      <Image src={avatar3} className="imagen" />
                     </a>
+                    <p>
+                      <center>
+                        <span>Firulai</span>
+                      </center>
+                    </p>
                   </Figure>
-                  <p>
-                    <center>Tortu</center>
-                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
                     <a href="/dashboard/default">
-                      <Image src={avatar4} rounded width={171} height={180} />
+                      <Image src={avatar4} className="imagen" />
                     </a>
+                    <p>
+                      <center>
+                        <span>Pelusa</span>
+                      </center>
+                    </p>
                   </Figure>
-                  <p>
-                    <center>Chinchi</center>
-                  </p>
                 </Col>
                 <Col>
                   <Figure class="effect-selena">
-                  <a href="/dashboard/default">
-                      <Image  src={avatar5} rounded width={171} height={180} />
+                    <a href="/dashboard/default">
+                      <Image src={avatar5} className="imagen" />
                     </a>
+                    <p>
+                      <center>
+                        <span>Tortu</span>
+                      </center>
+                    </p>
                   </Figure>
-                  <p>
-                    <center>Hamsty</center>
-                  </p>
                 </Col>
-
-                <Col>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <center>
-                    <a href="/NewPet">
-                      <button
-                        type="button"
-                        class="btn-icon btn-rounded btn btn-primary "
-                      >
-                        <i class="feather icon-plus"></i>
-                      </button>
-                    </a>
-                  </center>
+                <Col className="col-centered">
+                  <br />
+                  <br />
+                  <br />
+                  <a href="/NewPet">
+                    <button
+                      type="button"
+                      class="btn-icon btn-rounded btn btn-primary "
+                    >
+                      <i class="feather icon-plus"></i>
+                    </button>
+                  </a>
                   <p>
                     <center>Agregar Mascota</center>
                   </p>
                 </Col>
+              </Row>
+              <br></br>
+              <Row style={{ alignItems: "center" }}>
+                <div class="col text-center">
+                  <a href="/TablaMascotas">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-lg"
+                    >
+                      <i class="feather icon-settings"></i>Administrar Perfiles
+                    </button>
+                  </a>
+                </div>
               </Row>
             </Container>
           </div>
