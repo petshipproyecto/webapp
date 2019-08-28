@@ -52,14 +52,15 @@ class FormNewPet extends React.Component {
     var Animal_seleccionado = this.state.Animales.find(Animal => Animal.Id_animal === e, null);
     this.setState({
       Animal : Animal_seleccionado,
-      Razas : Animal_seleccionado ? Animal_seleccionado.Razas : null
+      Razas : Animal_seleccionado ? Animal_seleccionado.Razas : null,
+      Raza: null
     });
   };
 
   _handleChangeRaza = e => {
     var Raza_seleccionada = this.state.Razas.find(Raza => Raza.Id_raza === e, null);
     this.setState({
-      Raza : Raza_seleccionada,
+      Raza : Raza_seleccionada
     });
   };
 

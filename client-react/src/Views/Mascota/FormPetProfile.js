@@ -16,6 +16,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
+import { isNullOrUndefined } from 'util';
 
 var rutaapi = "http://localhost:3001"
 rutaapi = "https://petshipt-backend.herokuapp.com"
@@ -65,7 +66,8 @@ _handleChangeAnimal = e => {
     var Animal_seleccionado = this.state.Animales.find(Animal => Animal.Id_animal === e, null);
     this.setState({
       Animal : Animal_seleccionado,
-      Razas : Animal_seleccionado ? Animal_seleccionado.Razas : null
+      Razas : Animal_seleccionado ? Animal_seleccionado.Razas : null,
+      Raza: null
     });
   };
 
