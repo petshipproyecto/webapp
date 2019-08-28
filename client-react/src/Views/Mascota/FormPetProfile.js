@@ -44,7 +44,8 @@ axios
             Raza: response.data.Raza,
             Animal: response.data.Raza.Animal,
             Edad: response.data.Edad,
-            Genero: response.data.Id_genero
+            Genero: response.data.Id_genero,
+            urlImagen: response.data.Imagen
         });
         // Obtiene TODOS los tipos de animales
         axios
@@ -162,7 +163,7 @@ render() {
                             width: "150px",
                             border: "solid 4px #f47386"
                           }}
-                          src={avatar2}
+                          src={this.state.urlImagen}
                           alt="activity-user"
                         />
                       </center>

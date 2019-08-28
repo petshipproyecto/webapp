@@ -10,7 +10,7 @@ export default {
                     id: 'inicio',
                     title: 'Inicio',
                     type: 'item',
-                    url: '/dashboard/default',
+                    url: '/dashboard',
                     icon: 'feather icon-home',
                 },
                  {
@@ -21,8 +21,8 @@ export default {
                      icon: 'feather icon-heart-on'
                  },
                  {
-                     id: 'buscarAmigo',
-                     title: 'Buscar Amigos',
+                     id: 'favoritos',
+                     title: 'Favoritos',
                      type: 'item',
                      icon: 'feather icon-star-on',
                      url: '/GaleriaMascotas'

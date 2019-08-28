@@ -1,5 +1,5 @@
-import * as actionTypes from './actions';
-import config from './../config';
+import * as actionTypes from '../actions/actions';
+import config from '../../config';
 
 const initialState = {
     isOpen: [], //for active default menu
@@ -8,7 +8,7 @@ const initialState = {
     isFullScreen: false, // static can't change
 };
 
-const reducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action){
     let trigger = [];
     let open = [];
 
@@ -88,4 +88,3 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export default reducer;

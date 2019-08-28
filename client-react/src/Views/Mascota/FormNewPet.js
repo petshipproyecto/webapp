@@ -1,9 +1,12 @@
 import React from "react";
 import { Row, Col, Card} from "react-bootstrap";
-
+import { connect } from 'react-redux';
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
+import update from "react-addons-update"; // ES6
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 
 // Componentes utilizados
 import RazaSelect from './Selects/RazaSelect';
@@ -57,6 +60,17 @@ class FormNewPet extends React.Component {
     });
   };
 
+  handleUploadSuccess = filename => {
+    //this.setState({ avatar: filename, progress: 100, isUploading: false });
+    
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => this.setState({urlImagen: url}));
+  };
+
   _handleChangeRaza = e => {
     var Raza_seleccionada = this.state.Razas.find(Raza => Raza.Id_raza === e, null);
     this.setState({
@@ -107,7 +121,8 @@ class FormNewPet extends React.Component {
               Imagen: "fields.urlImagen",
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero,
-              Id_animal: this.state.Animal.Id_animal
+              Id_animal: this.state.Animal.Id_animal,
+              Usr_cod: this.props.userId
             })
             .then(response => {
               // this.setState({ mensaje: "exito" });
@@ -153,24 +168,22 @@ class FormNewPet extends React.Component {
                                   width: "180px",
                                   border: "solid 4px #f47386"
                                 }}
-                                src={avatar2}
+                                src={this.state.urlImagen}
                                 alt="activity-user"
                               />
                             </center>
                           </Form>
                           <br></br>
                           <div className="form-group">
-                            <input
-                              id="file"
-                              name="file"
-                              type="file"
-                              onChange={handleChange}
-                              className={
-                                "form-control" +
-                                (errors.file && touched.file
-                                  ? " is-invalid"
-                                  : "")
-                              }
+                            <FileUploader
+                              accept="image/*"
+                              name="avatar"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("images")}
+                              onUploadStart={this.handleUploadStart}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleUploadSuccess}
+                              onProgress={this.handleProgress}
                             />
                             <ErrorMessage
                               name="file"
@@ -281,4 +294,13 @@ class FormNewPet extends React.Component {
   }
 }
 
-export default FormNewPet;
+const mapStateToProps = (state) => {
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+export default connect(mapStateToProps)(FormNewPet)
+

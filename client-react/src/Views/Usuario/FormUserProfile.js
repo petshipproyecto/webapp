@@ -4,6 +4,10 @@ import { Row, Col, Card } from "react-bootstrap";
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+
+import { connect } from 'react-redux';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -30,7 +34,7 @@ class FormUserProfile extends React.Component {
   componentDidMount() {
     // Obtiene los datos de usuario
     axios
-      .get("https://petshipt-backend.herokuapp.com/usuario/4")
+      .get("https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId) //this.props.userId
       .then(response => {
         var idubicacion = response.data.Id_ubicacion;
         this.setState({
@@ -57,6 +61,16 @@ class FormUserProfile extends React.Component {
       });
   }
 
+  handleUploadSuccess = filename => {
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => this.setState({ avatarURL: url }));
+  };
+
   render() {
     return (
       <Formik
@@ -66,12 +80,12 @@ class FormUserProfile extends React.Component {
         onSubmit={fields => {
           //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
-            .put("https://petshipt-backend.herokuapp.com/usuario/4", {
+            .put("https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId, { //this.props.userId
               Email: fields.email,
               Nombre: fields.firstName,
               Apellido: fields.lastName
             })
-            .then(function(response) {
+            .then(function (response) {
               // handle success
               //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
               console.log(response);
@@ -83,7 +97,7 @@ class FormUserProfile extends React.Component {
                 button: false
               });
             })
-            .catch(function(error) {
+            .catch(function (error) {
               // handle error
               //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
@@ -121,11 +135,15 @@ class FormUserProfile extends React.Component {
                       <div className="form-group">
                         <br></br>
                         <center>
-                          <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            className="form-control"
+                          <FileUploader
+                            accept="image/*"
+                            name="avatar"
+                            randomizeFilename
+                            storageRef={firebase.storage().ref("images")}
+                            onUploadStart={this.handleUploadStart}
+                            onUploadError={this.handleUploadError}
+                            onUploadSuccess={this.handleUploadSuccess}
+                            onProgress={this.handleProgress}
                           />
                         </center>
                       </div>
@@ -244,4 +262,14 @@ class FormUserProfile extends React.Component {
   }
 }
 
-export default FormUserProfile;
+const mapStateToProps = (state) => {
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+
+
+export default connect(mapStateToProps)(FormUserProfile)

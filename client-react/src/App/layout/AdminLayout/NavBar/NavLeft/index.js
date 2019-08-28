@@ -6,7 +6,7 @@ import windowSize from 'react-window-size';
 import NavSearch from './NavSearch';
 import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
-import * as actionTypes from "../../../../../store/actions";
+import * as actionTypes from "../../../../../store/actions/actions";
 
 import Avatar1 from '../../../../../assets/images/user/avatarCat.jpg';
 import Avatar2 from '../../../../../assets/images/user/avatarDog.jpg';
@@ -34,7 +34,7 @@ class NavLeft extends Component {
             <Aux>
                 <ul className="navbar-nav mr-auto">
                     {/* <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li> */}
-                    <li className={navItemClass.join(' ')}>
+                    {/* <li className={navItemClass.join(' ')}>
                         <Dropdown alignRight={dropdownRightAlign}>
                             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
                                 Selecionar Perfil de Mascota
@@ -85,7 +85,7 @@ class NavLeft extends Component {
                                 </Dropdown.Menu>
                             </ul>
                         </Dropdown>
-                    </li>
+                    </li> */}
                     <li className="nav-item"><NavSearch/></li>
                 </ul>
             </Aux>
