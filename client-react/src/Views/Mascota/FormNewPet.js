@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card} from "react-bootstrap";
-
+import { connect } from 'react-redux';
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
@@ -140,14 +140,15 @@ class FormNewPet extends React.Component {
         initialValues={this.state.initialValues}
         onSubmit={fields => {
           axios
-            .post("https://petshipt-backend.herokuapp.com/perfil", {
+            .post("https://petshipback-dev.herokuapp.com/perfil", {
               // payload
               Nombre: fields.name,
               Edad: fields.edad,
               Imagen: this.state.urlImagen,
               Id_raza: fields.raza,
               Id_genero: fields.genero,
-              Id_animal: fields.tipoAnimal
+              Id_animal: fields.tipoAnimal,
+              Usr_cod: this.props.userId
             })
             .then(response => {
               // this.setState({ mensaje: "exito" });
@@ -414,5 +415,15 @@ class FormNewPet extends React.Component {
   }
 }
 
-export default FormNewPet;
+const mapStateToProps = (state) => {
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+
+
+export default connect(mapStateToProps)(FormNewPet)
 
