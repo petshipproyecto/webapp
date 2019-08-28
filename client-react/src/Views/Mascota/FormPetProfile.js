@@ -1,148 +1,130 @@
-import React from "react";
+import React from 'react';
 import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
-
-//-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage } from "formik";
-//import * as Yup from "yup";
-//---------------------------------------------------------------------
 import axios from "axios";
+
+// Componentes utilizados
+import RazaSelect from './Selects/RazaSelect';
+import AnimalSelect from './Selects/AnimalSelect';
+import EdadSelect from './Selects/EdadSelect';
+import GeneroSelect from './Selects/GeneroSelect';
+
+// Para formulario y validacion
+import { Formik, Field, Form, ErrorMessage } from "formik";
 
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
+import { isNullOrUndefined } from 'util';
+
+var rutaapi = "http://localhost:3001"
+rutaapi = "https://petshipt-backend.herokuapp.com"
+
 
 class FormPetProfile extends React.Component {
+    
   state = {
-    initialValues: {
-      name: "",
-      raza: "",
-      edad: "",
-      genero: ""
-    },
-    idtipoAnimal: "",
-    tipoAnimalDesc: "",
-    razaDesc: "",
-    generoDesc: "",
-    razas: [],
-    animales: [],
-    edades: [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14"
-    ]
+    Nombre: "",
+    Raza: null,
+    Animal: null,
+    Edad: "0",
+    Genero: "0",
+    Animales: [],
+    Razas: []
   };
 
-  componentDidMount() {
-    // Obtiene los datos del perfil
-    axios
-      .get("https://petshipt-backend.herokuapp.com/perfil/27")
-      .then(response => {
-        var idtipoanimal = "";
-        var idraza = response.data.Id_raza;
-        var idgenero = response.data.Id_genero;
+componentDidMount() {
+// Obtiene los datos del perfil
+axios
+    .get(rutaapi+"/perfil/1")
+    .then(response => {
         this.setState({
-          initialValues: {
-            name: response.data.Nombre,
-            raza: response.data.Id_raza,
-            edad: response.data.Edad,
-            genero: response.data.Id_genero,
-          },
-          urlImagen: response.data.Imagen
+            Nombre: response.data.Nombre,
+            Raza: response.data.Raza,
+            Animal: response.data.Raza.Animal,
+            Edad: response.data.Edad,
+            Genero: response.data.Id_genero,
+            urlImagen: response.data.Imagen
         });
-        // Obtiene TODAS las razas
-        axios
-          .get("https://petshipt-backend.herokuapp.com/raza")
-          .then(response => {
-            this.setState({
-              razas: response.data
-            });
-          });
         // Obtiene TODOS los tipos de animales
         axios
-          .get("https://petshipt-backend.herokuapp.com/animal")
-          .then(response => {
-            this.setState({
-              animales: response.data
+            .get(rutaapi+"/animal")
+            .then(response => {
+                var Razas_disponibles = null
+                this.state.Animal ?
+                    Razas_disponibles = response.data.find(Animal => Animal.Id_animal === this.state.Animal.Id_animal).Razas :
+                    Razas_disponibles = null;
+                this.setState({
+                    Animales: response.data,
+                    Razas: Razas_disponibles
+                });
             });
-          });
+        });
+}
 
-        // Obtiene los datos de la raza
-        axios
-          .get("https://petshipt-backend.herokuapp.com/raza/" + idraza)
-          .then(response => {
-            idtipoanimal = response.data.Id_animal;
-            this.setState({
-              idtipoAnimal: response.data.Id_animal,
-              razaDesc: response.data.Descripcion
-            });
-          });
-        // Obtiene los datos del tipo de animal
-        axios
-          .get("https://petshipt-backend.herokuapp.com/animal/" + idtipoanimal)
-          .then(response => {
-            this.setState({
-              tipoAnimalDesc: response.data.Descripcion
-            });
-          });
-        // Obtiene los datos del genero
-        axios
-          .get("https://petshipt-backend.herokuapp.com/genero/" + idgenero)
-          .then(response => {
-            this.setState({
-              genero: response.data.Id_genero,
-              generoDesc: response.data.Descripcion
-            });
-          });
-      });
-  }
-
-  _handleChangeAnimal = event => {
-    this.setState({ idtipoAnimal: event.target.value });
+_handleChangeAnimal = e => {
+    var Animal_seleccionado = this.state.Animales.find(Animal => Animal.Id_animal === e, null);
+    this.setState({
+      Animal : Animal_seleccionado,
+      Razas : Animal_seleccionado ? Animal_seleccionado.Razas : null,
+      Raza: null
+    });
   };
 
-  render() {
-    console.log(this.state);
-    const generos = [
-      {
-        value: "1",
-        Descripcion: "Macho"
-      },
-      {
-        value: "2",
-        Descripcion: "Hembra"
-      }
-    ];
+_handleChangeRaza = e => {
+    var Raza_seleccionada = this.state.Razas.find(Raza => Raza.Id_raza === e, null);
+    this.setState({
+        Raza : Raza_seleccionada,
+    });
+};
+
+_handleChangeEdad = e => {
+    this.setState({
+        Edad : e
+    });
+};
+
+_handleChangeGenero = e => {
+    this.setState({
+        Genero : e
+    });
+};
+
+render() {
 
     return (
       <Formik
         enableReinitialize
-        initialValues={this.state.initialValues}
+        initialValues={{
+            Nombre: this.state.Nombre
+        }}
+        validate={(values) => {
+          let errors = {};
+          if(!values.Nombre)
+            errors.Nombre = 'El nombre es requerido';
+          if(this.state.Edad === "0")
+            errors.Edad = 'La edad es requerida';
+          if(this.state.Animal == null)
+            errors.Animal = 'El Tipo de Animal es requerido';
+          if(this.state.Raza == null)
+            errors.Raza = 'La Raza es requerida';
+          if(this.state.Genero === "0")
+            errors.Genero = 'El Género es requerido';
+          return errors;
+        }}
         onSubmit={fields => {
           axios
-            .put("https://petshipt-backend.herokuapp.com/perfil/1", {
+            .put(rutaapi+"/perfil/1", {
               // payload
-              Nombre: fields.name,
-              Edad: fields.edad,
-              Imagen: fields.urlImagen,
-              Id_raza: fields.raza,
-              Id_genero: fields.genero
+              Nombre: fields.Nombre,
+              Edad: this.state.Edad,
+              Imagen: "fields.urlImagen",
+              Id_raza: this.state.Raza.Id_raza,
+              Id_genero: this.state.Genero
             })
             .then(function(response) {
               // handle success
-              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
               console.log(response);
               swal({
                 title: "Exito!",
@@ -154,7 +136,6 @@ class FormPetProfile extends React.Component {
             })
             .catch(function(error) {
               // handle error
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
               swal({
                 title: "Error!",
@@ -209,183 +190,80 @@ class FormPetProfile extends React.Component {
                       <Row>
                         <Col md={12}>
                           <Form>
+                            
+                            {/* Nombre */}
                             <div className="form-group">
-                              <label>Nombre</label>
+                              <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Nombre"
-                                name="name"
+                                name="Nombre"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.name && touched.name
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={"form-control" + (errors.Nombre && touched.Nombre ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="name"
+                                name="Nombre"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
 
+                            {/* Select Animal */}
                             <div class="form-group">
                               <label>Tipo de Animal</label>
-                              <select
-                                name="tipoAnimal"
-                                onChange={this._handleChangeAnimal}
-                                className={
-                                  "form-control" +
-                                  (errors.tipoAnimal && touched.tipoAnimal
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {this.state.animales.map(element => {
-                                  return element.Id_animal ==
-                                    this.state.idtipoAnimal ? (
-                                    <option
-                                      value={element.Id_animal}
-                                      label={element.Descripcion}
-                                      selected
-                                    />
-                                  ) : (
-                                    <option
-                                      value={element.Id_animal}
-                                      label={element.Descripcion}
-                                    />
-                                  );
-                                })}
-                              </select>
-                              <ErrorMessage
-                                name="tipoAnimal"
-                                component="div"
-                                className="invalid-feedback"
+                              <AnimalSelect
+                                className={(errors.Animal ? " is-invalid" : "")}
+                                arrayOfData={this.state.Animales}
+                                onSelectChange={this._handleChangeAnimal}
+                                value={this.state.Animal ? this.state.Animal.Id_animal : 0}
                               />
-                            </div>
-                            <div class="form-group">
-                              <label>Raza</label>
-                              <select
-                                name="raza"
-                                onChange={handleChange}
-                                className={
-                                  "form-control" +
-                                  (errors.raza && touched.raza
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {this.state.razas &&
-                                this.state.razas.length > 0 ? (
-                                  this.state.razas.map(raza => {
-                                    if (
-                                      raza.Id_raza ===
-                                        this.state.initialValues.raza &&
-                                      raza.Id_animal === this.state.idtipoAnimal
-                                    ) {
-                                      return (
-                                        <option
-                                          selected="selected"
-                                          key={raza.Id_raza}
-                                          value={raza.Id_raza}
-                                        >
-                                          {raza.Descripcion}
-                                        </option>
-                                      );
-                                    } else {
-                                      if (
-                                        raza.Id_animal ===
-                                        this.state.idtipoAnimal
-                                      ) {
-                                        return (
-                                          <option
-                                            key={raza.Id_raza}
-                                            value={raza.Id_raza}
-                                          >
-                                            {raza.Descripcion}
-                                          </option>
-                                        );
-                                      }
-                                    }
-                                  })
-                                ) : (
-                                  <option key={1}>
-                                    No se han encontrado razas
-                                  </option>
-                                )}
-                                {/* <option value="" label="Seleccionar Raza" />
-                              <option value="1" label="Raza 1" />
-                              <option value="2" label="Raza 2" /> */}
-                              </select>
                               <ErrorMessage
-                                name="raza"
-                                component="div"
-                                className="invalid-feedback"
-                              />
-                            </div>
-                            <div class="form-group">
-                              <label>Edad (años)</label>
-                              <select
-                                name="edad"
-                                onChange={handleChange}
-                                className={
-                                  "form-control" +
-                                  (errors.edad && touched.edad
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {this.state.edades.map(element => {
-                                  return element ==
-                                    this.state.initialValues.edad ? (
-                                    <option
-                                      value={element}
-                                      label={element}
-                                      selected
-                                    />
-                                  ) : (
-                                    <option value={element} label={element} />
-                                  );
-                                })}
-                              </select>
-                              <ErrorMessage
-                                name="edad"
+                                name="Animal"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
 
+                            {/* Select Raza */}
                             <div class="form-group">
-                              <label>Genero</label>
-                              <select
-                                name="genero"
-                                onChange={handleChange}
-                                className={
-                                  "form-control" +
-                                  (errors.genero && touched.genero
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              >
-                                {generos.map(element => {
-                                  return element.value ==
-                                    this.state.initialValues.genero ? (
-                                    <option
-                                      value={element.value}
-                                      label={element.Descripcion}
-                                      selected
-                                    />
-                                  ) : (
-                                    <option
-                                      value={element.value}
-                                      label={element.Descripcion}
-                                    />
-                                  );
-                                })}
-                              </select>
+                              <label>Raza <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <RazaSelect
+                                className={(errors.Raza && this.state.Razas ? " is-invalid" : "")}
+                                arrayOfData={this.state.Razas}
+                                onSelectChange={this._handleChangeRaza}
+                                value={this.state.Raza ? this.state.Raza.Id_raza : 0}
+                              />
                               <ErrorMessage
-                                name="genero"
+                                name="Raza"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+                            
+                            {/* Select Edad */}
+                            <div class="form-group">
+                              <label>Edad <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <EdadSelect
+                                className={(errors.Edad ? " is-invalid" : "")}
+                                onSelectChange={this._handleChangeEdad}
+                                value={this.state.Edad}
+                              />
+                              <ErrorMessage
+                                name="Edad"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+                            
+                            {/* Select Genero */}
+                            <div class="form-group">
+                              <label>Género <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <GeneroSelect
+                                className={(errors.Genero ? " is-invalid" : "")}
+                                onSelectChange={this._handleChangeGenero}
+                                value={this.state.Genero}
+                              />
+                              <ErrorMessage
+                                name="Genero"
                                 component="div"
                                 className="invalid-feedback"
                               />
@@ -412,6 +290,7 @@ class FormPetProfile extends React.Component {
       />
     );
   }
+  
 }
 
 export default FormPetProfile;
