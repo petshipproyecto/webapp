@@ -27,6 +27,8 @@ const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
 const Swipe = React.lazy(() => import('./Views/Swipe/Swipe'));
 const Notificaciones = React.lazy(() => import('./Views/Notificaciones/Notificaciones'));
+const Busqueda = React.lazy(() => import('./Views/Busqueda/Busqueda'));
+
 
 const routes = [
     
@@ -52,6 +54,7 @@ const routes = [
     { path: '/GaleriaMascotas', exact: true, name: 'Forms Elements', component: GaleriaMascotas },
     { path: '/Swipe', exact: true, name: 'Forms Elements', component: Swipe },
     { path: '/Notificaciones', exact: true, name: 'Forms Elements', component: Notificaciones },
+    { path: '/ConfiguracionBusqueda', exact: true, name: 'Forms Elements', component: Busqueda },
 ];
 
 export default routes;

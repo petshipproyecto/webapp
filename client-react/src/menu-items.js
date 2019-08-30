@@ -88,6 +88,13 @@ export default {
                      url: '/TablaMascotas'
                  },
                  {
+                    id: 'configuracionBusqueda',
+                    title: 'Preferencias de Búsqueda',
+                    type: 'item',
+                    icon: 'feather icon-filter',
+                    url: '/ConfiguracionBusqueda'
+                },
+                 {
                      id: 'auth',
                      title: 'Autenticación',
                      type: 'collapse',
