@@ -20,44 +20,27 @@ import Axios from "axios";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
+//var rutaapi = "http://localhost:3001"
+var rutaapi = "https://petshipback-dev.herokuapp.com"
+
 class FormUserProfile extends React.Component {
   state = {
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      idubicacion: "",
-      ubicacion: "",
-      email: "",
-      password: ""
-    }
+    Nombre: "",
+    Apellido: "",
+    Ubicacion: [],
+    Email: ""
   };
   componentDidMount() {
     // Obtiene los datos de usuario
     axios
-      .get("https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId) //this.props.userId
+      .get(rutaapi+"/usuario/" + this.props.userId)
       .then(response => {
-        var idubicacion = response.data.Id_ubicacion;
         this.setState({
-          initialValues: {
-            firstName: response.data.Nombre,
-            lastName: response.data.Apellido,
-            idubicacion: response.data.Id_ubicacion,
-            email: response.data.Email,
-            password: response.data.Password
-          }
+          Nombre: response.data.Nombre,
+          Apellido: response.data.Apellido,
+          Ubicacion: response.data.Ubicacion,
+          Email: response.data.Email
         });
-        //Obtiene los datos de ubicacion
-        axios
-          .get(
-            "https://petshipt-backend.herokuapp.com/ubicacion/" + idubicacion
-          )
-          .then(response => {
-            this.setState({
-              initialValues: {
-                ubicacion: response.data.Descripcion
-              }
-            });
-          });
       });
   }
 
@@ -76,18 +59,43 @@ class FormUserProfile extends React.Component {
       <Formik
         enableReinitialize
         // Setea los valores iniciales de los inputs
-        initialValues={this.state.initialValues}
+        initialValues={{
+          Nombre: this.state.Nombre,
+          Apellido: this.state.Apellido,
+          Ubicacion: this.state.Ubicacion.Descripcion,
+          Email: this.state.Email
+        }}
+        validationSchema={Yup.object().shape({
+          Nombre: Yup.string()
+            .trim()
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
+            .required("El nombre es obligatorio"),
+          Apellido: Yup.string()
+            .trim()
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
+            .required("El apellido es obligatorio"),
+          Ubicacion: Yup.string()
+            .trim()
+            .required("La ubicación es obligatoria"),
+          Email: Yup.string()
+            .email("El email tiene un formato invalido")
+            .required("El email es obligatorio"),
+        })}
         onSubmit={fields => {
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
-            .put("https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId, { //this.props.userId
-              Email: fields.email,
-              Nombre: fields.firstName,
-              Apellido: fields.lastName
+            .put(rutaapi+"/ubicacion/"+this.state.ubicacion.Id_ubicacion, {
+              Descripcion: fields.Ubicacion
+            })
+          axios
+            .put(rutaapi+"/usuario/" + this.props.userId, { //this.props.userId
+              Email: fields.Email,
+              Nombre: fields.Nombre,
+              Apellido: fields.Apellido
             })
             .then(function (response) {
               // handle success
-              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
               console.log(response);
               swal({
                 title: "Exito!",
@@ -99,7 +107,6 @@ class FormUserProfile extends React.Component {
             })
             .catch(function (error) {
               // handle error
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
               swal({
                 title: "Error!",
@@ -160,81 +167,57 @@ class FormUserProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                             <div className="form-group">
-                              <label>Nombre*</label>
+                              <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Nombre"
-                                name="firstName"
+                                name="Nombre"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.firstName && touched.firstName
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={"form-control" +(errors.Nombre && touched.Nombre ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="firstName"
+                                name="Nombre"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Apellido*</label>
+                              <label>Apellido <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Apellido"
-                                name="lastName"
+                                name="Apellido"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.lastName && touched.lastName
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={"form-control" +(errors.Apellido && touched.Apellido ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="lastName"
+                                name="Apellido"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Ubicación*</label>
+                              <label>Ubicación <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Ubicación"
-                                name="ubicacion"
+                                name="Ubicacion"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.ubicacion && touched.ubicacion
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={ "form-control" + (errors.Ubicacion && touched.Ubicacion ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="ubicacion"
+                                name="Ubicacion"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email*</label>
+                              <label>Email <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
-                                name="email"
+                                name="Email"
                                 placeholder="Email"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.email && touched.email
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={ "form-control" + (errors.Email && touched.Email ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="email"
+                                name="Email"
                                 component="div"
                                 className="invalid-feedback"
                               />

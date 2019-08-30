@@ -18,8 +18,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import swal from "sweetalert";
 import { isNullOrUndefined } from 'util';
 
-var rutaapi = "http://localhost:3001"
-rutaapi = "https://petshipt-backend.herokuapp.com"
+//var rutaapi = "http://localhost:3001"
+var rutaapi = "https://petshipt-backend.herokuapp.com"
 
 
 class FormPetProfile extends React.Component {
