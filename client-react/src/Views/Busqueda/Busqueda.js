@@ -3,7 +3,6 @@ import { Row, Col, Card, Form} from "react-bootstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Aux from "../../hoc/_Aux";
-
 import Tooltip from "rc-tooltip";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
@@ -50,13 +49,13 @@ class FormNewPet extends React.Component {
                         <div class="form-group">
                           <div class="radio d-inline radio-primary">
                             <input
-                              name="primary-radio-1"
+                              name="tipoBusqueda"
                               type="radio"
-                              id="primary-radio-1"
+                              id="Amigos"
                               class="form-control"
                               checked="true"
                             />
-                            <label for="primary-radio-1" class="cr form-label">
+                            <label for="Amigos" class="cr form-label">
                               Amigos
                             </label>
                           </div>
@@ -64,12 +63,12 @@ class FormNewPet extends React.Component {
                         <div class="form-group">
                           <div class="radio d-inline radio-primary">
                             <input
-                              name="primary-radio-1"
+                              name="tipoBusqueda"
                               type="radio"
-                              id="primary-radio-2"
+                              id="pareja"
                               class="form-control"
                             />
-                            <label for="primary-radio-2" class="cr form-label">
+                            <label for="pareja" class="cr form-label">
                               Pareja
                             </label>
                           </div>
@@ -81,13 +80,13 @@ class FormNewPet extends React.Component {
                         <div class="form-group">
                           <div class="radio d-inline radio-primary">
                             <input
-                              name="primary-radio-3"
+                              name="genero"
                               type="radio"
-                              id="primary-radio-3"
+                              id="masculino"
                               class="form-control"
                               checked="true"
                             />
-                            <label for="primary-radio-3" class="cr form-label">
+                            <label for="masculino" class="cr form-label">
                               Masculino
                             </label>
                           </div>
@@ -95,12 +94,12 @@ class FormNewPet extends React.Component {
                         <div class="form-group">
                           <div class="radio d-inline radio-primary">
                             <input
-                              name="primary-radio-3"
+                              name="genero"
                               type="radio"
-                              id="primary-radio-4"
+                              id="femenino"
                               class="form-control"
                             />
-                            <label for="primary-radio-4" class="cr form-label">
+                            <label for="femenino" class="cr form-label">
                               Femenino
                             </label>
                           </div>
@@ -108,12 +107,10 @@ class FormNewPet extends React.Component {
                       </fieldset>
                       <h6>Raza</h6>
                       <hr></hr>
-
-                      <select name="edad" className="form-control">
+                      <select name="raza" className="form-control">
                         <option value="Pincher" label="Pincher" />
                         <option value="Bulldog" label="Bulldog" />
                       </select>
-
                       <br />
                       <h6>Máxima distancia en Km.</h6>
                       <hr></hr>
@@ -126,9 +123,8 @@ class FormNewPet extends React.Component {
                           handle={handle}
                         />
                       </div>
-
                       <br />
-                      <h6>Rango de edad</h6>
+                      <h6>Rango de edad en años</h6>
                       <hr></hr>
                       <br />
                       <div style={style}>

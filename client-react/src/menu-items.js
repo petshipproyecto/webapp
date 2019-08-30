@@ -34,14 +34,6 @@ export default {
                     icon: 'feather icon-bell',
                     url: '/Notificaciones'
                 },
-                 {
-                     id: 'match',
-                     title: 'Matchs',
-                     type: 'item',
-                     url: '/ComingSoon',
-                     classes: 'nav-item',
-                     icon: 'feather icon-users'
-                 },
                 {
                     id: 'nuevaMascota',
                     title: 'Agregar Mascota',

@@ -66,6 +66,7 @@ class Swipe extends React.Component {
   render() {
     return (
       <Aux>
+        
         <MotionStack
           data={data}
           onSwipeEnd={this.onSwipeEnd}
@@ -76,5 +77,6 @@ class Swipe extends React.Component {
     );
   }
 }
+
 
 export default Swipe;
