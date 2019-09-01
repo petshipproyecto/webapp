@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
-
+import {signOut} from '../../../../../../src/store/actions/user'
+import { connect } from 'react-redux';
 import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
@@ -171,7 +172,7 @@ class NavRight extends Component {
                       />
                       <div className="media-body">
                         <p>
-                          <strong>Sara Soudein</strong>
+                          <strong>carolina Soudein</strong>
                           <span className="n-time text-muted">
                             <i className="icon feather icon-clock m-r-10" />
                             30 min
@@ -222,7 +223,7 @@ class NavRight extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="/SignIn" className="dropdown-item">
+                    <a href="#" className="dropdown-item" onClick={this.props.signOut}>
                       <i className="feather icon-lock" />
                       Cerrar Sesión
                     </a>
@@ -243,4 +244,17 @@ class NavRight extends Component {
   }
 }
 
-export default NavRight;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavRight)

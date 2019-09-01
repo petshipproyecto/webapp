@@ -4,6 +4,10 @@ import { Row, Col, Card } from "react-bootstrap";
 import Aux from "../../hoc/_Aux";
 import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+
+import { connect } from 'react-redux';
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -16,46 +20,39 @@ import Axios from "axios";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
+//var rutaapi = "http://localhost:3001"
+var rutaapi = "https://petshipback-dev.herokuapp.com"
+
 class FormUserProfile extends React.Component {
   state = {
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      idubicacion: "",
-      ubicacion: "",
-      email: "",
-      password: ""
-    }
+    Nombre: "",
+    Apellido: "",
+    Ubicacion: [],
+    Email: ""
   };
   componentDidMount() {
     // Obtiene los datos de usuario
     axios
-      .get("https://petshipt-backend.herokuapp.com/usuario/4")
+      .get(rutaapi+"/usuario/" + this.props.userId)
       .then(response => {
-        var idubicacion = response.data.Id_ubicacion;
         this.setState({
-          initialValues: {
-            firstName: response.data.Nombre,
-            lastName: response.data.Apellido,
-            idubicacion: response.data.Id_ubicacion,
-            email: response.data.Email,
-            password: response.data.Password
-          }
+          Nombre: response.data.Nombre,
+          Apellido: response.data.Apellido,
+          Ubicacion: response.data.Ubicacion,
+          Email: response.data.Email
         });
-        //Obtiene los datos de ubicacion
-        axios
-          .get(
-            "https://petshipt-backend.herokuapp.com/ubicacion/" + idubicacion
-          )
-          .then(response => {
-            this.setState({
-              initialValues: {
-                ubicacion: response.data.Descripcion
-              }
-            });
-          });
       });
   }
+
+  handleUploadSuccess = filename => {
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => this.setState({ avatarURL: url }));
+  };
 
   render() {
     return (
@@ -63,40 +60,43 @@ class FormUserProfile extends React.Component {
         
         enableReinitialize
         // Setea los valores iniciales de los inputs
-        initialValues={this.state.initialValues}
-         validationSchema={Yup.object().shape({
-          firstName: Yup.string()
+        initialValues={{
+          Nombre: this.state.Nombre,
+          Apellido: this.state.Apellido,
+          Ubicacion: this.state.Ubicacion.Descripcion,
+          Email: this.state.Email
+        }}
+        validationSchema={Yup.object().shape({
+          Nombre: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El nombre es obligatorio"),
-          lastName: Yup.string()
+          Apellido: Yup.string()
             .trim()
-            .min(2,"El nombre debe tener como mínimo 2 caracteres")
-            .max(20,"El nombre debe tener como máximo 20 caracteres")
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El apellido es obligatorio"),
-            ubicacion: Yup.string()
+          Ubicacion: Yup.string()
             .trim()
             .required("La ubicación es obligatoria"),
-          email: Yup.string()
+          Email: Yup.string()
             .email("El email tiene un formato invalido")
             .required("El email es obligatorio"),
-          password: Yup.string()
-            .min(6, "La contraseña debe tener al menos 6 caracteres")
-            .max(20,"La contraseña debe tener como máximo 20 caracteres")
-            .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          //alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
           axios
-            .put("https://petshipt-backend.herokuapp.com/usuario/4", {
-              Email: fields.email,
-              Nombre: fields.firstName,
-              Apellido: fields.lastName
+            .put(rutaapi+"/ubicacion/"+this.state.ubicacion.Id_ubicacion, {
+              Descripcion: fields.Ubicacion
             })
-            .then(function(response) {
+          axios
+            .put(rutaapi+"/usuario/" + this.props.userId, { //this.props.userId
+              Email: fields.Email,
+              Nombre: fields.Nombre,
+              Apellido: fields.Apellido
+            })
+            .then(function (response) {
               // handle success
-              //alert("SUCCESS!! :-)\n\n" + JSON.stringify(response))
               console.log(response);
               swal({
                 title: "Exito!",
@@ -106,9 +106,8 @@ class FormUserProfile extends React.Component {
                 button: false
               });
             })
-            .catch(function(error) {
+            .catch(function (error) {
               // handle error
-              //alert("ERROR!! :-(\n\n" + JSON.stringify(error))
               console.log(error);
               swal({
                 title: "Error!",
@@ -144,11 +143,15 @@ class FormUserProfile extends React.Component {
                       <div className="form-group">
                         <br></br>
                         <center>
-                          <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            className="form-control"
+                          <FileUploader
+                            accept="image/*"
+                            name="avatar"
+                            randomizeFilename
+                            storageRef={firebase.storage().ref("images")}
+                            onUploadStart={this.handleUploadStart}
+                            onUploadError={this.handleUploadError}
+                            onUploadSuccess={this.handleUploadSuccess}
+                            onProgress={this.handleProgress}
                           />
                         </center>
                       </div>
@@ -165,81 +168,57 @@ class FormUserProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                             <div className="form-group">
-                              <label>Nombre*</label>
+                              <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Nombre"
-                                name="firstName"
+                                name="Nombre"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.firstName && touched.firstName
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                //required
+                                className={"form-control" +(errors.Nombre && touched.Nombre ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="firstName"
+                                name="Nombre"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Apellido*</label>
+                              <label>Apellido <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Apellido"
-                                name="lastName"
+                                name="Apellido"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.lastName && touched.lastName
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                //required
+                                className={"form-control" +(errors.Apellido && touched.Apellido ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="lastName"
+                                name="Apellido"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Ubicación*</label>
+                              <label>Ubicación <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
                                 placeholder="Ubicación"
-                                name="ubicacion"
+                                name="Ubicacion"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.ubicacion && touched.ubicacion
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                required
+                                className={ "form-control" + (errors.Ubicacion && touched.Ubicacion ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="ubicacion"
+                                name="Ubicacion"
                                 component="div"
                                 className="invalid-feedback"
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email*</label>
+                              <label>Email <span style={{ color: "red" }}>*</span>{" "}</label>
                               <Field
-                                name="email"
+                                name="Email"
                                 placeholder="Email"
                                 type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.email && touched.email
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                //required
+                                className={ "form-control" + (errors.Email && touched.Email ? " is-invalid" : "")}
                               />
                               <ErrorMessage
-                                name="email"
+                                name="Email"
                                 component="div"
                                 className="invalid-feedback"
                               />
@@ -267,4 +246,14 @@ class FormUserProfile extends React.Component {
   }
 }
 
-export default FormUserProfile;
+const mapStateToProps = (state) => {
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+
+
+export default connect(mapStateToProps)(FormUserProfile)

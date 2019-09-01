@@ -6,7 +6,7 @@ import windowSize from "react-window-size";
 import NavSearch from "./NavSearch";
 import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
-import * as actionTypes from "../../../../../store/actions";
+import * as actionTypes from "../../../../../store/actions/actions";
 
 import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
 import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";

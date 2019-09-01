@@ -12,7 +12,6 @@ const route = [
     { path: '/resetPassword', exact: true, name: 'Reset Password', component: ResetPassword },
     { path: '/choosePet', exact: true, name: 'Choose Pet', component: ChoosePet },
     { path: '/comingSoon', exact: true, name: 'Choose Pet', component: ComingSoon }
-
 ];
 
 export default route;
