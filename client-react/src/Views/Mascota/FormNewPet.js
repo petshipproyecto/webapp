@@ -148,7 +148,8 @@ class FormNewPet extends React.Component {
               });
             });
         }}
-        render={({ errors, touched, handleChange }) => (
+        
+        render={({ errors, touched, handleChange}) => (
           <Form>
             <Aux>
               <Row className="justify-content-md-center">

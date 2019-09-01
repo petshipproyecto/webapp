@@ -32,6 +32,17 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
+          <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
+            <a href="/ConfiguracionBusqueda">
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Filtrar Busqueda</Tooltip>}
+              >
+                <i className="icon feather icon-filter" />
+              </OverlayTrigger>
+            </a>
+          </li>
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -173,14 +184,11 @@ class NavRight extends Component {
                   </li>
                 </ul>
                 <div className="noti-footer">
-                  <a href={DEMO.BLANK_LINK}>ver todo</a>
+                  <a href="/Notificaciones">ver todo</a>
                 </div>
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          {/* <li className={this.props.rtlLayout ? 'm-r-15' : 'm-l-15'}>
-                        <a href={DEMO.BLANK_LINK} className="displayChatbox" onClick={() => {this.setState({listOpen: true});}}><i className="icon feather icon-mail"/></a>
-                    </li> */}
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} className="drp-user">
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -194,13 +202,6 @@ class NavRight extends Component {
                     alt="User Profile"
                   />
                   <span>Eve Doe</span>
-                  {/* <a
-                    href={DEMO.BLANK_LINK}
-                    className="dud-logout"
-                    title="Logout"
-                  >
-                    <i className="feather icon-log-out" />
-                  </a> */}
                 </div>
                 <ul className="pro-body">
                   <li>

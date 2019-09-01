@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { signUp } from '../../../store/actions/user'
+import { signUp } from '../../store/actions/user'
 // react redux firebase auth - https://github.com/the-road-to-react-with-firebase/react-redux-firebase-authentication
-import "./../../../assets/scss/style.scss";
-import Aux from "../../../hoc/_Aux";
-import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
+import "./../../assets/scss/style.scss";
+import Aux from "../../hoc/_Aux";
+import Breadcrumb from "../../App/layout/AdminLayout/Breadcrumb";
 //import DEMO from "../../../store/constant";
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { requestSignIn, signedIn } from '../../../store/actions/user'
-import { auth } from '../../../store/firebase';
+import { requestSignIn, signedIn } from '../../store/actions/user'
+import { auth } from '../../store/firebase';
 import { withRouter } from 'react-router-dom';
 
 //-----------Para la validacion importar estos elementos--------------
