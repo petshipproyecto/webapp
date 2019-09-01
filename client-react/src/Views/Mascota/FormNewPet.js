@@ -21,7 +21,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import swal from "sweetalert";
 
 var rutaapi = "http://localhost:3001"
-rutaapi = "https://petshipt-backend.herokuapp.com"
+rutaapi = "https://petshipback-dev.herokuapp.com"
 
 class FormNewPet extends React.Component {
 
@@ -96,7 +96,7 @@ class FormNewPet extends React.Component {
       <Formik
         enableReinitialize
         initialValues={{
-          Nombre: ""
+          Nombre: this.props.userId
         }}
         validate={(values) => {
           let errors = {};
@@ -118,7 +118,7 @@ class FormNewPet extends React.Component {
               // payload
               Nombre: fields.Nombre,
               Edad: this.state.Edad,
-              Imagen: "fields.urlImagen",
+              Imagen: this.state.urlImagen,
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero,
               Id_animal: this.state.Animal.Id_animal,
@@ -296,7 +296,7 @@ class FormNewPet extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+ // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError

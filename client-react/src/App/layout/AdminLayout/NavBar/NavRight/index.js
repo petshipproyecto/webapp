@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Dropdown, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
 import {signOut} from '../../../../../../src/store/actions/user'
 import { connect } from 'react-redux';
 import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
+import axios from 'axios'
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -14,10 +15,28 @@ import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 
 class NavRight extends Component {
   state = {
-    listOpen: false
+    listOpen: false,
+    perfiles: [
+      
+    ]
   };
+  
 
   render() {
+    const loadProfiles = () =>{
+      setTimeout(
+      axios.get('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId).then(response =>{
+        
+        this.setState({perfiles: response.data.Perfils});
+      
+
+      }).catch(e =>{
+
+      }),3000)
+      
+
+    }
+    
     return (
       <Aux>
         <ul className="navbar-nav ml-auto">
@@ -44,7 +63,7 @@ class NavRight extends Component {
             </a>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout}>
+            <Dropdown alignRight={!this.props.rtlLayout} onClick={ loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
               <OverlayTrigger
                 placement="left"
@@ -54,57 +73,46 @@ class NavRight extends Component {
                 <i className="icon feather icon-gitlab" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification">
+              <Dropdown.Menu alignRight className="notification" >
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">Perfiles de Mascotas Disponibles</h6>
                 </div>
                 <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar1}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Firulais</p>
-                          </div>
+                  {
+                    
+
+                    this.state.perfiles !== 0 ?
+                    (
+                    this.state.perfiles.map(element => {
+                      return(
+                        <li className="notification">
+                      <div className="media">
+                        <img
+                          className="media-object img-radius"
+                          src={element.Imagen}
+                          alt="Generic placeholder"
+                        />
+                        <div className="media-body">
+                          <p class="pt-3">{element.Nombre}</p>
                         </div>
-                      </li>
-                    </a>
-                  </ul>
-                  <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar2}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Kitty</p>
-                          </div>
-                        </div>
-                      </li>
-                    </a>
-                  </ul>
-                  <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar3}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Lola</p>
-                          </div>
-                        </div>
-                      </li>
-                    </a>
+                      </div>
+                    </li>
+              
+                      )
+                    
+                  })
+                    ): ( () => {return (<Spinner animation="border" />) })
+                      
+    
+                    
+
+                  
+                  }
+                    
+                      
+                  
+                      
+                   
                   </ul>
               </Dropdown.Menu>
             </Dropdown>
@@ -245,12 +253,12 @@ class NavRight extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state.firebase.auth,
-    authError: state.auth.authError
-  }
-}
-
+  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+   return {
+     userId: state.firebase.auth.uid,
+     authError: state.auth.authError
+   }
+ }
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut())
@@ -258,3 +266,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavRight)
+
+
+ 
+
