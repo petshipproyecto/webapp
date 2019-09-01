@@ -11,13 +11,10 @@ const TablaMascotas = React.lazy(() => import('./Views/Mascota/TablaMascotas'));
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
-<<<<<<< HEAD
 const ChoosePet = React.lazy(() => import('./Views/Mascota/ChoosePet'));
-=======
 const Swipe = React.lazy(() => import('./Views/Swipe/Swipe'));
 const Notificaciones = React.lazy(() => import('./Views/Notificaciones/Notificaciones'));
 const Busqueda = React.lazy(() => import('./Views/Busqueda/Busqueda'));
->>>>>>> master
 
 const routes = [
     { path: '/dashboard', exact: true, name: 'Default', component: DashboardDefault },
