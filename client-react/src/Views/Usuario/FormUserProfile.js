@@ -85,7 +85,7 @@ class FormUserProfile extends React.Component {
         })}
         onSubmit={fields => {
           axios
-            .put(rutaapi+"/ubicacion/"+this.state.ubicacion.Id_ubicacion, {
+            .put(rutaapi+"/ubicacion/"+this.state.Ubicacion.Id_ubicacion, {
               Descripcion: fields.Ubicacion
             })
           axios

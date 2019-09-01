@@ -1,9 +1,11 @@
 import React from 'react';
 import { Row, Col, Card } from "react-bootstrap";
-
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
 import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
+import { connect } from 'react-redux';
 
 // Componentes utilizados
 import RazaSelect from './Selects/RazaSelect';
@@ -34,11 +36,12 @@ class FormPetProfile extends React.Component {
     Razas: []
   };
 
-componentDidMount() {
+async componentDidMount() {
 // Obtiene los datos del perfil
-
+const usuario = await axios.get(rutaapi +'/usuario/' + this.props.userId);
+const perfil_activo = usuario.data.Id_perfil_activo
 axios
-    .get(rutaapi+"/perfil/1")
+    .get(rutaapi+"/perfil/" + perfil_activo)
     .then(response => {
         this.setState({
             Nombre: response.data.Nombre,
@@ -92,6 +95,17 @@ _handleChangeGenero = e => {
     });
 };
 
+handleUploadSuccess = filename => {
+  //this.setState({ avatar: filename, progress: 100, isUploading: false });
+  
+  firebase
+    .storage()
+    .ref("images")
+    .child(filename)
+    .getDownloadURL()
+    .then(url => this.setState({urlImagen: url}));
+};
+
 render() {
 
     return (
@@ -120,7 +134,7 @@ render() {
               // payload
               Nombre: fields.Nombre,
               Edad: this.state.Edad,
-              Imagen: "fields.urlImagen",
+              Imagen: this.state.urlImagen,
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero
             })
@@ -171,12 +185,16 @@ render() {
                       <div className="form-group">
                         <br></br>
                         <center>
-                          <input
-                            id="file"
-                            name="file"
-                            type="file"
-                            className="form-control"
-                          />
+                        <FileUploader
+                              accept="image/*"
+                              name="avatar"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("images")}
+                              onUploadStart={this.handleUploadStart}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleUploadSuccess}
+                              onProgress={this.handleProgress}
+                            />
                         </center>
                       </div>
                     </Card.Body>
@@ -294,4 +312,14 @@ render() {
   
 }
 
-export default FormPetProfile;
+const mapStateToProps = (state) => {
+  //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  }
+}
+
+
+
+export default connect(mapStateToProps)(FormPetProfile)

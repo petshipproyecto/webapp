@@ -36,8 +36,13 @@ class SignIn extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
+          const {
+            history,
+          } = this.props;
+
           this.props.signIn({email:fields.email,password:fields.password})
           if (this.props.authError) {
+            history.push("/choosePet");
             swal({
               title: "Error!",
               text: "Error al registrar el usuario",

@@ -24,17 +24,27 @@ class NavRight extends Component {
 
   render() {
     const loadProfiles = () =>{
-      setTimeout(
-      axios.get('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId).then(response =>{
-        
-        this.setState({perfiles: response.data.Perfils});
       
-
+      axios.get('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId).then(response =>{        
+        this.setState({perfiles: response.data.Perfils});
       }).catch(e =>{
 
-      }),3000)
+      })
       
 
+    }
+
+    const setTargetProfile = (perfil) =>{
+      console.log(perfil)
+      
+      axios.put('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId,{
+        Id_perfil_activo: perfil
+      }).then(response =>{        
+        console.log(response)
+      }).catch(e =>{
+
+      })
+      
     }
     
     return (
@@ -74,7 +84,7 @@ class NavRight extends Component {
                     (
                     this.state.perfiles.map(element => {
                       return(
-                        <li className="notification">
+                        <li className="notification" onClick={function(){setTargetProfile(element.Id_perfil)}}>
                       <div className="media">
                         <img
                           className="media-object img-radius"

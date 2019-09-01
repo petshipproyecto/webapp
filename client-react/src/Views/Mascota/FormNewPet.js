@@ -96,7 +96,7 @@ class FormNewPet extends React.Component {
       <Formik
         enableReinitialize
         initialValues={{
-          Nombre: this.props.userId
+          Nombre: ""
         }}
         validate={(values) => {
           let errors = {};
