@@ -19,7 +19,7 @@ import swal from "sweetalert";
 import { isNullOrUndefined } from 'util';
 
 //var rutaapi = "http://localhost:3001"
-var rutaapi = "https://petshipt-backend.herokuapp.com"
+var rutaapi = "https://petshipback-dev.herokuapp.com"
 
 
 class FormPetProfile extends React.Component {
@@ -36,6 +36,7 @@ class FormPetProfile extends React.Component {
 
 componentDidMount() {
 // Obtiene los datos del perfil
+
 axios
     .get(rutaapi+"/perfil/1")
     .then(response => {
