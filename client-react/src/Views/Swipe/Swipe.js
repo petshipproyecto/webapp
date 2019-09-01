@@ -1,66 +1,82 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card
-} from "react-bootstrap";
-
+import { Card, Badge } from "react-bootstrap";
+import "../../assets/scss/partials/theme-elements/swipe.scss";
 import Aux from "../../hoc/_Aux";
-import avatar2 from "../../assets/images/user/avatar-6.jpg";
+import like from "../../assets/images/user/si.png";
+import notlike from "../../assets/images/user/no.png";
+import "./../../assets/scss/partials/theme-elements/galeria.scss";
 
-import { Form as FormB } from "react-bootstrap";
+import MotionStack from "react-motion-stack";
+import "react-motion-stack/build/motion-stack.css";
 
-//-----------Para la validacion importar estos elementos--------------
-import { Formik, Field, Form, ErrorMessage} from "formik";
-import * as Yup from "yup";
-//---------------------------------------------------------------------
+const data = Array.from({ length: 10 }, (_, i) => ({
+  id: new Date().getTime() + i,
+  element: (
+    <Card className="tinderCard">
+      <Card.Img
+        variant="top"
+        draggable={false}
+        src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
+      />
+      <Card.Body>
+        <center>
+          <h3>
+            <Badge className="badgeGaleria" pill variant="secondary">
+              Tomi
+            </Badge>
+          </h3>
+        </center>
+        <Card.Text>
+          <p className="pGaleria">
+            <i class="fa fa-paw m-r-5"></i>
+            <b>Raza:</b> Siames
+          </p>
+          <p className="pGaleria">
+            <i class="fa fa-clock-o m-r-5"></i>
+            <b>Edad:</b> 2 años
+          </p>
+          <p className="pGaleria">
+            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
+            <b>Distancia:</b> 2 km
+          </p>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  )
+}));
 
-class FormNewPet extends React.Component {
+class Swipe extends React.Component {
+  onSwipeEnd = ({ data }) => {
+    // console.log("data", data);
+  };
+
+  renderButtons(props) {
+    return (
+      <div className="btn-group like">
+        <button onClick={props.reject}>
+          <img className="img-pequeña" src={notlike} />
+        </button>
+        <button onClick={props.accept}>
+          <img className="img-pequeña" src={like} />
+        </button>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <Formik
-        initialValues={{
-          name: "",
-          tipoAnimal: "",
-          raza: "",
-          edad: "",
-          genero: "",
-          file: ""
-        }}
-        validationSchema={Yup.object().shape({
-          file: Yup.mixed().required("La imagen es obligatoria"),
-
-          name: Yup.string()
-            .trim()
-            .required("El nombre es obligatorio"),
-          tipoAnimal: Yup.string()
-            .trim()
-            .required("El tipo de animal es obligatorio"),
-          raza: Yup.string()
-            .trim()
-            .required("La raza es obligatoria"),
-          edad: Yup.string()
-            .trim()
-            .required("La edad es obligatoria"),
-          genero: Yup.string()
-            .trim()
-            .required("El genero es obligatorio")
-        })}
-        onSubmit={fields => {
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-        }}
-        render={({ errors, status, touched, handleChange }) => (
-          <Form>
-            <Aux>
-              <Row className="justify-content-md-center">
-               
-              </Row>
-            </Aux>
-          </Form>
-        )}
-      />
+      <Aux>
+        
+        <MotionStack
+          data={data}
+          onSwipeEnd={this.onSwipeEnd}
+          render={props => props.element}
+          renderButtons={this.renderButtons}
+        />
+      </Aux>
     );
   }
 }
 
-export default FormNewPet;
+
+export default Swipe;

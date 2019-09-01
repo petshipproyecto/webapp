@@ -57,6 +57,7 @@ class FormUserProfile extends React.Component {
   render() {
     return (
       <Formik
+        
         enableReinitialize
         // Setea los valores iniciales de los inputs
         initialValues={{

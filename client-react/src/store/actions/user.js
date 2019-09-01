@@ -48,7 +48,6 @@ export const signIn = (credentials) => {
                 "Email":newUser.email,
                 "Nombre": newUser.firstName,
                 "Apellido": newUser.lastName,
-                "Password": newUser.password,
                 "Id_ubicacion": newUbicacion.data.Id_ubicacion
             }).then(() => {
               dispatch({ type: 'SIGNUP_SUCCESS' });

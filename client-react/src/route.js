@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignUp = React.lazy(() => import('./Views/Usuario/SignUp/SignUp'));
+const SignUp = React.lazy(() => import('./Views/Usuario/SignUp'));
 const Signin = React.lazy(() => import('./Views/Autenticacion/SignIn/SignIn'));
 const ResetPassword = React.lazy(() => import('./Views/Autenticacion/ResetPassword/ResetPassword'));
 const ComingSoon = React.lazy(() => import('./Views/Mantenimiento/ComingSoon'));

@@ -13,8 +13,6 @@ import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
 
-
-
 class ChoosePet extends React.Component {
   render() {
     return (

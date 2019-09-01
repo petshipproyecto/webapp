@@ -15,9 +15,9 @@ export default {
                 },
                  {
                      id: 'buscarPareja',
-                     title: 'Buscar Pareja',
+                     title: 'Buscar Pareja/Amigo',
                      type: 'item',
-                     url: '/ComingSoon',
+                     url: '/Swipe',
                      icon: 'feather icon-heart-on'
                  },
                  {
@@ -28,13 +28,12 @@ export default {
                      url: '/GaleriaMascotas'
                  },
                  {
-                     id: 'match',
-                     title: 'Matchs',
-                     type: 'item',
-                     url: '/ComingSoon',
-                     classes: 'nav-item',
-                     icon: 'feather icon-users'
-                 },
+                    id: 'notificaciones',
+                    title: 'Notificaciones',
+                    type: 'item',
+                    icon: 'feather icon-bell',
+                    url: '/Notificaciones'
+                },
                 {
                     id: 'nuevaMascota',
                     title: 'Agregar Mascota',
@@ -50,14 +49,6 @@ export default {
                     url: '/SignUp',
                     classes: 'nav-item',
                     icon: 'feather icon-plus-circle'
-                },
-                 {
-                     id: 'swipe',
-                     title: 'Swipe',
-                     type: 'item',
-                     url: '/ComingSoon',
-                     classes: 'nav-item',
-                     icon: 'feather icon-plus-circle'
                 },
                 {
                     id: 'forms',
@@ -88,6 +79,13 @@ export default {
                      icon: 'feather icon-settings',
                      url: '/TablaMascotas'
                  },
+                 {
+                    id: 'configuracionBusqueda',
+                    title: 'Preferencias de Búsqueda',
+                    type: 'item',
+                    icon: 'feather icon-filter',
+                    url: '/ConfiguracionBusqueda'
+                },
                  {
                      id: 'auth',
                      title: 'Autenticación',
