@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, Form} from "react-bootstrap";
+import { Row, Col, Card, Form } from "react-bootstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Aux from "../../hoc/_Aux";
@@ -43,7 +43,14 @@ class FormNewPet extends React.Component {
                 <Card.Body>
                   <Row>
                     <Col md={12}>
-                      <h6>Buscar</h6>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h6>Buscar:</h6>
+                        </div>
+                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
+                          Amigos
+                        </div>
+                      </div>
                       <hr></hr>
                       <fieldset>
                         <div class="form-group">
@@ -74,7 +81,14 @@ class FormNewPet extends React.Component {
                           </div>
                         </div>
                       </fieldset>
-                      <h6>Mostrar genero</h6>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h6>Mostrar Genero:</h6>
+                        </div>
+                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
+                          Masculino
+                        </div>
+                      </div>
                       <hr></hr>
                       <fieldset>
                         <div class="form-group">
@@ -105,14 +119,29 @@ class FormNewPet extends React.Component {
                           </div>
                         </div>
                       </fieldset>
-                      <h6>Raza</h6>
-                      <hr></hr>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h6>Raza:</h6>
+                        </div>
+                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
+                          Pincher
+                        </div>
+                      </div>
+                      <hr style={{ color: "gray", height: 1 }} />
+
                       <select name="raza" className="form-control">
                         <option value="Pincher" label="Pincher" />
                         <option value="Bulldog" label="Bulldog" />
                       </select>
                       <br />
-                      <h6>Máxima distancia en Km.</h6>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h6>Maxima distancia:</h6>
+                        </div>
+                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
+                          100 km.
+                        </div>
+                      </div>
                       <hr></hr>
                       <br />
                       <div style={style}>
@@ -124,7 +153,14 @@ class FormNewPet extends React.Component {
                         />
                       </div>
                       <br />
-                      <h6>Rango de edad en años</h6>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h6>Rango de edad:</h6>
+                        </div>
+                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
+                          1 a 5 años
+                        </div>
+                      </div>
                       <hr></hr>
                       <br />
                       <div style={style}>

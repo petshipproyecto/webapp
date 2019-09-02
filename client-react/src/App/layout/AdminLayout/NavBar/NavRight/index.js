@@ -117,12 +117,7 @@ class NavRight extends Component {
                     
 
                   
-                  }
-                    
-                      
-                  
-                      
-                   
+                  }                      
                   </ul>
               </Dropdown.Menu>
             </Dropdown>
