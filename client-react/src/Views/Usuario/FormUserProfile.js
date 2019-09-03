@@ -7,7 +7,7 @@ import axios from "axios";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -20,16 +20,16 @@ import Axios from "axios";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
-const imagen= {
-  minWidth:"150px",
-  maxHeight:"150px",
-  minHeight:"150px",
+const imagen = {
+  minWidth: "150px",
+  maxHeight: "150px",
+  minHeight: "150px",
   maxWidth: "150px",
   border: "solid 4px #f47386"
-}
+};
 
 //var rutaapi = "http://localhost:3001"
-var rutaapi = "https://petshipback-dev.herokuapp.com"
+var rutaapi = "https://petshipback-dev.herokuapp.com";
 
 class FormUserProfile extends React.Component {
   state = {
@@ -40,16 +40,14 @@ class FormUserProfile extends React.Component {
   };
   componentDidMount() {
     // Obtiene los datos de usuario
-    axios
-      .get(rutaapi+"/usuario/" + this.props.userId)
-      .then(response => {
-        this.setState({
-          Nombre: response.data.Nombre,
-          Apellido: response.data.Apellido,
-          Ubicacion: response.data.Ubicacion,
-          Email: response.data.Email
-        });
+    axios.get(rutaapi + "/usuario/" + this.props.userId).then(response => {
+      this.setState({
+        Nombre: response.data.Nombre,
+        Apellido: response.data.Apellido,
+        Ubicacion: response.data.Ubicacion,
+        Email: response.data.Email
       });
+    });
   }
 
   handleUploadSuccess = filename => {
@@ -65,7 +63,6 @@ class FormUserProfile extends React.Component {
   render() {
     return (
       <Formik
-        
         enableReinitialize
         // Setea los valores iniciales de los inputs
         initialValues={{
@@ -90,20 +87,23 @@ class FormUserProfile extends React.Component {
             .required("La ubicación es obligatoria"),
           Email: Yup.string()
             .email("El email tiene un formato invalido")
-            .required("El email es obligatorio"),
+            .required("El email es obligatorio")
         })}
         onSubmit={fields => {
-          axios
-            .put(rutaapi+"/ubicacion/"+this.state.Ubicacion.Id_ubicacion, {
+          axios.put(
+            rutaapi + "/ubicacion/" + this.state.Ubicacion.Id_ubicacion,
+            {
               Descripcion: fields.Ubicacion
-            })
+            }
+          );
           axios
-            .put(rutaapi+"/usuario/" + this.props.userId, { //this.props.userId
+            .put(rutaapi + "/usuario/" + this.props.userId, {
+              //this.props.userId
               Email: fields.Email,
               Nombre: fields.Nombre,
               Apellido: fields.Apellido
             })
-            .then(function (response) {
+            .then(function(response) {
               // handle success
               console.log(response);
               swal({
@@ -114,7 +114,7 @@ class FormUserProfile extends React.Component {
                 button: false
               });
             })
-            .catch(function (error) {
+            .catch(function(error) {
               // handle error
               console.log(error);
               swal({
@@ -173,12 +173,19 @@ class FormUserProfile extends React.Component {
                         <Col md={12}>
                           <Form>
                             <div className="form-group">
-                              <label>Nombre <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <label>
+                                Nombre <span style={{ color: "red" }}>*</span>{" "}
+                              </label>
                               <Field
                                 placeholder="Nombre"
                                 name="Nombre"
                                 type="text"
-                                className={"form-control" +(errors.Nombre && touched.Nombre ? " is-invalid" : "")}
+                                className={
+                                  "form-control" +
+                                  (errors.Nombre && touched.Nombre
+                                    ? " is-invalid"
+                                    : "")
+                                }
                               />
                               <ErrorMessage
                                 name="Nombre"
@@ -187,12 +194,19 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Apellido <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <label>
+                                Apellido <span style={{ color: "red" }}>*</span>{" "}
+                              </label>
                               <Field
                                 placeholder="Apellido"
                                 name="Apellido"
                                 type="text"
-                                className={"form-control" +(errors.Apellido && touched.Apellido ? " is-invalid" : "")}
+                                className={
+                                  "form-control" +
+                                  (errors.Apellido && touched.Apellido
+                                    ? " is-invalid"
+                                    : "")
+                                }
                               />
                               <ErrorMessage
                                 name="Apellido"
@@ -201,12 +215,20 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Ubicación <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <label>
+                                Ubicación{" "}
+                                <span style={{ color: "red" }}>*</span>{" "}
+                              </label>
                               <Field
                                 placeholder="Ubicación"
                                 name="Ubicacion"
                                 type="text"
-                                className={ "form-control" + (errors.Ubicacion && touched.Ubicacion ? " is-invalid" : "")}
+                                className={
+                                  "form-control" +
+                                  (errors.Ubicacion && touched.Ubicacion
+                                    ? " is-invalid"
+                                    : "")
+                                }
                               />
                               <ErrorMessage
                                 name="Ubicacion"
@@ -215,12 +237,19 @@ class FormUserProfile extends React.Component {
                               />
                             </div>
                             <div className="form-group">
-                              <label>Email <span style={{ color: "red" }}>*</span>{" "}</label>
+                              <label>
+                                Email <span style={{ color: "red" }}>*</span>{" "}
+                              </label>
                               <Field
                                 name="Email"
                                 placeholder="Email"
                                 type="text"
-                                className={ "form-control" + (errors.Email && touched.Email ? " is-invalid" : "")}
+                                className={
+                                  "form-control" +
+                                  (errors.Email && touched.Email
+                                    ? " is-invalid"
+                                    : "")
+                                }
                               />
                               <ErrorMessage
                                 name="Email"
@@ -251,14 +280,12 @@ class FormUserProfile extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError
-  }
-}
+  };
+};
 
-
-
-export default connect(mapStateToProps)(FormUserProfile)
+export default connect(mapStateToProps)(FormUserProfile);

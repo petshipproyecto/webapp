@@ -1,16 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { signUp } from '../../store/actions/user'
+import { signUp } from "../../store/actions/user";
 // react redux firebase auth - https://github.com/the-road-to-react-with-firebase/react-redux-firebase-authentication
 import "./../../assets/scss/style.scss";
 import Aux from "../../hoc/_Aux";
 import Breadcrumb from "../../App/layout/AdminLayout/Breadcrumb";
 //import DEMO from "../../../store/constant";
-import axios from 'axios'
-import { connect } from 'react-redux';
-import { requestSignIn, signedIn } from '../../store/actions/user'
-import { auth } from '../../store/firebase';
-import { withRouter } from 'react-router-dom';
+import axios from "axios";
+import { connect } from "react-redux";
+import { requestSignIn, signedIn } from "../../store/actions/user";
+import { auth } from "../../store/firebase";
+import { withRouter } from "react-router-dom";
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -55,7 +55,7 @@ class SignUp extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          this.props.signUp(fields)
+          this.props.signUp(fields);
           if (this.props.authError) {
             swal({
               title: "Error!",
@@ -63,7 +63,7 @@ class SignUp extends React.Component {
               icon: "error",
               timer: 2000,
               button: false
-            })
+            });
           } else {
             swal({
               title: "Exito!",
@@ -71,9 +71,8 @@ class SignUp extends React.Component {
               icon: "success",
               timer: 2000,
               button: false
-            })
+            });
           }
-
 
           //const { history } = this.props;
           //history.push("/dashboard");
@@ -104,7 +103,6 @@ class SignUp extends React.Component {
           } ).catch(e => alert(e)
             );
           */
-
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -131,7 +129,10 @@ class SignUp extends React.Component {
                           style={{ height: 32, width: 32 }}
                         />
                       </div>
-                      <h7>Todos los campos son obligatorios<span style={{ color: 'red' }}> *</span></h7>
+                      <h7>
+                        Todos los campos son obligatorios
+                        <span style={{ color: "red" }}> *</span>
+                      </h7>
                       <div className="form-group">
                         <Field
                           placeholder="Nombre"
@@ -246,17 +247,20 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signUp: (userData) => dispatch(signUp(userData))
-  }
-}
+    signUp: userData => dispatch(signUp(userData))
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);
