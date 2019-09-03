@@ -18,7 +18,7 @@ const data = Array.from({ length: 10 }, (_, i) => ({
         draggable={false}
         src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
       />
-      <Card.Body>
+      <Card.Body className="cardBody">
         <center>
           <h3>
             <Badge className="badgeGaleria" pill variant="secondary">

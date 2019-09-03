@@ -15,7 +15,7 @@ export default {
                 },
                  {
                      id: 'buscarPareja',
-                     title: 'Buscar Pareja/Amigo',
+                     title: 'Buscar Pareja o Amigo',
                      type: 'item',
                      url: '/Swipe',
                      icon: 'feather icon-heart-on'
