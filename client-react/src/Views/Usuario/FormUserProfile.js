@@ -20,6 +20,14 @@ import Axios from "axios";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
+const imagen= {
+  minWidth:"150px",
+  maxHeight:"150px",
+  minHeight:"150px",
+  maxWidth: "150px",
+  border: "solid 4px #f47386"
+}
+
 //var rutaapi = "http://localhost:3001"
 var rutaapi = "https://petshipback-dev.herokuapp.com"
 
@@ -131,10 +139,7 @@ class FormUserProfile extends React.Component {
                       <center>
                         <img
                           className="rounded-circle"
-                          style={{
-                            width: "150px",
-                            border: "solid 4px #f47386"
-                          }}
+                          style={imagen}
                           src={avatar1}
                           alt="activity-user"
                         />
