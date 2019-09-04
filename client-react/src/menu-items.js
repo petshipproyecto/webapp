@@ -28,13 +28,6 @@ export default {
           url: "/GaleriaMascotas"
         },
         {
-          id: "notificaciones",
-          title: "Notificaciones",
-          type: "item",
-          icon: "feather icon-bell",
-          url: "/Notificaciones"
-        },
-        {
           id: "nuevaMascota",
           title: "Agregar Mascota",
           type: "item",
@@ -44,7 +37,7 @@ export default {
         },
         {
           id: "forms",
-          title: "Perfiles",
+          title: "Ver Perfiles",
           type: "collapse",
           icon: "feather icon-user",
           children: [
@@ -63,10 +56,17 @@ export default {
           ]
         },
         {
-          id: "administrarMascotas",
-          title: "Administrar Mascotas",
+          id: "notificaciones",
+          title: "Notificaciones",
           type: "item",
-          icon: "feather icon-settings",
+          icon: "feather icon-bell",
+          url: "/Notificaciones"
+        },
+        {
+          id: "administrarMascotas",
+          title: "Mis Mascotas",
+          type: "item",
+          icon: "feather icon-gitlab",
           url: "/TablaMascotas"
         },
         {
