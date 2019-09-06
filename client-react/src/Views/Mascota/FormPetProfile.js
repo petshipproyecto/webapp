@@ -179,17 +179,28 @@ class FormPetProfile extends React.Component {
                       <div className="form-group">
                         <br></br>
                         <center>
-                          <FileUploader
-                            accept="image/*"
-                            name="avatar"
-                            randomizeFilename
-                            storageRef={firebase.storage().ref("images")}
-                            onUploadStart={this.handleUploadStart}
-                            onUploadError={this.handleUploadError}
-                            onUploadSuccess={this.handleUploadSuccess}
-                            onProgress={this.handleProgress}
-                            style={{width:'100%',backgroundColor: '#f47386', color: 'white', padding: 10, borderRadius: 4}}
-                          />
+                          <label
+                            style={{
+                              backgroundColor: "#f47386",
+                              color: "white",
+                              padding: 10,
+                              borderRadius: 4,
+                              pointer: "cursor"
+                            }}
+                          >
+                            Seleccionar Foto de Perfil
+                            <FileUploader
+                              hidden
+                              accept="image/*"
+                              name="avatar"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("images")}
+                              onUploadStart={this.handleUploadStart}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleUploadSuccess}
+                              onProgress={this.handleProgress}
+                            />
+                          </label>
                         </center>
                       </div>
                     </Card.Body>
