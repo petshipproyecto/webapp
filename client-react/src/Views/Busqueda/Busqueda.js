@@ -4,7 +4,13 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Aux from "../../hoc/_Aux";
 import Tooltip from "rc-tooltip";
+import Select from "react-select";
 
+const options = [
+  { value: "Pincher", label: "Pincher" },
+  { value: "Coquer", label: "Coquer" },
+  { value: "Doberman", label: "Doberman" }
+];
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 const Handle = Slider.Handle;
@@ -23,14 +29,39 @@ const handle = props => {
     </Tooltip>
   );
 };
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: "1px dotted pink",
+    color: state.isSelected ? "red" : "blue",
+    padding: 20
+  }),
+  control: () => ({
+    // none of react-select's styles are passed to <Control />
+    width: 200
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = "opacity 300ms";
 
+    return { ...provided, opacity, transition };
+  }
+};
 const style = { left: 0, width: 500 };
 function log(value) {
   console.log(value); //eslint-disable-line
 }
 
 class FormNewPet extends React.Component {
+  state = {
+    selectedOption: null
+  };
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  };
   render() {
+    const { selectedOption } = this.state;
     return (
       <Form>
         <Aux>
@@ -128,11 +159,14 @@ class FormNewPet extends React.Component {
                         </div>
                       </div>
                       <hr style={{ color: "gray", height: 1 }} />
-
-                      <select name="raza" className="form-control">
-                        <option value="Pincher" label="Pincher" />
-                        <option value="Bulldog" label="Bulldog" />
-                      </select>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={options}
+                        isMulti={true}
+                        placeholder="Selecionar razas"
+                      />
+                      <br />
                       <br />
                       <div class="d-flex justify-content-between">
                         <div>

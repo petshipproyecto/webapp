@@ -74,52 +74,19 @@ export default {
           title: "Preferencias de Búsqueda",
           type: "item",
           icon: "feather icon-filter",
-          url: "/ConfiguracionBusqueda"
+          url: "/ConfiguracionBusqueda",
         },
         {
-          id: "auth",
-          title: "Autenticación",
-          type: "collapse",
-          icon: "feather icon-lock",
+          id: "configuracionBusqueda",
+          title: "Eleguir Mascota",
+          type: "item",
+          icon: "feather icon-circle",
+          url: "/choosePet",
           badge: {
-            title: "New",
+            title: "Prueba",
             type: "label-danger"
           },
-          children: [
-            {
-              id: "signup",
-              title: "Registrar Usuario",
-              type: "item",
-              url: "/signUp",
-              target: true,
-              breadcrumbs: false
-            },
-            {
-              id: "signin",
-              title: "Sign in",
-              type: "item",
-              url: "/signIn",
-              target: true,
-              breadcrumbs: false
-            },
-            {
-              id: "resetPassword",
-              title: "Reset Password",
-              type: "item",
-              url: "/resetPassword",
-              target: true,
-              breadcrumbs: false
-            },
-            {
-              id: "choosePet",
-              title: "Elegir Mascota",
-              type: "item",
-              url: "/choosePet",
-              target: true,
-              breadcrumbs: false
-            }
-          ]
-        }
+        },
       ]
     }
   ]
