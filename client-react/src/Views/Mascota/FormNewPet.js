@@ -164,11 +164,7 @@ class FormNewPet extends React.Component {
                           <Form>
                             <center>
                               <img
-                                className="rounded-circle"
-                                style={{
-                                  width: "180px",
-                                  border: "solid 4px #f47386"
-                                }}
+                                className="img-radio"
                                 src={this.state.urlImagen}
                                 alt="activity-user"
                               />
@@ -185,6 +181,7 @@ class FormNewPet extends React.Component {
                               onUploadError={this.handleUploadError}
                               onUploadSuccess={this.handleUploadSuccess}
                               onProgress={this.handleProgress}
+                              style={{width:'100%',backgroundColor: '#f47386', color: 'white', padding: 10, borderRadius: 4}}
                             />
                             <ErrorMessage
                               name="file"

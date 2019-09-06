@@ -20,14 +20,6 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import swal from "sweetalert";
 import { isNullOrUndefined } from "util";
 
-const imagen = {
-  minWidth: "150px",
-  maxHeight: "150px",
-  minHeight: "150px",
-  maxWidth: "150px",
-  border: "solid 4px #f47386"
-};
-
 //var rutaapi = "http://localhost:3001"
 var rutaapi = "https://petshipback-dev.herokuapp.com";
 
@@ -179,8 +171,7 @@ class FormPetProfile extends React.Component {
                     <Card.Body>
                       <center>
                         <img
-                          className="rounded-circle"
-                          style={imagen}
+                          className="img-radio"
                           src={this.state.urlImagen}
                           alt="activity-user"
                         />
@@ -197,6 +188,7 @@ class FormPetProfile extends React.Component {
                             onUploadError={this.handleUploadError}
                             onUploadSuccess={this.handleUploadSuccess}
                             onProgress={this.handleProgress}
+                            style={{width:'100%',backgroundColor: '#f47386', color: 'white', padding: 10, borderRadius: 4}}
                           />
                         </center>
                       </div>
