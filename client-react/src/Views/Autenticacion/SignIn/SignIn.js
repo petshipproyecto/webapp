@@ -129,7 +129,7 @@ class SignIn extends React.Component {
                         />
                       </div>
                       {this.props.authError == true ? (
-                        <div>Usuario o Contraseña Incorrecta</div>
+                        <div style={{color:'red'}}>Usuario o Contraseña Incorrecta</div>
                       ) : (
                         <div></div>
                       )}
