@@ -19,7 +19,7 @@ class NavContent extends Component {
     scrollPrevHandler = () => {
         const wrapperWidth = document.getElementById('sidenav-wrapper').clientWidth;
 
-        let scrollWidth = this.state.scrollWidth - wrapperWidth;
+        let scrollWidth = this.state.reducer.scrollWidth - wrapperWidth;
         if(scrollWidth < 0) {
             this.setState({scrollWidth: 0, prevDisable: true, nextDisable: false});
         } else {
@@ -31,7 +31,7 @@ class NavContent extends Component {
         const wrapperWidth = document.getElementById('sidenav-wrapper').clientWidth;
         const contentWidth = document.getElementById('sidenav-horizontal').clientWidth;
 
-        let scrollWidth = this.state.scrollWidth + (wrapperWidth - 80);
+        let scrollWidth = this.state.reducer.scrollWidth + (wrapperWidth - 80);
         if (scrollWidth > (contentWidth - wrapperWidth)) {
             scrollWidth = contentWidth - wrapperWidth + 80;
             this.setState({scrollWidth: scrollWidth, prevDisable: false, nextDisable: true});
@@ -54,11 +54,11 @@ class NavContent extends Component {
         let mainContent = '';
         if (this.props.layout === 'horizontal') {
             let prevClass = ['sidenav-horizontal-prev'];
-            if (this.state.prevDisable) {
+            if (this.state.reducer.prevDisable) {
                 prevClass = [...prevClass, 'disabled'];
             }
             let nextClass = ['sidenav-horizontal-next'];
-            if (this.state.nextDisable) {
+            if (this.state.reducer.nextDisable) {
                 nextClass = [...nextClass, 'disabled'];
             }
 
@@ -66,7 +66,7 @@ class NavContent extends Component {
                 <div className="navbar-content sidenav-horizontal" id="layout-sidenav">
                     <a href={DEMO.BLANK_LINK} className={prevClass.join(' ')} onClick={this.scrollPrevHandler}><span/></a>
                     <div id="sidenav-wrapper" className="sidenav-horizontal-wrapper">
-                        <ul id="sidenav-horizontal" className="nav pcoded-inner-navbar sidenav-inner" onMouseLeave={this.props.onNavContentLeave} style={{marginLeft: '-'+this.state.scrollWidth+'px'}}>
+                        <ul id="sidenav-horizontal" className="nav pcoded-inner-navbar sidenav-inner" onMouseLeave={this.props.onNavContentLeave} style={{marginLeft: '-'+this.state.reducer.scrollWidth+'px'}}>
                             {navItems}
                         </ul>
                     </div>
@@ -95,8 +95,8 @@ class NavContent extends Component {
 
 const mapStateToProps = state => {
     return {
-        layout: state.layout,
-        collapseMenu: state.collapseMenu,
+        layout: state.reducer.layout,
+        collapseMenu: state.reducer.collapseMenu,
     }
 };
 
