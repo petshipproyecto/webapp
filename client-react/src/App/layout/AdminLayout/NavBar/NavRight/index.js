@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Dropdown, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
-import {signOut} from '../../../../../../src/store/actions/user'
-import { connect } from 'react-redux';
+import { signOut } from "../../../../../../src/store/actions/user";
+import { connect } from "react-redux";
 import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
-import axios from 'axios'
+import axios from "axios";
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -16,37 +16,37 @@ import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 class NavRight extends Component {
   state = {
     listOpen: false,
-    perfiles: [
-      
-    ]
+    perfiles: []
   };
-  
 
   render() {
-    const loadProfiles = () =>{
-      
-      axios.get('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId).then(response =>{        
-        this.setState({perfiles: response.data.Perfils});
-      }).catch(e =>{
+    const loadProfiles = () => {
+      axios
+        .get(
+          "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
+        )
+        .then(response => {
+          this.setState({ perfiles: response.data.Perfils });
+        })
+        .catch(e => {});
+    };
 
-      })
-      
+    const setTargetProfile = perfil => {
+      console.log(perfil);
 
-    }
+      axios
+        .put(
+          "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId,
+          {
+            Id_perfil_activo: perfil
+          }
+        )
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => {});
+    };
 
-    const setTargetProfile = (perfil) =>{
-      console.log(perfil)
-      
-      axios.put('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId,{
-        Id_perfil_activo: perfil
-      }).then(response =>{        
-        console.log(response)
-      }).catch(e =>{
-
-      })
-      
-    }
-    
     return (
       <Aux>
         <ul className="navbar-nav ml-auto">
@@ -73,52 +73,57 @@ class NavRight extends Component {
             </a>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} onClick={ loadProfiles}>
+            <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
-              >
-                <i className="fa fa-paw" />
+                <OverlayTrigger
+                  placement="left"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
+                >
+                  <i className="fa fa-paw" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification" >
+              <Dropdown.Menu alignRight className="notification">
                 <div className="noti-head">
-                  <h6 className="d-inline-block m-b-0">Perfiles de Mascotas Disponibles</h6>
+                  <h6 className="d-inline-block m-b-0">
+                    Perfiles de Mascotas Disponibles
+                  </h6>
                 </div>
                 <ul className="noti-body">
-                  {
-                    
-
-                    this.state.perfiles !== 0 ?
-                    (
-                    this.state.perfiles.map(element => {
-                      return(
-                        <li className="notification" onClick={function(){setTargetProfile(element.Id_perfil)}}>
-                      <div className="media">
-                        <img
-                          className="media-object img-radius"
-                          src={element.Imagen}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p class="pt-3">{element.Nombre}</p>
-                        </div>
-                      </div>
-                    </li>
-              
-                      )
-                    
-                  })
-                    ): ( () => {return (<Spinner animation="border" />) })
-                      
-    
-                    
-
-                  
-                  }                      
-                  </ul>
+                  {this.state.perfiles !== 0
+                    ? this.state.perfiles.map(element => {
+                        return (
+                          <li
+                            className="notification"
+                            onClick={function() {
+                              setTargetProfile(element.Id_perfil);
+                            }}
+                          >
+                            <div className="media">
+                              <img
+                                className="media-object img-radius"
+                                src={element.Imagen}
+                                alt="Generic placeholder"
+                              />
+                              <div
+                                className="media-body"
+                                style={{ verticalAlign: "center" }}
+                              >
+                                <p
+                                  class="pt-3"
+                                  style={{ fontWeight: "bolder" }}
+                                >
+                                  {element.Nombre}
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      })
+                    : () => {
+                        return <Spinner animation="border" />;
+                      }}
+                </ul>
               </Dropdown.Menu>
             </Dropdown>
           </li>
@@ -236,7 +241,11 @@ class NavRight extends Component {
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="dropdown-item" onClick={this.props.signOut}>
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={this.props.signOut}
+                    >
                       <i className="feather icon-lock" />
                       Cerrar Sesión
                     </a>
@@ -257,21 +266,20 @@ class NavRight extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
-   return {
-     userId: state.firebase.auth.uid,
-     authError: state.auth.authError
-   }
- }
-const mapDispatchToProps = (dispatch) => {
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
+const mapDispatchToProps = dispatch => {
   return {
     signOut: () => dispatch(signOut())
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavRight)
-
-
- 
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavRight);
