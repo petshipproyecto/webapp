@@ -39,18 +39,20 @@ export default {
           id: "forms",
           title: "Ver Perfiles",
           type: "collapse",
-          icon: "feather icon-user",
+          icon: "fa fa-id-card-o",
           children: [
             {
               id: "perfilUsuario",
               title: "Ver Perfil de Usuario",
               type: "item",
+              icon: "feather icon-user",
               url: "/UserProfile"
             },
             {
               id: "perfilMascota",
               title: "Ver Perfil de Mascota",
               type: "item",
+              icon: "feather icon-github",
               url: "/PetProfile"
             }
           ]
@@ -66,7 +68,7 @@ export default {
           id: "administrarMascotas",
           title: "Mis Mascotas",
           type: "item",
-          icon: "feather icon-gitlab",
+          icon: "fa fa-paw",
           url: "/TablaMascotas"
         },
         {
@@ -80,7 +82,7 @@ export default {
           id: "configuracionBusqueda",
           title: "Eleguir Mascota",
           type: "item",
-          icon: "feather icon-circle",
+          icon: "fa fa-check-circle",
           url: "/choosePet",
           badge: {
             title: "Prueba",

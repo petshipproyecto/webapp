@@ -185,7 +185,7 @@ class FormPetProfile extends React.Component {
                               color: "white",
                               padding: 10,
                               borderRadius: 4,
-                              pointer: "cursor"
+                              cursor:"pointer",
                             }}
                           >
                             Seleccionar Foto de Perfil

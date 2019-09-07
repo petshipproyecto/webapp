@@ -6,11 +6,16 @@ import Aux from "../../hoc/_Aux";
 import Tooltip from "rc-tooltip";
 import Select from "react-select";
 
+
+//------Para el select multiple---------------
 const options = [
   { value: "Pincher", label: "Pincher" },
   { value: "Coquer", label: "Coquer" },
   { value: "Doberman", label: "Doberman" }
 ];
+//------Para el select multiple---------------
+
+//------Para el slide del rango---------------
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 const Handle = Slider.Handle;
@@ -47,12 +52,15 @@ const customStyles = {
     return { ...provided, opacity, transition };
   }
 };
-const style = { left: 0, width: 500 };
+const style = { left: 0, width: "100%" };
 function log(value) {
   console.log(value); //eslint-disable-line
 }
+//------Para el slide del rango---------------
+
 
 class FormNewPet extends React.Component {
+  //------Para el select multiple---------------
   state = {
     selectedOption: null
   };
@@ -60,8 +68,11 @@ class FormNewPet extends React.Component {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
   };
+  //------Para el select multiple---------------
   render() {
+    //------Para el select multiple---------------
     const { selectedOption } = this.state;
+    //------Para el select multiple---------------
     return (
       <Form>
         <Aux>

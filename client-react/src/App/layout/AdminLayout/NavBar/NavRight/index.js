@@ -80,7 +80,7 @@ class NavRight extends Component {
                 delay={{ show: 250, hide: 400 }}
                 overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
               >
-                <i className="icon feather icon-gitlab" />
+                <i className="fa fa-paw" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="notification" >
