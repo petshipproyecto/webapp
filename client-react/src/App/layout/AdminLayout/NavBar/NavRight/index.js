@@ -83,7 +83,7 @@ class NavRight extends Component {
                   <i className="fa fa-paw" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification">
+              <Dropdown.Menu alignRight className="notification" style={{width:80}}>
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">
                     Perfiles de Mascotas Disponibles
@@ -101,6 +101,7 @@ class NavRight extends Component {
                           >
                             <div className="media">
                               <img
+                              style={{border:"solid 2px #f47386"}}
                                 className="media-object img-radius"
                                 src={element.Imagen}
                                 alt="Generic placeholder"
@@ -111,7 +112,7 @@ class NavRight extends Component {
                               >
                                 <p
                                   class="pt-3"
-                                  style={{ fontWeight: "bolder" }}
+                                  style={{fontWeight: "bolder"}}
                                 >
                                   {element.Nombre}
                                 </p>
