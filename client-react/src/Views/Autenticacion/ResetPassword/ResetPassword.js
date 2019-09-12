@@ -20,6 +20,7 @@ class ResetPassword extends React.Component {
         validationSchema={Yup.object().shape({
           email: Yup.string()
             .email("El email tiene un formato invalido")
+            .max(50, "Email debe tener como máximo 50 caracteres")
             .required("El email es obligatorio")
         })}
         
