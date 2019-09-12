@@ -49,7 +49,6 @@ export const signIn = (credentials) => {
             // Recupera la ubicación y la asigna al nuevo usuario
             axios.post(rutaApi+'usuario', {           
                 "Usr_cod": resp.user.uid,
-                "Email":newUser.email,
                 "Nombre": newUser.firstName,
                 "Apellido": newUser.lastName,
                 "Id_ubicacion": newUbicacion.data.Id_ubicacion

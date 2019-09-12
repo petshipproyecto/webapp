@@ -115,14 +115,13 @@ class FormNewPet extends React.Component {
         }}
         onSubmit={fields => {
           axios
-            .post(rutaApi + "/perfil", {
+            .post(rutaApi + "perfil", {
               // payload
               Nombre: fields.Nombre,
               Edad: this.state.Edad,
               Imagen: this.state.urlImagen,
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero,
-              Id_animal: this.state.Animal.Id_animal,
               Usr_cod: this.props.userId
             })
             .then(response => {

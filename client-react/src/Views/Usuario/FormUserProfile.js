@@ -27,8 +27,8 @@ class FormUserProfile extends React.Component {
   state = {
     Nombre: "",
     Apellido: "",
-    Ubicacion: [],
-    Email: ""
+    Ubicacion: []/* ,
+    Email: "" */
   };
   componentDidMount() {
     // Obtiene los datos de usuario
@@ -36,8 +36,8 @@ class FormUserProfile extends React.Component {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        Ubicacion: response.data.Ubicacion,
-        Email: response.data.Email
+        Ubicacion: response.data.Ubicacion/* ,
+        Email: response.data.Email */
       });
     });
   }
@@ -60,8 +60,8 @@ class FormUserProfile extends React.Component {
         initialValues={{
           Nombre: this.state.Nombre,
           Apellido: this.state.Apellido,
-          Ubicacion: this.state.Ubicacion.Descripcion,
-          Email: this.state.Email
+          Ubicacion: this.state.Ubicacion.Descripcion/* ,
+          Email: this.state.Email */
         }}
         validationSchema={Yup.object().shape({
           Nombre: Yup.string()
@@ -76,11 +76,11 @@ class FormUserProfile extends React.Component {
             .required("El apellido es obligatorio"),
           Ubicacion: Yup.string()
             .trim()
-            .required("La ubicación es obligatoria"),
+            .required("La ubicación es obligatoria")/* ,
           Email: Yup.string()
             .email("El email tiene un formato invalido")
             .max(50, "Email debe tener como máximo 50 caracteres")
-            .required("El email es obligatorio")
+            .required("El email es obligatorio") */
         })}
         onSubmit={fields => {
           axios.put(
@@ -92,7 +92,7 @@ class FormUserProfile extends React.Component {
           axios
             .put(rutaApi + "usuario/" + this.props.userId, {
               //this.props.userId
-              Email: fields.Email,
+              /* Email: fields.Email, */
               Nombre: fields.Nombre,
               Apellido: fields.Apellido
             })
@@ -240,7 +240,7 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-                            <div className="form-group">
+                            {/* <div className="form-group">
                               <label>
                                 Email <span style={{ color: "red" }}>*</span>{" "}
                               </label>
@@ -260,7 +260,7 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </div>
+                            </div> */}
 
                             <button
                               type="submit"
