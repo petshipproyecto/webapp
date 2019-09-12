@@ -6,6 +6,7 @@ import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
+import config from '../../config'
 
 import { connect } from "react-redux";
 
@@ -20,8 +21,7 @@ import Axios from "axios";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
-//var rutaapi = "http://localhost:3001"
-var rutaapi = "https://petshipback-dev.herokuapp.com";
+var rutaApi = config.rutaApi
 
 class FormUserProfile extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class FormUserProfile extends React.Component {
   };
   componentDidMount() {
     // Obtiene los datos de usuario
-    axios.get(rutaapi + "/usuario/" + this.props.userId).then(response => {
+    axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
@@ -84,13 +84,13 @@ class FormUserProfile extends React.Component {
         })}
         onSubmit={fields => {
           axios.put(
-            rutaapi + "/ubicacion/" + this.state.Ubicacion.Id_ubicacion,
+            rutaApi + "ubicacion/" + this.state.Ubicacion.Id_ubicacion,
             {
               Descripcion: fields.Ubicacion
             }
           );
           axios
-            .put(rutaapi + "/usuario/" + this.props.userId, {
+            .put(rutaApi + "usuario/" + this.props.userId, {
               //this.props.userId
               Email: fields.Email,
               Nombre: fields.Nombre,
