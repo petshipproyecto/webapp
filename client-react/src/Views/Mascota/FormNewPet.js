@@ -162,10 +162,9 @@ class FormNewPet extends React.Component {
                         <Col md={12}>
                           <Form>
                             <center>
-                              <img
+                              <img 
                                 className="img-radio"
                                 src={this.state.urlImagen}
-                                alt="activity-user"
                               />
                             </center>
                           </Form>

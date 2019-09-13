@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
             <img
               style={{
                 maxHeight: 380,
-
                 minHeight: 380
               }}
               src={logo}

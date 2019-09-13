@@ -14,9 +14,7 @@ class ComingSoon extends React.Component {
         <div class="auth-wrapper offline">
           <div class="text-center">
             <h1 class="mb-4">COMING SOON</h1>
-            <h5 class="text-muted mb-4">
-              Esta pagina se esta  desarrollando
-            </h5>
+            <h5 class="text-muted mb-4">Esta pagina se esta desarrollando</h5>
             <a
               class="btn btn-primary mb-4 active"
               aria-current="page"

@@ -240,11 +240,12 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-                            {/* <div className="form-group">
+                            <div className="form-group">
                               <label>
                                 Email <span style={{ color: "red" }}>*</span>{" "}
                               </label>
                               <Field
+                                readOnly
                                 name="Email"
                                 placeholder="Email"
                                 type="text"
@@ -260,7 +261,7 @@ class FormUserProfile extends React.Component {
                                 component="div"
                                 className="invalid-feedback"
                               />
-                            </div> */}
+                            </div>
 
                             <button
                               type="submit"
