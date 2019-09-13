@@ -10,7 +10,7 @@ const PublicRoute = ({ component: Component, user, ...rest }) => (
       user.isEmpty === true 
       ? <Component {...props} /> 
       : <Redirect to={{
-        pathname:  '/dashboard'
+        pathname:  '/choosePet'
       }}/>
     )}
   />

@@ -3,18 +3,39 @@ import React from "react";
 import "./../../assets/scss/style.scss";
 import "./../../assets/scss/partials/pages/gallery.scss";
 import Aux from "../../hoc/_Aux";
-
+import { connect } from "react-redux";
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
-
+import axios from 'axios'
 import avatar1 from "../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
 import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
+import { ClipLoader } from 'react-spinners';
 
 class ChoosePet extends React.Component {
+  state = {
+    perfiles: [],
+    loading: true
+  };
+  
+
+  componentDidMount() {
+    axios
+      .get(
+        "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
+      )
+      .then(response => {
+         
+        this.setState({ perfiles: response.data.Perfils, loading: false });
+      })
+      .catch(e => { });
+  };
+
+
   render() {
+  
     return (
       <Aux>
         <div className="auth-wrapper aut-bg-img-new">
@@ -22,66 +43,35 @@ class ChoosePet extends React.Component {
             <Container>
               <br></br>
               <Row>
-                <Col>
-                  <Figure class="effect-selena">
-                    <a href="/dashboard/default">
-                      <Image src={avatar1} className="imagen" />
-                    </a>
-                    <p>
-                      <center>
-                        <span>Michu</span>
-                      </center>
-                    </p>
-                  </Figure>
-                </Col>
-                <Col>
-                  <Figure class="effect-selena">
-                    <a href="/dashboard/default">
-                      <Image src={avatar2} className="imagen" />
-                    </a>
-                    <p>
-                      <center>
-                        <span>Lola</span>
-                      </center>
-                    </p>
-                  </Figure>
-                </Col>
-                <Col>
-                  <Figure class="effect-selena">
-                    <a href="/dashboard/default">
-                      <Image src={avatar3} className="imagen" />
-                    </a>
-                    <p>
-                      <center>
-                        <span>Firulai</span>
-                      </center>
-                    </p>
-                  </Figure>
-                </Col>
-                <Col>
-                  <Figure class="effect-selena">
-                    <a href="/dashboard/default">
-                      <Image src={avatar4} className="imagen" />
-                    </a>
-                    <p>
-                      <center>
-                        <span>Pelusa</span>
-                      </center>
-                    </p>
-                  </Figure>
-                </Col>
-                <Col>
-                  <Figure class="effect-selena">
-                    <a href="/dashboard/default">
-                      <Image src={avatar5} className="imagen" />
-                    </a>
-                    <p>
-                      <center>
-                        <span>Tortu</span>
-                      </center>
-                    </p>
-                  </Figure>
-                </Col>
+              <div className='sweet-loading'>
+        <ClipLoader
+         
+          sizeUnit={"px"}
+          size={150}
+          color={'#red'}
+          loading={this.state.loading}
+        />
+      </div>
+                {
+                  
+                  this.state.perfiles.map(element => {
+                  return (<Col> 
+                    <Figure class="effect-selena">
+                      <a href="/dashboard/default">
+                        <Image src={element.Imagen} className="imagen" />
+                      </a>
+                      <p>
+                        <center>
+                          <span> {element.Nombre}</span>
+                        </center>
+                      </p>
+                    </Figure>
+                  </Col>) 
+
+                })
+                }
+
+
                 <Col className="col-centered">
                   <br />
                   <br />
@@ -120,4 +110,18 @@ class ChoosePet extends React.Component {
   }
 }
 
-export default ChoosePet;
+const mapStateToProps = state => {
+  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
+const mapDispatchToProps = dispatch => {
+
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChoosePet);

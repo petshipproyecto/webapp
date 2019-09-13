@@ -103,7 +103,7 @@ class NavCollapse extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("nav: " + JSON.stringify(state))
+    //console.log("nav: " + JSON.stringify(state))
     
     return {
         layout: state.reducer.layout,

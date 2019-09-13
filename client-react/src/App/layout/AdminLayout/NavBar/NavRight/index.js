@@ -32,7 +32,7 @@ class NavRight extends Component {
     };
 
     const setTargetProfile = perfil => {
-      console.log(perfil);
+      //console.log(perfil);
 
       axios
         .put(
@@ -42,7 +42,7 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          console.log(response);
+          //console.log(response);
         })
         .catch(e => {});
     };

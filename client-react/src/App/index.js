@@ -49,8 +49,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("state" + JSON.stringify(state))
-    console.log("auth" + JSON.stringify(state.firebase.auth))
+    //console.log("state" + JSON.stringify(state))
+    //console.log("auth" + JSON.stringify(state.firebase.auth))
     return{
       authError: state.auth.authError,
       auth: state.firebase.auth

@@ -14,11 +14,11 @@ const initState = {
   
       case 'LOGIN_SUCCESS':
         console.log('login success');
-        //console.log(action)
+        console.log(action.b)
         let newState = Object.assign({}, state, {
-            user: action.user,
+            user: action.usuario,
             authError:null,
-            a:"f"
+            a:"reconoce"
         });
         console.log("new state " + JSON.stringify(newState))
         return newState
