@@ -6,12 +6,15 @@ import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
 import axios from "axios";
+import config from '../../../../../config'
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
 import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
 import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
 import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
+
+var rutaApi = config.rutaApi
 
 class NavRight extends Component {
   state = {
@@ -23,7 +26,7 @@ class NavRight extends Component {
     const loadProfiles = () => {
       axios
         .get(
-          "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
+          rutaApi + 'usuario/' + this.props.userId
         )
         .then(response => {
           this.setState({ perfiles: response.data.Perfils });
@@ -36,7 +39,7 @@ class NavRight extends Component {
 
       axios
         .put(
-          "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId,
+          rutaApi + 'usuario/' + this.props.userId,
           {
             Id_perfil_activo: perfil
           }

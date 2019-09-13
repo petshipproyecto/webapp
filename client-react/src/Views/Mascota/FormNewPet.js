@@ -7,6 +7,7 @@ import axios from "axios";
 import update from "react-addons-update"; // ES6
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
+import config from '../../config'
 
 // Componentes utilizados
 import RazaSelect from "./Selects/RazaSelect";
@@ -20,8 +21,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
-var rutaapi = "http://localhost:3001";
-rutaapi = "https://petshipback-dev.herokuapp.com";
+var rutaApi = config.rutaApi
 
 class FormNewPet extends React.Component {
   state = {
@@ -36,7 +36,7 @@ class FormNewPet extends React.Component {
 
   componentDidMount() {
     // Obtiene TODOS los tipos de animales
-    axios.get(rutaapi + "/animal").then(response => {
+    axios.get(rutaApi + "animal").then(response => {
       var Razas_disponibles = null;
       this.state.Animal
         ? (Razas_disponibles = response.data.find(
@@ -115,14 +115,13 @@ class FormNewPet extends React.Component {
         }}
         onSubmit={fields => {
           axios
-            .post(rutaapi + "/perfil", {
+            .post(rutaApi + "perfil", {
               // payload
               Nombre: fields.Nombre,
               Edad: this.state.Edad,
               Imagen: this.state.urlImagen,
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero,
-              Id_animal: this.state.Animal.Id_animal,
               Usr_cod: this.props.userId
             })
             .then(response => {
