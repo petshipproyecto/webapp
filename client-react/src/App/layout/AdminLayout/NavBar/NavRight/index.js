@@ -7,6 +7,7 @@ import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
 import axios from "axios";
 import config from '../../../../../config'
+import { ClipLoader } from 'react-spinners';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -19,7 +20,8 @@ var rutaApi = config.rutaApi
 class NavRight extends Component {
   state = {
     listOpen: false,
-    perfiles: []
+    perfiles: [],
+    loading: true
   };
 
   render() {
@@ -29,7 +31,7 @@ class NavRight extends Component {
           rutaApi + 'usuario/' + this.props.userId
         )
         .then(response => {
-          this.setState({ perfiles: response.data.Perfils });
+          this.setState({ perfiles: response.data.Perfils, loading: false });
         })
         .catch(e => {});
     };
@@ -92,7 +94,15 @@ class NavRight extends Component {
                     Perfiles de Mascotas Disponibles
                   </h6>
                 </div>
+
                 <ul className="noti-body">
+                <li><ClipLoader
+         
+         sizeUnit={"px"}
+         size={150}
+         color={'#red'}
+         loading={this.state.loading}
+       /></li>
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
                         return (
@@ -125,7 +135,7 @@ class NavRight extends Component {
                         );
                       })
                     : () => {
-                        return <Spinner animation="border" />;
+                        return <div>No hay mascotas disponibles</div>;
                       }}
                 </ul>
               </Dropdown.Menu>

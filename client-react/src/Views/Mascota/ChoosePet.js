@@ -19,7 +19,7 @@ class ChoosePet extends React.Component {
     perfiles: [],
     loading: true
   };
-  
+
 
   componentDidMount() {
     axios
@@ -27,7 +27,7 @@ class ChoosePet extends React.Component {
         "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
       )
       .then(response => {
-         
+
         this.setState({ perfiles: response.data.Perfils, loading: false });
       })
       .catch(e => { });
@@ -35,7 +35,7 @@ class ChoosePet extends React.Component {
 
 
   render() {
-  
+
     return (
       <Aux>
         <div className="auth-wrapper aut-bg-img-new">
@@ -43,32 +43,32 @@ class ChoosePet extends React.Component {
             <Container>
               <br></br>
               <Row>
-              <div className='sweet-loading'>
-        <ClipLoader
-         
-          sizeUnit={"px"}
-          size={150}
-          color={'#red'}
-          loading={this.state.loading}
-        />
-      </div>
-                {
-                  
-                  this.state.perfiles.map(element => {
-                  return (<Col> 
-                    <Figure class="effect-selena">
-                      <a href="/dashboard/default">
-                        <Image src={element.Imagen} className="imagen" />
-                      </a>
-                      <p>
-                        <center>
-                          <span> {element.Nombre}</span>
-                        </center>
-                      </p>
-                    </Figure>
-                  </Col>) 
+                <div className='sweet-loading'>
+                  <ClipLoader
 
-                })
+                    sizeUnit={"px"}
+                    size={150}
+                    color={'#red'}
+                    loading={this.state.loading}
+                  />
+                </div>
+                {
+
+                  this.state.perfiles.map(element => {
+                    return (<Col>
+                      <Figure class="effect-selena">
+                        <a href="/dashboard/default">
+                          <Image src={element.Imagen} className="imagen" />
+                        </a>
+                        <p>
+                          <center>
+                            <span> {element.Nombre}</span>
+                          </center>
+                        </p>
+                      </Figure>
+                    </Col>)
+
+                  })
                 }
 
 
