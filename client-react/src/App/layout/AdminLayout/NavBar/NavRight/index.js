@@ -8,6 +8,7 @@ import DEMO from "../../../../../store/constant";
 import axios from "axios";
 import config from '../../../../../config'
 import { ClipLoader } from 'react-spinners';
+import { Route, Redirect } from 'react-router-dom';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -33,7 +34,7 @@ class NavRight extends Component {
         .then(response => {
           this.setState({ perfiles: response.data.Perfils, loading: false });
         })
-        .catch(e => {});
+        .catch(e => {}); 
     };
 
     const setTargetProfile = perfil => {
@@ -47,7 +48,10 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          //console.log(response);
+          return (<Redirect to={{
+            pathname: '/FormPetProfile'
+          }}/>)
+                    //console.log(response);
         })
         .catch(e => {});
     };
@@ -248,7 +252,7 @@ class NavRight extends Component {
                       Perfil de Mascota
                     </a>
                   </li>
-                  <li>
+                  <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
                       Administrar Mascotas

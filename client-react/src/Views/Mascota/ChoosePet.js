@@ -13,6 +13,7 @@ import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
 import { ClipLoader } from 'react-spinners';
+import { Route, Redirect } from 'react-router-dom';
 
 class ChoosePet extends React.Component {
   state = {
@@ -36,6 +37,23 @@ class ChoosePet extends React.Component {
 
   render() {
 
+    const setTargetProfile = perfil => {
+      //console.log(perfil);
+
+      axios
+        .put(
+          'https://petshipback-dev.herokuapp.com/' + 'usuario/' + this.props.userId,
+          {
+            Id_perfil_activo: perfil
+          }
+        )
+        .then(response => {
+          window.location.replace('petship/PetProfile')
+                    //console.log(response);
+        })
+        .catch(e => {});
+    };
+
     return (
       <Aux>
         <div className="auth-wrapper aut-bg-img-new">
@@ -56,9 +74,11 @@ class ChoosePet extends React.Component {
 
                   this.state.perfiles.map(element => {
                     return (<Col>
-                      <Figure class="effect-selena">
+                      <Figure class="effect-selena"  onClick={function() {
+                              setTargetProfile(element.Id_perfil);
+                            }}>
                         <a href="/dashboard/default">
-                          <Image src={element.Imagen} className="imagen" />
+                          <Image src={element.Imagen} className="imagen" id={element.Id_perfil} />
                         </a>
                         <p>
                           <center>
