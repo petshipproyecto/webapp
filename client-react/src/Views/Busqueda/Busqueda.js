@@ -4,7 +4,18 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Aux from "../../hoc/_Aux";
 import Tooltip from "rc-tooltip";
+import Select from "react-select";
 
+
+//------Para el select multiple---------------
+const options = [
+  { value: "Pincher", label: "Pincher" },
+  { value: "Coquer", label: "Coquer" },
+  { value: "Doberman", label: "Doberman" }
+];
+//------Para el select multiple---------------
+
+//------Para el slide del rango---------------
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 const Handle = Slider.Handle;
@@ -23,14 +34,45 @@ const handle = props => {
     </Tooltip>
   );
 };
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: "1px dotted pink",
+    color: state.isSelected ? "red" : "blue",
+    padding: 20
+  }),
+  control: () => ({
+    // none of react-select's styles are passed to <Control />
+    width: 200
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = "opacity 300ms";
 
-const style = { left: 0, width: 500 };
+    return { ...provided, opacity, transition };
+  }
+};
+const style = { left: 0, width: "100%" };
 function log(value) {
   console.log(value); //eslint-disable-line
 }
+//------Para el slide del rango---------------
+
 
 class FormNewPet extends React.Component {
+  //------Para el select multiple---------------
+  state = {
+    selectedOption: null
+  };
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  };
+  //------Para el select multiple---------------
   render() {
+    //------Para el select multiple---------------
+    const { selectedOption } = this.state;
+    //------Para el select multiple---------------
     return (
       <Form>
         <Aux>
@@ -128,11 +170,14 @@ class FormNewPet extends React.Component {
                         </div>
                       </div>
                       <hr style={{ color: "gray", height: 1 }} />
-
-                      <select name="raza" className="form-control">
-                        <option value="Pincher" label="Pincher" />
-                        <option value="Bulldog" label="Bulldog" />
-                      </select>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={options}
+                        isMulti={true}
+                        placeholder="Selecionar razas"
+                      />
+                      <br />
                       <br />
                       <div class="d-flex justify-content-between">
                         <div>

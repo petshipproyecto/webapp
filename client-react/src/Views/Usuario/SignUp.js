@@ -48,6 +48,7 @@ class SignUp extends React.Component {
             .required("La ubicación es obligatoria"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
+            .max(50, "Email debe tener como máximo 50 caracteres")
             .required("El email es obligatorio"),
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")

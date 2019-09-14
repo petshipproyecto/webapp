@@ -1,5 +1,9 @@
 import { push } from 'react-router-redux'
 import axios from 'axios'
+import config from '../../config'
+
+var rutaApi = config.rutaApi
+
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
       const firebase = getFirebase();
@@ -9,8 +13,8 @@ export const signIn = (credentials) => {
         credentials.email,
         credentials.password
       ).then((response) => {
-        console.log(response)
-        dispatch({ type: 'LOGIN_SUCCESS' });
+        console.log( response.user)
+        dispatch({ type: 'LOGIN_SUCCESS', usuario: response.user });
       }).catch((err) => {
         dispatch({ type: 'LOGIN_ERROR', err });
       });
@@ -39,14 +43,13 @@ export const signIn = (credentials) => {
         newUser.password
       ).then(resp => {
         // Guarda la ubicación
-        axios.post("https://petshipback-dev.herokuapp.com/ubicacion",{
+        axios.post(rutaApi+'ubicacion',{
           Descripcion: newUser.ubicacion
         })
           .then(newUbicacion => {
             // Recupera la ubicación y la asigna al nuevo usuario
-            axios.post('https://petshipback-dev.herokuapp.com/usuario', {           
+            axios.post(rutaApi+'usuario', {           
                 "Usr_cod": resp.user.uid,
-                "Email":newUser.email,
                 "Nombre": newUser.firstName,
                 "Apellido": newUser.lastName,
                 "Id_ubicacion": newUbicacion.data.Id_ubicacion

@@ -1,3 +1,5 @@
+
+
 import React, { Component, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
@@ -5,12 +7,11 @@ import PrivateRoute from '../Middleware/PrivateRoute'
 import PublicRoute from '../Middleware/PublicRoute'
 import { connect } from 'react-redux';
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
-
 import Loader from './layout/Loader'
 import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
-
+const ChoosePet = React.lazy(() => import('../Views/Mascota/ChoosePet'));
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
     loading: Loader
@@ -39,8 +40,9 @@ class App extends Component {
                     <Suspense fallback={<Loader/>}>
                         <Switch>
                             {menu}
-
+                            
                             <PrivateRoute path="/" component={AdminLayout}  user={this.props.auth}  />
+                            <PrivateRoute path='/choosePet' component={ChoosePet} user={this.props.auth} />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
@@ -50,8 +52,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("state" + JSON.stringify(state))
-    console.log("auth" + JSON.stringify(state.firebase.auth))
+    //console.log("state" + JSON.stringify(state))
+    //console.log("auth" + JSON.stringify(state.firebase.auth))
     return{
       authError: state.auth.authError,
       auth: state.firebase.auth

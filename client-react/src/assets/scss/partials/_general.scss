@@ -67,7 +67,19 @@ strong {
 
 .img-radius {
     border-radius: 50%;
-    width: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    min-height: 40px;
+    max-width: 40px;
+}
+
+.img-radio {
+    border-radius: 50%;
+    min-width: 150px;
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    border: solid 4px #f47386
 }
 
 .page-header-title + .breadcrumb {

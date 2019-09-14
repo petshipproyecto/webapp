@@ -6,6 +6,7 @@ import Aux from "../../hoc/_Aux";
 import avatar2 from "../../assets/images/user/avatar-6.jpg";
 import axios from "axios";
 import { connect } from "react-redux";
+import config from '../../config'
 
 // Componentes utilizados
 import RazaSelect from "./Selects/RazaSelect";
@@ -20,16 +21,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import swal from "sweetalert";
 import { isNullOrUndefined } from "util";
 
-const imagen = {
-  minWidth: "150px",
-  maxHeight: "150px",
-  minHeight: "150px",
-  maxWidth: "150px",
-  border: "solid 4px #f47386"
-};
-
-//var rutaapi = "http://localhost:3001"
-var rutaapi = "https://petshipback-dev.herokuapp.com";
+var rutaApi = config.rutaApi
 
 class FormPetProfile extends React.Component {
   state = {
@@ -44,10 +36,11 @@ class FormPetProfile extends React.Component {
 
   async componentDidMount() {
     // Obtiene los datos del perfil
-    const usuario = await axios.get(rutaapi + "/usuario/" + this.props.userId);
+    const usuario = await axios.get(rutaApi + "usuario/" + this.props.userId);
     const perfil_activo = usuario.data.Id_perfil_activo;
-    axios.get(rutaapi + "/perfil/" + perfil_activo).then(response => {
+    axios.get(rutaApi + "perfil/" + perfil_activo).then(response => {
       this.setState({
+        Id_perfil: perfil_activo,
         Nombre: response.data.Nombre,
         Raza: response.data.Raza,
         Animal: response.data.Raza.Animal,
@@ -56,7 +49,7 @@ class FormPetProfile extends React.Component {
         urlImagen: response.data.Imagen
       });
       // Obtiene TODOS los tipos de animales
-      axios.get(rutaapi + "/animal").then(response => {
+      axios.get(rutaApi + "animal").then(response => {
         var Razas_disponibles = null;
         this.state.Animal
           ? (Razas_disponibles = response.data.find(
@@ -136,7 +129,7 @@ class FormPetProfile extends React.Component {
         }}
         onSubmit={fields => {
           axios
-            .put(rutaapi + "/perfil/1", {
+            .put(rutaApi + "perfil/"+this.state.Id_perfil, {
               // payload
               Nombre: fields.Nombre,
               Edad: this.state.Edad,
@@ -179,8 +172,7 @@ class FormPetProfile extends React.Component {
                     <Card.Body>
                       <center>
                         <img
-                          className="rounded-circle"
-                          style={imagen}
+                          className="img-radio"
                           src={this.state.urlImagen}
                           alt="activity-user"
                         />
@@ -188,16 +180,28 @@ class FormPetProfile extends React.Component {
                       <div className="form-group">
                         <br></br>
                         <center>
-                          <FileUploader
-                            accept="image/*"
-                            name="avatar"
-                            randomizeFilename
-                            storageRef={firebase.storage().ref("images")}
-                            onUploadStart={this.handleUploadStart}
-                            onUploadError={this.handleUploadError}
-                            onUploadSuccess={this.handleUploadSuccess}
-                            onProgress={this.handleProgress}
-                          />
+                          <label
+                            style={{
+                              backgroundColor: "#f47386",
+                              color: "white",
+                              padding: 10,
+                              borderRadius: 4,
+                              cursor:"pointer",
+                            }}
+                          >
+                            Seleccionar Foto de Perfil
+                            <FileUploader
+                              hidden
+                              accept="image/*"
+                              name="avatar"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("images")}
+                              onUploadStart={this.handleUploadStart}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleUploadSuccess}
+                              onProgress={this.handleProgress}
+                            />
+                          </label>
                         </center>
                       </div>
                     </Card.Body>

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Dropdown, OverlayTrigger, Tooltip, Spinner } from "react-bootstrap";
-import {signOut} from '../../../../../../src/store/actions/user'
-import { connect } from 'react-redux';
+import { signOut } from "../../../../../../src/store/actions/user";
+import { connect } from "react-redux";
 import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
-import axios from 'axios'
+import axios from "axios";
+import config from '../../../../../config'
+import { ClipLoader } from 'react-spinners';
+import { Route, Redirect } from 'react-router-dom';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -13,40 +16,46 @@ import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
 import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
 import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 
+var rutaApi = config.rutaApi
+
 class NavRight extends Component {
   state = {
     listOpen: false,
-    perfiles: [
-      
-    ]
+    perfiles: [],
+    loading: true
   };
-  
 
   render() {
-    const loadProfiles = () =>{
-      
-      axios.get('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId).then(response =>{        
-        this.setState({perfiles: response.data.Perfils});
-      }).catch(e =>{
+    const loadProfiles = () => {
+      axios
+        .get(
+          rutaApi + 'usuario/' + this.props.userId
+        )
+        .then(response => {
+          this.setState({ perfiles: response.data.Perfils, loading: false });
+        })
+        .catch(e => {}); 
+    };
 
-      })
-      
+    const setTargetProfile = perfil => {
+      //console.log(perfil);
 
-    }
+      axios
+        .put(
+          rutaApi + 'usuario/' + this.props.userId,
+          {
+            Id_perfil_activo: perfil
+          }
+        )
+        .then(response => {
+          return (<Redirect to={{
+            pathname: '/FormPetProfile'
+          }}/>)
+                    //console.log(response);
+        })
+        .catch(e => {});
+    };
 
-    const setTargetProfile = (perfil) =>{
-      console.log(perfil)
-      
-      axios.put('https://petshipback-dev.herokuapp.com/usuario/' + this.props.userId,{
-        Id_perfil_activo: perfil
-      }).then(response =>{        
-        console.log(response)
-      }).catch(e =>{
-
-      })
-      
-    }
-    
     return (
       <Aux>
         <ul className="navbar-nav ml-auto">
@@ -73,52 +82,66 @@ class NavRight extends Component {
             </a>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} onClick={ loadProfiles}>
+            <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
-              >
-                <i className="icon feather icon-gitlab" />
+                <OverlayTrigger
+                  placement="left"
+                  delay={{ show: 250, hide: 400 }}
+                  overlay={<Tooltip>Seleccionar Mascota</Tooltip>}
+                >
+                  <i className="fa fa-paw" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification" >
+              <Dropdown.Menu alignRight className="notification" style={{width:80}}>
                 <div className="noti-head">
-                  <h6 className="d-inline-block m-b-0">Perfiles de Mascotas Disponibles</h6>
+                  <h6 className="d-inline-block m-b-0">
+                    Perfiles de Mascotas Disponibles
+                  </h6>
                 </div>
+
                 <ul className="noti-body">
-                  {
-                    
-
-                    this.state.perfiles !== 0 ?
-                    (
-                    this.state.perfiles.map(element => {
-                      return(
-                        <li className="notification" onClick={function(){setTargetProfile(element.Id_perfil)}}>
-                      <div className="media">
-                        <img
-                          className="media-object img-radius"
-                          src={element.Imagen}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p class="pt-3">{element.Nombre}</p>
-                        </div>
-                      </div>
-                    </li>
-              
-                      )
-                    
-                  })
-                    ): ( () => {return (<Spinner animation="border" />) })
-                      
-    
-                    
-
-                  
-                  }                      
-                  </ul>
+                <li><ClipLoader
+         
+         sizeUnit={"px"}
+         size={150}
+         color={'#red'}
+         loading={this.state.loading}
+       /></li>
+                  {this.state.perfiles !== 0
+                    ? this.state.perfiles.map(element => {
+                        return (
+                          <li
+                            className="notification"
+                            onClick={function() {
+                              setTargetProfile(element.Id_perfil);
+                            }}
+                          >
+                            <div className="media">
+                              <img
+                              style={{border:"solid 2px #f47386"}}
+                                className="media-object img-radius"
+                                src={element.Imagen}
+                                alt="Generic placeholder"
+                              />
+                              <div
+                                className="media-body"
+                                style={{ verticalAlign: "center" }}
+                              >
+                                <p
+                                  class="pt-3"
+                                  style={{fontWeight: "bolder"}}
+                                >
+                                  {element.Nombre}
+                                </p>
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      })
+                    : () => {
+                        return <div>No hay mascotas disponibles</div>;
+                      }}
+                </ul>
               </Dropdown.Menu>
             </Dropdown>
           </li>
@@ -229,14 +252,18 @@ class NavRight extends Component {
                       Perfil de Mascota
                     </a>
                   </li>
-                  <li>
+                  <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
                       Administrar Mascotas
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="dropdown-item" onClick={this.props.signOut}>
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={this.props.signOut}
+                    >
                       <i className="feather icon-lock" />
                       Cerrar Sesión
                     </a>
@@ -257,21 +284,20 @@ class NavRight extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
-   return {
-     userId: state.firebase.auth.uid,
-     authError: state.auth.authError
-   }
- }
-const mapDispatchToProps = (dispatch) => {
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
+const mapDispatchToProps = dispatch => {
   return {
     signOut: () => dispatch(signOut())
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavRight)
-
-
- 
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavRight);
