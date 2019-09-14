@@ -38,6 +38,9 @@ class SignIn extends React.Component {
           const { history } = this.props;
 
           this.props.signIn({ email: fields.email, password: fields.password });
+                  
+          
+          history.push("/choosePet");
           // if (this.props.authError) {
           //   history.push("/choosePet");
           //   swal({

@@ -1,4 +1,4 @@
-
+import { push } from 'react-router-redux'
 import axios from 'axios'
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
@@ -23,6 +23,7 @@ export const signIn = (credentials) => {
       const firebase = getFirebase();
   
       firebase.auth().signOut().then(() => {
+        dispatch(push('/choosePet'));
         dispatch({ type: 'SIGNOUT_SUCCESS' })
       });
     }
@@ -51,6 +52,7 @@ export const signIn = (credentials) => {
                 "Id_ubicacion": newUbicacion.data.Id_ubicacion
             }).then(() => {
               dispatch({ type: 'SIGNUP_SUCCESS' });
+              
             }).catch((err) => {
               dispatch({ type: 'SIGNUP_ERROR', err});
             });

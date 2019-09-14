@@ -1,3 +1,6 @@
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 const initState = {
     authError: null,
     user: null
@@ -7,6 +10,7 @@ const initState = {
     switch(action.type){
       case 'LOGIN_ERROR':
         console.log('login error');
+        history.push('/choosePet');
         return {
           ...state,
           authError: true
@@ -15,23 +19,33 @@ const initState = {
       case 'LOGIN_SUCCESS':
         console.log('login success');
         //console.log(action)
+        /*
         let newState = Object.assign({}, state, {
-            user: action.user,
+            user: 'action.user',
             authError:null,
             a:"f"
         });
-        console.log("new state " + JSON.stringify(newState))
-        return newState
+        */
+       return {
+        ...state,
+        user: action.user,
+        a:"f"
+      }
+
+        //console.log("new state " + JSON.stringify(newState))
+       // return newState
   
       case 'SIGNOUT_SUCCESS':
         console.log('signout success');
+       
         return state;
   
       case 'SIGNUP_SUCCESS':
         console.log('signup success')
         return {
           ...state,
-          authError: null
+          authError: null,
+          firstTime: true
         }
   
       case 'SIGNUP_ERROR':

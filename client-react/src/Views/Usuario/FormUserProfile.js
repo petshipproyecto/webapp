@@ -36,7 +36,8 @@ class FormUserProfile extends React.Component {
     Nombre: "",
     Apellido: "",
     Ubicacion: [],
-    Email: ""
+    Email: "",
+    urlImagen: avatar1
   };
   componentDidMount() {
     // Obtiene los datos de usuario
@@ -140,7 +141,7 @@ class FormUserProfile extends React.Component {
                         <img
                           className="rounded-circle"
                           style={imagen}
-                          src={avatar1}
+                          src={this.state.urlImagen}
                           alt="activity-user"
                         />
                       </center>

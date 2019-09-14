@@ -20,6 +20,7 @@ class App extends Component {
     render() {
         console.log("app props" + JSON.stringify(this.props))
         const menu = routes.map((route, index) => {
+            
           return (route.component) ? (
               <PublicRoute                  
                   key={index}
