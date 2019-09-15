@@ -48,7 +48,7 @@ class ChoosePet extends React.Component {
           }
         )
         .then(response => {
-          window.location.replace('petship/PetProfile')
+          window.location.replace('/PetProfile')
                     //console.log(response);
         })
         .catch(e => {});
@@ -74,10 +74,10 @@ class ChoosePet extends React.Component {
 
                   this.state.perfiles.map(element => {
                     return (<Col>
-                      <Figure class="effect-selena"  onClick={function() {
+                      <Figure class="effect-selena"  >
+                        <a href="#" onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}>
-                        <a href="/dashboard/default">
                           <Image src={element.Imagen} className="imagen" id={element.Id_perfil} />
                         </a>
                         <p>

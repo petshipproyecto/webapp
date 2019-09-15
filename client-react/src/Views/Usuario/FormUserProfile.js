@@ -27,6 +27,9 @@ class FormUserProfile extends React.Component {
   state = {
     Nombre: "",
     Apellido: "",
+    Ubicacion: [],
+    Email: "",
+    urlImagen: avatar1,
     Ubicacion: []/* ,
     Email: "" */
   };
@@ -36,8 +39,8 @@ class FormUserProfile extends React.Component {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        Ubicacion: response.data.Ubicacion/* ,
-        Email: response.data.Email */
+        Ubicacion: response.data.Ubicacion,
+        Imagen: this.state.urlImagen
       });
     });
   }
@@ -49,7 +52,7 @@ class FormUserProfile extends React.Component {
       .ref("images")
       .child(filename)
       .getDownloadURL()
-      .then(url => this.setState({ avatarURL: url }));
+      .then(url => this.setState({ urlImagen: url }));
   };
 
   render() {
@@ -60,8 +63,8 @@ class FormUserProfile extends React.Component {
         initialValues={{
           Nombre: this.state.Nombre,
           Apellido: this.state.Apellido,
-          Ubicacion: this.state.Ubicacion.Descripcion/* ,
-          Email: this.state.Email */
+          Ubicacion: this.state.Ubicacion.Descripcion,
+
         }}
         validationSchema={Yup.object().shape({
           Nombre: Yup.string()
@@ -94,9 +97,11 @@ class FormUserProfile extends React.Component {
               //this.props.userId
               /* Email: fields.Email, */
               Nombre: fields.Nombre,
-              Apellido: fields.Apellido
+              Apellido: fields.Apellido,
+
+              Imagen: this.state.urlImagen
             })
-            .then(function(response) {
+            .then(function (response) {
               // handle success
               console.log(response);
               swal({
@@ -107,7 +112,7 @@ class FormUserProfile extends React.Component {
                 button: false
               });
             })
-            .catch(function(error) {
+            .catch(function (error) {
               // handle error
               console.log(error);
               swal({
@@ -131,8 +136,8 @@ class FormUserProfile extends React.Component {
                     <Card.Body>
                       <center>
                         <img
-                          className="img-radio"
-                          src={avatar1}
+                          className="rounded-circle"
+                          src={this.state.urlImagen}
                           alt="activity-user"
                         />
                       </center>
@@ -146,7 +151,7 @@ class FormUserProfile extends React.Component {
                               color: "white",
                               padding: 10,
                               borderRadius: 4,
-                              cursor:"pointer",
+                              cursor: "pointer",
                             }}
                           >
                             Seleccionar Foto de Perfil
