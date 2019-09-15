@@ -26,7 +26,7 @@ var rutaApi = config.rutaApi
 class FormNewPet extends React.Component {
   state = {
     Nombre: "",
-    urlImagen: Img_mascota_anonima,
+    urlImagen: null,
     Animales: [],
     Razas: [],
     Raza: null,
@@ -165,7 +165,7 @@ class FormNewPet extends React.Component {
                             <center>
                               <img
                                 className="img-radio"
-                                src={this.state.urlImagen}
+                                src={this.state.urlImagen || Img_mascota_anonima}
                                 alt="activity-user"
                               />
                             </center>

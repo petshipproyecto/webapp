@@ -15,7 +15,7 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Autenticacion/UpdatePassword/UpdatePassword";
-import Img_ususario_anonimo from "../../assets/images/user/usuario_anonimo.png"
+import Img_usuario_anonimo from "../../assets/images/user/usuario_anonimo.png"
 import Axios from "axios";
 
 // Sweet Alert para los mensajes de exito y error
@@ -29,7 +29,7 @@ class FormUserProfile extends React.Component {
     Apellido: "",
     Ubicacion: [],
     Email: "",
-    urlImagen: Img_ususario_anonimo,
+    urlImagen: null,
     Ubicacion: []/* ,
     Email: "" */
   };
@@ -136,7 +136,7 @@ class FormUserProfile extends React.Component {
                       <center>
                         <img
                           className="img-radio"
-                          src={this.state.urlImagen}
+                          src={this.state.urlImagen || Img_usuario_anonimo}
                           alt="activity-user"
                         />
                       </center>
