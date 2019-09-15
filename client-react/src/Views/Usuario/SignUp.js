@@ -56,25 +56,8 @@ class SignUp extends React.Component {
             .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
-          this.props.signUp(fields);
-          if (this.props.authError) {
-            swal({
-              title: "Error!",
-              text: "Error al registrar el usuario",
-              icon: "error",
-              timer: 2000,
-              button: false
-            });
-          } else {
-            swal({
-              title: "Exito!",
-              text: "Se registro correctamente el Usuario",
-              icon: "success",
-              timer: 2000,
-              button: false
-            });
-          }
-
+          const { history } = this.props;
+          this.props.signUp(fields);   
           //const { history } = this.props;
           //history.push("/dashboard");
           /*

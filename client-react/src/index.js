@@ -11,13 +11,19 @@ import fbConfig from './configs/fbConfigs'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import { save, load } from "redux-localstorage-simple"
 
-const store = createStore(reducers,
+const store = createStore(reducers, 
   compose(
-    applyMiddleware(thunk.withExtraArgument({getFirebase})),
-    reactReduxFirebase(fbConfig, {userProfile: 'users',  attachAuthIsReady: true})
+    applyMiddleware(thunk.withExtraArgument({ getFirebase })),
+    reactReduxFirebase(fbConfig, { userProfile: 'users', attachAuthIsReady: true })
   )
 );
+/*
+store.dispatch({
+  type: 'ADD_TODO',
+  text: 'Use Redux'
+}) */
 console.log(store.getState())
 const app = (
   <Provider store={store}>

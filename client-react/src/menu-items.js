@@ -79,7 +79,7 @@ export default {
           url: "/ConfiguracionBusqueda",
         },
         {
-          id: "configuracionBusqueda",
+          id: "choosePet",
           title: "Eleguir Mascota",
           type: "item",
           icon: "fa fa-check-circle",

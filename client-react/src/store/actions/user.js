@@ -1,4 +1,4 @@
-
+import { push } from 'react-router-redux'
 import axios from 'axios'
 import config from '../../config'
 
@@ -13,8 +13,8 @@ export const signIn = (credentials) => {
         credentials.email,
         credentials.password
       ).then((response) => {
-        console.log(response)
-        dispatch({ type: 'LOGIN_SUCCESS' });
+        console.log( response.user)
+        dispatch({ type: 'LOGIN_SUCCESS', usuario: response.user });
       }).catch((err) => {
         dispatch({ type: 'LOGIN_ERROR', err });
       });
@@ -27,6 +27,7 @@ export const signIn = (credentials) => {
       const firebase = getFirebase();
   
       firebase.auth().signOut().then(() => {
+       
         dispatch({ type: 'SIGNOUT_SUCCESS' })
       });
     }
@@ -54,6 +55,7 @@ export const signIn = (credentials) => {
                 "Id_ubicacion": newUbicacion.data.Id_ubicacion
             }).then(() => {
               dispatch({ type: 'SIGNUP_SUCCESS' });
+              
             }).catch((err) => {
               dispatch({ type: 'SIGNUP_ERROR', err});
             });

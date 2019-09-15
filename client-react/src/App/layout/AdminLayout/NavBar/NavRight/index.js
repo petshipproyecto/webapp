@@ -7,6 +7,8 @@ import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
 import axios from "axios";
 import config from '../../../../../config'
+import { ClipLoader } from 'react-spinners';
+import { Route, Redirect } from 'react-router-dom';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -19,7 +21,13 @@ var rutaApi = config.rutaApi
 class NavRight extends Component {
   state = {
     listOpen: false,
-    perfiles: []
+    perfiles: [],
+    loading: true,
+    usuario: {
+      Nombre: "",
+      Apellido: "",
+      Imagen: Avatar1
+    }
   };
 
   render() {
@@ -29,13 +37,15 @@ class NavRight extends Component {
           rutaApi + 'usuario/' + this.props.userId
         )
         .then(response => {
-          this.setState({ perfiles: response.data.Perfils });
+          this.setState({ perfiles: response.data.Perfils, loading: false, usuario: response.data, imagen: response.data.Imagen });
         })
-        .catch(e => {});
+        .catch(e => {}); 
     };
 
+    
+
     const setTargetProfile = perfil => {
-      console.log(perfil);
+      //console.log(perfil);
 
       axios
         .put(
@@ -45,7 +55,7 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          console.log(response);
+          window.location.replace('/PetProfile')
         })
         .catch(e => {});
     };
@@ -92,12 +102,14 @@ class NavRight extends Component {
                     Perfiles de Mascotas Disponibles
                   </h6>
                 </div>
+
                 <ul className="noti-body">
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
                         return (
                           <li
                             className="notification"
+                            style={{cursor: "pointer"}}
                             onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}
@@ -125,8 +137,16 @@ class NavRight extends Component {
                         );
                       })
                     : () => {
-                        return <Spinner animation="border" />;
+                        return <div>No hay mascotas disponibles</div>;
                       }}
+                    <li>
+                      <ClipLoader
+                        sizeUnit={"px"}
+                        size={150}
+                        color={'#red'}
+                        loading={this.state.loading}
+                      />
+                    </li>
                 </ul>
               </Dropdown.Menu>
             </Dropdown>
@@ -212,18 +232,18 @@ class NavRight extends Component {
             </Dropdown>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user">
+            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user" onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
                   <img
-                    src={Avatar1}
+                    src={this.state.usuario.Imagen }
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span>Eve Doe</span>
+                  <span> {this.state.usuario.Nombre + " "}   {this.state.usuario.Apellido} </span>
                 </div>
                 <ul className="pro-body">
                   <li>
@@ -238,7 +258,7 @@ class NavRight extends Component {
                       Perfil de Mascota
                     </a>
                   </li>
-                  <li>
+                  <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
                       Administrar Mascotas
@@ -271,7 +291,7 @@ class NavRight extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  //console.log("pet profile" + JSON.stringify(state))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError

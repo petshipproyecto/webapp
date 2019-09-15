@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
-import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
@@ -16,6 +15,7 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Autenticacion/UpdatePassword/UpdatePassword";
+import Img_usuario_anonimo from "../../assets/images/user/usuario_anonimo.png"
 import Axios from "axios";
 
 // Sweet Alert para los mensajes de exito y error
@@ -27,6 +27,9 @@ class FormUserProfile extends React.Component {
   state = {
     Nombre: "",
     Apellido: "",
+    Ubicacion: [],
+    Email: "",
+    urlImagen: null,
     Ubicacion: []/* ,
     Email: "" */
   };
@@ -36,8 +39,8 @@ class FormUserProfile extends React.Component {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        Ubicacion: response.data.Ubicacion/* ,
-        Email: response.data.Email */
+        Ubicacion: response.data.Ubicacion,
+        urlImagen: response.data.Imagen
       });
     });
   }
@@ -49,7 +52,7 @@ class FormUserProfile extends React.Component {
       .ref("images")
       .child(filename)
       .getDownloadURL()
-      .then(url => this.setState({ avatarURL: url }));
+      .then(url => this.setState({ urlImagen: url }));
   };
 
   render() {
@@ -60,8 +63,8 @@ class FormUserProfile extends React.Component {
         initialValues={{
           Nombre: this.state.Nombre,
           Apellido: this.state.Apellido,
-          Ubicacion: this.state.Ubicacion.Descripcion/* ,
-          Email: this.state.Email */
+          Ubicacion: this.state.Ubicacion.Descripcion,
+
         }}
         validationSchema={Yup.object().shape({
           Nombre: Yup.string()
@@ -94,9 +97,10 @@ class FormUserProfile extends React.Component {
               //this.props.userId
               /* Email: fields.Email, */
               Nombre: fields.Nombre,
-              Apellido: fields.Apellido
+              Apellido: fields.Apellido,
+              Imagen: this.state.urlImagen
             })
-            .then(function(response) {
+            .then(function (response) {
               // handle success
               console.log(response);
               swal({
@@ -107,7 +111,7 @@ class FormUserProfile extends React.Component {
                 button: false
               });
             })
-            .catch(function(error) {
+            .catch(function (error) {
               // handle error
               console.log(error);
               swal({
@@ -132,7 +136,7 @@ class FormUserProfile extends React.Component {
                       <center>
                         <img
                           className="img-radio"
-                          src={avatar1}
+                          src={this.state.urlImagen || Img_usuario_anonimo}
                           alt="activity-user"
                         />
                       </center>
@@ -146,7 +150,7 @@ class FormUserProfile extends React.Component {
                               color: "white",
                               padding: 10,
                               borderRadius: 4,
-                              cursor:"pointer",
+                              cursor: "pointer",
                             }}
                           >
                             Seleccionar Foto de Perfil

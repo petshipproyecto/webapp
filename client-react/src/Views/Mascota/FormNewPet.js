@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import Aux from "../../hoc/_Aux";
-import avatar2 from "../../assets/images/user/avatar-6.jpg";
+import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png"
 import axios from "axios";
 import update from "react-addons-update"; // ES6
 import firebase from "firebase";
@@ -26,6 +26,7 @@ var rutaApi = config.rutaApi
 class FormNewPet extends React.Component {
   state = {
     Nombre: "",
+    urlImagen: null,
     Animales: [],
     Razas: [],
     Raza: null,
@@ -164,7 +165,8 @@ class FormNewPet extends React.Component {
                             <center>
                               <img 
                                 className="img-radio"
-                                src={this.state.urlImagen}
+                                src={this.state.urlImagen || Img_mascota_anonima}
+                                alt="activity-user"
                               />
                             </center>
                           </Form>
