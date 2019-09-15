@@ -14,6 +14,9 @@ import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
 import { ClipLoader } from 'react-spinners';
 import { Route, Redirect } from 'react-router-dom';
+import config from '../../config'
+
+const rutaApi = config.rutaApi
 
 class ChoosePet extends React.Component {
   state = {
@@ -25,7 +28,7 @@ class ChoosePet extends React.Component {
   componentDidMount() {
     axios
       .get(
-        "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
+        rutaApi+ 'usuario/' + this.props.userId
       )
       .then(response => {
 
@@ -42,7 +45,7 @@ class ChoosePet extends React.Component {
 
       axios
         .put(
-          'https://petshipback-dev.herokuapp.com/' + 'usuario/' + this.props.userId,
+          rutaApi+ 'usuario/' + this.props.userId,
           {
             Id_perfil_activo: perfil
           }

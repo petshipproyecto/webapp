@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
-import avatar1 from "../../assets/images/user/avatar1.jpg";
 import axios from "axios";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
@@ -16,6 +15,7 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Autenticacion/UpdatePassword/UpdatePassword";
+import Img_ususario_anonimo from "../../assets/images/user/usuario_anonimo.png"
 import Axios from "axios";
 
 // Sweet Alert para los mensajes de exito y error
@@ -29,7 +29,7 @@ class FormUserProfile extends React.Component {
     Apellido: "",
     Ubicacion: [],
     Email: "",
-    urlImagen: avatar1,
+    urlImagen: Img_ususario_anonimo,
     Ubicacion: []/* ,
     Email: "" */
   };
@@ -40,7 +40,7 @@ class FormUserProfile extends React.Component {
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
         Ubicacion: response.data.Ubicacion,
-        Imagen: this.state.urlImagen
+        urlImagen: response.data.Imagen
       });
     });
   }
@@ -98,7 +98,6 @@ class FormUserProfile extends React.Component {
               /* Email: fields.Email, */
               Nombre: fields.Nombre,
               Apellido: fields.Apellido,
-
               Imagen: this.state.urlImagen
             })
             .then(function (response) {
@@ -136,7 +135,7 @@ class FormUserProfile extends React.Component {
                     <Card.Body>
                       <center>
                         <img
-                          className="rounded-circle"
+                          className="img-radio"
                           src={this.state.urlImagen}
                           alt="activity-user"
                         />

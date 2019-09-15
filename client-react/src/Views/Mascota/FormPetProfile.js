@@ -3,7 +3,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Aux from "../../hoc/_Aux";
-import avatar2 from "../../assets/images/user/avatar-6.jpg";
+import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png"
 import axios from "axios";
 import { connect } from "react-redux";
 import config from '../../config'
@@ -26,6 +26,7 @@ var rutaApi = config.rutaApi
 class FormPetProfile extends React.Component {
   state = {
     Nombre: "",
+    urlImagen: Img_mascota_anonima,
     Raza: null,
     Animal: null,
     Edad: "0",

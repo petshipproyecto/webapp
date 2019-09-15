@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import Avatar1 from '../../assets/images/user/avatarDog.jpg';
 import Avatar2 from '../../assets/images/user/avatarCat.jpg';
 import Avatar3 from '../../assets/images/user/avatarChinchilla.jpg';
+import config from '../../config'
+
+const rutaApi = config.rutaApi
 
 class TablaMascotas extends React.Component {
     state = {
@@ -15,21 +18,21 @@ class TablaMascotas extends React.Component {
     }
     componentDidMount() {
 
-        axios.get('https://petshipback-dev.herokuapp.com' + "/usuario/" + this.props.userId).then(response => {
+        axios.get(rutaApi+ 'usuario/' + this.props.userId).then(response => {
             this.setState({
                 perfiles: response.data.Perfils
             })
             console.log("state 1" + JSON.stringify(this.state))
         });
 
-        axios.get('https://petshipback-dev.herokuapp.com' + "/raza").then(response => {
+        axios.get(rutaApi+ 'raza').then(response => {
             let razas = {}
             console.log(response.data)
 
             for (var i = 0; i < response.data.length; i++) {
                 razas[response.data[i].Id_raza] = response.data[i];
-
             }
+
             console.log(razas["1"]);
             this.setState({
                 raza: razas,
@@ -68,6 +71,7 @@ class TablaMascotas extends React.Component {
                                         {
 
                                             this.state.perfiles.map(element => {
+                                                console.log(element)
                                                 return (
                                                     <tr>
                                                         <td>
@@ -76,9 +80,9 @@ class TablaMascotas extends React.Component {
                                                             </h6>
                                                         </td>
                                                         <td>{element.Nombre}</td>
-                                                        <td>{this.state.raza[element.Id_raza] ? this.state.raza[element.Id_raza].Animal.Descripcion : ""}</td>
-                                                        <td>{this.state.raza[element.Id_raza] ? this.state.raza[element.Id_raza].Descripcion : ""}</td>
-                                                        <td>{this.state.Id_genero == "1" ? "Macho" : "Hembra"}</td>
+                                                        <td>{element.Raza.Animal.Descripcion}</td>
+                                                        <td>{element.Raza.Descripcion}</td>
+                                                        <td>{element.Genero.Descripcion}</td>
                                                         <td>{element.Edad + " "} años</td>
                                                         <td>
                                                             <a class="text-white label theme-bg2 f-12" href="/PetProfile">Editar</a>

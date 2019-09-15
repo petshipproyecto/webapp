@@ -104,18 +104,12 @@ class NavRight extends Component {
                 </div>
 
                 <ul className="noti-body">
-                <li><ClipLoader
-         
-         sizeUnit={"px"}
-         size={150}
-         color={'#red'}
-         loading={this.state.loading}
-       /></li>
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
                         return (
                           <li
                             className="notification"
+                            style={{cursor: "pointer"}}
                             onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}
@@ -145,6 +139,14 @@ class NavRight extends Component {
                     : () => {
                         return <div>No hay mascotas disponibles</div>;
                       }}
+                    <li>
+                      <ClipLoader
+                        sizeUnit={"px"}
+                        size={150}
+                        color={'#red'}
+                        loading={this.state.loading}
+                      />
+                    </li>
                 </ul>
               </Dropdown.Menu>
             </Dropdown>
