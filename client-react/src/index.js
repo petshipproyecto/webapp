@@ -13,17 +13,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { save, load } from "redux-localstorage-simple"
 
-<<<<<<< HEAD
-const createStoreWithMiddleware   = applyMiddleware(
-        save() // Saving done here
-    )(createStore)
-
-const store = createStoreWithMiddleware(reducers,load(),
-=======
-const store = createStore(reducers, load(),
->>>>>>> 6f31223649a25052ab75bd37cfb43ea281f446a7
+const store = createStore(reducers, 
   compose(
-    applyMiddleware(thunk.withExtraArgument({ getFirebase }), save()),
+    applyMiddleware(thunk.withExtraArgument({ getFirebase })),
     reactReduxFirebase(fbConfig, { userProfile: 'users', attachAuthIsReady: true })
   )
 );

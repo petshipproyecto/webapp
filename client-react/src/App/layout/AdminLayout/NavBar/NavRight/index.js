@@ -22,7 +22,12 @@ class NavRight extends Component {
   state = {
     listOpen: false,
     perfiles: [],
-    loading: true
+    loading: true,
+    usuario: {
+      Nombre: "",
+      Apellido: "",
+      Imagen: Avatar1
+    }
   };
 
   render() {
@@ -32,10 +37,12 @@ class NavRight extends Component {
           rutaApi + 'usuario/' + this.props.userId
         )
         .then(response => {
-          this.setState({ perfiles: response.data.Perfils, loading: false });
+          this.setState({ perfiles: response.data.Perfils, loading: false, usuario: response.data, imagen: response.data.Imagen });
         })
         .catch(e => {}); 
     };
+
+    
 
     const setTargetProfile = perfil => {
       //console.log(perfil);
@@ -48,10 +55,7 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          return (<Redirect to={{
-            pathname: '/FormPetProfile'
-          }}/>)
-                    //console.log(response);
+          window.location.replace('/PetProfile')
         })
         .catch(e => {});
     };
@@ -226,18 +230,18 @@ class NavRight extends Component {
             </Dropdown>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user">
+            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user" onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
                   <img
-                    src={Avatar1}
+                    src={this.state.usuario.Imagen }
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span>Eve Doe</span>
+                  <span> {this.state.usuario.Nombre + " "}   {this.state.usuario.Apellido} </span>
                 </div>
                 <ul className="pro-body">
                   <li>
@@ -285,7 +289,7 @@ class NavRight extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  //console.log("pet profile" + JSON.stringify(state))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError

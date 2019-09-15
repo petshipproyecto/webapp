@@ -27,7 +27,7 @@ export const signIn = (credentials) => {
       const firebase = getFirebase();
   
       firebase.auth().signOut().then(() => {
-        dispatch(push('/choosePet'));
+       
         dispatch({ type: 'SIGNOUT_SUCCESS' })
       });
     }

@@ -57,11 +57,7 @@ class SignUp extends React.Component {
         })}
         onSubmit={fields => {
           const { history } = this.props;
-          this.props.signUp(fields);         
-          
-          history.push("/choosePet");
-         
-
+          this.props.signUp(fields);   
           //const { history } = this.props;
           //history.push("/dashboard");
           /*

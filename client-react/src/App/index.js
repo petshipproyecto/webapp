@@ -11,7 +11,7 @@ import Loader from './layout/Loader'
 import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
-const ChoosePet = React.lazy(() => import('../Views/Mascota/ChoosePet'));
+
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
     loading: Loader
@@ -21,6 +21,20 @@ class App extends Component {
     render() {
         console.log("app props" + JSON.stringify(this.props))
         const menu = routes.map((route, index) => {
+        if (route.path === '/ChoosePet'){
+            console.log('llega')
+            return (route.component) ? (
+                <PrivateRoute                  
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    user={this.props.auth}
+                    component={route.component}
+                    />
+            ) : (null);
+
+        }
             
           return (route.component) ? (
               <PublicRoute                  
@@ -42,7 +56,6 @@ class App extends Component {
                             {menu}
                             
                             <PrivateRoute path="/" component={AdminLayout}  user={this.props.auth}  />
-                            <PrivateRoute path='/choosePet' component={ChoosePet} user={this.props.auth} />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
