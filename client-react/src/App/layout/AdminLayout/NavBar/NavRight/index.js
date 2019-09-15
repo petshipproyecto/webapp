@@ -237,7 +237,7 @@ class NavRight extends Component {
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span>Eve Doe</span>
+                  <span>UnPerfilMascota</span>
                 </div>
                 <ul className="pro-body">
                   <li>
