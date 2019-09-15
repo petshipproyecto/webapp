@@ -3,7 +3,8 @@ import { Row, Col, Card, Table } from 'react-bootstrap';
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
-import Avatar1 from '../../assets/images/user/avatarDog.jpg';
+import Swal from "sweetalert2";
+import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png"
 import config from '../../config'
 
 const rutaApi = config.rutaApi
@@ -23,24 +24,38 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
       .catch(e => {});
   };
 
-const deleteProfile = (Usr_cod, Id_perfil) => {
-
-    axios
-        .delete(rutaApi + 'perfil/' + Id_perfil)
-        .then(response => {
+const deleteProfile = (Usr_cod, perfil) => {
+    
+    Swal.fire({
+        title: 'Eliminar a '+perfil.Nombre,
+        text: "¿Está seguro de que lo desea eliminar?",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#8BC3FF',
+        cancelButtonColor: '#BFBFBF ',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.value) {
             axios
-                .put(
-                    rutaApi + 'usuario/' + Usr_cod,
-                    {
-                        Id_perfil_activo: Id_perfil
-                    }
-                )
-        })
-        .then(response => {
-            window.location.replace('/choosePet')
-          })
-        .catch(e => {});
-};
+                .delete(rutaApi + 'perfil/' + perfil.Id_perfil)
+                .then(response => {
+                    axios.put(rutaApi + 'usuario/' + Usr_cod,{Id_perfil_activo: perfil.Id_perfil})
+                    })
+                .then(result => {
+                    window.location.replace('/choosePet')
+                    })
+                .catch(e => {
+                    Swal.fire(
+                        'Error',
+                        'Se ha producido un error al intentar eliminar la mascota',
+                        'error'
+                    );
+                    })
+            }
+        });
+    
+    };
 
 class TablaMascotas extends React.Component {
     state = {
@@ -111,7 +126,7 @@ class TablaMascotas extends React.Component {
                                                     <tr>
                                                         <td>
                                                             <h6 class="m-0">
-                                                                <img className="media-object img-radius" src={element.Imagen || Avatar1} alt="Generic placeholder" />
+                                                                <img className="media-object img-radius" src={element.Imagen || Img_mascota_anonima} alt="Generic placeholder" />
                                                             </h6>
                                                         </td>
                                                         <td>{element.Nombre}</td>
@@ -129,7 +144,7 @@ class TablaMascotas extends React.Component {
                                                             <a
                                                                 class="text-white label theme-bg f-12"
                                                                 style={{cursor: "pointer"}}
-                                                                onClick={function() {deleteProfile(userid, element.Id_perfil)}}
+                                                                onClick={function() {deleteProfile(userid, element)}}
                                                             >
                                                                 Eliminar</a>
                                                         </td>
