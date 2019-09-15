@@ -4,22 +4,57 @@ import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Avatar1 from '../../assets/images/user/avatarDog.jpg';
-import Avatar2 from '../../assets/images/user/avatarCat.jpg';
-import Avatar3 from '../../assets/images/user/avatarChinchilla.jpg';
 import config from '../../config'
 
 const rutaApi = config.rutaApi
 
+const setTargetProfile = (Usr_cod, Id_perfil) => {
+
+    axios
+      .put(
+        rutaApi + 'usuario/' + Usr_cod,
+        {
+          Id_perfil_activo: Id_perfil
+        }
+      )
+      .then(response => {
+        window.location.replace('/PetProfile')
+      })
+      .catch(e => {});
+  };
+
+const deleteProfile = (Usr_cod, Id_perfil) => {
+
+    axios
+        .delete(rutaApi + 'perfil/' + Id_perfil)
+        .then(response => {
+            axios
+                .put(
+                    rutaApi + 'usuario/' + Usr_cod,
+                    {
+                        Id_perfil_activo: Id_perfil
+                    }
+                )
+        })
+        .then(response => {
+            window.location.replace('/choosePet')
+          })
+        .catch(e => {});
+};
+
 class TablaMascotas extends React.Component {
     state = {
+        Usr_cod: null,
         perfiles: [],
         razas: {},
         raza: ""
     }
+    
     componentDidMount() {
 
         axios.get(rutaApi+ 'usuario/' + this.props.userId).then(response => {
             this.setState({
+                Usr_cod: response.data.Usr_cod,
                 perfiles: response.data.Perfils
             })
             console.log("state 1" + JSON.stringify(this.state))
@@ -71,7 +106,7 @@ class TablaMascotas extends React.Component {
                                         {
 
                                             this.state.perfiles.map(element => {
-                                                console.log(element)
+                                                var userid = this.props.userId;
                                                 return (
                                                     <tr>
                                                         <td>
@@ -85,8 +120,18 @@ class TablaMascotas extends React.Component {
                                                         <td>{element.Genero.Descripcion}</td>
                                                         <td>{element.Edad + " "} años</td>
                                                         <td>
-                                                            <a class="text-white label theme-bg2 f-12" href="/PetProfile">Editar</a>
-                                                            <a class="text-white label theme-bg f-12" href="#!">Eliminar</a>
+                                                            <a
+                                                                class="text-white label theme-bg2 f-12"
+                                                                style={{cursor: "pointer"}}
+                                                                onClick={function() {setTargetProfile(userid, element.Id_perfil)}}
+                                                            >
+                                                            Editar</a>
+                                                            <a
+                                                                class="text-white label theme-bg f-12"
+                                                                style={{cursor: "pointer"}}
+                                                                onClick={function() {deleteProfile(userid, element.Id_perfil)}}
+                                                            >
+                                                                Eliminar</a>
                                                         </td>
                                                     </tr>
 
