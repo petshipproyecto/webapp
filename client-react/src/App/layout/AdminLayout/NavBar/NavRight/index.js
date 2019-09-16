@@ -8,6 +8,7 @@ import DEMO from "../../../../../store/constant";
 import axios from "axios";
 import config from '../../../../../config'
 import { ClipLoader } from 'react-spinners';
+import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png"
 import { Route, Redirect } from 'react-router-dom';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
@@ -23,6 +24,7 @@ class NavRight extends Component {
     listOpen: false,
     perfiles: [],
     loading: true,
+    perfil_activo: null,
     usuario: {
       Nombre: "",
       Apellido: "",
@@ -38,6 +40,13 @@ class NavRight extends Component {
         )
         .then(response => {
           this.setState({ perfiles: response.data.Perfils, loading: false, usuario: response.data, imagen: response.data.Imagen });
+          axios
+            .get(rutaApi + 'perfil/' + response.data.Id_perfil_activo)
+            .then(response => {
+              this.setState({
+                perfil_activo: response.data
+              });
+            })
         })
         .catch(e => {}); 
     };
@@ -239,23 +248,23 @@ class NavRight extends Component {
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
                   <img
-                    src={this.state.usuario.Imagen }
+                    src={this.state.perfil_activo ? this.state.perfil_activo.Imagen : Img_mascota_anonima}
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span> {this.state.usuario.Nombre + " "}   {this.state.usuario.Apellido} </span>
+                  <span> {this.state.perfil_activo ? this.state.perfil_activo.Nombre : ''} </span>
                 </div>
                 <ul className="pro-body">
-                  <li>
-                    <a href="/UserProfile" className="dropdown-item">
-                      <i className="feather icon-user" />
-                      Mi Perfil
-                    </a>
-                  </li>
                   <li>
                     <a href="/PetProfile" className="dropdown-item">
                       <i className="feather icon-github" />
                       Perfil de Mascota
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/UserProfile" className="dropdown-item">
+                      <i className="feather icon-user" />
+                      Perfil de Usuario
                     </a>
                   </li>
                   <li> 
