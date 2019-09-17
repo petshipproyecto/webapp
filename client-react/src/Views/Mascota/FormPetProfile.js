@@ -317,6 +317,7 @@ class FormPetProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
+                            {/*
                             <div class="form-group">
                               <label>
                                 Deseo aparecer en las busquedas de :
@@ -356,6 +357,7 @@ class FormPetProfile extends React.Component {
                                 </div>
                               </div>
                             </div>
+                          */}
                             <center>
                               <div className="form-group">
                                 <button

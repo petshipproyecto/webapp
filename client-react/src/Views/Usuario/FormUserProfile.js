@@ -244,6 +244,7 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
+                            {/*
                             <div className="form-group">
                               <label>
                                 Email <span style={{ color: "red" }}>*</span>{" "}
@@ -266,6 +267,7 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
+                          */}
 
                             <button
                               type="submit"
@@ -278,7 +280,9 @@ class FormUserProfile extends React.Component {
                       </Row>
                     </Card.Body>
                   </Card>
+                  {/*
                   <UpdatePassword></UpdatePassword>
+                */}
                 </Col>
               </Row>
             </Aux>
