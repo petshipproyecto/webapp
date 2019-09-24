@@ -33,8 +33,11 @@ class ChoosePet extends React.Component {
       .then(response => {
 
         this.setState({ perfiles: response.data.Perfils, loading: false });
+        console.log("loader" + this.state)
       })
-      .catch(e => { });
+      .catch(e => { 
+        this.setState({ perfiles: [], loading: false });
+      });
   };
 
 
