@@ -64,7 +64,7 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          window.location.replace('/PetProfile')
+          window.location.replace('/Dashboard')
         })
         .catch(e => {});
     };
@@ -83,6 +83,7 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
+          {/*
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
             <a href="/ConfiguracionBusqueda">
               <OverlayTrigger
@@ -94,6 +95,7 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
+        */}
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -160,6 +162,7 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+          {/*
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -240,6 +243,7 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+        */}
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} className="drp-user" onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -267,12 +271,15 @@ class NavRight extends Component {
                       Perfil de Usuario
                     </a>
                   </li>
+                  {/*
                   <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
                       Administrar Mascotas
                     </a>
                   </li>
+                */}
+                  
                   <li>
                     <a
                       href="#"

@@ -35,7 +35,7 @@ class ChoosePet extends React.Component {
         this.setState({ perfiles: response.data.Perfils, loading: false });
         console.log("loader" + this.state)
       })
-      .catch(e => { 
+      .catch(e => {
         this.setState({ perfiles: [], loading: false });
       });
   };
@@ -117,6 +117,7 @@ class ChoosePet extends React.Component {
               </Row>
               <br></br>
               <Row style={{ alignItems: "center" }}>
+                {/*
                 <div class="col text-center">
                   <a href="/TablaMascotas">
                     <button
@@ -127,6 +128,7 @@ class ChoosePet extends React.Component {
                     </button>
                   </a>
                 </div>
+              */}
               </Row>
             </Container>
           </div>

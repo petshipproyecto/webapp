@@ -14,20 +14,6 @@ export default {
           icon: "feather icon-home"
         },
         {
-          id: "buscarPareja",
-          title: "Buscar Pareja o Amigo",
-          type: "item",
-          url: "/Swipe",
-          icon: "feather icon-heart-on"
-        },
-        {
-          id: "favoritos",
-          title: "Favoritos",
-          type: "item",
-          icon: "feather icon-star-on",
-          url: "/GaleriaMascotas"
-        },
-        {
           id: "nuevaMascota",
           title: "Agregar Mascota",
           type: "item",
@@ -56,7 +42,29 @@ export default {
               url: "/PetProfile"
             }
           ]
+        }
+      
+      ]
+    }
+    ]
+  }
+        /*
+        {
+          id: "buscarPareja",
+          title: "Buscar Pareja o Amigo",
+          type: "item",
+          url: "/Swipe",
+          icon: "feather icon-heart-on"
         },
+        {
+          id: "favoritos",
+          title: "Favoritos",
+          type: "item",
+          icon: "feather icon-star-on",
+          url: "/GaleriaMascotas"
+        },
+        
+        ,
         {
           id: "notificaciones",
           title: "Notificaciones",
@@ -93,3 +101,4 @@ export default {
     }
   ]
 };
+*/

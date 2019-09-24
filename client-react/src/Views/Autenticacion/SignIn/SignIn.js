@@ -84,8 +84,8 @@ class SignIn extends React.Component {
                       <div className="mb-4">
                         <i className="feather icon-unlock auth-icon" />
                       </div>
-                      <h4 className="mb-4">Iniciar Sesión con</h4>
-                      <div className="form-group">
+                      <h4 className="mb-4">Iniciar Sesión </h4>
+                     {/* <div className="form-group">
                         <SocialIcon
                           network="facebook"
                           url="http://facebook.com"
@@ -98,6 +98,7 @@ class SignIn extends React.Component {
                           style={{ height: 32, width: 32 }}
                         />
                       </div>
+        */}
                       <div className="form-group">
                         <Field
                           name="email"
@@ -147,9 +148,10 @@ class SignIn extends React.Component {
                             name="checkbox-fill-1"
                             id="checkbox-fill-a1"
                           />
-                          <label htmlFor="checkbox-fill-a1" className="cr">
+                          {/* <label htmlFor="checkbox-fill-a1" className="cr">
                             Guardar Contraseña
                           </label>
+                      */}
                         </div>
                       </div>
                       <div className="form-group">
