@@ -1,8 +1,7 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
 const PublicRoute = ({ component: Component, user, ...rest }) => (
-  
   <Route
     {...rest}
     render={(props) => (
@@ -14,7 +13,6 @@ const PublicRoute = ({ component: Component, user, ...rest }) => (
       }}/>
     )}
   />
-  
 );
 
 export default PublicRoute;

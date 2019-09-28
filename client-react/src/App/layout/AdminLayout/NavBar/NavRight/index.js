@@ -8,6 +8,7 @@ import DEMO from "../../../../../store/constant";
 import axios from "axios";
 import config from '../../../../../config'
 import { ClipLoader } from 'react-spinners';
+import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png"
 import { Route, Redirect } from 'react-router-dom';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
@@ -22,7 +23,13 @@ class NavRight extends Component {
   state = {
     listOpen: false,
     perfiles: [],
-    loading: true
+    loading: true,
+    perfil_activo: null,
+    usuario: {
+      Nombre: "",
+      Apellido: "",
+      Imagen: Avatar1
+    }
   };
 
   render() {
@@ -32,10 +39,19 @@ class NavRight extends Component {
           rutaApi + 'usuario/' + this.props.userId
         )
         .then(response => {
-          this.setState({ perfiles: response.data.Perfils, loading: false });
+          this.setState({ perfiles: response.data.Perfils, loading: false, usuario: response.data, imagen: response.data.Imagen });
+          axios
+            .get(rutaApi + 'perfil/' + response.data.Id_perfil_activo)
+            .then(response => {
+              this.setState({
+                perfil_activo: response.data
+              });
+            })
         })
         .catch(e => {}); 
     };
+
+    
 
     const setTargetProfile = perfil => {
       //console.log(perfil);
@@ -48,10 +64,7 @@ class NavRight extends Component {
           }
         )
         .then(response => {
-          return (<Redirect to={{
-            pathname: '/FormPetProfile'
-          }}/>)
-                    //console.log(response);
+          window.location.replace('/Dashboard')
         })
         .catch(e => {});
     };
@@ -70,6 +83,7 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
+          {/*
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
             <a href="/ConfiguracionBusqueda">
               <OverlayTrigger
@@ -81,6 +95,7 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
+        */}
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -100,18 +115,12 @@ class NavRight extends Component {
                 </div>
 
                 <ul className="noti-body">
-                <li><ClipLoader
-         
-         sizeUnit={"px"}
-         size={150}
-         color={'#red'}
-         loading={this.state.loading}
-       /></li>
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
                         return (
                           <li
                             className="notification"
+                            style={{cursor: "pointer"}}
                             onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}
@@ -141,10 +150,19 @@ class NavRight extends Component {
                     : () => {
                         return <div>No hay mascotas disponibles</div>;
                       }}
+                    <li>
+                      <ClipLoader
+                        sizeUnit={"px"}
+                        size={150}
+                        color={'#red'}
+                        loading={this.state.loading}
+                      />
+                    </li>
                 </ul>
               </Dropdown.Menu>
             </Dropdown>
           </li>
+          {/*
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -225,39 +243,43 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+        */}
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user">
+            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user" onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
                   <img
-                    src={Avatar1}
+                    src={this.state.perfil_activo ? this.state.perfil_activo.Imagen : Img_mascota_anonima}
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span>UnPerfilMascota</span>
+                  <span> {this.state.perfil_activo ? this.state.perfil_activo.Nombre : ''} </span>
                 </div>
                 <ul className="pro-body">
-                  <li>
-                    <a href="/UserProfile" className="dropdown-item">
-                      <i className="feather icon-user" />
-                      Mi Perfil
-                    </a>
-                  </li>
                   <li>
                     <a href="/PetProfile" className="dropdown-item">
                       <i className="feather icon-github" />
                       Perfil de Mascota
                     </a>
                   </li>
+                  <li>
+                    <a href="/UserProfile" className="dropdown-item">
+                      <i className="feather icon-user" />
+                      Perfil de Usuario
+                    </a>
+                  </li>
+                  {/*
                   <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
                       Administrar Mascotas
                     </a>
                   </li>
+                */}
+                  
                   <li>
                     <a
                       href="#"
@@ -285,7 +307,7 @@ class NavRight extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  //console.log("pet profile" + JSON.stringify(state))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError

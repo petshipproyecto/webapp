@@ -14,6 +14,9 @@ import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
 import { ClipLoader } from 'react-spinners';
 import { Route, Redirect } from 'react-router-dom';
+import config from '../../config'
+
+const rutaApi = config.rutaApi
 
 class ChoosePet extends React.Component {
   state = {
@@ -25,13 +28,16 @@ class ChoosePet extends React.Component {
   componentDidMount() {
     axios
       .get(
-        "https://petshipback-dev.herokuapp.com/usuario/" + this.props.userId
+        rutaApi+ 'usuario/' + this.props.userId
       )
       .then(response => {
 
         this.setState({ perfiles: response.data.Perfils, loading: false });
+        console.log("loader" + this.state)
       })
-      .catch(e => { });
+      .catch(e => {
+        this.setState({ perfiles: [], loading: false });
+      });
   };
 
 
@@ -42,13 +48,13 @@ class ChoosePet extends React.Component {
 
       axios
         .put(
-          'https://petshipback-dev.herokuapp.com/' + 'usuario/' + this.props.userId,
+          rutaApi+ 'usuario/' + this.props.userId,
           {
             Id_perfil_activo: perfil
           }
         )
         .then(response => {
-          window.location.replace('petship/PetProfile')
+          window.location.replace('/PetProfile')
                     //console.log(response);
         })
         .catch(e => {});
@@ -74,10 +80,10 @@ class ChoosePet extends React.Component {
 
                   this.state.perfiles.map(element => {
                     return (<Col>
-                      <Figure class="effect-selena"  onClick={function() {
+                      <Figure class="effect-selena"  >
+                        <a href="#" onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}>
-                        <a href="/dashboard/default">
                           <Image src={element.Imagen} className="imagen" id={element.Id_perfil} />
                         </a>
                         <p>
@@ -111,6 +117,7 @@ class ChoosePet extends React.Component {
               </Row>
               <br></br>
               <Row style={{ alignItems: "center" }}>
+                {/*
                 <div class="col text-center">
                   <a href="/TablaMascotas">
                     <button
@@ -121,6 +128,7 @@ class ChoosePet extends React.Component {
                     </button>
                   </a>
                 </div>
+              */}
               </Row>
             </Container>
           </div>
