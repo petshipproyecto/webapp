@@ -12,7 +12,7 @@ import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
 import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
 import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
-import { ClipLoader } from "react-spinners";
+import Loader from "react-loader-spinner";
 import { Route, Redirect } from "react-router-dom";
 import config from "../../config";
 
@@ -57,14 +57,13 @@ class ChoosePet extends React.Component {
             <Container>
               <br></br>
               <Row>
-                <div className="sweet-loading">
-                  <ClipLoader
-                    sizeUnit={"px"}
-                    size={150}
-                    color={"#red"}
-                    loading={this.state.loading}
-                  />
-                </div>
+                <Loader
+                  type="Hearts"
+                  color="#f47386"
+                  height={190}
+                  width={190}
+                  timeout={3000} //3 secs
+                />
                 {this.state.perfiles.map(element => {
                   return (
                     <Col>

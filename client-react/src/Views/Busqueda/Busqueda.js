@@ -190,7 +190,7 @@ class FormNewPet extends React.Component {
                       <hr></hr>
                       <br />
                       <div style={style}>
-                        <Slider
+                        <Slider 
                           min={0}
                           max={1000}
                           defaultValue={3}
