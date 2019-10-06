@@ -143,9 +143,9 @@ class FormNewPet extends React.Component {
               console.log(error);
               swal({
                 title: "Error!",
-                text: "No se agrego correctamente la mascota",
+                text: "Debe agregar una foto para su mascota",
                 icon: "error",
-                timer: 2000,
+                timer: 3000,
                 button: false
               });
             });
