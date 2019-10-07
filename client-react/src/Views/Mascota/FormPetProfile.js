@@ -7,6 +7,7 @@ import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png"
 import axios from "axios";
 import { connect } from "react-redux";
 import config from '../../config'
+import * as Yup from "yup";
 
 // Componentes utilizados
 import RazaSelect from "./Selects/RazaSelect";
@@ -117,6 +118,12 @@ class FormPetProfile extends React.Component {
         initialValues={{
           Nombre: this.state.Nombre
         }}
+        validationSchema={Yup.object().shape({
+          Nombre: Yup.string()
+            .trim()
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres"),
+        })}
         validate={values => {
           let errors = {};
           if (!values.Nombre) errors.Nombre = "El nombre es requerido";
@@ -143,9 +150,9 @@ class FormPetProfile extends React.Component {
               console.log(response);
               swal({
                 title: "Exito!",
-                text: "Los datos de la mascota se guardaron correctamente",
+                text: "Los datos de la mascota se guardaron correctamentes",
                 icon: "success",
-                timer: 2000,
+                timer: 2500,
                 button: false
               });
               window.location.replace('/Dashboard')
@@ -157,7 +164,7 @@ class FormPetProfile extends React.Component {
                 title: "Error!",
                 text: "Error al guardar los datos de la mascota",
                 icon: "error",
-                timer: 2000,
+                timer: 2500,
                 button: false
               });
             });

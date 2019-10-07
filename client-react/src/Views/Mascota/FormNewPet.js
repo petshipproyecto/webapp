@@ -8,6 +8,7 @@ import update from "react-addons-update"; // ES6
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import config from '../../config'
+import * as Yup from "yup";
 
 // Componentes utilizados
 import RazaSelect from "./Selects/RazaSelect";
@@ -103,6 +104,12 @@ class FormNewPet extends React.Component {
         initialValues={{
           Nombre: ""
         }}
+        validationSchema={Yup.object().shape({
+          Nombre: Yup.string()
+            .trim()
+            .min(2, "El nombre debe tener como mínimo 2 caracteres")
+            .max(20, "El nombre debe tener como máximo 20 caracteres"),
+        })}
         validate={values => {
           let errors = {};
           if (!values.Nombre) errors.Nombre = "El nombre es requerido";
