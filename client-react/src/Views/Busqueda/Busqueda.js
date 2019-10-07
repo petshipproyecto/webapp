@@ -181,7 +181,7 @@ class FormNewPet extends React.Component {
                       <br />
                       <div class="d-flex justify-content-between">
                         <div>
-                          <h6>Maxima distancia:</h6>
+                          <h6>Máxima distancia:</h6>
                         </div>
                         <div style={{ color: "#f47386", fontWeight: "bolder" }}>
                           100 km.

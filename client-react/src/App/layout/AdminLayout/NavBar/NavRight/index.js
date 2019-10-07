@@ -10,6 +10,8 @@ import config from "../../../../../config";
 import Loader from "react-loader-spinner";
 import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png";
 import { Route, Redirect } from "react-router-dom";
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -165,13 +167,14 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          {/*
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-                <i className="icon feather icon-bell" />
+              <NotificationBadge count={3} effect={Effect.SCALE} style={{top: '12px',right: '-25px'}}/>
+                <i className="icon feather icon-bell" >
+                </i>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification">
+              <Dropdown.Menu alignRight className="notification"> 
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">Notificaciones</h6>
                   <div className="float-right">
@@ -246,7 +249,6 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-        */}
           <li>
             <Dropdown
               alignRight={!this.props.rtlLayout}

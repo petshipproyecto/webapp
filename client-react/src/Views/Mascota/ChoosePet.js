@@ -55,8 +55,7 @@ class ChoosePet extends React.Component {
         <div className="auth-wrapper aut-bg-img-new">
           <div class="content">
             <Container>
-              <br></br>
-              <Row>
+            <center>
                 <Loader
                   type="Hearts"
                   color="#f47386"
@@ -64,6 +63,8 @@ class ChoosePet extends React.Component {
                   width={190}
                   timeout={3000} //3 secs
                 />
+                </center>
+              <Row>
                 {this.state.perfiles.map(element => {
                   return (
                     <Col>
