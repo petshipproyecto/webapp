@@ -194,7 +194,14 @@ class FormNewPet extends React.Component {
                           min={0}
                           max={1000}
                           defaultValue={3}
-                          handle={handle}
+                          handle={handle} 
+                          handleStyle={{
+                            border:"2px solid #f47386",
+                            backgroundColor: 'white',
+                          }}
+                          trackStyle={{
+                            background: "#f47386"
+                          }}           
                         />
                       </div>
                       <br />
@@ -213,6 +220,13 @@ class FormNewPet extends React.Component {
                           allowCross={false}
                           defaultValue={[1, 20]}
                           onChange={log}
+                          handleStyle={{
+                            border:"2px solid #f47386",
+                            backgroundColor: 'white',
+                          }}
+                          trackStyle={{
+                            background: "#f47386"
+                          }} 
                         />
                       </div>
                       <br />
