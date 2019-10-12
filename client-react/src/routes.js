@@ -8,6 +8,7 @@ global.jQuery = $;
 const DashboardDefault = React.lazy(() => import('./Views/Dashboard/Default'));
 const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile'));
 const TablaMascotas = React.lazy(() => import('./Views/Mascota/TablaMascotas'));
+const AdministrarUsuarios = React.lazy(() => import('./Views/Administrador/AdministrarUsuarios'));
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
@@ -22,6 +23,7 @@ const routes = [
     { path: '/PetProfile', exact: true, name: 'Forms Elements', component: FormPetProfile },
     { path: '/NewPet', exact: true, name: 'Forms Elements', component: FormNewPet },
     { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
+    { path: '/AdministrarUsuarios', exact: true, name: 'Forms Elements', component: AdministrarUsuarios },
     { path: '/GaleriaMascotas', exact: true, name: 'Forms Elements', component: GaleriaMascotas },
     { path: '/Swipe', exact: true, name: 'Forms Elements', component: Swipe },
     { path: '/Notificaciones', exact: true, name: 'Forms Elements', component: Notificaciones },

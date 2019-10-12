@@ -78,17 +78,39 @@ export default {
           icon: "feather icon-filter",
           url: "/ConfiguracionBusqueda",
         },
-        {
-          id: "choosePet",
-          title: "Eleguir Mascota",
-          type: "item",
-          icon: "fa fa-check-circle",
-          url: "/choosePet",
-          badge: {
-            title: "Prueba",
-            type: "label-danger"
-          },
-        },
+        // {
+        //   id: "choosePet",
+        //   title: "Eleguir Mascota",
+        //   type: "item",
+        //   icon: "fa fa-check-circle",
+        //   url: "/choosePet",
+        //   badge: {
+        //     title: "Prueba",
+        //     type: "label-danger"
+        //   },
+        // },
+        // {
+        //   id: "adminUsers",
+        //   title: "Administrar Usuarios",
+        //   type: "item",
+        //   icon: "fa fa-check-circle",
+        //   url: "/AdministrarUsuarios",
+        //   badge: {
+        //     title: "Admin",
+        //     type: "label-danger"
+        //   },
+        // },
+        // {
+        //   id: "inputDate",
+        //   title: "Cargar Datos",
+        //   type: "item",
+        //   icon: "fa fa-check-circle",
+        //   url: "/choosePet",
+        //   badge: {
+        //     title: "Admin",
+        //     type: "label-danger"
+        //   },
+        // },
       ]
     }
   ]
