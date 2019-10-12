@@ -20,12 +20,15 @@ import userProfile2 from "../../assets/images/user/avatar2.jpg";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 const { SearchBar, ClearSearchButton } = Search;
-const headerSortingStyle = { backgroundColor: '#c8e6c9' };
-const headerSortingClasses = (column, sortOrder, isLastSorting, colIndex) => (
-  sortOrder === 'asc' ? 'demo-sorting-asc' : 'demo-sorting-desc'
-);
+
+const defaultSorted = [
+  {
+    dataField: "nombre",
+    order: "desc"
+  }
+];
+
 //Columnas de la tabla
 const columns = [
   {
@@ -36,8 +39,12 @@ const columns = [
     dataField: "nombre",
     text: "Nombre",
     sort: true,
-    headerSortingStyle,
-    headerSortingClasses,
+    sortCaret: (order, column) => {
+      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
+      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
+      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      return null;
+    }
   },
   {
     dataField: "apellido",
@@ -270,7 +277,6 @@ class AdministrarUsuarios extends React.Component {
               <Card.Body>
                 {/* <BootstrapTable /> */}
                 <ToolkitProvider
-          
                   keyField="email"
                   data={usuarios}
                   columns={columns}
@@ -286,7 +292,7 @@ class AdministrarUsuarios extends React.Component {
                       <br></br>
                       <br></br>
                       <BootstrapTable 
-                        bootstrap4
+                      defaultSorted={defaultSorted}
                         bordered={ false }             
                         {...props.baseProps}
                         hover
@@ -294,8 +300,7 @@ class AdministrarUsuarios extends React.Component {
                         data={usuarios}
                         columns={columns}
                         pagination={paginationFactory()}  
-                        wrapperClasses="table-responsive"
-                            
+                        wrapperClasses="table-responsive"        
                       />
                     </div>
                   )}
