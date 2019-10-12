@@ -110,6 +110,8 @@ class FormUserProfile extends React.Component {
                 timer: 2000,
                 button: false
               });
+              window.location.replace('/Dashboard')
+
             })
             .catch(function (error) {
               // handle error
