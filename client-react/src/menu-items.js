@@ -89,17 +89,13 @@ export default {
         //     type: "label-danger"
         //   },
         // },
-        // {
-        //   id: "adminUsers",
-        //   title: "Administrar Usuarios",
-        //   type: "item",
-        //   icon: "fa fa-check-circle",
-        //   url: "/AdministrarUsuarios",
-        //   badge: {
-        //     title: "Admin",
-        //     type: "label-danger"
-        //   },
-        // },
+        {
+        id: "adminUsers",
+        title: "Administrar Usuarios",
+        type: "item",
+        icon: "fa fa-check-circle",
+        url: "/AdministrarUsuarios",
+         },
         // {
         //   id: "inputDate",
         //   title: "Cargar Datos",

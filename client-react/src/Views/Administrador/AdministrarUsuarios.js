@@ -16,6 +16,126 @@ import config from "../../config";
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
+
+//Tabla de la libreria react-boostrap-table-2
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+const { SearchBar } = Search;
+
+//Datos de los usuarios
+const usuarios=[
+  {
+    fotoUsuario: <h6 class="m-0">
+    <img
+      className="media-object img-radius"
+      src={userProfile1}
+      alt="Generic placeholder"
+    />
+  </h6>,
+    nombre: 'Carlos',
+    apellido: 'Perez',
+    ubicacion:'Resistencia-Chaco',
+    email:'juanPere@gmail.com',
+    acciones: 
+    <div>
+     <a class="Edit" href="/ConfiguracionBusqueda">
+                          <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={<Tooltip>Mascotas</Tooltip>}
+                          >
+                            <i
+                              style={{ fontSize: 24, color: "#f47386" }}
+                              className="fa fa-paw"
+                            />
+                          </OverlayTrigger>
+                        </a>
+                        &nbsp;
+                        <a class="Edit" href="/ConfiguracionBusqueda">
+                          <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={<Tooltip>Editar</Tooltip>}
+                          >
+                            <i
+                              style={{ fontSize: 24, color: "#f47386" }}
+                              className="icon feather icon-edit-2"
+                            />
+                          </OverlayTrigger>
+                        </a>
+                        <a class="Edit" href="/ConfiguracionBusqueda">
+                          <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={<Tooltip>Eliminar</Tooltip>}
+                          >
+                            <i
+                              style={{ fontSize: 24, color: "#f47386" }}
+                              className="icon feather icon-trash-2"
+                            />
+                          </OverlayTrigger>
+                        </a>
+ 
+  </div>
+  
+  },
+  {
+    fotoUsuario: <h6 class="m-0">
+    <img
+      className="media-object img-radius"
+      src={userProfile1}
+      alt="Generic placeholder"
+    />
+  </h6>,
+    nombre: 'Juan',
+    apellido: 'Perez',
+    ubicacion:'Resistencia-Chaco',
+    email:'juanPere@gmail.com',
+    acciones:'botones',
+  },
+  {
+    fotoUsuario:<h6 class="m-0">
+    <img
+      className="media-object img-radius"
+      src={userProfile1}
+      alt="Generic placeholder"
+    />
+  </h6>,
+    nombre: 'Juan',
+    apellido: 'Perez',
+    ubicacion:'Resistencia-Chaco',
+    email:'juanPere@gmail.com',
+    acciones:'botones',
+  },
+];
+
+const columns = [{
+  dataField: 'fotoUsuario',
+  text: 'Usuario'
+}, {
+  dataField: 'nombre',
+  text: 'Nombre',
+  sort: true,
+}, {
+  dataField: 'apellido',
+  text: 'Apellido',
+  sort: true,
+},
+{
+  dataField: 'ubicacion',
+  text: 'Ubicacion'
+},
+{
+  dataField: 'email',
+  text: 'Email'
+},
+{
+  dataField: 'acciones',
+  text: 'Acciones'
+},
+];
+
 const rutaApi = config.rutaApi;
 
 const setTargetProfile = (Usr_cod, Id_perfil) => {
@@ -63,6 +183,7 @@ const deleteProfile = (Usr_cod, perfil) => {
 };
 
 class AdministrarUsuarios extends React.Component {
+  
   state = {
     Usr_cod: null,
     perfiles: [],
@@ -232,6 +353,43 @@ class AdministrarUsuarios extends React.Component {
             </Card>
           </Col>
         </Row>
+        
+        <Row>
+        <Col>
+        <Card>
+              <Card.Header>
+                <Card.Title as="h5">Administrar Usuarios</Card.Title>
+              </Card.Header>
+         
+              <Card.Body>
+        {/* <BootstrapTable /> */}
+        <ToolkitProvider
+  keyField="usuario"
+  data={ usuarios }
+  columns={ columns }
+  search
+>
+  {
+    props => (
+      <div>
+        <h3>Input something at below input field:</h3>
+        <SearchBar { ...props.searchProps } />
+        {/* <ClearSearchButton { ...props.searchProps } /> */}
+        <hr />
+        <BootstrapTable
+          { ...props.baseProps }responsive hover  keyField='id' data={ usuarios } columns={ columns } pagination={ paginationFactory() }
+        />
+      
+      </div>
+    )
+  }
+</ToolkitProvider>
+        </Card.Body>
+        
+        </Card>
+        </Col>
+        </Row>
+          
       </Aux>
     );
   }
