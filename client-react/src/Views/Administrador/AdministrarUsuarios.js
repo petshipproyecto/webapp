@@ -20,7 +20,46 @@ import userProfile2 from "../../assets/images/user/avatar2.jpg";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 const { SearchBar, ClearSearchButton } = Search;
+const headerSortingStyle = { backgroundColor: '#c8e6c9' };
+const headerSortingClasses = (column, sortOrder, isLastSorting, colIndex) => (
+  sortOrder === 'asc' ? 'demo-sorting-asc' : 'demo-sorting-desc'
+);
+//Columnas de la tabla
+const columns = [
+  {
+    dataField: "fotoUsuario",
+    text: "Usuario",
+  },
+  {
+    dataField: "nombre",
+    text: "Nombre",
+    sort: true,
+    headerSortingStyle,
+    headerSortingClasses,
+  },
+  {
+    dataField: "apellido",
+    text: "Apellido",
+    sort: true,
+  },
+  {
+    dataField: "ubicacion",
+    text: "Ubicacion",
+    sort: true,
+  },
+  {
+    dataField: "email",
+    text: "Email",
+    sort: true,
+  },
+  {
+    dataField: "acciones",
+    text: "Acciones"
+  }
+];
+
 
 //Datos de los usuarios
 const usuarios = [
@@ -192,34 +231,6 @@ const usuarios = [
   }
 ];
 
-const columns = [
-  {
-    dataField: "fotoUsuario",
-    text: "Usuario"
-  },
-  {
-    dataField: "nombre",
-    text: "Nombre",
-    sort: true
-  },
-  {
-    dataField: "apellido",
-    text: "Apellido",
-    sort: true
-  },
-  {
-    dataField: "ubicacion",
-    text: "Ubicacion"
-  },
-  {
-    dataField: "email",
-    text: "Email"
-  },
-  {
-    dataField: "acciones",
-    text: "Acciones"
-  }
-];
 
 const rutaApi = config.rutaApi;
 
@@ -259,6 +270,7 @@ class AdministrarUsuarios extends React.Component {
               <Card.Body>
                 {/* <BootstrapTable /> */}
                 <ToolkitProvider
+          
                   keyField="email"
                   data={usuarios}
                   columns={columns}
@@ -273,17 +285,17 @@ class AdministrarUsuarios extends React.Component {
                       />
                       <br></br>
                       <br></br>
-                      <BootstrapTable     
-                      bordered={ false }             
+                      <BootstrapTable 
+                        bootstrap4
+                        bordered={ false }             
                         {...props.baseProps}
-                        responsive
                         hover
-                        keyField="id"
+                        keyField="email"
                         data={usuarios}
                         columns={columns}
-                        pagination={paginationFactory()}
-                        class="table"
-                        
+                        pagination={paginationFactory()}  
+                        wrapperClasses="table-responsive"
+                            
                       />
                     </div>
                   )}
