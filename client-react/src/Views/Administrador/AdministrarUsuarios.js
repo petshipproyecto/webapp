@@ -50,16 +50,34 @@ const columns = [
     dataField: "apellido",
     text: "Apellido",
     sort: true,
+    sortCaret: (order, column) => {
+      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
+      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
+      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      return null;
+    }
   },
   {
     dataField: "ubicacion",
     text: "Ubicacion",
     sort: true,
+    sortCaret: (order, column) => {
+      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
+      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
+      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      return null;
+    }
   },
   {
     dataField: "email",
     text: "Email",
     sort: true,
+    sortCaret: (order, column) => {
+      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
+      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
+      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      return null;
+    }
   },
   {
     dataField: "acciones",
@@ -131,7 +149,7 @@ const usuarios = [
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={userProfile1}
+          src={userProfile2}
           alt="Generic placeholder"
         />
       </h6>
@@ -284,10 +302,12 @@ class AdministrarUsuarios extends React.Component {
                 >
                   {props => (
                     <div>
-                      <SearchBar {...props.searchProps} />
+                      <SearchBar {...props.searchProps} placeholder='Buscar' />
                       <ClearSearchButton
+                      text="Borrar"
                         className="btn btn-primary shadow-2"
                         {...props.searchProps}
+                      
                       />
                       <br></br>
                       <br></br>
