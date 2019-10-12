@@ -16,20 +16,27 @@ import config from "../../config";
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
-//Tabla de la libreria react-boostrap-table-2
+// Libreria de la tabla: react-boostrap-table-2
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-const { SearchBar, ClearSearchButton } = Search;
+// Libreria de la tabla: react-boostrap-table-2
 
+//-------Constantes para la busqueda en la tabla------
+const { SearchBar, ClearSearchButton } = Search;
+//-------Constantes para la busqueda en la tabla------
+
+//-----------EL sort por default de la tabla----------
 const defaultSorted = [
   {
     dataField: "nombre",
     order: "desc"
   }
 ];
+//-----------EL sort por default de la tabla----------
 
-//Columnas de la tabla
+
+//---------Columnas de la tabla------------------
 const columns = [
   {
     dataField: "fotoUsuario",
@@ -84,9 +91,9 @@ const columns = [
     text: "Acciones"
   }
 ];
+//---------Columnas de la tabla------------------
 
-
-//Datos de los usuarios
+//-------------------Datos de los usuarios-------
 const usuarios = [
   {
     fotoUsuario: (
@@ -255,7 +262,7 @@ const usuarios = [
       </div>
   }
 ];
-
+//-------------------Datos de los usuarios-------
 
 const rutaApi = config.rutaApi;
 
@@ -293,15 +300,17 @@ class AdministrarUsuarios extends React.Component {
                 <Card.Title as="h5">Administrar Usuarios</Card.Title>
               </Card.Header>
               <Card.Body>
-                {/* <BootstrapTable /> */}
+                {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="email"
                   data={usuarios}
                   columns={columns}
                   search
                 >
+                 {/* Tool para la tabla  */}
                   {props => (
                     <div>
+                      {/* Buscador de la tabla */}
                       <SearchBar {...props.searchProps} placeholder='Buscar' />
                       <ClearSearchButton
                       text="Borrar"
@@ -309,8 +318,10 @@ class AdministrarUsuarios extends React.Component {
                         {...props.searchProps}
                       
                       />
+                      {/* Buscado de la tabla */}
                       <br></br>
                       <br></br>
+                      {/* Tabla */}
                       <BootstrapTable 
                       defaultSorted={defaultSorted}
                         bordered={ false }             
@@ -322,6 +333,7 @@ class AdministrarUsuarios extends React.Component {
                         pagination={paginationFactory()}  
                         wrapperClasses="table-responsive"        
                       />
+                      {/* Tabla */}
                     </div>
                   )}
                 </ToolkitProvider>
