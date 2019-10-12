@@ -181,7 +181,7 @@ class FormNewPet extends React.Component {
                       <br />
                       <div class="d-flex justify-content-between">
                         <div>
-                          <h6>Maxima distancia:</h6>
+                          <h6>Máxima distancia:</h6>
                         </div>
                         <div style={{ color: "#f47386", fontWeight: "bolder" }}>
                           100 km.
@@ -190,11 +190,18 @@ class FormNewPet extends React.Component {
                       <hr></hr>
                       <br />
                       <div style={style}>
-                        <Slider
+                        <Slider 
                           min={0}
                           max={1000}
                           defaultValue={3}
-                          handle={handle}
+                          handle={handle} 
+                          handleStyle={{
+                            border:"2px solid #f47386",
+                            backgroundColor: 'white',
+                          }}
+                          trackStyle={{
+                            background: "#f47386"
+                          }}           
                         />
                       </div>
                       <br />
@@ -213,6 +220,13 @@ class FormNewPet extends React.Component {
                           allowCross={false}
                           defaultValue={[1, 20]}
                           onChange={log}
+                          handleStyle={{
+                            border:"2px solid #f47386",
+                            backgroundColor: 'white',
+                          }}
+                          trackStyle={{
+                            background: "#f47386"
+                          }} 
                         />
                       </div>
                       <br />
