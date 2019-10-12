@@ -96,6 +96,13 @@ export default {
         icon: "fa fa-check-circle",
         url: "/AdministrarUsuarios",
          },
+         {
+          id: "adminRazas",
+          title: "Administrar Razas",
+          type: "item",
+          icon: "fa fa-check-circle",
+          url: "/AdministrarRazas",
+           },
         // {
         //   id: "inputDate",
         //   title: "Cargar Datos",
