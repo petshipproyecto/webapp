@@ -103,6 +103,13 @@ export default {
           icon: "fa fa-check-circle",
           url: "/AdministrarRazas",
            },
+           {
+            id: "adminTipoMascotas",
+            title: "Administrar Tipos de Mascotas",
+            type: "item",
+            icon: "fa fa-check-circle",
+            url: "/AdministrarTiposDeMascotas",
+             },
         // {
         //   id: "inputDate",
         //   title: "Cargar Datos",

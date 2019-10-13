@@ -10,6 +10,7 @@ const FormUserProfile = React.lazy(() => import('./Views/Usuario/FormUserProfile
 const TablaMascotas = React.lazy(() => import('./Views/Mascota/TablaMascotas'));
 const AdministrarUsuarios = React.lazy(() => import('./Views/Administrador/AdministrarUsuarios'));
 const AdministrarRazas = React.lazy(() => import('./Views/Administrador/AdministrarRazas'));
+const AdministrarTipoMascota = React.lazy(() => import('./Views/Administrador/AdminTipoMascota'));
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
@@ -26,6 +27,7 @@ const routes = [
     { path: '/TablaMascotas', exact: true, name: 'Forms Elements', component: TablaMascotas },
     { path: '/AdministrarUsuarios', exact: true, name: 'Forms Elements', component: AdministrarUsuarios },
     { path: '/AdministrarRazas', exact: true, name: 'Forms Elements', component: AdministrarRazas },
+    { path: '/AdministrarTiposDeMascotas', exact: true, name: 'Forms Elements', component: AdministrarTipoMascota },
     { path: '/GaleriaMascotas', exact: true, name: 'Forms Elements', component: GaleriaMascotas },
     { path: '/Swipe', exact: true, name: 'Forms Elements', component: Swipe },
     { path: '/Notificaciones', exact: true, name: 'Forms Elements', component: Notificaciones },

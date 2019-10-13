@@ -33,7 +33,7 @@ const { SearchBar, ClearSearchButton } = Search;
 //-----------EL sort por default de la tabla----------
 const defaultSorted = [
   {
-    dataField: "raza",
+    dataField: "tipoMascota",
     order: "desc"
   }
 ];
@@ -42,8 +42,8 @@ const defaultSorted = [
 //---------Columnas de la tabla------------------
 const columns = [
   {
-    dataField: "idRaza",
-    text: "Id Raza",
+    dataField: "idTipoMascota",
+    text: "Id Tipo Mascota",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -63,8 +63,8 @@ const columns = [
     }
   },
   {
-    dataField: "raza",
-    text: "Nombre de la Raza",
+    dataField: "tipoMascota",
+    text: "Nombre del Tipo de Mascota",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -90,13 +90,25 @@ const columns = [
 ];
 //---------Columnas de la tabla------------------
 
-//-------------------Datos de las razas-------
-const razas = [
+//-------------------Datos de los tipos de Mascotas-------
+const tiposMascotas = [
   {
-    idRaza: 1,
-    raza: "Pincher",
+    idTipoMascota: 1,
+    tipoMascota: "Gato",
     acciones: (
       <div>
+         <a class="Edit" href="/AdministrarRazas">
+          <OverlayTrigger
+            placement="left"
+            delay={{ show: 250, hide: 400 }}
+            overlay={<Tooltip>Razas</Tooltip>}
+          >
+            <i
+              style={{ fontSize: 24, color: "#f47386" }}
+              className="icon feather icon-plus"
+            />
+          </OverlayTrigger>
+        </a>
         <a class="Edit" href="/ConfiguracionBusqueda">
           <OverlayTrigger
             placement="left"
@@ -125,10 +137,22 @@ const razas = [
     )
   },
   {
-    idRaza: 2,
-    raza: "Rotweiler",
+    idTipoMascota: 2,
+    tipoMascota: "Perro",
     acciones: (
       <div>
+        <a class="Edit" href="/AdministrarRazas">
+          <OverlayTrigger
+            placement="left"
+            delay={{ show: 250, hide: 400 }}
+            overlay={<Tooltip>Razas</Tooltip>}
+          >
+            <i
+              style={{ fontSize: 24, color: "#f47386" }}
+              className="icon feather icon-plus"
+            />
+          </OverlayTrigger>
+        </a>
         <a class="Edit" href="/ConfiguracionBusqueda">
           <OverlayTrigger
             placement="left"
@@ -157,10 +181,22 @@ const razas = [
     )
   },
   {
-    idRaza: 3,
-    raza: "Cocker",
+    idTipoMascota: 3,
+    tipoMascota: "Ave",
     acciones: (
       <div>
+        <a class="Edit" href="/AdministrarRazas">
+          <OverlayTrigger
+            placement="left"
+            delay={{ show: 250, hide: 400 }}
+            overlay={<Tooltip>Razas</Tooltip>}
+          >
+            <i
+              style={{ fontSize: 24, color: "#f47386" }}
+              className="icon feather icon-plus"
+            />
+          </OverlayTrigger>
+        </a>
         <a class="Edit" href="/ConfiguracionBusqueda">
           <OverlayTrigger
             placement="left"
@@ -189,7 +225,7 @@ const razas = [
     )
   }
 ];
-//-------------------Datos de los razas-------
+//-------------------Datos de los tipos de mascotas-------
 
 const rutaApi = config.rutaApi;
 
@@ -204,7 +240,7 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
-class AdministrarRazas extends React.Component {
+class AdminTipoMascota extends React.Component {
   constructor() {
     super();
     this.onClick = this.onClick.bind(this);
@@ -212,10 +248,10 @@ class AdministrarRazas extends React.Component {
 
   onClick() {
     this.dialog.show({
-      title: "Agregar Nueva Raza",
-      body: "Ingrese el nombre de la nueva raza:",
+      title: "Agregar Nuevo Tipo de Mascota",
+      body: "Ingrese el nombre del nuevo tipo de mascota:",
       prompt: Dialog.TextPrompt({
-        placeholder: "Nombre de la Raza",
+        placeholder: "Nombre del tipo de mascota",
         initialValue: "",
         required: true
       }),
@@ -245,13 +281,13 @@ class AdministrarRazas extends React.Component {
           <Col>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Administrar razas</Card.Title>
+                <Card.Title as="h5">Administrar Tipo de Mascotas</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="nombre"
-                  data={razas}
+                  data={tiposMascotas}
                   columns={columns}
                   search
                 >
@@ -278,7 +314,7 @@ class AdministrarRazas extends React.Component {
                             class="btn-rounded btn btn-primary"
                             onClick={this.onClick}
                           >
-                            <i class="feather icon-plus"></i>Raza
+                            <i class="feather icon-plus"></i>Tipo de Mascota
                           </button>
 
                           <Dialog
@@ -296,8 +332,8 @@ class AdministrarRazas extends React.Component {
                         bordered={false}
                         {...props.baseProps}
                         hover
-                        keyField="idRaza"
-                        data={razas}
+                        keyField="idTipoMascota"
+                        data={tiposMascotas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
@@ -323,4 +359,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(AdministrarRazas);
+export default connect(mapStateToProps)(AdminTipoMascota);
