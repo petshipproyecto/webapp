@@ -10,31 +10,9 @@ const imagen = {
 };
 
 class Match extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: props.modal };
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.state.show !== nextProps.modal) {
-      this.setState({ show: nextProps.modal });
-    }
-  }
   render() {
-    let close = () => this.setState({ show: false });
     return (
       <div className="modal-container">
-        <Modal
-          show={this.state.show}
-          onHide={close}
-          container={this}
-          aria-labelledby="contained-modal-title"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title style={{ margin: "auto" }} id="contained-modal-title ">
-              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Hay Cita!
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
             <center>{/* <p>Lola y Firulai se dieron me gusta</p> */}</center>
             <center>
               <div class="row">
@@ -75,11 +53,6 @@ class Match extends React.Component {
                 </a>
               </div>
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={close}>Cerrar</Button>
-          </Modal.Footer>
-        </Modal>
       </div>
     );
   }

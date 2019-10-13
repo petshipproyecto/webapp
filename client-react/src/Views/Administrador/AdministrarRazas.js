@@ -16,6 +16,10 @@ import config from "../../config";
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
+//-----------------Libreria del popup o modal------------------------
+import Dialog from "react-bootstrap-dialog";
+//-----------------Libreria del popup o modal------------------------
+
 // Libreria de la tabla: react-boostrap-table-2
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -35,7 +39,6 @@ const defaultSorted = [
 ];
 //-----------EL sort por default de la tabla----------
 
-
 //---------Columnas de la tabla------------------
 const columns = [
   {
@@ -43,9 +46,19 @@ const columns = [
     text: "Id Raza",
     sort: true,
     sortCaret: (order, column) => {
-      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
-      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
-      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
+      else if (order === "asc")
+        return (
+          <span style={{ cursor: "pointer" }}>
+            &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
+          </span>
+        );
+      else if (order === "desc")
+        return (
+          <span style={{ cursor: "pointer" }}>
+            &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
+          </span>
+        );
       return null;
     }
   },
@@ -54,9 +67,19 @@ const columns = [
     text: "Nombre de la Raza",
     sort: true,
     sortCaret: (order, column) => {
-      if (!order) return (<span>&nbsp;&nbsp;Desc/Asc</span>);
-      else if (order === 'asc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;Desc/<font color="#f47386">Asc</font></span>);
-      else if (order === 'desc') return (<span style={{cursor:'pointer'}}>&nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc</span>);
+      if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
+      else if (order === "asc")
+        return (
+          <span style={{ cursor: "pointer" }}>
+            &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
+          </span>
+        );
+      else if (order === "desc")
+        return (
+          <span style={{ cursor: "pointer" }}>
+            &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
+          </span>
+        );
       return null;
     }
   },
@@ -70,8 +93,8 @@ const columns = [
 //-------------------Datos de las razas-------
 const razas = [
   {
-    idRaza:1,
-    raza:"Pincher",
+    idRaza: 1,
+    raza: "Pincher",
     acciones: (
       <div>
         <a class="Edit" href="/ConfiguracionBusqueda">
@@ -102,8 +125,8 @@ const razas = [
     )
   },
   {
-    idRaza:2,
-    raza:"Rotweiler",
+    idRaza: 2,
+    raza: "Rotweiler",
     acciones: (
       <div>
         <a class="Edit" href="/ConfiguracionBusqueda">
@@ -134,8 +157,8 @@ const razas = [
     )
   },
   {
-    idRaza:3,
-    raza:"Cocker",
+    idRaza: 3,
+    raza: "Cocker",
     acciones: (
       <div>
         <a class="Edit" href="/ConfiguracionBusqueda">
@@ -164,7 +187,7 @@ const razas = [
         </a>
       </div>
     )
-  },
+  }
 ];
 //-------------------Datos de los razas-------
 
@@ -181,9 +204,30 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
-
 class AdministrarRazas extends React.Component {
-  
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    this.dialog.show({
+      title: "Agregar Nueva Raza",
+      body: "Ingrese el nombre de la nueva raza:",
+      prompt: Dialog.TextPrompt({
+        placeholder: "Nombre de la Raza",
+        initialValue: "",
+        required: true
+      }),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
+
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
@@ -211,46 +255,52 @@ class AdministrarRazas extends React.Component {
                   columns={columns}
                   search
                 >
-                 {/* Tool para la tabla  */}
+                  {/* Tool para la tabla  */}
                   {props => (
                     <div>
-                  
-                  <div class="d-flex justify-content-between">
+                      <div class="d-flex justify-content-between">
                         <div>
                           {/* Buscador de la tabla */}
-                      <SearchBar {...props.searchProps} placeholder='Buscar' />
-                      <ClearSearchButton
-                      text="Borrar"
-                        className="btn btn-primary shadow-2"
-                        {...props.searchProps}
-                      
-                      />
-                      {/* Buscado de la tabla */}
+                          <SearchBar
+                            {...props.searchProps}
+                            placeholder="Buscar"
+                          />
+                          <ClearSearchButton
+                            text="Borrar"
+                            className="btn btn-primary shadow-2"
+                            {...props.searchProps}
+                          />
+                          {/* Buscado de la tabla */}
                         </div>
                         <div>
-                        <a href="/TablaMascotas">
-                    <button
-                      type="button"
-                      class="btn-rounded btn btn-primary"
-                    >
-                      <i class="feather icon-plus"></i>Raza
-                    </button>
-                  </a>
+                          <button
+                            type="button"
+                            class="btn-rounded btn btn-primary"
+                            onClick={this.onClick}
+                          >
+                            <i class="feather icon-plus"></i>Raza
+                          </button>
+
+                          <Dialog
+                            ref={component => {
+                              this.dialog = component;
+                            }}
+                          />
                         </div>
                       </div>
                       <br></br>
                       <br></br>
                       {/* Tabla */}
-                      <BootstrapTable 
-                      defaultSorted={defaultSorted}
-                        bordered={ false }             
+                      <BootstrapTable
+                        defaultSorted={defaultSorted}
+                        bordered={false}
                         {...props.baseProps}
                         hover
                         keyField="idRaza"
                         data={razas}
                         columns={columns}
-                        pagination={paginationFactory()}  
-                        wrapperClasses="table-responsive"        
+                        pagination={paginationFactory()}
+                        wrapperClasses="table-responsive"
                       />
                       {/* Tabla */}
                     </div>

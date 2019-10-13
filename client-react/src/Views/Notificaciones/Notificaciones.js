@@ -1,20 +1,30 @@
 import React from "react";
 import { Row, Col, Card, Table, Button } from "react-bootstrap";
-
 import Aux from "../../hoc/_Aux";
-
-import Avatar1 from "../../assets/images/user/avatarDog.jpg";
-import Avatar2 from "../../assets/images/user/avatar2.jpg";
-import Avatar3 from "../../assets/images/user/avatar3.jpg";
-import Avatar4 from "../../assets/images/user/avatar1.jpg";
-
-import Match from "../Notificaciones/Match";
 
 //-----------------Libreria para tabla de notificaciones - Libreria:react-boostrap-table-2-------------
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 //-----------------Libreria para tabla de notificaciones-------------
+
+//-----------------Libreria del popup o modal------------------------
+import Dialog from "react-bootstrap-dialog";
+//-----------------Libreria del popup o modal------------------------
+
+import Avatar1 from "../../assets/images/user/avatarDog.jpg";
+import Avatar2 from "../../assets/images/user/avatar2.jpg";
+import Avatar3 from "../../assets/images/user/avatar3.jpg";
+import Avatar4 from "../../assets/images/user/avatar1.jpg";
+import Avatar5 from "../../assets/images/user/avatarDog.jpg";
+import Avatar6 from "../../assets/images/user/avatarDog1.jpg";
+
+const imagen = {
+  minWidth: 140,
+  maxHeight: 140,
+  minHeight: 140,
+  maxWidth: 140
+};
 
 //Constantes para la busqueda y el boton de borrar busqueda
 const { SearchBar, ClearSearchButton } = Search;
@@ -28,7 +38,6 @@ const defaultSorted = [
 ];
 
 //-------------Columnas de la tabla-------------------------
-
 const columns = [
   {
     dataField: "fotoMascota",
@@ -129,73 +138,150 @@ const columns = [
 ];
 //-------------Columnas de la tabla-------------------------
 
-//----------------------Datos de las notificaciones---------------------
-const notificaciones = [
-  {
-    fotoMascota: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={Avatar1}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Lola",
-    fotoDueño: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={Avatar2}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombreDueño: "Carlos Perez",
-    fecha: "10/05/2019",
-    hora: "20:05 AM",
-    acciones: (
-      <a class="text-white label theme-bg2 f-12" href="/PetProfile">
-        Ver Información
-      </a>
-    )
-  },
-  {
-    fotoMascota: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={Avatar1}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Lola",
-    fotoDueño: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={Avatar2}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombreDueño: "Carlos Perez",
-    fecha: "10/05/2019",
-    hora: "20:05 AM",
-    acciones: (
-      <a class="text-white label theme-bg2 f-12" href="/PetProfile">
-        Ver Información
-      </a>
-    )
-  }
-];
-//----------------------Datos de las notificaciones---------------------
-
 class Notificaciones extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: false };
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+    //----------------------Datos de las notificaciones---------------------
+    this.notificaciones = [
+      {
+        fotoMascota: (
+          <h6 class="m-0">
+            <img
+              className="media-object img-radius"
+              src={Avatar1}
+              alt="Generic placeholder"
+            />
+          </h6>
+        ),
+        nombre: "Lola",
+        fotoDueño: (
+          <h6 class="m-0">
+            <img
+              className="media-object img-radius"
+              src={Avatar2}
+              alt="Generic placeholder"
+            />
+          </h6>
+        ),
+        nombreDueño: "Carlos Perez",
+        fecha: "10/05/2019",
+        hora: "20:05 AM",
+        acciones: (
+          <div>
+            <a
+              style={{ cursor: "pointer" }}
+              class="text-white label theme-bg2 f-12"
+              onClick={this.onClick}
+            >
+              Ver Información
+            </a>
+            <Dialog
+              ref={component => {
+                this.dialog = component;
+              }}
+            />
+          </div>
+        )
+      },
+      {
+        fotoMascota: (
+          <h6 class="m-0">
+            <img
+              className="media-object img-radius"
+              src={Avatar1}
+              alt="Generic placeholder"
+            />
+          </h6>
+        ),
+        nombre: "Lola",
+        fotoDueño: (
+          <h6 class="m-0">
+            <img
+              className="media-object img-radius"
+              src={Avatar2}
+              alt="Generic placeholder"
+            />
+          </h6>
+        ),
+        nombreDueño: "Carlos Perez",
+        fecha: "10/05/2019",
+        hora: "20:05 AM",
+        acciones: (
+          <div>
+            <a
+              style={{ cursor: "pointer" }}
+              class="text-white label theme-bg2 f-12"
+              onClick={this.onClick}
+            >
+              Ver Información
+            </a>
+            <Dialog
+              ref={component => {
+                this.dialog = component;
+              }}
+            />
+          </div>
+        )
+      }
+    ];
+    //----------------------Datos de las notificaciones---------------------
+  }
+  onClick() {
+    this.dialog.show({
+      title: "Hay Cita!!!",
+      body: (
+        <div className="modal-container">
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar5}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+              <p style={{ fontSize: 20 }}>Lola</p>
+              </center>
+            </div>
+            <div>
+            <i
+                    style={{ fontSize: 100, color: "#f47386" }}
+                    class="fa fa-heart"
+                  ></i>
+                  </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar6}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+              <p style={{ fontSize: 20 }}>Lola</p>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-mail"></i>Enviar Email
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      ),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
   }
   render() {
     return (
@@ -209,7 +295,7 @@ class Notificaciones extends React.Component {
               <Card.Body>
                 <ToolkitProvider
                   keyField="email"
-                  data={notificaciones}
+                  data={this.notificaciones}
                   columns={columns}
                   search
                 >
@@ -229,7 +315,7 @@ class Notificaciones extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="nombre"
-                        data={notificaciones}
+                        data={this.notificaciones}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
@@ -237,55 +323,6 @@ class Notificaciones extends React.Component {
                     </div>
                   )}
                 </ToolkitProvider>
-                {/* <Table responsive hover>
-                  <thead>
-                    <tr>
-                      <th>Mascota</th>
-                      <th>Nombre</th>
-                      <th>Usuario</th>
-                      <th>Nombre</th>
-                      <th>Fecha</th>
-                      <th>Hora </th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h6 class="m-0">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar1}
-                            alt="Generic placeholder"
-                          />
-                        </h6>
-                      </td>
-                      <td>Lola</td>
-                      <td>
-                        <h6 class="m-0">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar2}
-                            alt="Generic placeholder"
-                          />
-                        </h6>
-                      </td>
-                      <td>Juan</td>
-                      <td>10/05/2019</td>
-                      <td>10:50 AM</td>
-                      <td>
-                        <Match modal={this.state.show} />
-                        <a
-                          style={{ cursor: "pointer" }}
-                          class="text-white label theme-bg2 f-12"
-                          onClick={() => this.setState({ show: true })}
-                        >
-                          Ver Información
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table> */}
               </Card.Body>
             </Card>
           </Col>
