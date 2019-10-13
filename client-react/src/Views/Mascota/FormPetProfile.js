@@ -129,7 +129,7 @@ class FormPetProfile extends React.Component {
           if (!values.Nombre) errors.Nombre = "El nombre es requerido";
           if (this.state.Edad === "0") errors.Edad = "La edad es requerida";
           if (this.state.Animal == null)
-            errors.Animal = "El Tipo de Animal es requerido";
+            errors.Animal = "El Tipo de Mascota es requerido";
           if (this.state.Raza == null) errors.Raza = "La Raza es requerida";
           if (this.state.Genero === "0")
             errors.Genero = "El Género es requerido";
@@ -250,7 +250,7 @@ class FormPetProfile extends React.Component {
 
                             {/* Select Animal */}
                             <div class="form-group">
-                              <label>Tipo de Animal</label>
+                              <label>Tipo de Mascota</label>
                               <AnimalSelect
                                 className={errors.Animal ? " is-invalid" : ""}
                                 arrayOfData={this.state.Animales}

@@ -115,8 +115,9 @@ class FormNewPet extends React.Component {
           if (!values.Nombre) errors.Nombre = "El nombre es requerido";
           if (this.state.Edad === "0") errors.Edad = "La edad es requerida";
           if (this.state.Animal == null)
-            errors.Animal = "El Tipo de Animal es requerido";
+            errors.Animal = "El Tipo de Mascota es requerido";
           if (this.state.Raza == null) errors.Raza = "La Raza es requerida";
+          if (this.state.urlImagen == null) errors.foto = "La Imagen es requerida";
           if (this.state.Genero === "0")
             errors.Genero = "El Género es requerido";
           return errors;
@@ -193,6 +194,7 @@ class FormNewPet extends React.Component {
                                 Seleccionar Foto de Perfil
                                 <FileUploader
                                   hidden
+                                  required
                                   accept="image/*"
                                   name="avatar"
                                   randomizeFilename
@@ -203,12 +205,8 @@ class FormNewPet extends React.Component {
                                   onProgress={this.handleProgress}
                                 />
                               </label>
-
-                              <ErrorMessage
-                                name="file"
-                                component="div"
-                                className="invalid-feedback"
-                              />
+                              <br/>
+                              <label style={{color: "red"}}>{errors.foto}</label>
                             </div>
                           </center>
 
@@ -238,7 +236,7 @@ class FormNewPet extends React.Component {
                           {/* Select Animal */}
                           <div class="form-group">
                             <label>
-                              Tipo de Animal{" "}
+                              Tipo de Mascota{" "}
                               <span style={{ color: "red" }}>*</span>{" "}
                             </label>
                             <AnimalSelect
