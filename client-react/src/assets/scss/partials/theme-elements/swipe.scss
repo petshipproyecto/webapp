@@ -71,7 +71,7 @@
 .cardBody{
   padding: 0px 1px 0px 0px;
   margin: 0px 0px 0px 0px;
-  max-height: 185px;
+  max-height: 215px;
 }
 
 .img-pequeña{
@@ -103,4 +103,13 @@ button {
   display: grid;
   align-items: center;  
   grid-template-columns: 400px;
+}
+.cardImg {
+  max-height: 265px;
+}
+.tt {
+  font-weight: 520;
+  color:#DA8291;
+  font-size: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"
 }
