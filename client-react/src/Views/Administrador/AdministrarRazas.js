@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   Card,
-  Table,
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
@@ -11,10 +10,7 @@ import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png";
 import config from "../../config";
-import userProfile1 from "../../assets/images/user/avatar1.jpg";
-import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
@@ -90,106 +86,20 @@ const columns = [
 ];
 //---------Columnas de la tabla------------------
 
-//-------------------Datos de las razas-------
-const razas = [
-  {
-    idRaza: 1,
-    raza: "Pincher",
-    acciones: (
-      <div>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-      </div>
-    )
-  },
-  {
-    idRaza: 2,
-    raza: "Rotweiler",
-    acciones: (
-      <div>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-      </div>
-    )
-  },
-  {
-    idRaza: 3,
-    raza: "Cocker",
-    acciones: (
-      <div>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-      </div>
-    )
-  }
-];
-//-------------------Datos de los razas-------
+//---------Mensaje de Eliminar Raza-------------------
+const deleteRaza = () => {
+  Swal.fire({
+    title: "Eliminar Raza",
+    text: "¿Está seguro de que desea eliminarlo?",
+    type: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#8BC3FF",
+    cancelButtonColor: "#BFBFBF ",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "OK"
+  });
+};
+//---------Mensaje de Eliminar Raza-------------------
 
 const rutaApi = config.rutaApi;
 
@@ -207,10 +117,158 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
 class AdministrarRazas extends React.Component {
   constructor() {
     super();
-    this.onClick = this.onClick.bind(this);
+    this.onAgregar = this.onAgregar.bind(this);
+    this.onEditar = this.onEditar.bind(this);
+    //-------------------Datos de las razas-------
+    this.razas = [
+      {
+        idRaza: 1,
+        raza: "Pincher",
+        acciones: (
+          <div>
+            <a
+              class="Edit"
+              onClick={this.onEditar}
+              style={{ cursor: "pointer" }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Editar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-edit-2"
+                />
+              </OverlayTrigger>
+            </a>
+            <Dialog
+              ref={component => {
+                this.dialog = component;
+              }}
+            />
+            <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteRaza();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
+          </div>
+        )
+      },
+      {
+        idRaza: 2,
+        raza: "Rotweiler",
+        acciones: (
+          <div>
+            <a
+              class="Edit"
+              onClick={this.onEditar}
+              style={{ cursor: "pointer" }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Editar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-edit-2"
+                />
+              </OverlayTrigger>
+            </a>
+            <Dialog
+              ref={component => {
+                this.dialog = component;
+              }}
+            />
+            <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteRaza();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
+          </div>
+        )
+      },
+      {
+        idRaza: 3,
+        raza: "Cocker",
+        acciones: (
+          <div>
+            <a
+              class="Edit"
+              onClick={this.onEditar}
+              style={{ cursor: "pointer" }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Editar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-edit-2"
+                />
+              </OverlayTrigger>
+            </a>
+            <Dialog
+              ref={component => {
+                this.dialog = component;
+              }}
+            />
+            <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteRaza();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
+          </div>
+        )
+      }
+    ];
+    //-------------------Datos de los razas-------
   }
 
-  onClick() {
+  //---------Mensaje de Agregar Raza-------------------
+
+  onAgregar() {
     this.dialog.show({
       title: "Agregar Nueva Raza",
       body: "Ingrese el nombre de la nueva raza:",
@@ -227,6 +285,27 @@ class AdministrarRazas extends React.Component {
       }
     });
   }
+  //---------Mensaje de Agregar Raza-------------------
+
+  //---------Mensaje de Editar Raza-------------------
+  onEditar() {
+    this.dialog.show({
+      title: "Editar Raza",
+      body: "Ingrese el nombre de la raza:",
+      prompt: Dialog.TextPrompt({
+        placeholder: "Cocker",
+        initialValue: "",
+        required: true
+      }),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
+  //---------Mensaje de Agregar Raza-------------------
 
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
@@ -251,7 +330,7 @@ class AdministrarRazas extends React.Component {
                 {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="nombre"
-                  data={razas}
+                  data={this.razas}
                   columns={columns}
                   search
                 >
@@ -276,7 +355,7 @@ class AdministrarRazas extends React.Component {
                           <button
                             type="button"
                             class="btn-rounded btn btn-primary"
-                            onClick={this.onClick}
+                            onClick={this.onAgregar}
                           >
                             <i class="feather icon-plus"></i>Raza
                           </button>
@@ -297,7 +376,7 @@ class AdministrarRazas extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="idRaza"
-                        data={razas}
+                        data={this.razas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"

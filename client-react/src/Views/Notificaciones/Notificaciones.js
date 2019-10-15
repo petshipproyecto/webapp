@@ -141,7 +141,9 @@ const columns = [
 class Notificaciones extends React.Component {
   constructor() {
     super();
-    this.onClick = this.onClick.bind(this);
+    this.onPareja = this.onPareja.bind(this);
+    this.onAmistad = this.onAmistad.bind(this);
+
     //----------------------Datos de las notificaciones---------------------
     this.notificaciones = [
       {
@@ -172,7 +174,7 @@ class Notificaciones extends React.Component {
             <a
               style={{ cursor: "pointer" }}
               class="text-white label theme-bg2 f-12"
-              onClick={this.onClick}
+              onClick={this.onPareja}
             >
               Ver Información
             </a>
@@ -212,7 +214,7 @@ class Notificaciones extends React.Component {
             <a
               style={{ cursor: "pointer" }}
               class="text-white label theme-bg2 f-12"
-              onClick={this.onClick}
+              onClick={this.onAmistad}
             >
               Ver Información
             </a>
@@ -227,11 +229,13 @@ class Notificaciones extends React.Component {
     ];
     //----------------------Datos de las notificaciones---------------------
   }
-  onClick() {
+  onPareja() {
     this.dialog.show({
-      title: "Hay Cita!!!",
       body: (
         <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 50 }}>Hay Cita !!!</p>
+          </center>
           <div class="d-flex justify-content-between">
             <div>
               <img
@@ -242,15 +246,15 @@ class Notificaciones extends React.Component {
               />
               <br />
               <center>
-              <p style={{ fontSize: 20 }}>Lola</p>
+                <p style={{ fontSize: 20 }}>Lola</p>
               </center>
             </div>
             <div>
-            <i
-                    style={{ fontSize: 100, color: "#f47386" }}
-                    class="fa fa-heart"
-                  ></i>
-                  </div>
+              <i
+                style={{ fontSize: 70, color: "#f47386" }}
+                class="fa fa-heart"
+              ></i>
+            </div>
             <div>
               <img
                 style={imagen}
@@ -260,7 +264,7 @@ class Notificaciones extends React.Component {
               />
               <br />
               <center>
-              <p style={{ fontSize: 20 }}>Lola</p>
+                <p style={{ fontSize: 20 }}>Firulai</p>
               </center>
             </div>
           </div>
@@ -269,6 +273,84 @@ class Notificaciones extends React.Component {
               <a href="/TablaMascotas">
                 <button type="button" class="btn btn-outline-primary btn-lg">
                   <i class="feather icon-mail"></i>Enviar Email
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-user"></i>
+                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      ),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
+  onAmistad() {
+    this.dialog.show({
+      body: (
+        <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
+          </center>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar5}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Lola</p>
+              </center>
+            </div>
+            <div>
+              <i
+                style={{ fontSize: 70, color: "#f47386" }}
+                class="fa fa-soccer-ball-o"
+              ></i>
+            </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar6}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Firulai</p>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-mail"></i>Enviar Email
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-user"></i>
+                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
                 </button>
               </a>
             </div>

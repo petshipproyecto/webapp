@@ -34,7 +34,20 @@ const defaultSorted = [
   }
 ];
 //-----------EL sort por default de la tabla----------
-
+//---------Mensaje de Eliminar Usuario-------------------
+const deleteUsuario = () => {
+  Swal.fire({
+    title: "Eliminar Uusario",
+    text: "¿Está seguro de que desea eliminarlo?",
+    type: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#8BC3FF",
+    cancelButtonColor: "#BFBFBF ",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "OK"
+  });
+};
+//---------Mensaje de Eliminar Usuario-------------------
 
 //---------Columnas de la tabla------------------
 const columns = [
@@ -124,7 +137,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         &nbsp;
-        <a class="Edit" href="/ConfiguracionBusqueda">
+        <a class="Edit" href="/UserProfile">
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -136,18 +149,24 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
+        <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteUsuario();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
       </div>
     )
   },
@@ -180,7 +199,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         &nbsp;
-        <a class="Edit" href="/ConfiguracionBusqueda">
+        <a class="Edit" href="/UserProfile">
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -192,18 +211,24 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
+        <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteUsuario();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
       </div>
   },
   {
@@ -235,7 +260,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         &nbsp;
-        <a class="Edit" href="/ConfiguracionBusqueda">
+        <a class="Edit" href="/UserProfile">
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -247,18 +272,24 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-        <a class="Edit" href="/ConfiguracionBusqueda">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
+        <a
+              class="Eliminar"
+              style={{ cursor: "pointer" }}
+              onClick={function() {
+                deleteUsuario();
+              }}
+            >
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={<Tooltip>Eliminar</Tooltip>}
+              >
+                <i
+                  style={{ fontSize: 24, color: "#f47386" }}
+                  className="icon feather icon-trash-2"
+                />
+              </OverlayTrigger>
+            </a>
       </div>
   }
 ];
@@ -310,15 +341,29 @@ class AdministrarUsuarios extends React.Component {
                  {/* Tool para la tabla  */}
                   {props => (
                     <div>
-                      {/* Buscador de la tabla */}
-                      <SearchBar {...props.searchProps} placeholder='Buscar' />
-                      <ClearSearchButton
-                      text="Borrar"
-                        className="btn btn-primary shadow-2"
-                        {...props.searchProps}
-                      
-                      />
-                      {/* Buscado de la tabla */}
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          {/* Buscador de la tabla */}
+                          <SearchBar
+                            {...props.searchProps}
+                            placeholder="Buscar"
+                          />
+                          <ClearSearchButton
+                            text="Borrar"
+                            className="btn btn-primary shadow-2"
+                            {...props.searchProps}
+                          />
+                          {/* Buscado de la tabla */}
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            class="btn-rounded btn btn-primary"
+                          >
+                            <i class="feather icon-plus"></i>Usuario
+                          </button>
+                        </div>
+                      </div>
                       <br></br>
                       <br></br>
                       {/* Tabla */}
