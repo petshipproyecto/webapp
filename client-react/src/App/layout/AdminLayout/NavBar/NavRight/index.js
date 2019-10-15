@@ -6,10 +6,12 @@ import ChatList from "./ChatList";
 import Aux from "../../../../../hoc/_Aux";
 import DEMO from "../../../../../store/constant";
 import axios from "axios";
-import config from '../../../../../config'
-import { ClipLoader } from 'react-spinners';
-import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png"
-import { Route, Redirect } from 'react-router-dom';
+import config from "../../../../../config";
+import Loader from "react-loader-spinner";
+import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png";
+import { Route, Redirect } from "react-router-dom";
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -17,7 +19,7 @@ import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
 import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
 import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 
-var rutaApi = config.rutaApi
+var rutaApi = config.rutaApi;
 
 class NavRight extends Component {
   state = {
@@ -35,36 +37,34 @@ class NavRight extends Component {
   render() {
     const loadProfiles = () => {
       axios
-        .get(
-          rutaApi + 'usuario/' + this.props.userId
-        )
+        .get(rutaApi + "usuario/" + this.props.userId)
         .then(response => {
-          this.setState({ perfiles: response.data.Perfils, loading: false, usuario: response.data, imagen: response.data.Imagen });
+          this.setState({
+            perfiles: response.data.Perfils,
+            loading: false,
+            usuario: response.data,
+            imagen: response.data.Imagen
+          });
           axios
-            .get(rutaApi + 'perfil/' + response.data.Id_perfil_activo)
+            .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
             .then(response => {
               this.setState({
                 perfil_activo: response.data
               });
-            })
+            });
         })
-        .catch(e => {}); 
+        .catch(e => {});
     };
-
-    
 
     const setTargetProfile = perfil => {
       //console.log(perfil);
 
       axios
-        .put(
-          rutaApi + 'usuario/' + this.props.userId,
-          {
-            Id_perfil_activo: perfil
-          }
-        )
+        .put(rutaApi + "usuario/" + this.props.userId, {
+          Id_perfil_activo: perfil
+        })
         .then(response => {
-          window.location.replace('/Dashboard')
+          window.location.replace("/Dashboard");
         })
         .catch(e => {});
     };
@@ -83,7 +83,6 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
-          {/*
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
             <a href="/ConfiguracionBusqueda">
               <OverlayTrigger
@@ -95,7 +94,6 @@ class NavRight extends Component {
               </OverlayTrigger>
             </a>
           </li>
-        */}
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
@@ -107,7 +105,11 @@ class NavRight extends Component {
                   <i className="fa fa-paw" />
                 </OverlayTrigger>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification" style={{width:80}}>
+              <Dropdown.Menu
+                alignRight
+                className="notification"
+                style={{ width: 80 }}
+              >
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">
                     Perfiles de Mascotas Disponibles
@@ -120,14 +122,14 @@ class NavRight extends Component {
                         return (
                           <li
                             className="notification"
-                            style={{cursor: "pointer"}}
+                            style={{ cursor: "pointer" }}
                             onClick={function() {
                               setTargetProfile(element.Id_perfil);
                             }}
                           >
                             <div className="media">
                               <img
-                              style={{border:"solid 2px #f47386"}}
+                                style={{ border: "solid 2px #f47386" }}
                                 className="media-object img-radius"
                                 src={element.Imagen}
                                 alt="Generic placeholder"
@@ -138,7 +140,7 @@ class NavRight extends Component {
                               >
                                 <p
                                   class="pt-3"
-                                  style={{fontWeight: "bolder"}}
+                                  style={{ fontWeight: "bolder" }}
                                 >
                                   {element.Nombre}
                                 </p>
@@ -150,25 +152,29 @@ class NavRight extends Component {
                     : () => {
                         return <div>No hay mascotas disponibles</div>;
                       }}
-                    <li>
-                      <ClipLoader
-                        sizeUnit={"px"}
-                        size={150}
-                        color={'#red'}
-                        loading={this.state.loading}
+                  <li>
+                    <center>
+                      <Loader
+                        type="Hearts"
+                        color="#f47386"
+                        height={110}
+                        width={110}
+                        timeout={2000} //3 secs
                       />
-                    </li>
+                    </center>
+                  </li>
                 </ul>
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          {/*
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-                <i className="icon feather icon-bell" />
+              <NotificationBadge count={3} effect={Effect.SCALE} style={{top: '12px',right: '-25px'}}/>
+                <i className="icon feather icon-bell" >
+                </i>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification">
+              <Dropdown.Menu alignRight className="notification"> 
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">Notificaciones</h6>
                   <div className="float-right">
@@ -243,20 +249,32 @@ class NavRight extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </li>
-        */}
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} className="drp-user" onClick={loadProfiles}>
+            <Dropdown
+              alignRight={!this.props.rtlLayout}
+              className="drp-user"
+              onClick={loadProfiles}
+            >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
                   <img
-                    src={this.state.perfil_activo ? this.state.perfil_activo.Imagen : Img_mascota_anonima}
+                    src={
+                      this.state.perfil_activo
+                        ? this.state.perfil_activo.Imagen
+                        : Img_mascota_anonima
+                    }
                     className="img-radius"
                     alt="User Profile"
                   />
-                  <span> {this.state.perfil_activo ? this.state.perfil_activo.Nombre : ''} </span>
+                  <span>
+                    {" "}
+                    {this.state.perfil_activo
+                      ? this.state.perfil_activo.Nombre
+                      : ""}{" "}
+                  </span>
                 </div>
                 <ul className="pro-body">
                   <li>
@@ -279,7 +297,7 @@ class NavRight extends Component {
                     </a>
                   </li>
                 */}
-                  
+
                   <li>
                     <a
                       href="#"
