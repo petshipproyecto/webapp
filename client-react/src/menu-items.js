@@ -35,6 +35,13 @@ export default {
               url: "/UserProfile"
             },
             {
+              id: "verPerfilUsuario",
+              title: "Ver  Usuario",
+              type: "item",
+              icon: "feather icon-user",
+              url: "/VerUserProfile"
+            },
+            {
               id: "perfilMascota",
               title: "Ver Perfil de Mascota",
               type: "item",
@@ -93,28 +100,14 @@ export default {
         id: "adminUsers",
         title: "Administrar Usuarios",
         type: "item",
-        icon: "fa fa-check-circle",
+        icon: "fa fa-group",
         url: "/AdministrarUsuarios",
          },
-         {
-          id: "adminRazas",
-          title: "Administrar Razas",
-          type: "item",
-          icon: "fa fa-check-circle",
-          url: "/AdministrarRazas",
-           },
-           {
-            id: "adminMascotas",
-            title: "Administrar Mascotas",
-            type: "item",
-            icon: "fa fa-check-circle",
-            url: "/AdministrarMascotas",
-             },
            {
             id: "adminTipoMascotas",
             title: "Administrar Tipos de Mascotas",
             type: "item",
-            icon: "fa fa-check-circle",
+            icon: "fa fa-paw",
             url: "/AdministrarTiposDeMascotas",
              },
         // {

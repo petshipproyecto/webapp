@@ -394,7 +394,7 @@ class AdministrarUsuarios extends React.Component {
                           {/* Buscado de la tabla */}
                         </div>
                         <div>
-                          <button
+                          <button onClick={()=> {this.props.history.replace('/AgregarUsuario')}}
                             type="button"
                             class="btn-rounded btn btn-primary"
                           >

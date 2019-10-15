@@ -270,10 +270,10 @@ class AdministrarMascotas extends React.Component {
                           {/* Buscado de la tabla */}
                         </div>
                         <div>
-                          <button
-                          href="/NewPet"
+                          <button 
                             type="button"
                             class="btn-rounded btn btn-primary"
+                            onClick={()=> {this.props.history.replace('/NewPet')}}
                           >
                             <i class="feather icon-plus"></i>Mascota
                           </button>
