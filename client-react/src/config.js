@@ -1,7 +1,7 @@
 export default {
     defaultPath: '/dashboard',
-    //rutaApi: 'https://petshipback-dev.herokuapp.com/', // Ruta Api desarrollo
-    rutaApi: 'https://petshipt-backend.herokuapp.com/',  // Ruta Api producción
+    rutaApi: 'https://petshipback-dev.herokuapp.com/', // Ruta Api desarrollo
+    //rutaApi: 'https://petshipt-backend.herokuapp.com/',  // Ruta Api producción
     basename: 'petship', // only at build time to set, like /datta-able
     layout: 'vertical', // vertical, horizontal (not available in lite version)
     preLayout: null, // (not available in lite version)
