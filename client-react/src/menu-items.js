@@ -42,7 +42,13 @@ export default {
               url: "/PetProfile"
             }
           ]
-        },
+        }
+      
+      ]
+    }
+    ]
+  }
+        /*
         {
           id: "buscarPareja",
           title: "Buscar Pareja o Amigo",
@@ -57,6 +63,8 @@ export default {
           icon: "feather icon-star-on",
           url: "/GaleriaMascotas"
         },
+        
+        ,
         {
           id: "notificaciones",
           title: "Notificaciones",
@@ -93,7 +101,4 @@ export default {
     }
   ]
 };
-     
-        /*
-  
 */
