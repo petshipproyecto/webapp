@@ -10,10 +10,8 @@ import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import Img_mascota_anonima from "../../assets/images/user/mascota_anonima.png";
 import config from "../../config";
-import userProfile1 from "../../assets/images/user/avatar1.jpg";
-import userProfile2 from "../../assets/images/user/avatar2.jpg";
+
 
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
@@ -32,8 +30,8 @@ const { SearchBar, ClearSearchButton } = Search;
 //-----------EL sort por default de la tabla----------
 const defaultSorted = [
   {
-    dataField: "tipoMascota",
-    order: "desc"
+    dataField: "idTipoMascota",
+    order: "asc"
   }
 ];
 //-----------EL sort por default de la tabla----------

@@ -29,8 +29,8 @@ const { SearchBar, ClearSearchButton } = Search;
 //-----------EL sort por default de la tabla----------
 const defaultSorted = [
   {
-    dataField: "raza",
-    order: "desc"
+    dataField: "idRaza",
+    order: "asc"
   }
 ];
 //-----------EL sort por default de la tabla----------

@@ -104,6 +104,13 @@ export default {
           url: "/AdministrarRazas",
            },
            {
+            id: "adminMascotas",
+            title: "Administrar Mascotas",
+            type: "item",
+            icon: "fa fa-check-circle",
+            url: "/AdministrarMascotas",
+             },
+           {
             id: "adminTipoMascotas",
             title: "Administrar Tipos de Mascotas",
             type: "item",

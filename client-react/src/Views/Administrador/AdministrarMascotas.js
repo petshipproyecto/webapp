@@ -11,7 +11,7 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-import userProfile1 from "../../assets/images/user/avatar1.jpg";
+import userProfile1 from "../../assets/images/user/avatarDog.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 // Libreria de la tabla: react-boostrap-table-2
@@ -32,10 +32,10 @@ const defaultSorted = [
   }
 ];
 //-----------EL sort por default de la tabla----------
-//---------Mensaje de Eliminar Usuario-------------------
-const deleteUsuario = () => {
+//---------Mensaje de Eliminar Mascota-------------------
+const deleteMascota = () => {
   Swal.fire({
-    title: "Eliminar Usuario",
+    title: "Eliminar Mascota",
     text: "¿Está seguro de que desea eliminarlo?",
     type: "question",
     showCancelButton: true,
@@ -50,8 +50,8 @@ const deleteUsuario = () => {
 //---------Columnas de la tabla------------------
 const columns = [
   {
-    dataField: "fotoUsuario",
-    text: "Usuario"
+    dataField: "fotoMascota",
+    text: "Mascota"
   },
   {
     dataField: "nombre",
@@ -75,8 +75,8 @@ const columns = [
     }
   },
   {
-    dataField: "apellido",
-    text: "Apellido",
+    dataField: "tipoMascota",
+    text: "Tipo de Mascota",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -96,8 +96,8 @@ const columns = [
     }
   },
   {
-    dataField: "ubicacion",
-    text: "Ubicacion",
+    dataField: "raza",
+    text: "Raza",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -117,8 +117,8 @@ const columns = [
     }
   },
   {
-    dataField: "email",
-    text: "Email",
+    dataField: "edad",
+    text: "Edad",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -144,10 +144,10 @@ const columns = [
 ];
 //---------Columnas de la tabla------------------
 
-//-------------------Datos de los usuarios-------
-const usuarios = [
+//-------------------Datos de las Mascotas-------
+const mascotas = [
   {
-    fotoUsuario: (
+    fotoMascota: (
       <h6 class="m-0">
         <img
           className="media-object img-radius"
@@ -156,26 +156,26 @@ const usuarios = [
         />
       </h6>
     ),
-    nombre: "Carlos",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
+    nombre: "Lola",
+    tipoMascota: "Perro",
+    raza: "Labrador",
+    edad: "10",
     acciones: (
       <div>
-        <a class="Mascotas" href="/AdministrarMascotas">
+        <a class="Ver" href="/PetProfile">
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Mascotas</Tooltip>}
+            overlay={<Tooltip>Ver</Tooltip>}
           >
             <i
               style={{ fontSize: 24, color: "#f47386" }}
-              className="fa fa-paw"
+              className="fa fa-eye"
             />
           </OverlayTrigger>
         </a>
         &nbsp;
-        <a class="Editar" href="/UserProfile">
+        <a class="Editar" href="/PetProfile">
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -191,131 +191,7 @@ const usuarios = [
           class="Eliminar"
           style={{ cursor: "pointer" }}
           onClick={function() {
-            deleteUsuario();
-          }}
-        >
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-      </div>
-    )
-  },
-  {
-    fotoUsuario: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={userProfile2}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Juan",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
-    acciones: (
-      <div>
-        <a class="Mascotas" href="/AdministrarMascotas">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Mascotas</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="fa fa-paw"
-            />
-          </OverlayTrigger>
-        </a>
-        &nbsp;
-        <a class="Editar" href="/UserProfile">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        <a
-          class="Eliminar"
-          style={{ cursor: "pointer" }}
-          onClick={function() {
-            deleteUsuario();
-          }}
-        >
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-      </div>
-    )
-  },
-  {
-    fotoUsuario: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={userProfile1}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Juan",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
-    acciones: (
-      <div>
-        <a class="Mascotas" href="/AdministrarMascotas">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Mascotas</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="fa fa-paw"
-            />
-          </OverlayTrigger>
-        </a>
-        &nbsp;
-        <a class="Editar" href="/UserProfile">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        <a
-          class="Eliminar"
-          style={{ cursor: "pointer" }}
-          onClick={function() {
-            deleteUsuario();
+            deleteMascota();
           }}
         >
           <OverlayTrigger
@@ -333,7 +209,7 @@ const usuarios = [
     )
   }
 ];
-//-------------------Datos de los usuarios-------
+//-------------------Datos de los mascotas-------
 
 const rutaApi = config.rutaApi;
 
@@ -348,7 +224,7 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
-class AdministrarUsuarios extends React.Component {
+class AdministrarMascotas extends React.Component {
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
@@ -366,13 +242,13 @@ class AdministrarUsuarios extends React.Component {
           <Col>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Administrar Usuarios</Card.Title>
+                <Card.Title as="h5">Administrar Mascotas</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Tool para la tabla */}
                 <ToolkitProvider
-                  keyField="email"
-                  data={usuarios}
+                  keyField="nombre"
+                  data={mascotas}
                   columns={columns}
                   search
                 >
@@ -395,10 +271,11 @@ class AdministrarUsuarios extends React.Component {
                         </div>
                         <div>
                           <button
+                          href="/NewPet"
                             type="button"
                             class="btn-rounded btn btn-primary"
                           >
-                            <i class="feather icon-plus"></i>Usuario
+                            <i class="feather icon-plus"></i>Mascota
                           </button>
                         </div>
                       </div>
@@ -410,8 +287,8 @@ class AdministrarUsuarios extends React.Component {
                         bordered={false}
                         {...props.baseProps}
                         hover
-                        keyField="email"
-                        data={usuarios}
+                        keyField="nombre"
+                        data={mascotas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
@@ -437,4 +314,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(AdministrarUsuarios);
+export default connect(mapStateToProps)(AdministrarMascotas);
