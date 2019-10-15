@@ -42,13 +42,7 @@ export default {
               url: "/PetProfile"
             }
           ]
-        }
-      
-      ]
-    }
-    ]
-  }
-        /*
+        },
         {
           id: "buscarPareja",
           title: "Buscar Pareja o Amigo",
@@ -101,4 +95,6 @@ export default {
     }
   ]
 };
-*/
+      
+        
+        
