@@ -329,7 +329,7 @@ class AdministrarRazas extends React.Component {
               <Card.Body>
                 {/* Tool para la tabla */}
                 <ToolkitProvider
-                  keyField="nombre"
+                  keyField="idRaza"
                   data={this.razas}
                   columns={columns}
                   search

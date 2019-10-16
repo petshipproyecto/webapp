@@ -19,6 +19,7 @@ import Avatar4 from "../../assets/images/user/avatar1.jpg";
 import Avatar5 from "../../assets/images/user/avatarDog.jpg";
 import Avatar6 from "../../assets/images/user/avatarDog1.jpg";
 
+import "../../assets/scss/partials/theme-elements/animacion.scss";
 const imagen = {
   minWidth: 140,
   maxHeight: 140,
@@ -250,10 +251,12 @@ class Notificaciones extends React.Component {
               </center>
             </div>
             <div>
-              <i
-                style={{ fontSize: 70, color: "#f47386" }}
-                class="fa fa-heart"
-              ></i>
+              <p class="heart">
+                <i
+                  style={{ fontSize: 70, color: "#f47386" }}
+                  class="fa fa-heart fa-4x fa-beat"
+                ></i>
+              </p>
             </div>
             <div>
               <img
