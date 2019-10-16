@@ -26,14 +26,14 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 const { SearchBar, ClearSearchButton } = Search;
 //-------Constantes para la busqueda en la tabla------
 
-//-----------EL sort por default de la tabla----------
+//-----------El sort por default de la tabla----------
 const defaultSorted = [
   {
     dataField: "idRaza",
     order: "asc"
   }
 ];
-//-----------EL sort por default de la tabla----------
+//-----------El sort por default de la tabla----------
 
 //---------Columnas de la tabla------------------
 const columns = [
@@ -127,7 +127,7 @@ class AdministrarRazas extends React.Component {
         acciones: (
           <div>
             <a
-              class="Edit"
+              class="Editar"
               onClick={this.onEditar}
               style={{ cursor: "pointer" }}
             >
@@ -174,7 +174,7 @@ class AdministrarRazas extends React.Component {
         acciones: (
           <div>
             <a
-              class="Edit"
+              class="Editar"
               onClick={this.onEditar}
               style={{ cursor: "pointer" }}
             >
@@ -263,11 +263,10 @@ class AdministrarRazas extends React.Component {
         )
       }
     ];
-    //-------------------Datos de los razas-------
+    //-------------------/Datos de las razas-----------------------------
   }
 
   //---------Mensaje de Agregar Raza-------------------
-
   onAgregar() {
     this.dialog.show({
       title: "Agregar Nueva Raza",
@@ -285,7 +284,7 @@ class AdministrarRazas extends React.Component {
       }
     });
   }
-  //---------Mensaje de Agregar Raza-------------------
+  //---------/Mensaje de Agregar Raza-------------------
 
   //---------Mensaje de Editar Raza-------------------
   onEditar() {
@@ -305,7 +304,7 @@ class AdministrarRazas extends React.Component {
       }
     });
   }
-  //---------Mensaje de Agregar Raza-------------------
+  //---------/Mensaje de Editar Raza-------------------
 
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {

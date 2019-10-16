@@ -12,14 +12,19 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Dialog from "react-bootstrap-dialog";
 //-----------------Libreria del popup o modal------------------------
 
+//--------------Avatares---------------------------------------------
 import Avatar1 from "../../assets/images/user/avatarDog.jpg";
 import Avatar2 from "../../assets/images/user/avatar2.jpg";
 import Avatar3 from "../../assets/images/user/avatar3.jpg";
 import Avatar4 from "../../assets/images/user/avatar1.jpg";
 import Avatar5 from "../../assets/images/user/avatarDog.jpg";
 import Avatar6 from "../../assets/images/user/avatarDog1.jpg";
+//--------------Avatares---------------------------------------------
 
+//-----------Estilo de animacion para las notificaciones--------------
 import "../../assets/scss/partials/theme-elements/animacion.scss";
+
+//---Estilo de las imagenes--
 const imagen = {
   minWidth: 140,
   maxHeight: 140,
@@ -37,6 +42,7 @@ const defaultSorted = [
     order: "desc"
   }
 ];
+
 
 //-------------Columnas de la tabla-------------------------
 const columns = [
@@ -230,6 +236,7 @@ class Notificaciones extends React.Component {
     ];
     //----------------------Datos de las notificaciones---------------------
   }
+  //--------------------Mensaje para match de pareja-------------------------
   onPareja() {
     this.dialog.show({
       body: (
@@ -252,10 +259,7 @@ class Notificaciones extends React.Component {
             </div>
             <div>
               <p class="heart">
-                <i
-                  style={{ fontSize: 70, color: "#f47386" }}
-                  class="fa fa-heart fa-4x fa-beat"
-                ></i>
+                <i class="fa fa-heart fa-4x fa-beat"></i>
               </p>
             </div>
             <div>
@@ -300,6 +304,9 @@ class Notificaciones extends React.Component {
       }
     });
   }
+  //--------------------/Mensaje para match de pareja-------------------------
+
+  //--------------------Mensaje para match de amistad-------------------------
   onAmistad() {
     this.dialog.show({
       body: (
@@ -323,7 +330,7 @@ class Notificaciones extends React.Component {
             <div>
               <i
                 style={{ fontSize: 70, color: "#f47386" }}
-                class="fa fa-soccer-ball-o"
+                class="fa fa-soccer-ball-o bounce"
               ></i>
             </div>
             <div>
@@ -368,6 +375,8 @@ class Notificaciones extends React.Component {
       }
     });
   }
+  //--------------------/Mensaje para match de amistad-------------------------
+
   render() {
     return (
       <Aux>
@@ -378,22 +387,30 @@ class Notificaciones extends React.Component {
                 <Card.Title as="h5">Notificaciones</Card.Title>
               </Card.Header>
               <Card.Body>
+                {/* Tools para la tabla */}
                 <ToolkitProvider
                   keyField="email"
                   data={this.notificaciones}
                   columns={columns}
                   search
                 >
+                  {/* Tools para la tabla */}
+
                   {props => (
                     <div>
+                      {/* Buscado de la tabla */}
                       <SearchBar {...props.searchProps} placeholder="Buscar" />
+                      {/* Buscado de la tabla */} {/* Buscado de la tabla */}
+                      {/* Boton de eliminar busquedad */}
                       <ClearSearchButton
                         text="Borrar"
                         className="btn btn-primary shadow-2"
                         {...props.searchProps}
                       />
+                      {/* Boton de eliminar busquedad */}
                       <br></br>
                       <br></br>
+                      {/* Tabla */}
                       <BootstrapTable
                         defaultSorted={defaultSorted}
                         bordered={false}
@@ -405,6 +422,7 @@ class Notificaciones extends React.Component {
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
                       />
+                      {/* Tabla */}
                     </div>
                   )}
                 </ToolkitProvider>

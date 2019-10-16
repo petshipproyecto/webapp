@@ -35,7 +35,8 @@ const defaultSorted = [
   }
 ];
 //-----------EL sort por default de la tabla----------
-//---------Mensaje de Eliminar Raza-------------------
+
+//---------Mensaje de Eliminar Tipo de Animal-------------------
 const deleteTipoAnimal = () => {
   Swal.fire({
     title: "Eliminar Tipo de Mascota",
@@ -48,7 +49,7 @@ const deleteTipoAnimal = () => {
     confirmButtonText: "OK"
   });
 };
-//---------Mensaje de Eliminar Raza-------------------
+//---------Mensaje de Eliminar Tipo de Animal-------------------
 
 //---------Columnas de la tabla------------------
 const columns = [
@@ -127,7 +128,8 @@ class AdminTipoMascota extends React.Component {
         tipoMascota: "Gato",
         acciones: (
           <div>
-            <a class="Edit" href="/AdministrarRazas">
+            {/* Boton de ver razas */}
+            <a class="Razas" href="/AdministrarRazas">
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
@@ -139,6 +141,8 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de ver razas */}
+            {/* Boton de editar tipo de mascota*/}
             <a
               class="Edit"
               onClick={this.onEditar}
@@ -160,6 +164,8 @@ class AdminTipoMascota extends React.Component {
                 this.dialog = component;
               }}
             />
+            {/* Boton de editar tipo de mascota*/}
+            {/* Boton de eliminar tipo de mascota*/}
             <a
               class="Eliminar"
               style={{ cursor: "pointer" }}
@@ -178,6 +184,7 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de eliminar tipo de mascota*/}
           </div>
         )
       },
@@ -186,7 +193,8 @@ class AdminTipoMascota extends React.Component {
         tipoMascota: "Perro",
         acciones: (
           <div>
-            <a class="Edit" href="/AdministrarRazas">
+        {/* Boton de ver razas */}
+            <a class="Razas" href="/AdministrarRazas">
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
@@ -198,6 +206,8 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de ver razas */}
+            {/* Boton de editar tipo de mascota*/}
             <a
               class="Edit"
               onClick={this.onEditar}
@@ -219,6 +229,8 @@ class AdminTipoMascota extends React.Component {
                 this.dialog = component;
               }}
             />
+            {/* Boton de editar tipo de mascota*/}
+            {/* Boton de eliminar tipo de mascota*/}
             <a
               class="Eliminar"
               style={{ cursor: "pointer" }}
@@ -237,6 +249,7 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de eliminar tipo de mascota*/}
           </div>
         )
       },
@@ -245,7 +258,8 @@ class AdminTipoMascota extends React.Component {
         tipoMascota: "Ave",
         acciones: (
           <div>
-            <a class="Edit" href="/AdministrarRazas">
+            {/* Boton de ver razas */}
+            <a class="Razas" href="/AdministrarRazas">
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
@@ -257,6 +271,8 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de ver razas */}
+            {/* Boton de editar tipo de mascota*/}
             <a
               class="Edit"
               onClick={this.onEditar}
@@ -278,6 +294,8 @@ class AdminTipoMascota extends React.Component {
                 this.dialog = component;
               }}
             />
+            {/* Boton de editar tipo de mascota*/}
+            {/* Boton de eliminar tipo de mascota*/}
             <a
               class="Eliminar"
               style={{ cursor: "pointer" }}
@@ -296,6 +314,7 @@ class AdminTipoMascota extends React.Component {
                 />
               </OverlayTrigger>
             </a>
+            {/* Boton de eliminar tipo de mascota*/}
           </div>
         )
       }
@@ -303,6 +322,7 @@ class AdminTipoMascota extends React.Component {
     //-------------------Datos de los tipos de mascotas-------
   }
 
+  //-------------- Modal de agregar nuevo tipo de mascota--------
   onAgregar() {
     this.dialog.show({
       title: "Agregar Nuevo Tipo de Mascota",
@@ -320,6 +340,9 @@ class AdminTipoMascota extends React.Component {
       }
     });
   }
+  //-------------- Modal de agregar nuevo tipo de mascota--------
+
+  //-------------- Modal de editar tipo de mascota--------
   onEditar() {
     this.dialog.show({
       title: "Editar Tipo de Mascota",
@@ -337,6 +360,7 @@ class AdminTipoMascota extends React.Component {
       }
     });
   }
+  //-------------- Modal de editar tipo de mascota--------
 
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
@@ -383,6 +407,7 @@ class AdminTipoMascota extends React.Component {
                           {/* Buscado de la tabla */}
                         </div>
                         <div>
+                          {/* Boton Agregar nuevo tipo de mascota */}
                           <button
                             type="button"
                             class="btn-rounded btn btn-primary"
@@ -390,12 +415,12 @@ class AdminTipoMascota extends React.Component {
                           >
                             <i class="feather icon-plus"></i>Tipo de Mascota
                           </button>
-
                           <Dialog
                             ref={component => {
                               this.dialog = component;
                             }}
                           />
+                          {/* Boton Agregar nuevo tipo de mascota */}
                         </div>
                       </div>
                       <br></br>

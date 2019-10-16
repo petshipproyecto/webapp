@@ -1,24 +1,18 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card,
-  OverlayTrigger,
-  Tooltip
-} from "react-bootstrap";
+import { Row, Col, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-import userProfile1 from "../../assets/images/user/avatarDog.jpg";
-import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 // Libreria de la tabla: react-boostrap-table-2
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // Libreria de la tabla: react-boostrap-table-2
+
+import userProfile1 from "../../assets/images/user/avatarDog.jpg";
 
 //-------Constantes para la busqueda en la tabla------
 const { SearchBar, ClearSearchButton } = Search;
@@ -45,7 +39,7 @@ const deleteMascota = () => {
     confirmButtonText: "OK"
   });
 };
-//---------Mensaje de Eliminar Usuario-------------------
+//---------Mensaje de Eliminar Mascota-------------------
 
 //---------Columnas de la tabla------------------
 const columns = [
@@ -162,6 +156,7 @@ const mascotas = [
     edad: "10",
     acciones: (
       <div>
+        {/* Boton ver mascota */}
         <a class="Ver" href="/PetProfile">
           <OverlayTrigger
             placement="left"
@@ -174,7 +169,9 @@ const mascotas = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton ver mascota */}
         &nbsp;
+        {/* Boton editar mascota */}
         <a class="Editar" href="/PetProfile">
           <OverlayTrigger
             placement="left"
@@ -187,6 +184,8 @@ const mascotas = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton editar mascota */}
+        {/* Boton eliminar mascota */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -205,6 +204,7 @@ const mascotas = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton eliminar mascota */}
       </div>
     )
   }
@@ -270,10 +270,12 @@ class AdministrarMascotas extends React.Component {
                           {/* Buscado de la tabla */}
                         </div>
                         <div>
-                          <button 
+                          <button
                             type="button"
                             class="btn-rounded btn btn-primary"
-                            onClick={()=> {this.props.history.replace('/NewPet')}}
+                            onClick={() => {
+                              this.props.history.replace("/NewPet");
+                            }}
                           >
                             <i class="feather icon-plus"></i>Mascota
                           </button>

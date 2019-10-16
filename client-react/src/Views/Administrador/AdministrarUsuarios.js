@@ -11,14 +11,15 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-import userProfile1 from "../../assets/images/user/avatar1.jpg";
-import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 // Libreria de la tabla: react-boostrap-table-2
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // Libreria de la tabla: react-boostrap-table-2
+
+import userProfile1 from "../../assets/images/user/avatar1.jpg";
+import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 //-------Constantes para la busqueda en la tabla------
 const { SearchBar, ClearSearchButton } = Search;
@@ -32,6 +33,7 @@ const defaultSorted = [
   }
 ];
 //-----------EL sort por default de la tabla----------
+
 //---------Mensaje de Eliminar Usuario-------------------
 const deleteUsuario = () => {
   Swal.fire({
@@ -97,7 +99,7 @@ const columns = [
   },
   {
     dataField: "ubicacion",
-    text: "Ubicacion",
+    text: "Ubicación",
     sort: true,
     sortCaret: (order, column) => {
       if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
@@ -162,6 +164,7 @@ const usuarios = [
     email: "juanPere@gmail.com",
     acciones: (
       <div>
+        {/* Boton mascotas del usuario */}
         <a class="Mascotas" href="/AdministrarMascotas">
           <OverlayTrigger
             placement="left"
@@ -174,7 +177,9 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton mascotas del usuario */}
         &nbsp;
+        {/* Boton editar usuario */}
         <a class="Editar" href="/UserProfile">
           <OverlayTrigger
             placement="left"
@@ -187,6 +192,8 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton editar usuario */}
+{/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -205,6 +212,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+{/* Boton eliminar usuario */}
       </div>
     )
   },
@@ -224,6 +232,7 @@ const usuarios = [
     email: "juanPere@gmail.com",
     acciones: (
       <div>
+        {/* Boton mascotas del usuario */}
         <a class="Mascotas" href="/AdministrarMascotas">
           <OverlayTrigger
             placement="left"
@@ -236,7 +245,9 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton mascotas del usuario */}
         &nbsp;
+        {/* Boton editar usuario */}
         <a class="Editar" href="/UserProfile">
           <OverlayTrigger
             placement="left"
@@ -249,6 +260,8 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton editar usuario */}
+{/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -267,6 +280,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+{/* Boton eliminar usuario */}
       </div>
     )
   },
@@ -286,6 +300,7 @@ const usuarios = [
     email: "juanPere@gmail.com",
     acciones: (
       <div>
+        {/* Boton mascotas del usuario */}
         <a class="Mascotas" href="/AdministrarMascotas">
           <OverlayTrigger
             placement="left"
@@ -298,7 +313,9 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton mascotas del usuario */}
         &nbsp;
+        {/* Boton editar usuario */}
         <a class="Editar" href="/UserProfile">
           <OverlayTrigger
             placement="left"
@@ -311,6 +328,8 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+        {/* Boton editar usuario */}
+{/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -329,6 +348,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
+{/* Boton eliminar usuario */}
       </div>
     )
   }
@@ -391,15 +411,17 @@ class AdministrarUsuarios extends React.Component {
                             className="btn btn-primary shadow-2"
                             {...props.searchProps}
                           />
-                          {/* Buscado de la tabla */}
+                          {/* Buscador de la tabla */}
                         </div>
                         <div>
+                          {/* Boton de agregar usuario */}
                           <button onClick={()=> {this.props.history.replace('/AgregarUsuario')}}
                             type="button"
                             class="btn-rounded btn btn-primary"
                           >
                             <i class="feather icon-plus"></i>Usuario
                           </button>
+                          {/* Boton de agregar usuario */}                          
                         </div>
                       </div>
                       <br></br>

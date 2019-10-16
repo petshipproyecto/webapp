@@ -3,13 +3,13 @@ import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 
-
-import Avatar1 from "../../assets/images/user/avatar1.jpg";
 import firebase from "firebase";
 import { Formik, Field, Form,ErrorMessage} from "formik";
 import axios from "axios";
 import config from "../../config";
 import FileUploader from "react-firebase-file-uploader";
+
+import Avatar1 from "../../assets/images/user/avatar1.jpg";
 
 const rutaApi = config.rutaApi;
 
@@ -116,9 +116,9 @@ class AdminAgregarUsuario extends React.Component {
                           </div>
                           {/* Ubicacion */}
                           <div className="form-group">
-                            <label>Ubicacion</label>
+                            <label>Ubicación</label>
                             <Field
-                              placeholder="Ubicacion"
+                              placeholder="Ubicación"
                               name="Ubicacion"
                               type="text"
                               className="form-control"
