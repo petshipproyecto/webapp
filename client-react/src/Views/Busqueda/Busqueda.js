@@ -259,7 +259,6 @@ class FormNewPet extends React.Component {
                         </div>
                       </div>
                       <hr></hr>
-
                       {opcionesPreferencias.map(choice => {
                         return (
                           <fieldset>
@@ -281,6 +280,7 @@ class FormNewPet extends React.Component {
                           </fieldset>
                         );
                       })}
+                      <br></br>
                       <div class="d-flex justify-content-between">
                         <div>
                           <h6>Mostrar Genero:</h6>
@@ -292,7 +292,7 @@ class FormNewPet extends React.Component {
                       <hr></hr>
                       <fieldset>
                         <div class="form-group">
-                          <div className="checkbox checkbox-fill d-inline">
+                          <div className="checkbox checkbox-fill d-inline" >
                             <input
                               id="macho"
                               name="interesMacho"
@@ -300,9 +300,9 @@ class FormNewPet extends React.Component {
                               checked={this.state.interesMacho}
                               onChange={this.handleInputChange}
                               disabled={this.state.opcionPreferencia === "1"}
+                              style={{opacity: 4.5}}
                             />
-
-                            <label htmlFor="macho" className="cr">
+                            <label htmlFor="macho" className="cr" style={{opacity: 4.5}}>
                               Masculino
                             </label>
                           </div>
@@ -316,8 +316,9 @@ class FormNewPet extends React.Component {
                               checked={this.state.interesHembra}
                               onChange={this.handleInputChange}
                               disabled={this.state.opcionPreferencia === "1"}
+                              style={{opacity: 4.5}}
                             />
-                            <label htmlFor="hembra" className="cr">
+                            <label htmlFor="hembra" className="cr" style={{opacity: 4.5}}>
                               Femenino
                             </label>
                           </div>
@@ -386,9 +387,11 @@ class FormNewPet extends React.Component {
                             border: "2px solid #f47386",
                             backgroundColor: "white"
                           }}
-                          trackStyle={[{
-                            background: "#f47386"
-                          }]}
+                          trackStyle={[
+                            {
+                              background: "#f47386"
+                            }
+                          ]}
                         />
                       </div>
                       <br />
