@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Card,
-  OverlayTrigger,
-  Tooltip
-} from "react-bootstrap";
+import { Row, Col, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
@@ -193,7 +187,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         {/* Boton editar usuario */}
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -212,7 +206,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
       </div>
     )
   },
@@ -261,7 +255,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         {/* Boton editar usuario */}
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -280,7 +274,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
       </div>
     )
   },
@@ -329,7 +323,7 @@ const usuarios = [
           </OverlayTrigger>
         </a>
         {/* Boton editar usuario */}
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
         <a
           class="Eliminar"
           style={{ cursor: "pointer" }}
@@ -348,7 +342,7 @@ const usuarios = [
             />
           </OverlayTrigger>
         </a>
-{/* Boton eliminar usuario */}
+        {/* Boton eliminar usuario */}
       </div>
     )
   }
@@ -415,13 +409,16 @@ class AdministrarUsuarios extends React.Component {
                         </div>
                         <div>
                           {/* Boton de agregar usuario */}
-                          <button onClick={()=> {this.props.history.replace('/AgregarUsuario')}}
+                          <button
+                            onClick={() => {
+                              this.props.history.replace("/AgregarUsuario");
+                            }}
                             type="button"
                             class="btn-rounded btn btn-primary"
                           >
                             <i class="feather icon-plus"></i>Usuario
                           </button>
-                          {/* Boton de agregar usuario */}                          
+                          {/* Boton de agregar usuario */}
                         </div>
                       </div>
                       <br></br>

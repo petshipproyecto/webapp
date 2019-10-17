@@ -10,18 +10,186 @@ import config from "../../../../../config";
 import Loader from "react-loader-spinner";
 import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png";
 import { Route, Redirect } from "react-router-dom";
-import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
+//-----------------Libreria del popup o modal------------------------
+import Dialog from "react-bootstrap-dialog";
+//-----------------Libreria del popup o modal------------------------
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
 import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
 import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
 import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
+import Avatar5 from "../../../../../assets/images/user/avatarDog.jpg";
+import Avatar6 from "../../../../../assets/images/user/avatarDog1.jpg";
+//-----------Estilo de animacion para las notificaciones--------------
+import "../../../../../assets/scss/partials/theme-elements/animacion.scss";
 
+//---Estilo de las imagenes--
+const imagen = {
+  minWidth: 140,
+  maxHeight: 140,
+  minHeight: 140,
+  maxWidth: 140
+};
 var rutaApi = config.rutaApi;
 
 class NavRight extends Component {
+  constructor() {
+    super();
+    this.onPareja = this.onPareja.bind(this);
+    this.onAmistad = this.onAmistad.bind(this);
+  }
+  //--------------------Mensaje para match de amistad-------------------------
+  onAmistad() {
+    this.dialog.show({
+      body: (
+        <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
+          </center>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar5}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Lola</p>
+              </center>
+            </div>
+            <div>
+              <i
+                style={{ fontSize: 70, color: "#f47386" }}
+                class="fa fa-soccer-ball-o bounce"
+              ></i>
+            </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar6}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Firulai</p>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton enviar email */}
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-mail"></i>Enviar Email
+                </button>
+              </a>
+              {/* Boton enviar email */}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-user"></i>
+                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+                </button>
+              </a>
+              {/* Boton enviar email */}
+            </div>
+          </div>
+        </div>
+      ),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
+  //--------------------/Mensaje para match de amistad-------------------------
+
+  //--------------------Mensaje para match de pareja-------------------------
+  onPareja() {
+    this.dialog.show({
+      body: (
+        <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 50 }}>Hay Cita !!!</p>
+          </center>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar5}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Lola</p>
+              </center>
+            </div>
+            <div>
+              <p class="heart">
+                <i class="fa fa-heart fa-4x fa-beat"></i>
+              </p>
+            </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={Avatar6}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>Firulai</p>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton enviar email */}
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-mail"></i>Enviar Email
+                </button>
+              </a>
+              {/* Boton enviar email */}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
+              <a href="/TablaMascotas">
+                <button type="button" class="btn btn-outline-primary btn-lg">
+                  <i class="feather icon-user"></i>
+                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+                </button>
+              </a>
+              {/* Boton ver perfil de la mascota que hizo match */}
+            </div>
+          </div>
+        </div>
+      ),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
+  //--------------------/Mensaje para match de pareja-------------------------
+
   state = {
     listOpen: false,
     perfiles: [],
@@ -170,11 +338,14 @@ class NavRight extends Component {
           <li>
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-              <NotificationBadge count={3} effect={Effect.SCALE} style={{top: '12px',right: '-25px'}}/>
-                <i className="icon feather icon-bell" >
-                </i>
+                <NotificationBadge
+                  count={3}
+                  effect={Effect.SCALE}
+                  style={{ top: "12px", right: "-25px" }}
+                />
+                <i className="icon feather icon-bell"></i>
               </Dropdown.Toggle>
-              <Dropdown.Menu alignRight className="notification"> 
+              <Dropdown.Menu alignRight className="notification">
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">Notificaciones</h6>
                   <div className="float-right">
@@ -185,44 +356,58 @@ class NavRight extends Component {
                   </div>
                 </div>
                 <ul className="noti-body">
-                  <li className="notification">
-                    <div className="media">
-                      <img
-                        className="img-radius"
-                        src={Avatar1}
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <p>
-                          <strong>John Doe</strong>
-                          <span className="n-time text-muted">
-                            <i className="icon feather icon-clock m-r-10" />
-                            30 min
-                          </span>
-                        </p>
-                        <p>Hizo match en tu perfil</p>
+                  <a style={{ cursor: "pointer" }} onClick={this.onPareja}>
+                    <li className="notification">
+                      <div className="media">
+                        <img
+                          className="img-radius"
+                          src={Avatar1}
+                          alt="Generic placeholder"
+                        />
+                        <div className="media-body">
+                          <p>
+                            <strong>John Doe</strong>
+                            <span className="n-time text-muted">
+                              <i className="icon feather icon-clock m-r-10" />
+                              30 min
+                            </span>
+                          </p>
+                          <p>Hizo match en tu perfil</p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                  <li className="notification">
-                    <div className="media">
-                      <img
-                        className="img-radius"
-                        src={Avatar2}
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <p>
-                          <strong>Joseph William</strong>
-                          <span className="n-time text-muted">
-                            <i className="icon feather icon-clock m-r-10" />
-                            30 min
-                          </span>
-                        </p>
-                        <p>Hizo match en tu perfil</p>
+                    </li>
+                  </a>
+                  <Dialog
+                    ref={component => {
+                      this.dialog = component;
+                    }}
+                  />
+                  <a style={{ cursor: "pointer" }} onClick={this.onAmistad}>
+                    <li className="notification">
+                      <div className="media">
+                        <img
+                          className="img-radius"
+                          src={Avatar2}
+                          alt="Generic placeholder"
+                        />
+                        <div className="media-body">
+                          <p>
+                            <strong>Joseph William</strong>
+                            <span className="n-time text-muted">
+                              <i className="icon feather icon-clock m-r-10" />
+                              30 min
+                            </span>
+                          </p>
+                          <p>Hizo match en tu perfil</p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
+                    </li>
+                  </a>
+                  <Dialog
+                    ref={component => {
+                      this.dialog = component;
+                    }}
+                  />
                   <li className="notification">
                     <div className="media">
                       <img

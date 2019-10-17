@@ -178,6 +178,7 @@ class Notificaciones extends React.Component {
         hora: "20:05 AM",
         acciones: (
           <div>
+            {/* Boton de ver informacion */}
             <a
               style={{ cursor: "pointer" }}
               class="text-white label theme-bg2 f-12"
@@ -190,6 +191,7 @@ class Notificaciones extends React.Component {
                 this.dialog = component;
               }}
             />
+            {/* Boton de ver informacion */}
           </div>
         )
       },
@@ -218,6 +220,7 @@ class Notificaciones extends React.Component {
         hora: "20:05 AM",
         acciones: (
           <div>
+            {/* Boton de ver informacion */}
             <a
               style={{ cursor: "pointer" }}
               class="text-white label theme-bg2 f-12"
@@ -230,6 +233,7 @@ class Notificaciones extends React.Component {
                 this.dialog = component;
               }}
             />
+            {/* Boton de ver informacion */}
           </div>
         )
       }
@@ -277,21 +281,25 @@ class Notificaciones extends React.Component {
           </div>
           <div class="row">
             <div class="col text-center">
+              {/* Boton enviar email */}
               <a href="/TablaMascotas">
                 <button type="button" class="btn btn-outline-primary btn-lg">
                   <i class="feather icon-mail"></i>Enviar Email
                 </button>
               </a>
+              {/* Boton enviar email */}
             </div>
           </div>
           <div class="row">
             <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
               <a href="/TablaMascotas">
                 <button type="button" class="btn btn-outline-primary btn-lg">
                   <i class="feather icon-user"></i>
                   &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
                 </button>
               </a>
+              {/* Boton ver perfil de la mascota que hizo match */}
             </div>
           </div>
         </div>
@@ -348,21 +356,25 @@ class Notificaciones extends React.Component {
           </div>
           <div class="row">
             <div class="col text-center">
+              {/* Boton enviar email */}
               <a href="/TablaMascotas">
                 <button type="button" class="btn btn-outline-primary btn-lg">
                   <i class="feather icon-mail"></i>Enviar Email
                 </button>
               </a>
+              {/* Boton enviar email */}
             </div>
           </div>
           <div class="row">
             <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
               <a href="/TablaMascotas">
                 <button type="button" class="btn btn-outline-primary btn-lg">
                   <i class="feather icon-user"></i>
                   &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
                 </button>
               </a>
+              {/* Boton enviar email */}
             </div>
           </div>
         </div>
@@ -395,7 +407,6 @@ class Notificaciones extends React.Component {
                   search
                 >
                   {/* Tools para la tabla */}
-
                   {props => (
                     <div>
                       {/* Buscado de la tabla */}
