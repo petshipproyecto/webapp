@@ -72,13 +72,16 @@ class FormNewPet extends React.Component {
     selectedOption: [],
     PreferenciaAmistad: null,
     PreferenciaPareja: null,
-    opcionPreferencia: "1",
+    opcionPreferencia: 1,
     razasAmistad: [],
     razasPareja: [],
     defaultDistanciaMax: 100,
     defaultEdad: [1, 5],
     interesMacho: true,
     interesHembra: true
+  };
+  myEvento = () => {
+    console.log("hola");
   };
   handleChangeSlider = value => {
     this.setState({ defaultDistanciaMax: value });
@@ -154,6 +157,8 @@ class FormNewPet extends React.Component {
           ? this.state.PreferenciaPareja.Interes_macho
           : this.state.PreferenciaAmistad.Interes_macho
     });
+    console.log(this.state + "estado");
+    console.log(opcion + "opcion");
   };
   componentDidMount() {
     axios
@@ -262,20 +267,23 @@ class FormNewPet extends React.Component {
                       {opcionesPreferencias.map(choice => {
                         return (
                           <fieldset>
-                            <div class="radio d-inline radio-primary">
-                              <input
-                                type="radio"
-                                name="tipoBusqueda"
-                                class="form-control"
-                                value={choice.value}
-                                checked={
-                                  this.state.opcionPreferencia == choice.value
-                                }
-                                onChange={this.handleChangePreferencia}
-                              />
-                              <label for={choice.text} class="cr form-label">
-                                {choice.text}
-                              </label>
+                            <div class="form-group">
+                              <div class="radio d-inline radio-primary  ">
+                                <input
+                                  type="radio"
+                                  name="tipoBusqueda"
+                                  class="form-control"
+                                  value={choice.value}
+                                  id={choice.text}
+                                  checked={
+                                    this.state.opcionPreferencia == choice.value
+                                  }
+                                  onClick={this.handleChangePreferencia}
+                                />
+                                <label for={choice.text} class="cr form-label">
+                                  {choice.text}
+                                </label>
+                              </div>
                             </div>
                           </fieldset>
                         );
@@ -292,17 +300,21 @@ class FormNewPet extends React.Component {
                       <hr></hr>
                       <fieldset>
                         <div class="form-group">
-                          <div className="checkbox checkbox-fill d-inline" >
+                          <div className="checkbox checkbox-fill d-inline">
                             <input
                               id="macho"
                               name="interesMacho"
                               type="checkbox"
                               checked={this.state.interesMacho}
                               onChange={this.handleInputChange}
-                              disabled={this.state.opcionPreferencia === "1"}
-                              style={{opacity: 4.5}}
+                              disabled={this.state.opcionPreferencia === 1}
+                              style={{ opacity: 4.5 }}
                             />
-                            <label htmlFor="macho" className="cr" style={{opacity: 4.5}}>
+                            <label
+                              htmlFor="macho"
+                              className="cr"
+                              style={{ opacity: 4.5 }}
+                            >
                               Masculino
                             </label>
                           </div>
@@ -315,10 +327,14 @@ class FormNewPet extends React.Component {
                               type="checkbox"
                               checked={this.state.interesHembra}
                               onChange={this.handleInputChange}
-                              disabled={this.state.opcionPreferencia === "1"}
-                              style={{opacity: 4.5}}
+                              disabled={this.state.opcionPreferencia === 1}
+                              style={{ opacity: 4.5 }}
                             />
-                            <label htmlFor="hembra" className="cr" style={{opacity: 4.5}}>
+                            <label
+                              htmlFor="hembra"
+                              className="cr"
+                              style={{ opacity: 4.5 }}
+                            >
                               Femenino
                             </label>
                           </div>
