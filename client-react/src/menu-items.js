@@ -43,12 +43,7 @@ export default {
             }
           ]
         }
-      
-      ]
-    }
-    ]
-  }
-        /*
+        ,
         {
           id: "buscarPareja",
           title: "Buscar Pareja o Amigo",
@@ -63,7 +58,7 @@ export default {
           icon: "feather icon-star-on",
           url: "/GaleriaMascotas"
         },
-        
+
         ,
         {
           id: "notificaciones",
@@ -101,4 +96,3 @@ export default {
     }
   ]
 };
-*/
