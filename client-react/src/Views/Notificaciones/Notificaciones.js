@@ -411,7 +411,7 @@ class Notificaciones extends React.Component {
                     <div>
                       {/* Buscado de la tabla */}
                       <SearchBar {...props.searchProps} placeholder="Buscar" />
-                      {/* Buscado de la tabla */} {/* Buscado de la tabla */}
+                      {/* Buscado de la tabla */}
                       {/* Boton de eliminar busquedad */}
                       <ClearSearchButton
                         text="Borrar"

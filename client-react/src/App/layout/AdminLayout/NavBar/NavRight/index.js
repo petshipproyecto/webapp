@@ -482,7 +482,6 @@ class NavRight extends Component {
                     </a>
                   </li>
                 */}
-
                   <li>
                     <a
                       href="#"
