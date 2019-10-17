@@ -13,14 +13,14 @@ const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
     <Card className="tinderCard">
-      <Card.Img
+      <Card.Img className="cardBody"
         variant="top"
         draggable={false}
         src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
       />
       <Card.Body className="cardBody">
         <center>
-          <h3>
+          <h3 class = "marg">
             <Badge className="badgeGaleria" pill variant="secondary">
               Tomi
             </Badge>
@@ -30,6 +30,10 @@ const data = Array.from({ length: 10 }, (_, i) => ({
           <p className="pGaleria">
             <i class="fa fa-paw m-r-5"></i>
             <b>Raza:</b> Siames
+          </p>
+          <p className="pGaleria">
+            <i class="fa fa-adjust m-r-5"></i>
+            <b>Género:</b> Macho
           </p>
           <p className="pGaleria">
             <i class="fa fa-clock-o m-r-5"></i>
@@ -49,20 +53,21 @@ class Swipe extends React.Component {
   onSwipeEnd = ({ data }) => {
     // console.log("data", data);
   };
-
+  
   renderButtons(props) {
     return (
       <div className="btn-group like">
-        <button onClick={props.reject}>
+        <button onClick={props.reject} data-toggle="tooltip" title="No me gusta">
           <img className="img-pequeña" src={notlike} />
-        </button>
-        <button onClick={props.accept}>
+        </button>      
+        <span class="label label-default tt"> ~ Amistad  ~ </span>
+        <button onClick={props.accept} data-toggle="tooltip" title="Me gusta">        
           <img className="img-pequeña" src={like} />
         </button>
-      </div>
+      </div>      
     );
   }
-
+  
   render() {
     return (
       <Aux>
@@ -77,6 +82,5 @@ class Swipe extends React.Component {
     );
   }
 }
-
 
 export default Swipe;
