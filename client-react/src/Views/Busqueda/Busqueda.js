@@ -386,9 +386,9 @@ class FormNewPet extends React.Component {
                             border: "2px solid #f47386",
                             backgroundColor: "white"
                           }}
-                          trackStyle={{
+                          trackStyle={[{
                             background: "#f47386"
-                          }}
+                          }]}
                         />
                       </div>
                       <br />
