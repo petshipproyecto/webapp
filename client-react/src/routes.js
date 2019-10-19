@@ -17,7 +17,6 @@ const AgregarUsuario = React.lazy(() => import('./Views/Administrador/AdminAgreg
 const FormPetProfile = React.lazy(() => import('./Views/Mascota/FormPetProfile'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
 const GaleriaMascotas = React.lazy(() => import('./Views/Mascota/GaleriaMascotas'));
-const ChoosePet = React.lazy(() => import('./Views/Mascota/ChoosePet'));
 const Swipe = React.lazy(() => import('./Views/Swipe/Swipe'));
 const Notificaciones = React.lazy(() => import('./Views/Notificaciones/Notificaciones'));
 const Busqueda = React.lazy(() => import('./Views/Busqueda/Busqueda'));
