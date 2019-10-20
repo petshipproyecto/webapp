@@ -25,7 +25,9 @@ class LandingPage extends React.Component {
             <Nav.Link href="#pricing"></Nav.Link>
           </Nav>
           <Form inline>
-            <Button className="btn btn-primary">Iniciar Sesión</Button>
+            <Button onClick={() => {
+                              this.props.history.replace("/signIn");
+                            }} className="btn btn-primary">Iniciar Sesión</Button>
           </Form>
         </Navbar>
         <div class="wrapper">
@@ -38,7 +40,9 @@ class LandingPage extends React.Component {
                     Queres encontrar una pareja o un amigo para tu mascota
                   </h3>
                   <hr />
-                  <button class="btn btn-lg btn-primary shadow-2 mb-4">
+                  <button onClick={() => {
+                              this.props.history.replace("/signUp");
+                            }} class="btn btn-lg btn-primary shadow-2 mb-4">
                     <i class="fa fa-paw"></i>Registrate
                   </button>
                 </div>
