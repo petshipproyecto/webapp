@@ -100,7 +100,7 @@ class FormNewPet extends React.Component {
     }
 
     const idPreferencia =
-      this.state.opcionPreferencia === "1"
+      this.state.opcionPreferencia === 1
         ? this.state.PreferenciaPareja.Id_preferencia
         : this.state.PreferenciaAmistad.Id_preferencia;
     let payload = {
