@@ -8,44 +8,14 @@ import "./../../assets/scss/partials/theme-elements/galeria.scss";
 
 import MotionStack from "react-motion-stack";
 import "react-motion-stack/build/motion-stack.css";
+import axios from 'axios';
+import SwipeCard from './SwipeCard';
+
 
 const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
-    <Card className="tinderCard">
-      <Card.Img className="cardBody"
-        variant="top"
-        draggable={false}
-        src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
-      />
-      <Card.Body className="cardBody">
-        <center>
-          <h3 class = "marg">
-            <Badge className="badgeGaleria" pill variant="secondary">
-              Tomi
-            </Badge>
-          </h3>
-        </center>
-        <Card.Text>
-          <p className="pGaleria">
-            <i class="fa fa-paw m-r-5"></i>
-            <b>Raza:</b> Siames
-          </p>
-          <p className="pGaleria">
-            <i class="fa fa-adjust m-r-5"></i>
-            <b>Género:</b> Macho
-          </p>
-          <p className="pGaleria">
-            <i class="fa fa-clock-o m-r-5"></i>
-            <b>Edad:</b> 2 años
-          </p>
-          <p className="pGaleria">
-            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
-            <b>Distancia:</b> 2 km
-          </p>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <SwipeCard/>
   )
 }));
 
@@ -53,6 +23,29 @@ class Swipe extends React.Component {
   onSwipeEnd = ({ data }) => {
     // console.log("data", data);
   };
+
+  state = {
+    cardElements : {
+    
+    }
+  }
+  componentDidMount(){
+    axios.get('https://petshipback-dev.herokuapp.com/candidatos/5')
+    .then(response =>{
+      console.log(JSON.stringify(response.data));
+      let aux = [];
+      let cards = [];
+      for(let i=0; i< i < response.data.length ; i++ ){
+        // on the fly prepare cards
+        aux.push(response.data[i]);
+
+      }
+      
+    
+      console.log(this.state);
+    })
+    .catch()
+  }
   
   renderButtons(props) {
     return (
