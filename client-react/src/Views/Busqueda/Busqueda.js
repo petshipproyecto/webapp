@@ -112,6 +112,7 @@ class FormNewPet extends React.Component {
       Distancia_max: this.state.defaultDistanciaMax,
       Razas: auxRazas
     };
+    
 
     axios
       .put(rutaApi + "preferencia/" + idPreferencia, payload)
@@ -442,9 +443,7 @@ const mapStateToProps = state => {
     authError: state.auth.authError
   };
 };
-const mapDispatchToProps = dispatch => {};
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(FormNewPet);
