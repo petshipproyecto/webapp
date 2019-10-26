@@ -6,17 +6,18 @@ import { connect } from "react-redux";
 import Aux from "../../hoc/_Aux";
 import Tooltip from "rc-tooltip";
 import Select from "react-select";
-import axios from 'axios'
+import axios from "axios";
 import config from "../../config";
 const opcionesPreferencias = [
   {
-    value: 1, text: 'Pareja'
+    value: 1,
+    text: "Pareja"
   },
   {
-    value: 2, text: 'Amistad'
+    value: 2,
+    text: "Amistad"
   }
-
-]
+];
 
 const rutaApi = config.rutaApi;
 
@@ -71,7 +72,7 @@ class FormNewPet extends React.Component {
     selectedOption: [],
     PreferenciaAmistad: null,
     PreferenciaPareja: null,
-    opcionPreferencia: '1',
+    opcionPreferencia: 1,
     razasAmistad: [],
     razasPareja: [],
     defaultDistanciaMax: 100,
@@ -79,134 +80,160 @@ class FormNewPet extends React.Component {
     interesMacho: true,
     interesHembra: true
   };
-  handleChangeSlider = (value) => {
-    this.setState({ defaultDistanciaMax: value })
+  myEvento = () => {
+    console.log("hola");
+  };
+  handleChangeSlider = value => {
+    this.setState({ defaultDistanciaMax: value });
     console.log(value); //eslint-disable-line
-  }
-  handleChangeRange = (value) => {
-    this.setState({ defaultEdad: value })
-  }
-  handleSubmit = (e) => {
+  };
+  handleChangeRange = value => {
+    this.setState({ defaultEdad: value });
+  };
+  handleSubmit = e => {
     e.preventDefault();
 
     const razas = this.state.selectedOption;
     let auxRazas = [];
     for (let i = 0; i < razas.length; i++) {
-      auxRazas.push(
-        razas[i].value
-      )
+      auxRazas.push(razas[i].value);
     }
-    
-    const idPreferencia =  this.state.opcionPreferencia === '1' ? this.state.PreferenciaPareja.Id_preferencia : this.state.PreferenciaAmistad.Id_preferencia;
+
+    const idPreferencia =
+      this.state.opcionPreferencia === 1
+        ? this.state.PreferenciaPareja.Id_preferencia
+        : this.state.PreferenciaAmistad.Id_preferencia;
     let payload = {
-      Id_preferencia:  idPreferencia,
+      Id_preferencia: idPreferencia,
       Interes_macho: this.state.interesMacho,
       Interes_hembra: this.state.interesHembra,
       Edad_min: this.state.defaultEdad[0],
       Edad_max: this.state.defaultEdad[1],
       Distancia_max: this.state.defaultDistanciaMax,
       Razas: auxRazas
-    }    
+    };
 
-    axios.put(rutaApi + "preferencia/" + idPreferencia, payload)
-    .then(function (response) {
-      console.log(response);
-      alert('Funcionó tu Update! :) Happy Testing')
-    })
-    .catch(function (error) {
-      alert('Algo salió mal, no me odies :(')
-      console.log(error);
-    });
+    axios
+      .put(rutaApi + "preferencia/" + idPreferencia, payload)
+      .then(function(response) {
+        console.log(response);
+        alert("Funcionó tu Update! :) Happy Testing");
+      })
+      .catch(function(error) {
+        alert("Algo salió mal, no me odies :(");
+        console.log(error);
+      });
     console.log(payload);
+  };
 
-  }
-
-  handleChangePreferencia = (e) => {
+  handleChangePreferencia = e => {
     console.log(this.state);
-    console.log(this.state.PreferenciaPareja.Edad_min)
-    
+    console.log(this.state.PreferenciaPareja.Edad_min);
+
     let opcion = e.target.value;
-    let edadMin = opcion === '1' ? this.state.PreferenciaPareja.Edad_min : this.state.PreferenciaAmistad.Edad_min;
-    let edadMax = opcion === '1' ? this.state.PreferenciaPareja.Edad_max : this.state.PreferenciaAmistad.Edad_max;
+    let edadMin =
+      opcion === "1"
+        ? this.state.PreferenciaPareja.Edad_min
+        : this.state.PreferenciaAmistad.Edad_min;
+    let edadMax =
+      opcion === "1"
+        ? this.state.PreferenciaPareja.Edad_max
+        : this.state.PreferenciaAmistad.Edad_max;
     this.setState({
       opcionPreferencia: opcion,
-      selectedOption: opcion === '1' ? this.state.razasPareja : this.state.razasAmistad,
-      defaultDistanciaMax: opcion === '1' ? this.state.PreferenciaPareja.Distancia_max : this.state.PreferenciaAmistad.Distancia_max,
+      selectedOption:
+        opcion === "1" ? this.state.razasPareja : this.state.razasAmistad,
+      defaultDistanciaMax:
+        opcion === "1"
+          ? this.state.PreferenciaPareja.Distancia_max
+          : this.state.PreferenciaAmistad.Distancia_max,
       defaultEdad: [edadMin, edadMax],
-      interesHembra: opcion === '1' ? this.state.PreferenciaPareja.Interes_hembra : this.state.PreferenciaAmistad.Interes_hembra,
-      interesMacho: opcion === '1' ? this.state.PreferenciaPareja.Interes_macho : this.state.PreferenciaAmistad.Interes_macho,
+      interesHembra:
+        opcion === "1"
+          ? this.state.PreferenciaPareja.Interes_hembra
+          : this.state.PreferenciaAmistad.Interes_hembra,
+      interesMacho:
+        opcion === "1"
+          ? this.state.PreferenciaPareja.Interes_macho
+          : this.state.PreferenciaAmistad.Interes_macho
     });
-  }
+    console.log(this.state + "estado");
+    console.log(opcion + "opcion");
+  };
   componentDidMount() {
-
-    
-    axios.get(rutaApi + "usuario/" + this.props.userId).then(r => {
-
-      console.log(r.data)   
-      this.setState(
-        {
-          PreferenciaAmistad: r.data.Perfil_activo.Preferencia_amistad,
-          PreferenciaPareja: r.data.Perfil_activo.Preferencia_pareja,
-        }, function () {
-          // map with select opctions
-          let razas = this.state.PreferenciaAmistad.Razas;
-          let aux = [];
-          let aux2 = [];
-          for (let i = 0; i < razas.length; i++) {
-            aux.push(
-              { value: razas[i].Id_Raza, label: razas[i].Descripcion }
-            )
-          }
-          console.log(aux + 'aux' + JSON.stringify(razas) + razas.length)
-  
-          razas = this.state.PreferenciaPareja.Razas;
-          for (let i = 0; i < razas.length; i++) {
-            aux2.push(
-              { value: razas[i].Id_Raza, label: razas[i].Descripcion }
-            )
-          }
-          this.setState({
-            selectedOption: aux2,
-            razasAmistad: aux,
-            razasPareja: aux2,
-            defaultDistanciaMax: this.state.PreferenciaPareja.Distancia_max,
-            defaultEdad: [this.state.PreferenciaPareja.Edad_min, this.state.PreferenciaPareja.Edad_max],
-            interesMacho: this.state.PreferenciaPareja.Interes_macho,
-            interesHembra: this.state.PreferenciaPareja.Interes_hembra
-          });
-
-          axios.get('https://petshipback-dev.herokuapp.com/animal/' + r.data.Perfil_activo.Raza.Id_animal).then(r => {
-            console.log(r.data)
-      
-         
-            for (let i = 0; i < r.data.Razas.length; i++) {
-              options.push(
-                { value: r.data.Razas[i].Id_raza, label: r.data.Razas[i].Descripcion }
-              )
+    axios
+      .get(rutaApi + "usuario/" + this.props.userId)
+      .then(r => {
+        console.log(r.data);
+        this.setState(
+          {
+            PreferenciaAmistad: r.data.Perfil_activo.Preferencia_amistad,
+            PreferenciaPareja: r.data.Perfil_activo.Preferencia_pareja
+          },
+          function() {
+            // map with select opctions
+            let razas = this.state.PreferenciaAmistad.Razas;
+            let aux = [];
+            let aux2 = [];
+            for (let i = 0; i < razas.length; i++) {
+              aux.push({
+                value: razas[i].Id_Raza,
+                label: razas[i].Descripcion
+              });
             }
-          
-          }).catch()
-          console.log(this.state)
+            console.log(aux + "aux" + JSON.stringify(razas) + razas.length);
 
-        }
-  
-      )
-    }).catch()
+            razas = this.state.PreferenciaPareja.Razas;
+            for (let i = 0; i < razas.length; i++) {
+              aux2.push({
+                value: razas[i].Id_Raza,
+                label: razas[i].Descripcion
+              });
+            }
+            this.setState({
+              selectedOption: aux2,
+              razasAmistad: aux,
+              razasPareja: aux2,
+              defaultDistanciaMax: this.state.PreferenciaPareja.Distancia_max,
+              defaultEdad: [
+                this.state.PreferenciaPareja.Edad_min,
+                this.state.PreferenciaPareja.Edad_max
+              ],
+              interesMacho: this.state.PreferenciaPareja.Interes_macho,
+              interesHembra: this.state.PreferenciaPareja.Interes_hembra
+            });
 
-  
+            axios
+              .get(
+                "https://petshipback-dev.herokuapp.com/animal/" +
+                  r.data.Perfil_activo.Raza.Id_animal
+              )
+              .then(r => {
+                console.log(r.data);
 
-    
-
+                for (let i = 0; i < r.data.Razas.length; i++) {
+                  options.push({
+                    value: r.data.Razas[i].Id_raza,
+                    label: r.data.Razas[i].Descripcion
+                  });
+                }
+              })
+              .catch();
+            console.log(this.state);
+          }
+        );
+      })
+      .catch();
   }
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
       [name]: value
     });
-  }
+  };
   handleChange = selectedOption => {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
@@ -237,31 +264,31 @@ class FormNewPet extends React.Component {
                         </div>
                       </div>
                       <hr></hr>
-                      <fieldset>
-
-                        {opcionesPreferencias.map(choice => {
-
-                          return (
-
-                            <div >
-
-                              <input
-                                type="radio"
-                                name="tipoBusqueda"
-                                value={choice.value}
-                                checked={this.state.opcionPreferencia == choice.value}
-                                onChange={this.handleChangePreferencia} />
-                              <label  >
-                                {choice.text}
-                              </label>
-
+                      {opcionesPreferencias.map(choice => {
+                        return (
+                          <fieldset>
+                            <div class="form-group">
+                              <div class="radio d-inline radio-primary  ">
+                                <input
+                                  type="radio"
+                                  name="tipoBusqueda"
+                                  class="form-control"
+                                  value={choice.value}
+                                  id={choice.text}
+                                  checked={
+                                    this.state.opcionPreferencia == choice.value
+                                  }
+                                  onClick={this.handleChangePreferencia}
+                                />
+                                <label for={choice.text} class="cr form-label">
+                                  {choice.text}
+                                </label>
+                              </div>
                             </div>
-                          )
-                        }
-                        )}
-
-
-                      </fieldset>
+                          </fieldset>
+                        );
+                      })}
+                      <br></br>
                       <div class="d-flex justify-content-between">
                         <div>
                           <h6>Mostrar Genero:</h6>
@@ -273,37 +300,50 @@ class FormNewPet extends React.Component {
                       <hr></hr>
                       <fieldset>
                         <div class="form-group">
-                          <input
-                            name="interesMacho"
-                            type="checkbox"
-                            checked={this.state.interesMacho}
-                            onChange={this.handleInputChange}
-                            disabled={this.state.opcionPreferencia === '1'}
-                          />
-
-                          <label>
-                            Masculino
+                          <div className="checkbox checkbox-fill d-inline">
+                            <input
+                              id="macho"
+                              name="interesMacho"
+                              type="checkbox"
+                              checked={this.state.interesMacho}
+                              onChange={this.handleInputChange}
+                              disabled={this.state.opcionPreferencia === 1}
+                              style={{ opacity: 4.5 }}
+                            />
+                            <label
+                              htmlFor="macho"
+                              className="cr"
+                              style={{ opacity: 4.5 }}
+                            >
+                              Masculino
                             </label>
+                          </div>
                         </div>
                         <div class="form-group">
-                          <input
-                            name="interesHembra"
-                            type="checkbox"
-                            checked={this.state.interesHembra}
-                            onChange={this.handleInputChange}
-                            disabled={this.state.opcionPreferencia === '1'}
-
-                          />
-                          <label>
-                            Femenino
+                          <div className="checkbox checkbox-fill d-inline">
+                            <input
+                              id="hembra"
+                              name="interesHembra"
+                              type="checkbox"
+                              checked={this.state.interesHembra}
+                              onChange={this.handleInputChange}
+                              disabled={this.state.opcionPreferencia === 1}
+                              style={{ opacity: 4.5 }}
+                            />
+                            <label
+                              htmlFor="hembra"
+                              className="cr"
+                              style={{ opacity: 4.5 }}
+                            >
+                              Femenino
                             </label>
+                          </div>
                         </div>
                       </fieldset>
                       <div class="d-flex justify-content-between">
                         <div>
                           <h6>Raza:</h6>
                         </div>
-
                       </div>
                       <hr style={{ color: "gray", height: 1 }} />
                       <Select
@@ -334,7 +374,7 @@ class FormNewPet extends React.Component {
                           onChange={this.handleChangeSlider}
                           handleStyle={{
                             border: "2px solid #f47386",
-                            backgroundColor: 'white',
+                            backgroundColor: "white"
                           }}
                           trackStyle={{
                             background: "#f47386"
@@ -347,7 +387,8 @@ class FormNewPet extends React.Component {
                           <h6>Rango de edad:</h6>
                         </div>
                         <div style={{ color: "#f47386", fontWeight: "bolder" }}>
-                          {this.state.defaultEdad[0]} a {(this.state.defaultEdad[1] || '').toString()} años
+                          {this.state.defaultEdad[0]} a{" "}
+                          {(this.state.defaultEdad[1] || "").toString()} años
                         </div>
                       </div>
                       <hr></hr>
@@ -360,11 +401,13 @@ class FormNewPet extends React.Component {
                           value={this.state.defaultEdad}
                           handleStyle={{
                             border: "2px solid #f47386",
-                            backgroundColor: 'white',
+                            backgroundColor: "white"
                           }}
-                          trackStyle={{
-                            background: "#f47386"
-                          }}
+                          trackStyle={[
+                            {
+                              background: "#f47386"
+                            }
+                          ]}
                         />
                       </div>
                       <br />
@@ -405,4 +448,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(FormNewPet);
-
