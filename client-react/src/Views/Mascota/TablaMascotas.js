@@ -31,10 +31,10 @@ const deleteProfile = (Usr_cod, perfil) => {
         text: "¿Está seguro de que lo desea eliminar?",
         type: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#8BC3FF',
-        cancelButtonColor: '#BFBFBF ',
+        confirmButtonColor: '#9dd7a5',
+        cancelButtonColor: '#d0958e',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'Aceptar'
       }).then((result) => {
         if (result.value) {
             axios
