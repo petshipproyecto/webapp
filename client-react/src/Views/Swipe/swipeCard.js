@@ -208,7 +208,7 @@ class MotionStack extends React.Component {
 
   render() {
     const { swipedId, data } = this.state;
-    const { renderCount, renderButtons } = this.props;
+    const { renderCount, renderButtons, preferenciaBusqueda } = this.props;
 
     return (
       <Fragment>
@@ -249,7 +249,7 @@ class MotionStack extends React.Component {
         </div>
 
         {renderButtons &&
-          renderButtons({ accept: this.accept, reject: this.reject })}
+          renderButtons({ accept: this.accept, reject: this.reject, preferenciaBusqueda: preferenciaBusqueda })}
       </Fragment>
     );
   }

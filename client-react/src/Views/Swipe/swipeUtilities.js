@@ -4,12 +4,10 @@ import axios from 'axios'
 import config from '../../config'
 const rutaApi = config.rutaApi
 
-
-
 const swipeUtilities = {
 
     getCardDetails: async function (idPerfil){
-        const response = await axios.get(rutaApi +'candidatos/' + idPerfil)
+        const response = await axios.get(rutaApi +'candidatos/' + idPerfil);
         
           console.log(JSON.stringify(response.data));
           let aux = [];

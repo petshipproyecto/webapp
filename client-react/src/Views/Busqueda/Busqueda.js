@@ -8,6 +8,7 @@ import Tooltip from "rc-tooltip";
 import Select from "react-select";
 import axios from "axios";
 import config from "../../config";
+import swal from "sweetalert";
 const opcionesPreferencias = [
   {
     value: 1,
@@ -78,7 +79,8 @@ class FormNewPet extends React.Component {
     defaultDistanciaMax: 100,
     defaultEdad: [1, 5],
     interesMacho: true,
-    interesHembra: true
+    interesHembra: true,
+    Perfil_activo: 0
   };
   myEvento = () => {
     console.log("hola");
@@ -103,7 +105,7 @@ class FormNewPet extends React.Component {
       this.state.opcionPreferencia === 1
         ? this.state.PreferenciaPareja.Id_preferencia
         : this.state.PreferenciaAmistad.Id_preferencia;
-    let payload = {
+    let payload = { 
       Id_preferencia: idPreferencia,
       Interes_macho: this.state.interesMacho,
       Interes_hembra: this.state.interesHembra,
@@ -112,16 +114,35 @@ class FormNewPet extends React.Component {
       Distancia_max: this.state.defaultDistanciaMax,
       Razas: auxRazas
     };
+
+    const urlPerfil = rutaApi + 'perfil/' + this.state.Perfil_activo;
+    const payloadPerfil = {
+      Interes_pareja: this.state.opcionPreferencia === 1 ? true : null,
+      Interes_amistad: this.state.opcionPreferencia !== 1 ? true : null
+    }
+    axios.put(urlPerfil,payloadPerfil).then(console.log('Se modificó la preferencia de busqueda')).catch()
     
 
     axios
       .put(rutaApi + "preferencia/" + idPreferencia, payload)
       .then(function(response) {
         console.log(response);
-        alert("Funcionó tu Update! :) Happy Testing");
+        swal({
+          title: "Exito!",
+          text: "Se registró correctamente la preferencia",
+          icon: "success",
+          timer: 2000,
+          button: false
+        });
       })
       .catch(function(error) {
-        alert("Algo salió mal, no me odies :(");
+        swal({
+          title: "Error!",
+          text: "Se registró correctamente su preferencia",
+          icon: "error",
+          timer: 3000,
+          button: false
+        });
         console.log(error);
       });
     console.log(payload);
@@ -169,7 +190,8 @@ class FormNewPet extends React.Component {
         this.setState(
           {
             PreferenciaAmistad: r.data.Perfil_activo.Preferencia_amistad,
-            PreferenciaPareja: r.data.Perfil_activo.Preferencia_pareja
+            PreferenciaPareja: r.data.Perfil_activo.Preferencia_pareja,
+            Perfil_activo: r.data.Id_perfil_activo
           },
           function() {
             // map with select opctions
@@ -206,7 +228,7 @@ class FormNewPet extends React.Component {
 
             axios
               .get(
-                "https://petshipback-dev.herokuapp.com/animal/" +
+                rutaApi +"animal/" +
                   r.data.Perfil_activo.Raza.Id_animal
               )
               .then(r => {
