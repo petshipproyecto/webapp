@@ -151,7 +151,7 @@ class FormNewPet extends React.Component {
               console.log(error);
               swal({
                 title: "Error!",
-                text: "Debe agregar una foto para su mascota",
+                text: "No se ha registrado la mascota",
                 icon: "error",
                 timer: 3000,
                 button: false

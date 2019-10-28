@@ -3,7 +3,7 @@ import { Field } from "formik";
 
 var emptyOption = (
   <option key={0} value={0}>
-    Seleccione un Tipo de Animal
+    Seleccione un Tipo de Mascota
   </option>
 );
 
