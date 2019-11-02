@@ -117,8 +117,8 @@ class FormNewPet extends React.Component {
 
     const urlPerfil = rutaApi + 'perfil/' + this.state.Perfil_activo;
     const payloadPerfil = {
-      Interes_pareja: this.state.opcionPreferencia === 1 ? true : null,
-      Interes_amistad: this.state.opcionPreferencia !== 1 ? true : null
+      Interes_pareja: this.state.opcionPreferencia == 1 ? true : false,
+      Interes_amistad: this.state.opcionPreferencia != 1 ? true : false
     }
     axios.put(urlPerfil,payloadPerfil).then(console.log('Se modificó la preferencia de busqueda')).catch()
     
