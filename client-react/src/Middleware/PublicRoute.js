@@ -11,7 +11,7 @@ const PublicRoute = ({ component: Component, user, ...rest }) => (
       : <Redirect to={{
         pathname:  '/choosePet'
       }}/>
-    )}
+    )}   
   />
 );
 

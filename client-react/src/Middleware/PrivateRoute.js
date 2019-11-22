@@ -6,7 +6,7 @@ const PrivateRoute = ({ component: Component, user, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      user.isEmpty !== true ? (
+      user.isEmpty  !== true ? (
         <Component {...props} />
       ) : (
         <Redirect

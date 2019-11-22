@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field } from "formik";
 
 var Generos = [
-  { value: "0", label: "Seleccione una Género" },
+  { value: "0", label: "Seleccione un Género" },
   { value: "1", label: "Macho" },
   { value: "2", label: "Hembra" }
 ];

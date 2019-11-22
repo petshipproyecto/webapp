@@ -64,6 +64,8 @@ export default {
           icon: "feather icon-star-on",
           url: "/GaleriaMascotas"
         },
+
+        ,
         {
           id: "notificaciones",
           title: "Notificaciones",
@@ -125,7 +127,6 @@ export default {
     }
   ]
 };
-     
-        /*
-  
-*/
+      
+        
+        

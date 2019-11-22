@@ -5,58 +5,88 @@ import Aux from "../../hoc/_Aux";
 import like from "../../assets/images/user/si.png";
 import notlike from "../../assets/images/user/no.png";
 import "./../../assets/scss/partials/theme-elements/galeria.scss";
-
-import MotionStack from "react-motion-stack";
+import axios from 'axios'
+import { connect } from "react-redux";
+import MotionStack from "./swipeCard";
 import "react-motion-stack/build/motion-stack.css";
+import config from '../../config'
+const swipeUtilities = require('./swipeUtilities').default;
+var rutaApi = config.rutaApi
 
-const data = Array.from({ length: 10 }, (_, i) => ({
-  id: new Date().getTime() + i,
-  element: (
-    <Card className="tinderCard">
-      <Card.Img
-        variant="top"
-        draggable={false}
-        src={`https://source.unsplash.com/collection/2489501/${i + 1}`}
-      />
-      <Card.Body className="cardBody">
-        <center>
-          <h3>
-            <Badge className="badgeGaleria" pill variant="secondary">
-              Tomi
-            </Badge>
-          </h3>
-        </center>
-        <Card.Text>
-          <p className="pGaleria">
-            <i class="fa fa-paw m-r-5"></i>
-            <b>Raza:</b> Siames
-          </p>
-          <p className="pGaleria">
-            <i class="fa fa-clock-o m-r-5"></i>
-            <b>Edad:</b> 2 años
-          </p>
-          <p className="pGaleria">
-            <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
-            <b>Distancia:</b> 2 km
-          </p>
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  )
-}));
+
 
 class Swipe extends React.Component {
+
+  state = {
+    aux: null,
+    InteresBusqueda: {
+      Interes_pareja: null,
+      Interes_Amistad: true
+    }
+  }
+
+  like = (id, tipoLike) => {
+    const url = rutaApi + tipoLike;
+    const body = {
+      Id_perfil_origen: 1,
+      Id_perfil_destino: id,
+      Id_tipo_match: this.state.InteresBusqueda.Interes_Amistad ? 1 : 2
+    }
+    axios.post(url, body)
+      .then(r => { console.log('liking') })
+      .catch()
+
+  }
+
+  onBeforeSwipe = (swipe, direction, state, id) => {
+
+    console.log('direction', direction);
+    console.log('direction', id);
+    //console.log('state', state);
+
+    if (direction == 'left') {
+      this.like(id, 'dislike')
+    } else {
+      this.like(id, 'like')
+    }
+
+    swipe();
+    console.log('state', state);
+  }
+
   onSwipeEnd = ({ data }) => {
     // console.log("data", data);
   };
 
+  async componentDidMount() {
+    swipeUtilities.getPerfilActivo(this.props.userId).then((perfilActivo) => {
+      console.log('perfilAcivo' + JSON.stringify(perfilActivo));
+      const Interes_Amistad = perfilActivo.data.Perfil_activo.Interes_amistad;
+      const Interes_pareja = perfilActivo.data.Perfil_activo.Interes_pareja;
+      this.setState({
+        InteresBusqueda: {Interes_Amistad, Interes_pareja}
+      })
+      swipeUtilities.getCardDetails(perfilActivo.data.Id_perfil_activo).then(aux => {
+        console.log('aux' + aux);
+        this.setState({ aux: aux });
+        console.log(this.state)
+      });
+
+    });
+
+
+
+
+  }
+
   renderButtons(props) {
     return (
       <div className="btn-group like">
-        <button onClick={props.reject}>
+        <button onClick={props.reject} data-toggle="tooltip" title="No me gusta">
           <img className="img-pequeña" src={notlike} />
         </button>
-        <button onClick={props.accept}>
+        <span class="label label-default tt"> ~ {props.preferenciaBusqueda  ? 'Amistad' : 'Pareja'}  ~ </span>
+        <button onClick={props.accept} data-toggle="tooltip" title="Me gusta">
           <img className="img-pequeña" src={like} />
         </button>
       </div>
@@ -64,19 +94,39 @@ class Swipe extends React.Component {
   }
 
   render() {
-    return (
-      <Aux>
-        
+
+    let card = "";
+    if (this.state.aux) {
+      card = (
         <MotionStack
-          data={data}
+          data={this.state.aux}
           onSwipeEnd={this.onSwipeEnd}
+          onBeforeSwipe={this.onBeforeSwipe}
           render={props => props.element}
           renderButtons={this.renderButtons}
-        />
+          preferenciaBusqueda ={this.state.InteresBusqueda.Interes_Amistad }
+        />)
+
+    }
+
+    return (
+      <Aux>
+
+        {card}
+
       </Aux>
     );
   }
 }
 
+const mapStateToProps = state => {
+  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
 
-export default Swipe;
+export default connect(
+  mapStateToProps
+)(Swipe);

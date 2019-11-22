@@ -21,33 +21,34 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
 };
 
 const deleteProfile = (Usr_cod, perfil) => {
-  Swal.fire({
-    title: "Eliminar a " + perfil.Nombre,
-    text: "¿Está seguro de que lo desea eliminar?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
-  }).then(result => {
-    if (result.value) {
-      axios
-        .delete(rutaApi + "perfil/" + perfil.Id_perfil)
-        .then(response => {
-          axios.put(rutaApi + "usuario/" + Usr_cod, {
-            Id_perfil_activo: perfil.Id_perfil
-          });
-        })
-        .then(result => {
-          window.location.replace("/choosePet");
-        })
-        .catch(e => {
-          Swal.fire(
-            "Error",
-            "Se ha producido un error al intentar eliminar la mascota",
-            "error"
-          );
+    
+    Swal.fire({
+        title: 'Eliminar a '+perfil.Nombre,
+        text: "¿Está seguro de que lo desea eliminar?",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#9dd7a5',
+        cancelButtonColor: '#d0958e',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.value) {
+            axios
+                .delete(rutaApi + 'perfil/' + perfil.Id_perfil)
+                .then(response => {
+                    axios.put(rutaApi + 'usuario/' + Usr_cod,{Id_perfil_activo: perfil.Id_perfil})
+                    })
+                .then(result => {
+                    window.location.replace('/choosePet')
+                    })
+                .catch(e => {
+                    Swal.fire(
+                        'Error',
+                        'Se ha producido un error al intentar eliminar la mascota',
+                        'error'
+                    );
+                    })
+            }
         });
     }
   });
