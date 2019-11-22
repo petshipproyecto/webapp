@@ -3,11 +3,13 @@ import { Row, Col, Card } from "react-bootstrap";
 
 import Aux from "../../hoc/_Aux";
 
-import Avatar1 from "../../assets/images/user/avatar1.jpg";
-
-import { Formik, Field, Form} from "formik";
+import firebase from "firebase";
+import { Formik, Field, Form,ErrorMessage} from "formik";
 import axios from "axios";
 import config from "../../config";
+import FileUploader from "react-firebase-file-uploader";
+
+import Avatar1 from "../../assets/images/user/avatar1.jpg";
 
 const rutaApi = config.rutaApi;
 
@@ -22,7 +24,7 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
-class VerUserProfile extends React.Component {
+class AdminAgregarUsuario extends React.Component {
   render() {
     return (
       <Formik
@@ -34,7 +36,7 @@ class VerUserProfile extends React.Component {
                 <Col md={6}>
                   <Card>
                     <Card.Header>
-                      <Card.Title as="h5">Perfil del Usuario</Card.Title>
+                      <Card.Title as="h5">Agregar Nuevo Usuario</Card.Title>
                     </Card.Header>
                     <Card.Body>
                       <Row>
@@ -49,11 +51,43 @@ class VerUserProfile extends React.Component {
                             </center>
                           </Form>
                           <br></br>
+                          <center>
+                            <div className="form-group">
+                              <label
+                                style={{
+                                  backgroundColor: "#f47386",
+                                  color: "white",
+                                  padding: 10,
+                                  borderRadius: 4,
+                                  cursor:"pointer",
+                                }}
+                              >
+                                Seleccionar Foto de Perfil
+                                <FileUploader
+                                  hidden
+                                  accept="image/*"
+                                  name="avatar"
+                                  randomizeFilename
+                                  storageRef={firebase.storage().ref("images")}
+                                  onUploadStart={this.handleUploadStart}
+                                  onUploadError={this.handleUploadError}
+                                  onUploadSuccess={this.handleUploadSuccess}
+                                  onProgress={this.handleProgress}
+                                />
+                              </label>
+
+                              <ErrorMessage
+                                name="file"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+                          </center>
+
                           {/* Nombre */}
                           <div className="form-group">
                             <label>Nombre</label>
                             <Field
-                              readOnly
                               placeholder="Nombre"
                               name="Nombre"
                               type="text"
@@ -64,7 +98,6 @@ class VerUserProfile extends React.Component {
                           <div className="form-group">
                             <label>Apellido</label>
                             <Field
-                              readOnly
                               placeholder="Apellido"
                               name="Apellido"
                               type="text"
@@ -75,7 +108,6 @@ class VerUserProfile extends React.Component {
                           <div className="form-group">
                             <label>Email</label>
                             <Field
-                              readOnly
                               placeholder="Email"
                               name="Email"
                               type="text"
@@ -84,12 +116,21 @@ class VerUserProfile extends React.Component {
                           </div>
                           {/* Ubicacion */}
                           <div className="form-group">
-                            <label>Ubicacion</label>
+                            <label>Ubicación</label>
                             <Field
-                              readOnly
-                              placeholder="Ubicacion"
+                              placeholder="Ubicación"
                               name="Ubicacion"
                               type="text"
+                              className="form-control"
+                            />
+                          </div>
+                          {/* Contraseña */}
+                          <div className="form-group">
+                            <label>Contraseña</label>
+                            <Field
+                              placeholder="Contraseña"
+                              name="Contraseña"
+                              type="password"
                               className="form-control"
                             />
                           </div>
@@ -99,7 +140,7 @@ class VerUserProfile extends React.Component {
                                 type="submit"
                                 className="btn btn-primary shadow-2 mb-4"
                               >
-                                Modificar Perfil
+                                Guardar Usuario
                               </button>
                             </div>
                           </center>
@@ -117,4 +158,4 @@ class VerUserProfile extends React.Component {
   }
 }
 
-export default VerUserProfile;
+export default AdminAgregarUsuario;

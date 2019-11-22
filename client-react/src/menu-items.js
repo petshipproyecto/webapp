@@ -35,6 +35,13 @@ export default {
               url: "/UserProfile"
             },
             {
+              id: "verPerfilUsuario",
+              title: "Ver  Usuario",
+              type: "item",
+              icon: "feather icon-user",
+              url: "/VerUserProfile"
+            },
+            {
               id: "perfilMascota",
               title: "Ver Perfil de Mascota",
               type: "item",
@@ -80,17 +87,42 @@ export default {
           icon: "feather icon-filter",
           url: "/ConfiguracionBusqueda",
         },
+        // {
+        //   id: "choosePet",
+        //   title: "Eleguir Mascota",
+        //   type: "item",
+        //   icon: "fa fa-check-circle",
+        //   url: "/choosePet",
+        //   badge: {
+        //     title: "Prueba",
+        //     type: "label-danger"
+        //   },
+        // },
         {
-          id: "choosePet",
-          title: "Eleguir Mascota",
-          type: "item",
-          icon: "fa fa-check-circle",
-          url: "/choosePet",
-          badge: {
-            title: "Prueba",
-            type: "label-danger"
-          },
-        },
+        id: "adminUsers",
+        title: "Administrar Usuarios",
+        type: "item",
+        icon: "fa fa-group",
+        url: "/AdministrarUsuarios",
+         },
+           {
+            id: "adminTipoMascotas",
+            title: "Administrar Tipos de Mascotas",
+            type: "item",
+            icon: "fa fa-paw",
+            url: "/AdministrarTiposDeMascotas",
+             },
+        // {
+        //   id: "inputDate",
+        //   title: "Cargar Datos",
+        //   type: "item",
+        //   icon: "fa fa-check-circle",
+        //   url: "/choosePet",
+        //   badge: {
+        //     title: "Admin",
+        //     type: "label-danger"
+        //   },
+        // },
       ]
     }
   ]

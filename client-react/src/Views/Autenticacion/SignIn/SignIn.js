@@ -170,7 +170,7 @@ class SignIn extends React.Component {
                       </p>
                       <p className="mb-0 text-muted">
                         No tienes cuenta?{" "}
-                        <NavLink to="/signUp">Registrate</NavLink>
+                        <NavLink to="/SignUp">Registrate</NavLink>
                       </p>
                     </div>
                   </div>

@@ -93,9 +93,9 @@ class NavLeft extends Component {
               </ul>
             </Dropdown>
           </li> */}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavSearch />
-          </li>
+          </li> */}
         </ul>
       </Aux>
     );
