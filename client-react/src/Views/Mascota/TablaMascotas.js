@@ -50,8 +50,7 @@ const deleteProfile = (Usr_cod, perfil) => {
                     })
             }
         });
-    }
-  });
+  
 };
 
 class TablaMascotas extends React.Component {
