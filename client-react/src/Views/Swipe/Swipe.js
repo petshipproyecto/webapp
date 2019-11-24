@@ -28,7 +28,7 @@ class Swipe extends React.Component {
   like = (id, tipoLike) => {
     const url = rutaApi + tipoLike;
     const body = {
-      Id_perfil_origen: 1,
+      Id_perfil_origen: this.state.Id_perfil_activo,
       Id_perfil_destino: id,
       Id_tipo_match: this.state.InteresBusqueda.Interes_Amistad ? 1 : 2
     }
@@ -64,6 +64,7 @@ class Swipe extends React.Component {
       const Interes_Amistad = perfilActivo.data.Perfil_activo.Interes_amistad;
       const Interes_pareja = perfilActivo.data.Perfil_activo.Interes_pareja;
       this.setState({
+        Id_perfil_activo: perfilActivo.data.Id_perfil_activo,
         InteresBusqueda: {Interes_Amistad, Interes_pareja}
       })
       swipeUtilities.getCardDetails(perfilActivo.data.Id_perfil_activo).then(aux => {
@@ -73,10 +74,7 @@ class Swipe extends React.Component {
       });
 
     });
-
-
-
-
+    
   }
 
   renderButtons(props) {
