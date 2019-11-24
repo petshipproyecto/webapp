@@ -9,7 +9,7 @@ const swipeUtilities = {
     getCardDetails: async function (idPerfil){
         const response = await axios.get(rutaApi +'candidatos/' + idPerfil);
         
-          console.log(JSON.stringify(response.data));
+          console.log(response.data);
           let aux = [];
           let cards = [];
 
