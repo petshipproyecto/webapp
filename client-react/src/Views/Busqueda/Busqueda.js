@@ -115,6 +115,8 @@ class FormNewPet extends React.Component {
       Razas: auxRazas
     };
 
+    console.log(this.state.opcionPreferencia)
+
     const urlPerfil = rutaApi + 'perfil/' + this.state.Perfil_activo;
     const payloadPerfil = {
       Interes_pareja: this.state.opcionPreferencia == 1 ? true : false,
