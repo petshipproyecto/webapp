@@ -99,7 +99,23 @@ class FormNewPet extends React.Component {
     let auxRazas = [];
     for (let i = 0; i < razas.length; i++) {
       auxRazas.push(razas[i].value);
+      console.log(razas[i].value)
     }
+
+    if (!(this.state.interesMacho || this.state.interesHembra)){
+
+      swal({
+        title: "Error!",
+        text: "Ingrese preferencia de género",
+        icon: "error",
+        timer: 4000,
+        button: false
+      });
+
+    } else
+    {
+
+    
 
     const idPreferencia =
       this.state.opcionPreferencia === 1
@@ -148,13 +164,14 @@ class FormNewPet extends React.Component {
         console.log(error);
       });
     console.log(payload);
+  }
   };
 
   handleChangePreferencia = e => {
     console.log(this.state);
     console.log(this.state.PreferenciaPareja.Edad_min);
 
-    let opcion = e.target.value;
+    let opcion = e.target.value
     let edadMin =
       opcion === "1"
         ? this.state.PreferenciaPareja.Edad_min
@@ -164,7 +181,7 @@ class FormNewPet extends React.Component {
         ? this.state.PreferenciaPareja.Edad_max
         : this.state.PreferenciaAmistad.Edad_max;
     this.setState({
-      opcionPreferencia: opcion,
+      opcionPreferencia: parseInt(opcion),
       selectedOption:
         opcion === "1" ? this.state.razasPareja : this.state.razasAmistad,
       defaultDistanciaMax:
@@ -181,7 +198,7 @@ class FormNewPet extends React.Component {
           ? this.state.PreferenciaPareja.Interes_macho
           : this.state.PreferenciaAmistad.Interes_macho
     });
-    console.log(this.state + "estado");
+    console.log(JSON.stringify(this.state) + "estado");
     console.log(opcion + "opcion");
   };
   componentDidMount() {
@@ -202,19 +219,21 @@ class FormNewPet extends React.Component {
             let aux2 = [];
             for (let i = 0; i < razas.length; i++) {
               aux.push({
-                value: razas[i].Id_Raza,
+                value: razas[i].Id_raza,
                 label: razas[i].Descripcion
               });
             }
-            console.log(aux + "aux" + JSON.stringify(razas) + razas.length);
-
+            
+            console.log("Razas: " + JSON.stringify(razas));
             razas = this.state.PreferenciaPareja.Razas;
             for (let i = 0; i < razas.length; i++) {
               aux2.push({
-                value: razas[i].Id_Raza,
+                value: razas[i].Id_raza,
                 label: razas[i].Descripcion
               });
             }
+            
+            console.log('component did mount' + JSON.stringify(aux2));
             this.setState({
               selectedOption: aux2,
               razasAmistad: aux,
@@ -261,7 +280,17 @@ class FormNewPet extends React.Component {
   };
   handleChange = selectedOption => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
+
+    
+    if (parseInt(this.state.opcionPreferencia) === 1) {
+      this.setState({razasPareja: selectedOption})
+      console.log('handleChange' + ' if')
+    } else {
+      this.setState({razasAmistad: selectedOption})
+      console.log('handleChange' + ' else')
+    }
+    console.log(this.state);
+    console.log('Option selected:', selectedOption);
   };
   //------Para el select multiple---------------
   render() {
