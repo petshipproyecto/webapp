@@ -102,6 +102,21 @@ class FormNewPet extends React.Component {
       console.log(razas[i].value)
     }
 
+    if (!(this.state.interesMacho || this.state.interesHembra)){
+
+      swal({
+        title: "Error!",
+        text: "Ingrese preferencia de género",
+        icon: "error",
+        timer: 4000,
+        button: false
+      });
+
+    } else
+    {
+
+    
+
     const idPreferencia =
       this.state.opcionPreferencia === 1
         ? this.state.PreferenciaPareja.Id_preferencia
@@ -149,6 +164,7 @@ class FormNewPet extends React.Component {
         console.log(error);
       });
     console.log(payload);
+  }
   };
 
   handleChangePreferencia = e => {
