@@ -76,8 +76,8 @@ class FormNewPet extends React.Component {
     opcionPreferencia: 1,
     razasAmistad: [],
     razasPareja: [],
-    defaultDistanciaMax: 100,
-    defaultEdad: [1, 5],
+    defaultDistanciaMax: 50,
+    defaultEdad: [1, 14],
     interesMacho: true,
     interesHembra: true,
     Perfil_activo: 0
@@ -86,11 +86,15 @@ class FormNewPet extends React.Component {
     console.log("hola");
   };
   handleChangeSlider = value => {
-    this.setState({ defaultDistanciaMax: value });
-    console.log(value); //eslint-disable-line
+    this.setState({ defaultDistanciaMax: parseInt(value) });
+    console.log( typeof value); //eslint-disable-line
+    console.log(JSON.stringify(this.state))
   };
   handleChangeRange = value => {
-    this.setState({ defaultEdad: value });
+    this.setState({ defaultEdad: [parseInt(value[0]),parseInt(value[1])] });
+    console.log(value);
+    console.log(JSON.stringify(this.state))
+    
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -313,9 +317,7 @@ class FormNewPet extends React.Component {
                         <div>
                           <h6>Buscar:</h6>
                         </div>
-                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
-                          Amigos
-                        </div>
+                        
                       </div>
                       <hr></hr>
                       {opcionesPreferencias.map(choice => {
@@ -347,9 +349,7 @@ class FormNewPet extends React.Component {
                         <div>
                           <h6>Mostrar Genero:</h6>
                         </div>
-                        <div style={{ color: "#f47386", fontWeight: "bolder" }}>
-                          Masculino
-                        </div>
+                        
                       </div>
                       <hr></hr>
                       <fieldset>
@@ -422,7 +422,7 @@ class FormNewPet extends React.Component {
                       <div style={style}>
                         <Slider
                           min={0}
-                          max={1000}
+                          max={50}
                           value={this.state.defaultDistanciaMax}
                           handle={handle}
                           onChange={this.handleChangeSlider}
@@ -450,6 +450,7 @@ class FormNewPet extends React.Component {
                       <div style={style}>
                         <Range
                           allowCross={false}
+                          max={14}
                           defaultValue={this.state.defaultEdad}
                           onChange={this.handleChangeRange}
                           value={this.state.defaultEdad}
