@@ -11,20 +11,17 @@ import { connect } from "react-redux";
 import { requestSignIn, signedIn } from "../../store/actions/user";
 import { auth } from "../../store/firebase";
 import { withRouter } from "react-router-dom";
-
 import config from '../../config';
-
-
 //-----------Para la validacion importar estos elementos--------------
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //---------------------------------------------------------------------
 import { SocialIcon } from "react-social-icons";
+import ProvinciaSelect from './Select/selectProvincia'
+import LocalidadSelect from './Select/selectLocalidad'
 
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
-import ProvinciaSelect from './Select/selectProvincia'
-import LocalidadSelect from './Select/selectLocalidad'
 var rutaApi = config.rutaApi;
 
 class SignUp extends React.Component {
@@ -33,6 +30,7 @@ class SignUp extends React.Component {
     provinciaSeleccionada: null, 
     Provincias: [],
     localidades: [],
+    localidadSeleccionada: ""
   }
 
   componentDidMount() {  
@@ -45,9 +43,13 @@ class SignUp extends React.Component {
         //console.log(JSON.stringify(response.data));
 
         var localidades = response.data;
+        console.log(localidades[0] + 'localidad')
         this.setState({
           localidades,
-          provinciaSeleccionada: localidades[0]
+          provinciaSeleccionada: localidades[0],
+          localidadSeleccionada: {
+            "Id_localidad": "579"
+          }
         });
         console.log(JSON.stringify(this.state.provinciaSeleccionada) + 'on mount')
       });       
@@ -71,25 +73,28 @@ class SignUp extends React.Component {
         localidades,
         provinciaSeleccionada
       });
-      console.log(this.state)
+      console.log('state' + JSON.stringify(this.state.provinciaSeleccionada))
     });  
   
     
   };
 
-  _handleChangeRaza = e => {
-    var Raza_seleccionada = this.state.Razas.find(
-      Raza => Raza.Id_raza === e,
+  _handleLocalidadChange = e => {
+    var localidadSeleccionada = this.state.localidades.find(
+      Localidad => Localidad.Id_localidad === e,
       null
     );
-    this.setState({
-      Raza: Raza_seleccionada
-    });
+      this.setState({
+        localidadSeleccionada
+      });
+     
+  
+    
   };
-
   render() {
     return (
       <Formik
+        enableReinitialize
         initialValues={{
           firstName: "",
           lastName: "",
@@ -108,9 +113,6 @@ class SignUp extends React.Component {
             .min(2, "El nombre debe tener como mínimo 2 caracteres")
             .max(20, "El nombre debe tener como máximo 20 caracteres")
             .required("El apellido es obligatorio"),
-          ubicacion: Yup.string()
-            .trim()
-            .required("La ubicación es obligatoria"),
           email: Yup.string()
             .email("El email tiene un formato invalido")
             .max(50, "Email debe tener como máximo 50 caracteres")
@@ -118,14 +120,16 @@ class SignUp extends React.Component {
           password: Yup.string()
             .min(6, "La contraseña debe tener al menos 6 caracteres")
             .max(20, "La contraseña debe tener como máximo 20 caracteres")
-            .required("La contraseña es obligatoria") 
+            .required("La contraseña es obligatoria")
         })}
         onSubmit={fields => {
           const { history } = this.props;
-          //this.props.signUp(fields);
-          console.log(fields);
-          console.log('works');
-             
+          const localidad = {Id_localidad: this.state.localidadSeleccionada.Id_localidad };
+          const payload = {...fields, ...localidad }
+          console.log(payload);
+          this.props.signUp(payload); 
+          console.log('this.state'+ JSON.stringify(this.state.localidadSeleccionada.Id_localidad))  
+          
           //const { history } = this.props;
           //history.push("/dashboard");
           /*
@@ -221,7 +225,7 @@ class SignUp extends React.Component {
                           className="invalid-feedback"
                         />
                       </div>
-                      
+                     
 
                       <div className="form-group">
                         <Field
@@ -258,25 +262,22 @@ class SignUp extends React.Component {
                         />
                       </div>
 
-                      {/* Select Provincia */}
-                      <div class="form-group">
+                       {/* Select Provincia */}
+                       <div class="form-group">
                       
-                      <ProvinciaSelect
-                        className={errors.Provincia ? " is-invalid" : ""}
-                        arrayOfData={this.state.Provincias}
-                        onSelectChange={this._handleChangeProvincia}
-                        value={
-                          this.state.provinciaSeleccionada
-                            ? this.state.provinciaSeleccionada.Nombre
-                            : 0
-                        }
-                      />
-                      <ErrorMessage
-                        name="Provincia"
-                        component="div"
-                        className="invalid-feedback"
-                      />
-                    </div>
+                       <ProvinciaSelect
+                         className={errors.Provincia ? " is-invalid" : ""}
+                         arrayOfData={this.state.Provincias}
+                         name="Provincia"
+                         onSelectChange={this._handleChangeProvincia}
+                         
+                       />
+                       <ErrorMessage
+                         name="Provincia"
+                         component="div"
+                         className="invalid-feedback"
+                       />
+                     </div>
 
                      {/* Select Localidad */}
                      <div class="form-group">
@@ -284,12 +285,8 @@ class SignUp extends React.Component {
                      <LocalidadSelect
                        className={errors.Localidad ? " is-invalid" : ""}
                        arrayOfData={this.state.localidades}
-                       onSelectChange={this._handleChangeProvincia}
-                       value={
-                         this.state.provinciaSeleccionada
-                           ? this.state.provinciaSeleccionada.Nombre
-                           : 0
-                       }
+                       onSelectChange={this._handleLocalidadChange}
+                       
                      />
                      <ErrorMessage
                        name="Localidad"
@@ -297,12 +294,10 @@ class SignUp extends React.Component {
                        className="invalid-feedback"
                      />
                    </div>
-
                       <div className="form-group">
                         <button
                           type="submit"
                           className="btn btn-primary shadow-2 mb-4"
-                          
                         >
                           Registrarse
                         </button>
