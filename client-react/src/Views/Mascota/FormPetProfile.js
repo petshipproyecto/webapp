@@ -75,7 +75,7 @@ class FormPetProfile extends React.Component {
       Animal: Animal_seleccionado,
       Razas: Animal_seleccionado ? Animal_seleccionado.Razas : null,
       Raza: null
-    });
+    }); 
   };
 
   _handleChangeRaza = e => {

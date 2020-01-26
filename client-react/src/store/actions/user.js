@@ -46,7 +46,8 @@ export  const signUp = (newUser) => {
           axios.post(rutaApi + 'usuario', {
             "Usr_cod": resp.user.uid,
             "Nombre": newUser.firstName,
-            "Apellido": newUser.lastName
+            "Apellido": newUser.lastName,
+            "Id_localidad": newUser.Id_localidad
           }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' });
 
