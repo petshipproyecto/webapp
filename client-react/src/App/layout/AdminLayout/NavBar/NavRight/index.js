@@ -15,6 +15,7 @@ import { Effect } from "react-notification-badge";
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
 //-----------------Libreria del popup o modal------------------------
+import Notificacion from './Notificacion'
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -199,29 +200,51 @@ class NavRight extends Component {
       Nombre: "",
       Apellido: "",
       Imagen: Avatar1
-    }
+    },
+    cantidadDeNotificaciones: 0,
+    notificaciones: []
   };
+
+  componentDidMount() {
+
+    axios
+      .get(rutaApi + "usuario/" + this.props.userId)
+      .then(response => {
+        this.setState({
+          perfiles: response.data.Perfils,
+          loading: false,
+          usuario: response.data,
+          imagen: response.data.Imagen
+        });
+        axios
+          .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
+          .then(response => {
+            this.setState({
+              perfil_activo: response.data
+            });
+            console.log(JSON.stringify(this.state))
+
+            axios.get(rutaApi + "notificaciones/" + '8')
+              .then(notificaciones => {
+                this.setState({
+                  cantidadDeNotificaciones: notificaciones.data.length,
+                  //notificaciones: notificaciones.data.match
+                  notificaciones: notificaciones.data
+                })
+
+
+
+              }
+
+              )
+          });
+      })
+      .catch(e => { });
+  }
 
   render() {
     const loadProfiles = () => {
-      axios
-        .get(rutaApi + "usuario/" + this.props.userId)
-        .then(response => {
-          this.setState({
-            perfiles: response.data.Perfils,
-            loading: false,
-            usuario: response.data,
-            imagen: response.data.Imagen
-          });
-          axios
-            .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
-            .then(response => {
-              this.setState({
-                perfil_activo: response.data
-              });
-            });
-        })
-        .catch(e => {});
+
     };
 
     const setTargetProfile = perfil => {
@@ -234,7 +257,7 @@ class NavRight extends Component {
         .then(response => {
           window.location.replace("/Dashboard");
         })
-        .catch(e => {});
+        .catch(e => { });
     };
 
     return (
@@ -263,7 +286,7 @@ class NavRight extends Component {
             </a>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
+            <Dropdown alignRight={!this.props.rtlLayout} >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <OverlayTrigger
                   placement="left"
@@ -287,39 +310,39 @@ class NavRight extends Component {
                 <ul className="noti-body">
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
-                        return (
-                          <li
-                            className="notification"
-                            style={{ cursor: "pointer" }}
-                            onClick={function() {
-                              setTargetProfile(element.Id_perfil);
-                            }}
-                          >
-                            <div className="media">
-                              <img
-                                style={{ border: "solid 2px #f47386" }}
-                                className="media-object img-radius"
-                                src={element.Imagen}
-                                alt="Generic placeholder"
-                              />
-                              <div
-                                className="media-body"
-                                style={{ verticalAlign: "center" }}
+                      return (
+                        <li
+                          className="notification"
+                          style={{ cursor: "pointer" }}
+                          onClick={function () {
+                            setTargetProfile(element.Id_perfil);
+                          }}
+                        >
+                          <div className="media">
+                            <img
+                              style={{ border: "solid 2px #f47386" }}
+                              className="media-object img-radius"
+                              src={element.Imagen}
+                              alt="Generic placeholder"
+                            />
+                            <div
+                              className="media-body"
+                              style={{ verticalAlign: "center" }}
+                            >
+                              <p
+                                class="pt-3"
+                                style={{ fontWeight: "bolder" }}
                               >
-                                <p
-                                  class="pt-3"
-                                  style={{ fontWeight: "bolder" }}
-                                >
-                                  {element.Nombre}
-                                </p>
-                              </div>
+                                {element.Nombre}
+                              </p>
                             </div>
-                          </li>
-                        );
-                      })
+                          </div>
+                        </li>
+                      );
+                    })
                     : () => {
-                        return <div>No hay mascotas disponibles</div>;
-                      }}
+                      return <div>No hay mascotas disponibles</div>;
+                    }}
                   <li>
                     <center>
                       <Loader
@@ -339,8 +362,8 @@ class NavRight extends Component {
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <NotificationBadge
-                  count={3}
-                  effect={Effect.SCALE}
+                  count={this.state.cantidadDeNotificaciones.toString()}
+
                   style={{ top: "12px", right: "-25px" }}
                 />
                 <i className="icon feather icon-bell"></i>
@@ -356,77 +379,10 @@ class NavRight extends Component {
                   </div>
                 </div>
                 <ul className="noti-body">
-                  <a style={{ cursor: "pointer" }} onClick={this.onPareja}>
-                    <li className="notification">
-                      <div className="media">
-                        <img
-                          className="img-radius"
-                          src={Avatar1}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p>
-                            <strong>John Doe</strong>
-                            <span className="n-time text-muted">
-                              <i className="icon feather icon-clock m-r-10" />
-                              30 min
-                            </span>
-                          </p>
-                          <p>Hizo match en tu perfil</p>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
-                  <Dialog
-                    ref={component => {
-                      this.dialog = component;
-                    }}
-                  />
-                  <a style={{ cursor: "pointer" }} onClick={this.onAmistad}>
-                    <li className="notification">
-                      <div className="media">
-                        <img
-                          className="img-radius"
-                          src={Avatar2}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p>
-                            <strong>Joseph William</strong>
-                            <span className="n-time text-muted">
-                              <i className="icon feather icon-clock m-r-10" />
-                              30 min
-                            </span>
-                          </p>
-                          <p>Hizo match en tu perfil</p>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
-                  <Dialog
-                    ref={component => {
-                      this.dialog = component;
-                    }}
-                  />
-                  <li className="notification">
-                    <div className="media">
-                      <img
-                        className="img-radius"
-                        src={Avatar3}
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <p>
-                          <strong>carolina Soudein</strong>
-                          <span className="n-time text-muted">
-                            <i className="icon feather icon-clock m-r-10" />
-                            30 min
-                          </span>
-                        </p>
-                        <p>Hizo match en tu perfil</p>
-                      </div>
-                    </div>
-                  </li>
+                  {this.state.notificaciones.map(notificacion =>{
+                      return (<Notificacion info={notificacion}/>)
+                  }) }
+                  
                 </ul>
                 <div className="noti-footer">
                   <a href="/Notificaciones">ver todo</a>
@@ -438,7 +394,7 @@ class NavRight extends Component {
             <Dropdown
               alignRight={!this.props.rtlLayout}
               className="drp-user"
-              onClick={loadProfiles}
+
             >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />
