@@ -223,12 +223,17 @@ class NavRight extends Component {
             this.setState({
               perfil_activo: response.data
             });
+            //response.data.Id_perfil
             console.log(JSON.stringify(this.state))
 
             axios.get(rutaApi + "notificaciones/" + '8')
               .then(notificaciones => {
+                let cantidadNotificaciones = 0;
+                notificaciones.data.array.forEach(notificacion => {
+                  if ( !notificacion.Visto ) {cantidadNotificaciones++}
+                });
                 this.setState({
-                  cantidadDeNotificaciones: notificaciones.data.length,
+                  cantidadDeNotificaciones: cantidadNotificaciones,
                   //notificaciones: notificaciones.data.match
                   notificaciones: notificaciones.data
                 })
