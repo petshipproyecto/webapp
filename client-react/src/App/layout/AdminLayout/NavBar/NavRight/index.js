@@ -214,7 +214,8 @@ class NavRight extends Component {
           perfiles: response.data.Perfils,
           loading: false,
           usuario: response.data,
-          imagen: response.data.Imagen
+          imagen: response.data.Imagen,
+          idPerfilActivo: response.data.Id_perfil_activo
         });
         axios
           .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
@@ -259,6 +260,15 @@ class NavRight extends Component {
         })
         .catch(e => { });
     };
+
+    const setVisto = (idNotificacion) =>{
+     
+      axios.put(rutaApi + "notificaciones/" + idNotificacion, {"Visto": true} ).then(()=>{
+        this.setState({cantidadDeNotificaciones: this.state.cantidadDeNotificaciones - 1})
+      })
+      
+
+    }
 
     return (
       <Aux>
@@ -380,7 +390,7 @@ class NavRight extends Component {
                 </div>
                 <ul className="noti-body">
                   {this.state.notificaciones.map(notificacion =>{
-                      return (<Notificacion info={notificacion}/>)
+                      return (<li style={{padding: 0}} onClick={ function(){ console.log('click notificacion'); setVisto(notificacion.Id_notificacion)}}><Notificacion info={notificacion} /></li>)
                   }) }
                   
                 </ul>
