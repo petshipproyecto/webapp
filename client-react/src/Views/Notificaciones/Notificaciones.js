@@ -1,7 +1,8 @@
 import React from "react";
-import { Row, Col, Card, Table, Button } from "react-bootstrap";
+import { Row, Col, Card, Table, Button, Badge } from "react-bootstrap";
 import Aux from "../../hoc/_Aux";
 
+import { connect } from "react-redux";
 //-----------------Libreria para tabla de notificaciones - Libreria:react-boostrap-table-2-------------
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -23,6 +24,10 @@ import Avatar6 from "../../assets/images/user/avatarDog1.jpg";
 
 //-----------Estilo de animacion para las notificaciones--------------
 import "../../assets/scss/partials/theme-elements/animacion.scss";
+import axios from "axios";
+import config from "../../config";
+
+var rutaApi = config.rutaApi;
 
 //---Estilo de las imagenes--
 const imagen = {
@@ -31,6 +36,13 @@ const imagen = {
   minHeight: 140,
   maxWidth: 140
 };
+
+
+//--------Color de los iconos-------------------------
+const colorEstrella = {color: "#f7bd0f"};
+const colorCalendario ={color:"red"}
+//----------------------------------------------------
+
 
 //Constantes para la busqueda y el boton de borrar busqueda
 const { SearchBar, ClearSearchButton } = Search;
@@ -116,28 +128,7 @@ const columns = [
         );
       return null;
     }
-  },
-  {
-    dataField: "hora",
-    text: "Hora",
-    sort: true,
-    sortCaret: (order, column) => {
-      if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
-      else if (order === "asc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
-          </span>
-        );
-      else if (order === "desc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
-          </span>
-        );
-      return null;
-    }
-  },
+  }, 
   {
     dataField: "acciones",
     text: "Acciones"
@@ -150,7 +141,6 @@ class Notificaciones extends React.Component {
     super();
     this.onPareja = this.onPareja.bind(this);
     this.onAmistad = this.onAmistad.bind(this);
-
     //----------------------Datos de las notificaciones---------------------
     this.notificaciones = [
       {
@@ -240,154 +230,277 @@ class Notificaciones extends React.Component {
     ];
     //----------------------Datos de las notificaciones---------------------
   }
-  //--------------------Mensaje para match de pareja-------------------------
-  onPareja() {
-    this.dialog.show({
-      body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 50 }}>Hay Cita !!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
-              </center>
-            </div>
-            <div>
-              <p class="heart">
-                <i class="fa fa-heart fa-4x fa-beat"></i>
-              </p>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton ver perfil de la mascota que hizo match */}
-            </div>
-          </div>
-        </div>
-      ),
-      actions: [Dialog.CancelAction(), Dialog.OKAction()],
-      bsSize: "small",
-      onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
-      }
-    });
-  }
-  //--------------------/Mensaje para match de pareja-------------------------
 
-  //--------------------Mensaje para match de amistad-------------------------
-  onAmistad() {
-    this.dialog.show({
+  mostrarPerfil(thiss,infoPerfil) {
+    thiss.dialog.show({
+        body: (
+            <div>
+                <Card className="cardGaleria">
+                    <Card.Img className="imagenGaleria" variant="top" src={infoPerfil.Imagen} />
+                    <Card.Body>
+                        <center>
+                            <h3>
+                                <Badge className="badgeGaleria" pill variant="secondary">
+                                    {infoPerfil.Nombre}
+                </Badge>
+                            </h3>
+                        </center>
+                        <Card.Text>
+                            <p className="pGaleria">
+                                <i class="fa fa-paw m-r-5"></i>
+                                <b>Raza:</b> {infoPerfil.Raza.Descripcion}
+              </p>
+                            <p className="pGaleria">
+                                <i
+                                    style={colorCalendario}
+                                    class="fa fa-calendar m-r-5"
+                                ></i>
+                                <b>Edad:</b> {infoPerfil.Edad} años
+              </p>
+                            <p className="pGaleria">
+                                <i
+                                    style={colorEstrella}
+                                    class="fa fa-star m-r-5"
+                                ></i>
+                                <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
+                            </p>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
+        ),
+        actions: [ Dialog.OKAction()],
+        bsSize: "small",
+        onHide: dialog => {
+            dialog.hide();
+            console.log("closed by clicking background.");
+        }
+    })
+
+}
+  //--------------------Mensaje para match de pareja-------------------------
+ //--------------------Mensaje para match de amistad-------------------------
+ onAmistad(info,targetProfile) {
+  this.dialog.show({
       body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
+          <div className="modal-container">
               <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
+                  <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
               </center>
-            </div>
-            <div>
-              <i
-                style={{ fontSize: 70, color: "#f47386" }}
-                class="fa fa-soccer-ball-o bounce"
-              ></i>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <i
+                          style={{ fontSize: 70, color: "#f47386" }}
+                          class="fa fa-soccer-ball-o bounce"
+                      ></i>
+                  </div>
+                  <div>
+                  <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+             
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                      
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                     
+                      {/* Boton enviar email */}
+                  </div>
+              </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
+          dialog.hide();
+          console.log("closed by clicking background.");
       }
-    });
+  });
+}
+//--------------------/Mensaje para match de amistad-------------------------
+
+//--------------------Mensaje para match de pareja-------------------------
+onPareja(info,targetProfile) {
+  this.dialog.show({
+      body: (
+          <div className="modal-container">
+              <center>
+                  <p style={{ fontSize: 50 }}>Hay Cita !!! </p>
+              </center>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <p class="heart">
+                          <i class="fa fa-heart fa-4x fa-beat"></i>
+                      </p>
+                  </div>
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+              <div class="row">
+
+              </div>
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                         
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                      
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                  </div>
+              </div>
+          </div>
+      ),
+      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+          dialog.hide();
+          console.log("closed by clicking background.");
+      }
+  });
+}
+
+  buildNotificacionRecord(notificacionData) {
+
+    const targetProfile = notificacionData.Id_perfil === notificacionData.Match.Id_perfil_destino ? notificacionData.Match.Perfil_destino : notificacionData.Match.Perfil_origen;
+    const matchPareja = notificacionData.Match.Id_tipo_match === '2';
+    return {
+      fotoMascota: (
+        <h6 class="m-0">
+          <img
+            className="media-object img-radius"
+            src={targetProfile.Imagen || ""}
+            alt="Generic placeholder"
+          />
+        </h6>
+      ),
+      nombre: targetProfile.Nombre,
+      fotoDueño: (
+        <h6 class="m-0">
+          <img
+            className="media-object img-radius"
+            src={targetProfile.Usuario.Imagen || Avatar2 }
+            alt="Generic placeholder"
+          />
+        </h6>
+      ),
+      nombreDueño: targetProfile.Usuario.Nombre + ' ' + targetProfile.Usuario.Apellido,
+      fecha: notificacionData.createdAt.substr(0,10),
+      acciones: (
+        <div>
+          {/* Boton de ver informacion */}
+          <a
+            style={{ cursor: "pointer" }}
+            class="text-white label theme-bg2 f-12"
+            onClick={matchPareja ? ()=>{this.onPareja(notificacionData,targetProfile)} : ()=>{this.onAmistad(notificacionData,targetProfile)}}
+          >
+            Ver Información
+          </a>
+          <Dialog
+            ref={component => {
+              this.dialog = component;
+            }}
+          />
+          {/* Boton de ver informacion */}
+        </div>
+      )
+    }
+
   }
-  //--------------------/Mensaje para match de amistad-------------------------
+  state ={
+    notificaciones: []
+  } 
+
+  componentDidMount() {
+    axios
+      .get(rutaApi + "usuario/" + this.props.userId)
+      .then(response => {
+        this.setState({
+          perfiles: response.data.Perfils,
+          loading: false,
+          usuario: response.data,
+          imagen: response.data.Imagen,
+          idPerfilActivo: response.data.Id_perfil_activo
+        });
+        axios
+          .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
+          .then(response => {
+            this.setState({
+              perfil_activo: response.data
+            });
+            //response.data.Id_perfil
+            console.log(JSON.stringify(this.state))
+
+            axios.get(rutaApi + "notificaciones/" + '1')
+              .then(notificaciones => {
+                
+                const notis = [];
+                let auxNofic = {};
+                notificaciones.data.forEach(notificacion=>{
+                  auxNofic = this.buildNotificacionRecord(notificacion)
+                  notis.push(auxNofic);
+                })
+                console.log(JSON.stringify(auxNofic))
+                //this.notificaciones = notis;
+
+                this.setState({notificaciones:notis})
+                
+              }
+              )
+          });
+      })
+      .catch(e => { });
+  };
+  
 
   render() {
     return (
@@ -402,7 +515,7 @@ class Notificaciones extends React.Component {
                 {/* Tools para la tabla */}
                 <ToolkitProvider
                   keyField="email"
-                  data={this.notificaciones}
+                  data={this.state.notificaciones}
                   columns={columns}
                   search
                 >
@@ -428,7 +541,7 @@ class Notificaciones extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="nombre"
-                        data={this.notificaciones}
+                        data={this.state.notificaciones}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
@@ -446,4 +559,15 @@ class Notificaciones extends React.Component {
   }
 }
 
-export default Notificaciones;
+const mapStateToProps = state => {
+  //console.log("pet profile" + JSON.stringify(state))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(Notificaciones);
+
