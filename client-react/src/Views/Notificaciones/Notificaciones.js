@@ -120,7 +120,7 @@ const columns = [
             &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
           </span>
         );
-      else if (order === "desc")
+      else if (order === "desc") 
         return (
           <span style={{ cursor: "pointer" }}>
             &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
@@ -480,7 +480,7 @@ onPareja(info,targetProfile) {
             //response.data.Id_perfil
             console.log(JSON.stringify(this.state))
 
-            axios.get(rutaApi + "notificaciones/" + '1')
+            axios.get(rutaApi + "notificaciones/" + response.data.Id_perfil)
               .then(notificaciones => {
                 
                 const notis = [];

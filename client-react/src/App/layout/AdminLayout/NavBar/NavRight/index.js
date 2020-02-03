@@ -207,7 +207,7 @@ onPareja(info,targetProfile) {
             //response.data.Id_perfil
             console.log(JSON.stringify(this.state))
 
-            axios.get(rutaApi + "notificaciones/" + '8')
+            axios.get(rutaApi + "notificaciones/" +  response.data.Id_perfil)
               .then(notificaciones => {
                 let cantidadNotificaciones = 0;
                 notificaciones.data.forEach(notificacion => {
