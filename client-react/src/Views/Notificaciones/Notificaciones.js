@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
+import firebase from '../../configs/fbConfigs'
 //-----------------Libreria para tabla de notificaciones-------------
 
 //-----------------Libreria del popup o modal------------------------
@@ -231,7 +233,12 @@ class Notificaciones extends React.Component {
     //----------------------Datos de las notificaciones---------------------
   }
 
-  mostrarPerfil(thiss,infoPerfil) {
+  mostrarPerfil(thiss, infoPerfil) {
+    var user = firebase.auth().currentUser;
+    if (user) {
+        console.log(user.email);
+        // User is signed in.
+    }
     thiss.dialog.show({
         body: (
             <div>
@@ -242,14 +249,14 @@ class Notificaciones extends React.Component {
                             <h3>
                                 <Badge className="badgeGaleria" pill variant="secondary">
                                     {infoPerfil.Nombre}
-                </Badge>
+                                </Badge>
                             </h3>
                         </center>
                         <Card.Text>
                             <p className="pGaleria">
                                 <i class="fa fa-paw m-r-5"></i>
                                 <b>Raza:</b> {infoPerfil.Raza.Descripcion}
-              </p>
+                            </p>
                             <p className="pGaleria">
                                 <i
                                     style={colorCalendario}
@@ -264,12 +271,22 @@ class Notificaciones extends React.Component {
                                 ></i>
                                 <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
                             </p>
+
+                            <p >
+                                <b style={{color: 'black'}}>Info del Dueño:</b>
+                                <p className="pGaleria">
+                                    <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
+                                </p>
+                                <p className="pGaleria">
+                                    <b>Email:</b> {user.email}
+                                </p>
+                            </p>
                         </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
         ),
-        actions: [ Dialog.OKAction()],
+        actions: [Dialog.OKAction()],
         bsSize: "small",
         onHide: dialog => {
             dialog.hide();

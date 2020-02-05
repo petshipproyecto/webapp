@@ -6,11 +6,12 @@ import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 import Avatar5 from "../../../../../assets/images/user/avatarDog.jpg";
 import Avatar6 from "../../../../../assets/images/user/avatarDog1.jpg";
 import { Row, Col, Card, Badge } from "react-bootstrap";
+import firebase from '../../../../../configs/fbConfigs'
 
 
 //--------Color de los iconos-------------------------
-const colorEstrella = {color: "#f7bd0f"};
-const colorCalendario ={color:"red"}
+const colorEstrella = { color: "#f7bd0f" };
+const colorCalendario = { color: "red" }
 //----------------------------------------------------
 
 const imagen = {
@@ -28,7 +29,12 @@ class Notificacion extends React.Component {
         this.onAmistad = this.onAmistad.bind(this);
         this.targetProfile = props.info.Id_perfil !== props.info.Match.Id_perfil_destino ? props.info.Match.Perfil_destino : this.props.info.Match.Perfil_origen;
     }
-    mostrarPerfil(thiss,infoPerfil) {
+    mostrarPerfil(thiss, infoPerfil) {
+        var user = firebase.auth().currentUser;
+        if (user) {
+            console.log(user.email);
+            // User is signed in.
+        }
         thiss.dialog.show({
             body: (
                 <div>
@@ -39,14 +45,14 @@ class Notificacion extends React.Component {
                                 <h3>
                                     <Badge className="badgeGaleria" pill variant="secondary">
                                         {infoPerfil.Nombre}
-                    </Badge>
+                                    </Badge>
                                 </h3>
                             </center>
                             <Card.Text>
                                 <p className="pGaleria">
                                     <i class="fa fa-paw m-r-5"></i>
                                     <b>Raza:</b> {infoPerfil.Raza.Descripcion}
-                  </p>
+                                </p>
                                 <p className="pGaleria">
                                     <i
                                         style={colorCalendario}
@@ -61,12 +67,22 @@ class Notificacion extends React.Component {
                                     ></i>
                                     <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
                                 </p>
+
+                                <p >
+                                    <b style={{color: 'black'}}>Info del Dueño:</b>
+                                    <p className="pGaleria">
+                                        <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
+                                    </p>
+                                    <p className="pGaleria">
+                                        <b>Email:</b> {user.email}
+                                    </p>
+                                </p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </div>
             ),
-            actions: [ Dialog.OKAction()],
+            actions: [Dialog.OKAction()],
             bsSize: "small",
             onHide: dialog => {
                 dialog.hide();
@@ -76,7 +92,7 @@ class Notificacion extends React.Component {
 
     }
     //--------------------Mensaje para match de amistad-------------------------
-    onAmistad(info,targetProfile) {
+    onAmistad(info, targetProfile) {
         this.dialog.show({
             body: (
                 <div className="modal-container">
@@ -103,7 +119,7 @@ class Notificacion extends React.Component {
                             ></i>
                         </div>
                         <div>
-                        <img
+                            <img
                                 style={imagen}
                                 className="img-radio"
                                 src={info.Match.Perfil_destino.Imagen}
@@ -115,16 +131,16 @@ class Notificacion extends React.Component {
                             </center>
                         </div>
                     </div>
-                   
+
                     <div class="row">
                         <div class="col text-center">
                             {/* Boton ver perfil de la mascota que hizo match */}
-                            
-                                <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
-                                    <i class="feather icon-user"></i>
-                                    &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+
+                            <button type="button" class="btn btn-outline-primary btn-lg" onClick={() => this.mostrarPerfil(this, targetProfile)}>
+                                <i class="feather icon-user"></i>
+                                &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
                     </button>
-                           
+
                             {/* Boton enviar email */}
                         </div>
                     </div>
@@ -141,7 +157,7 @@ class Notificacion extends React.Component {
     //--------------------/Mensaje para match de amistad-------------------------
 
     //--------------------Mensaje para match de pareja-------------------------
-    onPareja(info,targetProfile) {
+    onPareja(info, targetProfile) {
         this.dialog.show({
             body: (
                 <div className="modal-container">
@@ -185,12 +201,12 @@ class Notificacion extends React.Component {
                     <div class="row">
                         <div class="col text-center">
                             {/* Boton ver perfil de la mascota que hizo match */}
-                               
-                                <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
-                                    <i class="feather icon-user"></i>
-                                    &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+
+                            <button type="button" class="btn btn-outline-primary btn-lg" onClick={() => this.mostrarPerfil(this, targetProfile)}>
+                                <i class="feather icon-user"></i>
+                                &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
                     </button>
-                            
+
                             {/* Boton ver perfil de la mascota que hizo match */}
                         </div>
                     </div>
@@ -241,7 +257,7 @@ class Notificacion extends React.Component {
         }
     }
 
-     
+
 
 
 
