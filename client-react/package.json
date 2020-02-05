@@ -8,6 +8,7 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "caniuse-lite": "^1.0.30001023",
     "firebase": "^5.0.4",
     "font-awesome": "^4.7.0",
     "formik": "^1.5.8",

@@ -43,154 +43,135 @@ class NavRight extends Component {
     this.onAmistad = this.onAmistad.bind(this);
   }
   //--------------------Mensaje para match de amistad-------------------------
-  onAmistad() {
-    this.dialog.show({
+ //--------------------Mensaje para match de amistad-------------------------
+ onAmistad(info,targetProfile) {
+  this.dialog.show({
       body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
+          <div className="modal-container">
               <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
+                  <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
               </center>
-            </div>
-            <div>
-              <i
-                style={{ fontSize: 70, color: "#f47386" }}
-                class="fa fa-soccer-ball-o bounce"
-              ></i>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <i
+                          style={{ fontSize: 70, color: "#f47386" }}
+                          class="fa fa-soccer-ball-o bounce"
+                      ></i>
+                  </div>
+                  <div>
+                  <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+             
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                      
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                     
+                      {/* Boton enviar email */}
+                  </div>
+              </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
+          dialog.hide();
+          console.log("closed by clicking background.");
       }
-    });
-  }
-  //--------------------/Mensaje para match de amistad-------------------------
+  });
+}
+//--------------------/Mensaje para match de amistad-------------------------
 
-  //--------------------Mensaje para match de pareja-------------------------
-  onPareja() {
-    this.dialog.show({
+//--------------------Mensaje para match de pareja-------------------------
+onPareja(info,targetProfile) {
+  this.dialog.show({
       body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 50 }}>Hay Cita !!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
+          <div className="modal-container">
               <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
+                  <p style={{ fontSize: 50 }}>Hay Cita !!! </p>
               </center>
-            </div>
-            <div>
-              <p class="heart">
-                <i class="fa fa-heart fa-4x fa-beat"></i>
-              </p>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <p class="heart">
+                          <i class="fa fa-heart fa-4x fa-beat"></i>
+                      </p>
+                  </div>
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+              <div class="row">
+
+              </div>
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                         
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                      
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                  </div>
+              </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton ver perfil de la mascota que hizo match */}
-            </div>
-          </div>
-        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
+          dialog.hide();
+          console.log("closed by clicking background.");
       }
-    });
-  }
-  //--------------------/Mensaje para match de pareja-------------------------
-
+  });
+}
   state = {
     listOpen: false,
     perfiles: [],
@@ -226,10 +207,10 @@ class NavRight extends Component {
             //response.data.Id_perfil
             console.log(JSON.stringify(this.state))
 
-            axios.get(rutaApi + "notificaciones/" + '8')
+            axios.get(rutaApi + "notificaciones/" +  response.data.Id_perfil)
               .then(notificaciones => {
                 let cantidadNotificaciones = 0;
-                notificaciones.data.array.forEach(notificacion => {
+                notificaciones.data.forEach(notificacion => {
                   if ( !notificacion.Visto ) {cantidadNotificaciones++}
                 });
                 this.setState({
@@ -389,7 +370,7 @@ class NavRight extends Component {
                   <div className="float-right">
                     <a href={DEMO.BLANK_LINK} className="m-r-10">
                       marcar como leido
-                    </a>
+                    </a> 
                     <a href={DEMO.BLANK_LINK}>Eliminar Todos</a>
                   </div>
                 </div>
