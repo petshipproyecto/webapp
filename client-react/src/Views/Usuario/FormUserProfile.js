@@ -83,7 +83,7 @@ class FormUserProfile extends React.Component {
             .max(50, "Email debe tener como máximo 50 caracteres")
             .required("El email es obligatorio") */
         })}
-        onSubmit={fields => {
+        onSubmit={fields => { 
           
           axios
             .put(rutaApi + "usuario/" + this.props.userId, {
