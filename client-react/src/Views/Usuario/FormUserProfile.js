@@ -62,9 +62,7 @@ class FormUserProfile extends React.Component {
         // Setea los valores iniciales de los inputs
         initialValues={{
           Nombre: this.state.Nombre,
-          Apellido: this.state.Apellido,
-          Ubicacion: this.state.Ubicacion.Descripcion,
-
+          Apellido: this.state.Apellido
         }}
         validationSchema={Yup.object().shape({
           Nombre: Yup.string()
@@ -86,12 +84,7 @@ class FormUserProfile extends React.Component {
             .required("El email es obligatorio") */
         })}
         onSubmit={fields => {
-          axios.put(
-            rutaApi + "ubicacion/" + this.state.Ubicacion.Id_ubicacion,
-            {
-              Descripcion: fields.Ubicacion
-            }
-          );
+          
           axios
             .put(rutaApi + "usuario/" + this.props.userId, {
               //this.props.userId
