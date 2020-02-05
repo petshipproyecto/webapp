@@ -411,7 +411,7 @@ onPareja(info,targetProfile) {
 
   buildNotificacionRecord(notificacionData) {
 
-    const targetProfile = notificacionData.Id_perfil === notificacionData.Match.Id_perfil_destino ? notificacionData.Match.Perfil_destino : notificacionData.Match.Perfil_origen;
+    const targetProfile = notificacionData.Id_perfil !== notificacionData.Match.Id_perfil_destino ? notificacionData.Match.Perfil_destino : notificacionData.Match.Perfil_origen;
     const matchPareja = notificacionData.Match.Id_tipo_match === '2';
     return {
       fotoMascota: (
