@@ -26,7 +26,7 @@ class Notificacion extends React.Component {
         super(props);
         this.onPareja = this.onPareja.bind(this);
         this.onAmistad = this.onAmistad.bind(this);
-        this.targetProfile = props.info.Id_perfil === props.info.Match.Id_perfil_destino ? props.info.Match.Perfil_destino : this.props.info.Match.Perfil_origen;
+        this.targetProfile = props.info.Id_perfil !== props.info.Match.Id_perfil_destino ? props.info.Match.Perfil_destino : this.props.info.Match.Perfil_origen;
     }
     mostrarPerfil(thiss,infoPerfil) {
         thiss.dialog.show({
@@ -249,17 +249,17 @@ class Notificacion extends React.Component {
     render() {
         return (
             <div>
-                <a style={{ cursor: "pointer" }} onClick={this.props.info.Match.Id_tipo_match == '1' ? () => this.onPareja(this.props.info, this.targetProfile) : () => this.onAmistad(this.props.info, this.targetProfile)}>
+                <a style={{ cursor: "pointer" }} onClick={this.props.info.Match.Id_tipo_match == '2' ? () => this.onPareja(this.props.info, this.targetProfile) : () => this.onAmistad(this.props.info, this.targetProfile)}>
                     <li className="notification">
                         <div className="media">
                             <img
                                 className="img-radius"
-                                src={this.props.info.Id_perfil === this.props.info.Match.Id_perfil_destino ? this.props.info.Match.Perfil_destino.Imagen : this.props.info.Match.Perfil_origen.Imagen}
+                                src={this.props.info.Id_perfil !== this.props.info.Match.Id_perfil_destino ? this.props.info.Match.Perfil_destino.Imagen : this.props.info.Match.Perfil_origen.Imagen}
                                 alt="Generic placeholder"
                             />
                             <div className="media-body">
                                 <p>
-                                    <strong> {this.props.info.Id_perfil === this.props.info.Match.Id_perfil_destino ? this.props.info.Match.Perfil_destino.Nombre : this.props.info.Match.Perfil_origen.Nombre} </strong>
+                                    <strong> {this.props.info.Id_perfil !== this.props.info.Match.Id_perfil_destino ? this.props.info.Match.Perfil_destino.Nombre : this.props.info.Match.Perfil_origen.Nombre} </strong>
                                     <span className="n-time text-muted">
                                         <i className="icon feather icon-clock m-r-10" />
                                         {this.differenceInMinutes(this.props.info.createdAt).valor} {this.differenceInMinutes(this.props.info.createdAt).escala}
