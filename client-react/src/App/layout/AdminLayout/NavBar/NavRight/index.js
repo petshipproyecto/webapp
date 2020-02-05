@@ -15,6 +15,7 @@ import { Effect } from "react-notification-badge";
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
 //-----------------Libreria del popup o modal------------------------
+import Notificacion from './Notificacion'
 
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
@@ -42,154 +43,135 @@ class NavRight extends Component {
     this.onAmistad = this.onAmistad.bind(this);
   }
   //--------------------Mensaje para match de amistad-------------------------
-  onAmistad() {
-    this.dialog.show({
+ //--------------------Mensaje para match de amistad-------------------------
+ onAmistad(info,targetProfile) {
+  this.dialog.show({
       body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
+          <div className="modal-container">
               <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
+                  <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
               </center>
-            </div>
-            <div>
-              <i
-                style={{ fontSize: 70, color: "#f47386" }}
-                class="fa fa-soccer-ball-o bounce"
-              ></i>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <i
+                          style={{ fontSize: 70, color: "#f47386" }}
+                          class="fa fa-soccer-ball-o bounce"
+                      ></i>
+                  </div>
+                  <div>
+                  <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+             
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                      
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                     
+                      {/* Boton enviar email */}
+                  </div>
+              </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
+          dialog.hide();
+          console.log("closed by clicking background.");
       }
-    });
-  }
-  //--------------------/Mensaje para match de amistad-------------------------
+  });
+}
+//--------------------/Mensaje para match de amistad-------------------------
 
-  //--------------------Mensaje para match de pareja-------------------------
-  onPareja() {
-    this.dialog.show({
+//--------------------Mensaje para match de pareja-------------------------
+onPareja(info,targetProfile) {
+  this.dialog.show({
       body: (
-        <div className="modal-container">
-          <center>
-            <p style={{ fontSize: 50 }}>Hay Cita !!!</p>
-          </center>
-          <div class="d-flex justify-content-between">
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar5}
-                alt="activity-user"
-              />
-              <br />
+          <div className="modal-container">
               <center>
-                <p style={{ fontSize: 20 }}>Lola</p>
+                  <p style={{ fontSize: 50 }}>Hay Cita !!! </p>
               </center>
-            </div>
-            <div>
-              <p class="heart">
-                <i class="fa fa-heart fa-4x fa-beat"></i>
-              </p>
-            </div>
-            <div>
-              <img
-                style={imagen}
-                className="img-radio"
-                src={Avatar6}
-                alt="activity-user"
-              />
-              <br />
-              <center>
-                <p style={{ fontSize: 20 }}>Firulai</p>
-              </center>
-            </div>
+              <div class="d-flex justify-content-between">
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_origen.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
+                      </center>
+                  </div>
+                  <div>
+                      <p class="heart">
+                          <i class="fa fa-heart fa-4x fa-beat"></i>
+                      </p>
+                  </div>
+                  <div>
+                      <img
+                          style={imagen}
+                          className="img-radio"
+                          src={info.Match.Perfil_destino.Imagen}
+                          alt="activity-user"
+                      />
+                      <br />
+                      <center>
+                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
+                      </center>
+                  </div>
+              </div>
+              <div class="row">
+
+              </div>
+              <div class="row">
+                  <div class="col text-center">
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                         
+                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
+                              <i class="feather icon-user"></i>
+                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+                      
+                      {/* Boton ver perfil de la mascota que hizo match */}
+                  </div>
+              </div>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton enviar email */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-mail"></i>Enviar Email
-                </button>
-              </a>
-              {/* Boton enviar email */}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              {/* Boton ver perfil de la mascota que hizo match */}
-              <a href="/TablaMascotas">
-                <button type="button" class="btn btn-outline-primary btn-lg">
-                  <i class="feather icon-user"></i>
-                  &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-                </button>
-              </a>
-              {/* Boton ver perfil de la mascota que hizo match */}
-            </div>
-          </div>
-        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-        dialog.hide();
-        console.log("closed by clicking background.");
+          dialog.hide();
+          console.log("closed by clicking background.");
       }
-    });
-  }
-  //--------------------/Mensaje para match de pareja-------------------------
-
+  });
+}
   state = {
     listOpen: false,
     perfiles: [],
@@ -199,29 +181,57 @@ class NavRight extends Component {
       Nombre: "",
       Apellido: "",
       Imagen: Avatar1
-    }
+    },
+    cantidadDeNotificaciones: 0,
+    notificaciones: []
   };
+
+  componentDidMount() {
+
+    axios
+      .get(rutaApi + "usuario/" + this.props.userId)
+      .then(response => {
+        this.setState({
+          perfiles: response.data.Perfils,
+          loading: false,
+          usuario: response.data,
+          imagen: response.data.Imagen,
+          idPerfilActivo: response.data.Id_perfil_activo
+        });
+        axios
+          .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
+          .then(response => {
+            this.setState({
+              perfil_activo: response.data
+            });
+            //response.data.Id_perfil
+            console.log(JSON.stringify(this.state))
+
+            axios.get(rutaApi + "notificaciones/" +  response.data.Id_perfil)
+              .then(notificaciones => {
+                let cantidadNotificaciones = 0;
+                notificaciones.data.forEach(notificacion => {
+                  if ( !notificacion.Visto ) {cantidadNotificaciones++}
+                });
+                this.setState({
+                  cantidadDeNotificaciones: cantidadNotificaciones,
+                  //notificaciones: notificaciones.data.match
+                  notificaciones: notificaciones.data
+                })
+
+
+
+              }
+
+              )
+          });
+      })
+      .catch(e => { });
+  }
 
   render() {
     const loadProfiles = () => {
-      axios
-        .get(rutaApi + "usuario/" + this.props.userId)
-        .then(response => {
-          this.setState({
-            perfiles: response.data.Perfils,
-            loading: false,
-            usuario: response.data,
-            imagen: response.data.Imagen
-          });
-          axios
-            .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
-            .then(response => {
-              this.setState({
-                perfil_activo: response.data
-              });
-            });
-        })
-        .catch(e => {});
+
     };
 
     const setTargetProfile = perfil => {
@@ -234,8 +244,17 @@ class NavRight extends Component {
         .then(response => {
           window.location.replace("/Dashboard");
         })
-        .catch(e => {});
+        .catch(e => { });
     };
+
+    const setVisto = (idNotificacion) =>{
+     
+      axios.put(rutaApi + "notificaciones/" + idNotificacion, {"Visto": true} ).then(()=>{
+        this.setState({cantidadDeNotificaciones: this.state.cantidadDeNotificaciones - 1})
+      })
+      
+
+    }
 
     return (
       <Aux>
@@ -263,7 +282,7 @@ class NavRight extends Component {
             </a>
           </li>
           <li>
-            <Dropdown alignRight={!this.props.rtlLayout} onClick={loadProfiles}>
+            <Dropdown alignRight={!this.props.rtlLayout} >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <OverlayTrigger
                   placement="left"
@@ -287,39 +306,39 @@ class NavRight extends Component {
                 <ul className="noti-body">
                   {this.state.perfiles !== 0
                     ? this.state.perfiles.map(element => {
-                        return (
-                          <li
-                            className="notification"
-                            style={{ cursor: "pointer" }}
-                            onClick={function() {
-                              setTargetProfile(element.Id_perfil);
-                            }}
-                          >
-                            <div className="media">
-                              <img
-                                style={{ border: "solid 2px #f47386" }}
-                                className="media-object img-radius"
-                                src={element.Imagen}
-                                alt="Generic placeholder"
-                              />
-                              <div
-                                className="media-body"
-                                style={{ verticalAlign: "center" }}
+                      return (
+                        <li
+                          className="notification"
+                          style={{ cursor: "pointer" }}
+                          onClick={function () {
+                            setTargetProfile(element.Id_perfil);
+                          }}
+                        >
+                          <div className="media">
+                            <img
+                              style={{ border: "solid 2px #f47386" }}
+                              className="media-object img-radius"
+                              src={element.Imagen}
+                              alt="Generic placeholder"
+                            />
+                            <div
+                              className="media-body"
+                              style={{ verticalAlign: "center" }}
+                            >
+                              <p
+                                class="pt-3"
+                                style={{ fontWeight: "bolder" }}
                               >
-                                <p
-                                  class="pt-3"
-                                  style={{ fontWeight: "bolder" }}
-                                >
-                                  {element.Nombre}
-                                </p>
-                              </div>
+                                {element.Nombre}
+                              </p>
                             </div>
-                          </li>
-                        );
-                      })
+                          </div>
+                        </li>
+                      );
+                    })
                     : () => {
-                        return <div>No hay mascotas disponibles</div>;
-                      }}
+                      return <div>No hay mascotas disponibles</div>;
+                    }}
                   <li>
                     <center>
                       <Loader
@@ -339,8 +358,8 @@ class NavRight extends Component {
             <Dropdown alignRight={!this.props.rtlLayout}>
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <NotificationBadge
-                  count={3}
-                  effect={Effect.SCALE}
+                  count={this.state.cantidadDeNotificaciones.toString()}
+
                   style={{ top: "12px", right: "-25px" }}
                 />
                 <i className="icon feather icon-bell"></i>
@@ -351,82 +370,15 @@ class NavRight extends Component {
                   <div className="float-right">
                     <a href={DEMO.BLANK_LINK} className="m-r-10">
                       marcar como leido
-                    </a>
+                    </a> 
                     <a href={DEMO.BLANK_LINK}>Eliminar Todos</a>
                   </div>
                 </div>
                 <ul className="noti-body">
-                  <a style={{ cursor: "pointer" }} onClick={this.onPareja}>
-                    <li className="notification">
-                      <div className="media">
-                        <img
-                          className="img-radius"
-                          src={Avatar1}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p>
-                            <strong>John Doe</strong>
-                            <span className="n-time text-muted">
-                              <i className="icon feather icon-clock m-r-10" />
-                              30 min
-                            </span>
-                          </p>
-                          <p>Hizo match en tu perfil</p>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
-                  <Dialog
-                    ref={component => {
-                      this.dialog = component;
-                    }}
-                  />
-                  <a style={{ cursor: "pointer" }} onClick={this.onAmistad}>
-                    <li className="notification">
-                      <div className="media">
-                        <img
-                          className="img-radius"
-                          src={Avatar2}
-                          alt="Generic placeholder"
-                        />
-                        <div className="media-body">
-                          <p>
-                            <strong>Joseph William</strong>
-                            <span className="n-time text-muted">
-                              <i className="icon feather icon-clock m-r-10" />
-                              30 min
-                            </span>
-                          </p>
-                          <p>Hizo match en tu perfil</p>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
-                  <Dialog
-                    ref={component => {
-                      this.dialog = component;
-                    }}
-                  />
-                  <li className="notification">
-                    <div className="media">
-                      <img
-                        className="img-radius"
-                        src={Avatar3}
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <p>
-                          <strong>carolina Soudein</strong>
-                          <span className="n-time text-muted">
-                            <i className="icon feather icon-clock m-r-10" />
-                            30 min
-                          </span>
-                        </p>
-                        <p>Hizo match en tu perfil</p>
-                      </div>
-                    </div>
-                  </li>
+                  {this.state.notificaciones.map(notificacion =>{
+                      return (<li style={{padding: 0}} onClick={ function(){ console.log('click notificacion'); setVisto(notificacion.Id_notificacion)}}><Notificacion info={notificacion} /></li>)
+                  }) }
+                  
                 </ul>
                 <div className="noti-footer">
                   <a href="/Notificaciones">ver todo</a>
@@ -438,7 +390,7 @@ class NavRight extends Component {
             <Dropdown
               alignRight={!this.props.rtlLayout}
               className="drp-user"
-              onClick={loadProfiles}
+
             >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
                 <i className="icon feather icon-settings" />

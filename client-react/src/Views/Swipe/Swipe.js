@@ -27,6 +27,7 @@ class Swipe extends React.Component {
 
   like = (id, tipoLike) => {
     const url = rutaApi + tipoLike;
+    console.log('Swipe: this.state.Id_perfil_activo: ' + this.state.Id_perfil_activo)
     const body = {
       Id_perfil_origen: this.state.Id_perfil_activo,
       Id_perfil_destino: id,
@@ -60,7 +61,7 @@ class Swipe extends React.Component {
 
   async componentDidMount() {
     swipeUtilities.getPerfilActivo(this.props.userId).then((perfilActivo) => {
-      console.log('perfilAcivo' + JSON.stringify(perfilActivo));
+      //console.log('perfilAcivo' + JSON.stringify(perfilActivo));
       const Interes_Amistad = perfilActivo.data.Perfil_activo.Interes_amistad;
       const Interes_pareja = perfilActivo.data.Perfil_activo.Interes_pareja;
       this.setState({
@@ -68,9 +69,9 @@ class Swipe extends React.Component {
         InteresBusqueda: {Interes_Amistad, Interes_pareja}
       })
       swipeUtilities.getCardDetails(perfilActivo.data.Id_perfil_activo).then(aux => {
-        console.log('aux' + aux);
+        //console.log('aux' + aux);
         this.setState({ aux: aux });
-        console.log(this.state)
+        console.log(this.state + 'getCardDetails')
       });
 
     });
