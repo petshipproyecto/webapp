@@ -3,6 +3,8 @@ import React from "react";
 import "./../../../assets/scss/style.scss";
 import Aux from "../../../hoc/_Aux";
 import Breadcrumb from "../../../App/layout/AdminLayout/Breadcrumb";
+import firebase from '../../../configs/fbConfigs'
+import swal from "sweetalert";
 
 //-----------Para la validacion importar estos elementos--------------
 import { Formik , Field, Form , ErrorMessage } from "formik";
@@ -10,8 +12,56 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 class ResetPassword extends React.Component {
-  render() {
+  state = {
+    email: ""
+  }
 
+  handleInputChange = (e) =>{
+    //console.log(e)
+    //console.log(JSON.stringify(e.target))
+  }
+  handleSubmit = (emailAddress)=>{
+    console.log(emailAddress);
+    
+    var auth = firebase.auth();
+    
+
+    if (emailAddress){
+      auth.sendPasswordResetEmail(emailAddress).then(function() {
+        swal({
+          title: "Exito!",
+          text: "Mail para recuperar contraseña enviado a " + emailAddress,
+          icon: "success",
+          timer: 2000,
+          button: false
+        });
+      }).catch(function(error) {
+        swal({
+          title: "Error!",
+          text: "Hubo un error, intente nuevamente",
+          icon: "error",
+          timer: 3000,
+          button: false
+        });
+        // An error happened.
+        console.log(JSON.stringify(error));
+      });
+    } else {
+      swal({
+        title: "Error!",
+        text: "Por favor ingrese un email",
+        icon: "error",
+        timer: 3000,
+        button: false
+      });
+
+    }
+    
+
+    
+  }
+
+  render() {
     return (
       <Formik
         initialValues={{
@@ -25,10 +75,7 @@ class ResetPassword extends React.Component {
         })}
         
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
+          this.handleSubmit(values.email);
         }}
         render={({ errors, status, touched }) => (
           <Form>
@@ -51,6 +98,7 @@ class ResetPassword extends React.Component {
                             "form-control" +
                             (errors.email && touched.email ? " is-invalid" : "")
                           }
+                          
                         />
                         <ErrorMessage
                           name="email"
