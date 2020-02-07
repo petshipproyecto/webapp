@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import { Row, Col, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
@@ -29,7 +35,7 @@ const defaultSorted = [
 //-----------EL sort por default de la tabla----------
 
 //---------Mensaje de Eliminar Usuario-------------------
-const deleteUsuario = () => {
+const deleteUsuario = (idBBDD, idFirebase) => {
   Swal.fire({
     title: "Eliminar Usuario",
     text: "¿Está seguro de que desea eliminarlo?",
@@ -92,48 +98,6 @@ const columns = [
     }
   },
   {
-    dataField: "ubicacion",
-    text: "Ubicación",
-    sort: true,
-    sortCaret: (order, column) => {
-      if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
-      else if (order === "asc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
-          </span>
-        );
-      else if (order === "desc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
-          </span>
-        );
-      return null;
-    }
-  },
-  {
-    dataField: "email",
-    text: "Email",
-    sort: true,
-    sortCaret: (order, column) => {
-      if (!order) return <span>&nbsp;&nbsp;Desc/Asc</span>;
-      else if (order === "asc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
-          </span>
-        );
-      else if (order === "desc")
-        return (
-          <span style={{ cursor: "pointer" }}>
-            &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
-          </span>
-        );
-      return null;
-    }
-  },
-  {
     dataField: "acciones",
     text: "Acciones"
   }
@@ -141,21 +105,20 @@ const columns = [
 //---------Columnas de la tabla------------------
 
 //-------------------Datos de los usuarios-------
-const usuarios = [
-  {
+const generateRecord = (user) => {
+  console.log("generateRecord: " + user.Imagen + user.Nombre + user.Apellido + user.Id_usuario + user.Usr_cod )
+  return {
     fotoUsuario: (
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={userProfile1}
+          src={user.Imagen}
           alt="Generic placeholder"
         />
       </h6>
     ),
-    nombre: "Carlos",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
+    nombre: user.Nombre,
+    apellido: user.Apellido,
     acciones: (
       <div>
         {/* Boton mascotas del usuario */}
@@ -192,143 +155,7 @@ const usuarios = [
           class="Eliminar"
           style={{ cursor: "pointer" }}
           onClick={function() {
-            deleteUsuario();
-          }}
-        >
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton eliminar usuario */}
-      </div>
-    )
-  },
-  {
-    fotoUsuario: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={userProfile2}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Juan",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
-    acciones: (
-      <div>
-        {/* Boton mascotas del usuario */}
-        <a class="Mascotas" href="/AdministrarMascotas">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Mascotas</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="fa fa-paw"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton mascotas del usuario */}
-        &nbsp;
-        {/* Boton editar usuario */}
-        <a class="Editar" href="/UserProfile">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton editar usuario */}
-        {/* Boton eliminar usuario */}
-        <a
-          class="Eliminar"
-          style={{ cursor: "pointer" }}
-          onClick={function() {
-            deleteUsuario();
-          }}
-        >
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Eliminar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-trash-2"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton eliminar usuario */}
-      </div>
-    )
-  },
-  {
-    fotoUsuario: (
-      <h6 class="m-0">
-        <img
-          className="media-object img-radius"
-          src={userProfile1}
-          alt="Generic placeholder"
-        />
-      </h6>
-    ),
-    nombre: "Juan",
-    apellido: "Perez",
-    ubicacion: "Resistencia-Chaco",
-    email: "juanPere@gmail.com",
-    acciones: (
-      <div>
-        {/* Boton mascotas del usuario */}
-        <a class="Mascotas" href="/AdministrarMascotas">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Mascotas</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="fa fa-paw"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton mascotas del usuario */}
-        &nbsp;
-        {/* Boton editar usuario */}
-        <a class="Editar" href="/UserProfile">
-          <OverlayTrigger
-            placement="left"
-            delay={{ show: 250, hide: 400 }}
-            overlay={<Tooltip>Editar</Tooltip>}
-          >
-            <i
-              style={{ fontSize: 24, color: "#f47386" }}
-              className="icon feather icon-edit-2"
-            />
-          </OverlayTrigger>
-        </a>
-        {/* Boton editar usuario */}
-        {/* Boton eliminar usuario */}
-        <a
-          class="Eliminar"
-          style={{ cursor: "pointer" }}
-          onClick={function() {
-            deleteUsuario();
+            deleteUsuario(user.Id_usuario, user.Usr_cod);
           }}
         >
           <OverlayTrigger
@@ -346,8 +173,10 @@ const usuarios = [
       </div>
     )
   }
-];
+};
 //-------------------Datos de los usuarios-------
+
+
 
 const rutaApi = config.rutaApi;
 
@@ -363,7 +192,11 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
 };
 
 class AdministrarUsuarios extends React.Component {
-  componentDidMount() {
+  state = {
+    usuarios:[]
+  }
+
+  async componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
         Usr_cod: response.data.Usr_cod,
@@ -371,7 +204,19 @@ class AdministrarUsuarios extends React.Component {
       });
       console.log("state 1" + JSON.stringify(this.state));
     });
+    
+    const users = await axios.get(rutaApi + "usuario");
+    console.log(users.data.length)
+    let userAux = {}
+    let usersAux = [];
+    for (let i=0; i < users.data.length; i++){
+      userAux = generateRecord(users.data[i]);
+      usersAux.push(userAux)
+    }
+    this.setState({usuarios:usersAux})
+    //console.log(JSON.stringify(this.usuarios))
   }
+  
 
   render() {
     return (
@@ -385,8 +230,8 @@ class AdministrarUsuarios extends React.Component {
               <Card.Body>
                 {/* Tool para la tabla */}
                 <ToolkitProvider
-                  keyField="email"
-                  data={usuarios}
+                  keyField="apellido"
+                  data={this.state.usuarios}
                   columns={columns}
                   search
                 >
@@ -410,8 +255,8 @@ class AdministrarUsuarios extends React.Component {
                         <div>
                           {/* Boton de agregar usuario */}
                           <button
-                            onClick={() => {
-                              this.props.history.replace("/AgregarUsuario");
+                            onClick={() => {                              
+                             this.props.history.replace("/AgregarUsuario");
                             }}
                             type="button"
                             class="btn-rounded btn btn-primary"
@@ -429,8 +274,8 @@ class AdministrarUsuarios extends React.Component {
                         bordered={false}
                         {...props.baseProps}
                         hover
-                        keyField="email"
-                        data={usuarios}
+                        keyField="apellido"
+                        data={this.state.usuarios}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"

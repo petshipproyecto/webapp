@@ -1,13 +1,16 @@
 import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
 
+import { connect } from "react-redux";
 import Aux from "../../hoc/_Aux";
-
-import firebase from "firebase";
-import { Formik, Field, Form,ErrorMessage} from "formik";
-import axios from "axios";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import config from "../../config";
 import FileUploader from "react-firebase-file-uploader";
+import axios from 'axios'
+import firebase from './../../configs/fbConfigs'
+import ProvinciaSelect from './Select/selectProvincia'
+import LocalidadSelect from './Select/selectLocalidad'
+import swal from "sweetalert";
 
 import Avatar1 from "../../assets/images/user/avatar1.jpg";
 
@@ -21,14 +24,121 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .then(response => {
       window.location.replace("/PetProfile");
     })
-    .catch(e => {});
+    .catch(e => { });
 };
 
 class AdminAgregarUsuario extends React.Component {
+
+  state = {
+    urlImagen: null
+  }
+  componentDidMount() {
+
+    axios.get(rutaApi + "provincia").then(response => {
+      this.setState({
+        Provincias: response.data,
+      });
+      axios.get(rutaApi + "localidad/23").then(response => {
+        //console.log(JSON.stringify(response.data));
+
+        var localidades = response.data;
+        console.log(localidades[0] + 'localidad')
+        this.setState({
+          localidades,
+          provinciaSeleccionada: localidades[0],
+          localidadSeleccionada: {
+            "Id_localidad": "579"
+          }
+        });
+        console.log(JSON.stringify(this.state.provinciaSeleccionada) + 'on mount')
+      });
+    });
+  }
+
+  _handleChangeProvincia = e => {
+    var provinciaSeleccionada = this.state.Provincias.find(
+      Provincia => Provincia.Id_provincia === e,
+      null
+    );
+    console.log(provinciaSeleccionada);
+    console.log(JSON.stringify(e));
+
+    // call to API and save
+    
+    axios.get(rutaApi + "localidad/" + provinciaSeleccionada.Id_provincia).then(response => {
+      //console.log(JSON.stringify(response.data));
+      var localidades = response.data;
+      this.setState({
+        localidades,
+        provinciaSeleccionada
+      });
+      console.log('state' + JSON.stringify(this.state.provinciaSeleccionada))
+    });  
+  
+    
+  };
+
+  _handleLocalidadChange = e => {
+    var localidadSeleccionada = this.state.localidades.find(
+      Localidad => Localidad.Id_localidad === e,
+      null
+    );
+      this.setState({
+        localidadSeleccionada
+      });
+     
+  
+    
+  };
+
+  
+
+  handleUploadSuccess = filename => {
+    this.setState({ avatar: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => this.setState({ urlImagen: url }));
+  };
   render() {
+
     return (
       <Formik
-        onSubmit={fields => {}}
+        onSubmit={(fields) => {
+          console.log(fields);
+          firebase.auth().createUserWithEmailAndPassword(fields.Email, fields.Contraseña)
+            .then((resp) => {
+              console.log('workds user')
+              axios.post(rutaApi + 'usuario', {
+                "Usr_cod": resp.user.uid,
+                "Nombre": fields.Nombre,
+                "Apellido": fields.Apellido,
+                "Imagen": this.state.urlImagen,
+                "Id_localidad": this.state.localidadSeleccionada.Id_localidad
+              }).then(() => {
+                swal({
+                  title: "Exito!",
+                  text: "Los datos del usuario se guardaron correctamente",
+                  icon: "success",
+                  timer: 3000,
+                  button: false
+                });
+                window.location.replace('/AdministrarUsuarios')
+              }).catch((err) => {
+                swal({
+                  title: "Error!",
+                  text: "Los datos del usuario no se guardaron correctamente",
+                  icon: "error",
+                  timer: 3000,
+                  button: false
+                });
+
+              });
+
+            })
+        }}
         render={({ errors, handleChange, touched }) => (
           <Form>
             <Aux>
@@ -45,7 +155,7 @@ class AdminAgregarUsuario extends React.Component {
                             <center>
                               <img
                                 className="img-radio"
-                                src={Avatar1}
+                                src={this.state.urlImagen || Avatar1}
                                 alt="activity-user"
                               />
                             </center>
@@ -59,7 +169,7 @@ class AdminAgregarUsuario extends React.Component {
                                   color: "white",
                                   padding: 10,
                                   borderRadius: 4,
-                                  cursor:"pointer",
+                                  cursor: "pointer",
                                 }}
                               >
                                 Seleccionar Foto de Perfil
@@ -114,14 +224,36 @@ class AdminAgregarUsuario extends React.Component {
                               className="form-control"
                             />
                           </div>
-                          {/* Ubicacion */}
-                          <div className="form-group">
-                            <label>Ubicación</label>
-                            <Field
-                              placeholder="Ubicación"
-                              name="Ubicacion"
-                              type="text"
-                              className="form-control"
+                          {/* Select Provincia */}
+                          <div class="form-group">
+
+                            <ProvinciaSelect
+                              className={errors.Provincia ? " is-invalid" : ""}
+                              arrayOfData={this.state.Provincias}
+                              name="Provincia"
+                              onSelectChange={this._handleChangeProvincia}
+
+                            />
+                            <ErrorMessage
+                              name="Provincia"
+                              component="div"
+                              className="invalid-feedback"
+                            />
+                          </div>
+
+                          {/* Select Localidad */}
+                          <div class="form-group">
+
+                            <LocalidadSelect
+                              className={errors.Localidad ? " is-invalid" : ""}
+                              arrayOfData={this.state.localidades}
+                              onSelectChange={this._handleLocalidadChange}
+
+                            />
+                            <ErrorMessage
+                              name="Localidad"
+                              component="div"
+                              className="invalid-feedback"
                             />
                           </div>
                           {/* Contraseña */}
@@ -157,5 +289,12 @@ class AdminAgregarUsuario extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  return {
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
+  };
+};
 
-export default AdminAgregarUsuario;
+export default connect(mapStateToProps)(AdminAgregarUsuario);
