@@ -11,12 +11,12 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-
 // Libreria de la tabla: react-boostrap-table-2
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 // Libreria de la tabla: react-boostrap-table-2
+import serviceAccount from "./petship-front-firebase";
 
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
@@ -31,11 +31,18 @@ const defaultSorted = [
     dataField: "nombre",
     order: "asc"
   }
-];
+]; 
 //-----------EL sort por default de la tabla----------
 
 //---------Mensaje de Eliminar Usuario-------------------
-const deleteUsuario = (idBBDD, idFirebase) => {
+const deleteUsuario = async(idBBDD, idFirebase) => {  
+console.log('deleteUsuario: ' + idBBDD + idFirebase)
+// console.log(await admin.auth().getUser(idFirebase));
+
+  axios.delete(rutaApi + "usuario/" + idFirebase)
+  .then(()=>{
+    console.log('workds')
+  }).catch(e =>{console.log(e)}); 
   Swal.fire({
     title: "Eliminar Usuario",
     text: "¿Está seguro de que desea eliminarlo?",
@@ -105,14 +112,14 @@ const columns = [
 //---------Columnas de la tabla------------------
 
 //-------------------Datos de los usuarios-------
-const generateRecord = (user) => {
+const generateRecord = (user,thiss) => {
   console.log("generateRecord: " + user.Imagen + user.Nombre + user.Apellido + user.Id_usuario + user.Usr_cod )
   return {
     fotoUsuario: (
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={user.Imagen}
+          src={user.Imagen || userProfile1}
           alt="Generic placeholder"
         />
       </h6>
@@ -122,7 +129,7 @@ const generateRecord = (user) => {
     acciones: (
       <div>
         {/* Boton mascotas del usuario */}
-        <a class="Mascotas" href="/AdministrarMascotas">
+        <a class="Mascotas"  onClick={()=>{thiss.props.history.push('/AdministrarMascotas',{adminUser: user.Usr_cod})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -137,7 +144,7 @@ const generateRecord = (user) => {
         {/* Boton mascotas del usuario */}
         &nbsp;
         {/* Boton editar usuario */}
-        <a class="Editar" href="/UserProfile">
+        <a class="Editar"  onClick={()=>{thiss.props.history.push('/UserProfile',{adminUser: user.Usr_cod})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -197,6 +204,8 @@ class AdministrarUsuarios extends React.Component {
   }
 
   async componentDidMount() {
+    
+
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
         Usr_cod: response.data.Usr_cod,
@@ -210,7 +219,7 @@ class AdministrarUsuarios extends React.Component {
     let userAux = {}
     let usersAux = [];
     for (let i=0; i < users.data.length; i++){
-      userAux = generateRecord(users.data[i]);
+      userAux = generateRecord(users.data[i], this);
       usersAux.push(userAux)
     }
     this.setState({usuarios:usersAux})

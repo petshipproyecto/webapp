@@ -27,7 +27,8 @@ const defaultSorted = [
 ];
 //-----------EL sort por default de la tabla----------
 //---------Mensaje de Eliminar Mascota-------------------
-const deleteMascota = () => {
+const deleteMascota = (idPerfil) => {
+  axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
   Swal.fire({
     title: "Eliminar Mascota",
     text: "¿Está seguro de que desea eliminarlo?",
@@ -139,21 +140,22 @@ const columns = [
 //---------Columnas de la tabla------------------
 
 //-------------------Datos de las Mascotas-------
-const mascotas = [
-  {
+const generateMascota = (mascota) => { 
+  console.log('mascota ' + mascota);
+  return {
     fotoMascota: (
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={userProfile1}
+          src={userProfile1 || mascota.Imagen}
           alt="Generic placeholder"
         />
       </h6>
     ),
-    nombre: "Lola",
-    tipoMascota: "Perro",
-    raza: "Labrador",
-    edad: "10",
+    nombre: mascota.Nombre,
+    tipoMascota: mascota.Raza.Animal.Descripcion,
+    raza: mascota.Raza.Descripcion,
+    edad: mascota.Edad,
     acciones: (
       <div>
         {/* Boton ver mascota */}
@@ -190,7 +192,7 @@ const mascotas = [
           class="Eliminar"
           style={{ cursor: "pointer" }}
           onClick={function() {
-            deleteMascota();
+            deleteMascota(mascota.Id_perfil);
           }}
         >
           <OverlayTrigger
@@ -208,7 +210,7 @@ const mascotas = [
       </div>
     )
   }
-];
+};
 //-------------------Datos de los mascotas-------
 
 const rutaApi = config.rutaApi;
@@ -225,14 +227,19 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
 };
 
 class AdministrarMascotas extends React.Component {
+  state = {mascotas: []}
   componentDidMount() {
-    axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
-      this.setState({
-        Usr_cod: response.data.Usr_cod,
-        perfiles: response.data.Perfils
-      });
-      console.log("state 1" + JSON.stringify(this.state));
+    const uID = this.props.history.location.state.adminUser || this.props.userId;
+    const mascotas = [];
+    axios.get(rutaApi + "usuario/" + uID).then(response => {      
+      const perfiles =  response.data.Perfils;      
+      for (let i=0; i < perfiles.length ; i++){
+        mascotas.push(generateMascota(perfiles[i]));
+      }     
+
+      console.log("perfiles " + JSON.stringify(perfiles));
     });
+    this.setState({mascotas: mascotas})        
   }
 
   render() {
@@ -248,7 +255,7 @@ class AdministrarMascotas extends React.Component {
                 {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="nombre"
-                  data={mascotas}
+                  data={this.state.mascotas}
                   columns={columns}
                   search
                 >
@@ -290,7 +297,7 @@ class AdministrarMascotas extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="nombre"
-                        data={mascotas}
+                        data={this.state.mascotas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"

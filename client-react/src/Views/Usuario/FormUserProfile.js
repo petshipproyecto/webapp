@@ -30,12 +30,16 @@ class FormUserProfile extends React.Component {
     Ubicacion: [],
     Email: "",
     urlImagen: null,
-    Ubicacion: []/* ,
+    Ubicacion: [],
+    userId: null/* ,
     Email: "" */
   };
   componentDidMount() {
     // Obtiene los datos de usuario
-    axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
+    const uID = this.props.history.location.state.adminUser || this.props.userId;
+    this.setState({userId: uID})
+    console.log(JSON.stringify(this.props.history.location.state.adminUser) + 'adminUser')
+    axios.get(rutaApi + "usuario/" + uID).then(response => {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
@@ -86,7 +90,7 @@ class FormUserProfile extends React.Component {
         onSubmit={fields => { 
           
           axios
-            .put(rutaApi + "usuario/" + this.props.userId, {
+            .put(rutaApi + "usuario/" + this.state.userId, {
               //this.props.userId
               /* Email: fields.Email, */
               Nombre: fields.Nombre,
