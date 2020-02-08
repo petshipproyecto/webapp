@@ -299,7 +299,7 @@ class AdministrarUsuarios extends React.Component {
         </Row>
       </Aux>
     );
-  }
+  } 
 }
 
 const mapStateToProps = state => {
