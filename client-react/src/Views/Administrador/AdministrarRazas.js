@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
+import swal from 'sweetalert';
 import config from "../../config";
 
 //-----------------Libreria del popup o modal------------------------
@@ -88,15 +88,15 @@ const columns = [
 
 //---------Mensaje de Eliminar Raza-------------------
 const deleteRaza = () => {
-  Swal.fire({
-    title: "Eliminar Raza",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
+  swal({
+    title: "Eliminar",
+    text: "Seguro desea eliminar?",
+    icon: "warning"
+  })
+  .then(willDelete => {
+    if (willDelete) {
+      //axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
+    }
   });
 };
 //---------Mensaje de Eliminar Raza-------------------

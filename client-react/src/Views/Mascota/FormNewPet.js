@@ -38,8 +38,7 @@ class FormNewPet extends React.Component {
 
   componentDidMount() {
     // Obtiene TODOS los tipos de animales
-    alert(this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId )
-    axios.get(rutaApi + "animal").then(response => {
+   axios.get(rutaApi + "animal").then(response => {
       var Razas_disponibles = null;
       this.state.Animal
         ? (Razas_disponibles = response.data.find(

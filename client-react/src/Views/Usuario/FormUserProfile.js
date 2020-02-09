@@ -38,12 +38,11 @@ class FormUserProfile extends React.Component {
     // Obtiene los datos de usuario
     const uID = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
     this.setState({userId: uID})
-    console.log(JSON.stringify(this.props.history.location.state.adminUser) + 'adminUser')
+    //console.log(JSON.stringify(this.props.history.location.state.adminUser) + 'adminUser')
     axios.get(rutaApi + "usuario/" + uID).then(response => {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        Ubicacion: response.data.Ubicacion,
         urlImagen: response.data.Imagen
       });
     });
@@ -68,27 +67,9 @@ class FormUserProfile extends React.Component {
           Nombre: this.state.Nombre,
           Apellido: this.state.Apellido
         }}
-        validationSchema={Yup.object().shape({
-          Nombre: Yup.string()
-            .trim()
-            .min(2, "El nombre debe tener como mínimo 2 caracteres")
-            .max(20, "El nombre debe tener como máximo 20 caracteres")
-            .required("El nombre es obligatorio"),
-          Apellido: Yup.string()
-            .trim()
-            .min(2, "El nombre debe tener como mínimo 2 caracteres")
-            .max(20, "El nombre debe tener como máximo 20 caracteres")
-            .required("El apellido es obligatorio"),
-          Ubicacion: Yup.string()
-            .trim()
-            .required("La ubicación es obligatoria")/* ,
-          Email: Yup.string()
-            .email("El email tiene un formato invalido")
-            .max(50, "Email debe tener como máximo 50 caracteres")
-            .required("El email es obligatorio") */
-        })}
+       
         onSubmit={fields => { 
-          
+          alert('here');
           axios
             .put(rutaApi + "usuario/" + this.state.userId, {
               //this.props.userId
@@ -221,28 +202,7 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-                            <div className="form-group">
-                              <label>
-                                Ubicación{" "}
-                                <span style={{ color: "red" }}>*</span>{" "}
-                              </label>
-                              <Field
-                                placeholder="Ubicación"
-                                name="Ubicacion"
-                                type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.Ubicacion && touched.Ubicacion
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              />
-                              <ErrorMessage
-                                name="Ubicacion"
-                                component="div"
-                                className="invalid-feedback"
-                              />
-                            </div>
+                            
                             {/*
                             <div className="form-group">
                               <label>

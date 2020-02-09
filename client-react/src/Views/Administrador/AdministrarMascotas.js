@@ -3,7 +3,7 @@ import { Row, Col, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
+import swal from 'sweetalert';
 import config from "../../config";
 
 // Libreria de la tabla: react-boostrap-table-2
@@ -28,17 +28,18 @@ const defaultSorted = [
 //-----------EL sort por default de la tabla----------
 //---------Mensaje de Eliminar Mascota-------------------
 const deleteMascota = (idPerfil) => {
-  axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
-  Swal.fire({
-    title: "Eliminar Mascota",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
+  swal({
+    title: "Eliminar",
+    text: "Seguro desea eliminar?",
+    icon: "warning"
+  })
+  .then(willDelete => {
+    if (willDelete) {
+      axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
+    }
   });
+  
+ 
 };
 //---------Mensaje de Eliminar Mascota-------------------
 
@@ -147,7 +148,7 @@ const generateMascota = (mascota,thiss) => {
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={userProfile1 || mascota.Imagen}
+          src={mascota.Imagen || userProfile1}
           alt="Generic placeholder"
         />
       </h6>

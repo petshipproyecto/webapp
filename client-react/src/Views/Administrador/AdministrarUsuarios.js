@@ -15,6 +15,8 @@ import config from "../../config";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
+import swal from 'sweetalert';
 // Libreria de la tabla: react-boostrap-table-2
 import serviceAccount from "./petship-front-firebase";
 
@@ -38,21 +40,20 @@ const defaultSorted = [
 const deleteUsuario = async(idBBDD, idFirebase) => {  
 console.log('deleteUsuario: ' + idBBDD + idFirebase)
 // console.log(await admin.auth().getUser(idFirebase));
-
-  axios.delete(rutaApi + "usuario/" + idFirebase)
+swal({
+  title: "Eliminar",
+  text: "Seguro desea eliminar?",
+  icon: "warning"
+}).then(willDelete => {
+  if (willDelete) {
+    axios.delete(rutaApi + "usuario/" + idFirebase)
   .then(()=>{
     console.log('workds')
   }).catch(e =>{console.log(e)}); 
-  Swal.fire({
-    title: "Eliminar Usuario",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
-  });
+  }
+})
+  
+
 };
 //---------Mensaje de Eliminar Usuario-------------------
 
