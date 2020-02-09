@@ -38,6 +38,7 @@ class FormNewPet extends React.Component {
 
   componentDidMount() {
     // Obtiene TODOS los tipos de animales
+    alert(this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId )
     axios.get(rutaApi + "animal").then(response => {
       var Razas_disponibles = null;
       this.state.Animal
@@ -123,6 +124,7 @@ class FormNewPet extends React.Component {
           return errors;
         }}
         onSubmit={fields => {
+          const usuario = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
           axios
             .post(rutaApi + "perfil", {
               // payload
@@ -131,7 +133,7 @@ class FormNewPet extends React.Component {
               Imagen: this.state.urlImagen,
               Id_raza: this.state.Raza.Id_raza,
               Id_genero: this.state.Genero,
-              Usr_cod: this.props.userId
+              Usr_cod: usuario
             })
             .then(response => {
               // this.setState({ mensaje: "exito" });

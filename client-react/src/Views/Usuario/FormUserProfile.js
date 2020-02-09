@@ -36,7 +36,7 @@ class FormUserProfile extends React.Component {
   };
   componentDidMount() {
     // Obtiene los datos de usuario
-    const uID = this.props.history.location.state.adminUser || this.props.userId;
+    const uID = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
     this.setState({userId: uID})
     console.log(JSON.stringify(this.props.history.location.state.adminUser) + 'adminUser')
     axios.get(rutaApi + "usuario/" + uID).then(response => {

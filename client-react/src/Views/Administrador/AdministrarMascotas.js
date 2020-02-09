@@ -140,8 +140,8 @@ const columns = [
 //---------Columnas de la tabla------------------
 
 //-------------------Datos de las Mascotas-------
-const generateMascota = (mascota) => { 
-  console.log('mascota ' + mascota);
+const generateMascota = (mascota,thiss) => { 
+  console.log('mascota ' + JSON.stringify(mascota));
   return {
     fotoMascota: (
       <h6 class="m-0">
@@ -159,7 +159,7 @@ const generateMascota = (mascota) => {
     acciones: (
       <div>
         {/* Boton ver mascota */}
-        <a class="Ver" href="/PetProfile">
+        <a class="Ver" onClick={()=>{thiss.props.history.push('/PetProfile',{mascotaSeleccionada: mascota.Id_perfil})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -174,7 +174,7 @@ const generateMascota = (mascota) => {
         {/* Boton ver mascota */}
         &nbsp;
         {/* Boton editar mascota */}
-        <a class="Editar" href="/PetProfile">
+        <a class="Editar"  onClick={()=>{thiss.props.history.push('/PetProfile',{mascotaSeleccionada: mascota.Id_perfil})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -226,23 +226,29 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
+
 class AdministrarMascotas extends React.Component {
   state = {mascotas: []}
   componentDidMount() {
-    const uID = this.props.history.location.state.adminUser || this.props.userId;
-    const mascotas = [];
+    const uID = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
+  
+   let a = [];
+
     axios.get(rutaApi + "usuario/" + uID).then(response => {      
-      const perfiles =  response.data.Perfils;      
-      for (let i=0; i < perfiles.length ; i++){
-        mascotas.push(generateMascota(perfiles[i]));
+      const perfiles =  response.data.Perfils; 
+      for (let i=0; i <perfiles.length ; i++){
+        a.push(generateMascota(perfiles[i], this));
       }     
 
-      console.log("perfiles " + JSON.stringify(perfiles));
+     // console.log("perfiles " + JSON.stringify(perfiles));
+     this.setState({mascotas: a, userId: uID},()=>{ console.log(this.state.mascotas)}) 
     });
-    this.setState({mascotas: mascotas})        
+      
+
   }
 
   render() {
+    console.log('m' + JSON.stringify(this.state.mascotas))
     return (
       <Aux>
         <Row>
@@ -281,7 +287,9 @@ class AdministrarMascotas extends React.Component {
                             type="button"
                             class="btn-rounded btn btn-primary"
                             onClick={() => {
-                              this.props.history.replace("/NewPet");
+                              
+                              this.props.history.push('/NewPet',{adminUser: this.state.userId});
+
                             }}
                           >
                             <i class="feather icon-plus"></i>Mascota
