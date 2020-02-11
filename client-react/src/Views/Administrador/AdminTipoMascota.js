@@ -11,7 +11,7 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-
+import swal from 'sweetalert';
 
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
@@ -37,17 +37,20 @@ const defaultSorted = [
 //-----------EL sort por default de la tabla----------
 
 //---------Mensaje de Eliminar Tipo de Animal-------------------
-const deleteTipoAnimal = () => {
-  Swal.fire({
-    title: "Eliminar Tipo de Mascota",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
-  });
+const deleteTipoAnimal = (idAnimal) => {
+  swal({
+    title: "Eliminar",
+    text: "Seguro desea eliminar?",
+    icon: "warning"
+  }).then(willDelete => {
+    if (willDelete) {
+      axios.delete(rutaApi + "animal/" + idAnimal)
+    .then(()=>{
+      console.log('workds');
+      window.location.replace("/AdministrarTiposDeMascotas");
+    }).catch(e =>{console.log(e)}); 
+    }
+  })
 };
 //---------Mensaje de Eliminar Tipo de Animal-------------------
 
@@ -150,7 +153,7 @@ class AdminTipoMascota extends React.Component {
           {/* Boton de editar tipo de mascota*/}
           <a
             class="Edit"
-            onClick={this.onEditar}
+            onClick={()=>{this.onEditar(tipoMascota.Id_animal)}}
             style={{ cursor: "pointer" }}
           >
             <OverlayTrigger
@@ -175,7 +178,7 @@ class AdminTipoMascota extends React.Component {
             class="Eliminar"
             style={{ cursor: "pointer" }}
             onClick={function() {
-              deleteTipoAnimal();
+              deleteTipoAnimal(tipoMascota.Id_animal);
             }}
           >
             <OverlayTrigger
@@ -207,7 +210,10 @@ class AdminTipoMascota extends React.Component {
         initialValue: "",
         required: true
       }),
-      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{
+        axios.post(rutaApi+'animal', {Descripcion: dialog.value }).then(()=>{console.log('works'); window.location.replace("/AdministrarTiposDeMascotas");})
+        
+      })],
       bsSize: "small",
       onHide: dialog => {
         dialog.hide();
@@ -218,7 +224,7 @@ class AdminTipoMascota extends React.Component {
   //-------------- Modal de agregar nuevo tipo de mascota--------
 
   //-------------- Modal de editar tipo de mascota--------
-  onEditar() {
+  onEditar(idAnimal) {
     this.dialog.show({
       title: "Editar Tipo de Mascota",
       body: "Ingrese el nombre del tipo de mascota:",
@@ -227,7 +233,10 @@ class AdminTipoMascota extends React.Component {
         initialValue: "",
         required: true
       }),
-      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{
+        axios.put(rutaApi+'animal/'+idAnimal, {Descripcion: dialog.value }).then(()=>{console.log('works');window.location.replace("/AdministrarTiposDeMascotas");})
+        
+      })],
       bsSize: "small",
       onHide: dialog => {
         dialog.hide();
