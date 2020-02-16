@@ -4,13 +4,20 @@ import { withRouter } from 'react-router-dom';
 import windowSize from 'react-window-size';
 
 import NavLogo from './NavLogo';
-import NavContent from './NavContent';
+import NavContent from './NavContent'; 
 import OutsideClick from './OutsideClick';
 import Aux from './../../../../hoc/_Aux'
 import * as actionTypes from '../../../../store/actions/actions';
 import navigation from '../../../../menu-items';
+import navigationAdmin from '../../../../menu-items-admin';
+import axios from 'axios'
+import config from "../../../../config";
+
+const rutaApi = config.rutaApi;
 
 class Navigation extends Component {
+
+    state = {isAdmin: false}
 
     resize = () => {
         const contentWidth = document.getElementById('root').clientWidth;
@@ -20,7 +27,13 @@ class Navigation extends Component {
         }
     };
 
-    componentDidMount() {
+    async componentDidMount() {
+        //alert(JSON.stringify(this.props.auth.uid))
+        const user = await axios.get(rutaApi + 'usuario/' + this.props.auth.uid);
+        const isAdmin = user.data.Is_admin;
+        this.setState({isAdmin})
+       
+
         this.resize();
         window.addEventListener('resize', this.resize)
     }
@@ -108,7 +121,7 @@ class Navigation extends Component {
         let navContent = (
             <div className="navbar-wrapper">
                 <NavLogo collapseMenu={this.props.collapseMenu} windowWidth={this.props.windowWidth} onToggleNavigation={this.props.onToggleNavigation} />
-                <NavContent navigation={navigation.items} />
+                <NavContent navigation={this.state.isAdmin ?  navigationAdmin.items : navigation.items } />
             </div>
         );
         if (this.props.windowWidth < 992) {
@@ -116,7 +129,7 @@ class Navigation extends Component {
                 <OutsideClick>
                     <div className="navbar-wrapper">
                         <NavLogo collapseMenu={this.props.collapseMenu} windowWidth={this.props.windowWidth} onToggleNavigation={this.props.onToggleNavigation} />
-                        <NavContent navigation={navigation.items} />
+                        <NavContent navigation={this.state.isAdmin ?  navigationAdmin.items : navigation.items} />
                     </div>
                 </OutsideClick>
             );
@@ -151,12 +164,14 @@ const mapStateToProps = state => {
         navListIcon: state.reducer.navListIcon,
         navActiveListColor: state.reducer.navActiveListColor,
         navListTitleColor: state.reducer.navListTitleColor,
-        navListTitleHide: state.reducer.navListTitleHide
+        navListTitleHide: state.reducer.navListTitleHide,
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
+    return { 
         onToggleNavigation: () => dispatch({type: actionTypes.COLLAPSE_MENU}),
         onChangeLayout: (layout) => dispatch({type: actionTypes.CHANGE_LAYOUT, layout: layout}),
     }
