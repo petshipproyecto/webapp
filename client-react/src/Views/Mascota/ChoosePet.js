@@ -6,6 +6,8 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
+
+import swal from 'sweetalert';
 import avatar1 from "../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
@@ -21,7 +23,8 @@ const rutaApi = config.rutaApi;
 class ChoosePet extends React.Component {
   state = {
     perfiles: [],
-    loading: true
+    loading: true,
+    cantidadDePerfiles:0
   };
 
   componentDidMount() {
@@ -30,6 +33,7 @@ class ChoosePet extends React.Component {
       .then(response => {
         this.setState({ perfiles: response.data.Perfils, loading: false });
         console.log("loader" + this.state);
+        this.setState({cantidadDePerfiles: response.data.Perfils.length })
       })
       .catch(e => {
         this.setState({ perfiles: [], loading: false });
@@ -94,7 +98,22 @@ class ChoosePet extends React.Component {
                   <br />
                   <br />
                   <br />
-                  <a href="/NewPet">
+                  <a onClick={
+                    ()=>{
+                      if (this.state.cantidadDePerfiles> 4){
+                        
+                        swal({
+                          title: "Error",
+                          text: "Limite de Perfiles excedido",
+                          icon: "error",
+                          timer: 3000,
+                          button: false
+                        })       
+                      } else {
+                        window.location.replace('/NewPet')
+                      }
+                    }
+                  }>
                     <button
                       type="button"
                       class="btn-icon btn-rounded btn btn-primary  "
