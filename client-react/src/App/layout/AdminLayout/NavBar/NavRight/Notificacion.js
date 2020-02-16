@@ -32,7 +32,7 @@ class Notificacion extends React.Component {
     mostrarPerfil(thiss, infoPerfil) {
         var user = firebase.auth().currentUser;
         if (user) {
-            console.log(user.email);
+            //console.log(user.email);
             // User is signed in.
         }
         thiss.dialog.show({

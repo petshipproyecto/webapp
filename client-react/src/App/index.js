@@ -19,7 +19,7 @@ const AdminLayout = Loadable({
 
 class App extends Component {
     render() {
-        console.log("app props" + JSON.stringify(this.props))
+        //console.log("app props" + JSON.stringify(this.props))
         const menu = routes.map((route, index) => {
         if (route.path === '/ChoosePet'){
             console.log('llega')

@@ -24,7 +24,7 @@ store.dispatch({
   type: 'ADD_TODO',
   text: 'Use Redux'
 }) */
-console.log(store.getState())
+//console.log(store.getState())
 const app = (
   <Provider store={store}>
     <BrowserRouter basename={config.basename}>

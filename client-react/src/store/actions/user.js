@@ -7,7 +7,7 @@ var rutaApi = config.rutaApi
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-    console.log(getState())
+    //console.log(getState())
 
     firebase.auth().signInWithEmailAndPassword(
       credentials.email,

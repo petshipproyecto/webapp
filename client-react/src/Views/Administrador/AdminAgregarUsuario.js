@@ -42,7 +42,7 @@ class AdminAgregarUsuario extends React.Component {
         //console.log(JSON.stringify(response.data));
 
         var localidades = response.data;
-        console.log(localidades[0] + 'localidad')
+        //console.log(localidades[0] + 'localidad')
         this.setState({
           localidades,
           provinciaSeleccionada: localidades[0],
