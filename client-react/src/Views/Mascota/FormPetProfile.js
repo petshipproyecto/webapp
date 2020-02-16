@@ -37,9 +37,11 @@ class FormPetProfile extends React.Component {
   };
 
   async componentDidMount() {
+   
     // Obtiene los datos del perfil
     const usuario = await axios.get(rutaApi + "usuario/" + this.props.userId);
-    const perfil_activo = usuario.data.Id_perfil_activo;
+    
+    const perfil_activo = this.props.history.location.state ? this.props.history.location.state.mascotaSeleccionada : usuario.data.Id_perfil_activo;
     axios.get(rutaApi + "perfil/" + perfil_activo).then(response => {
       this.setState({
         Id_perfil: perfil_activo,

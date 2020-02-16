@@ -3,7 +3,7 @@ import { Row, Col, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
+import swal from 'sweetalert';
 import config from "../../config";
 
 // Libreria de la tabla: react-boostrap-table-2
@@ -27,17 +27,19 @@ const defaultSorted = [
 ];
 //-----------EL sort por default de la tabla----------
 //---------Mensaje de Eliminar Mascota-------------------
-const deleteMascota = () => {
-  Swal.fire({
-    title: "Eliminar Mascota",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
+const deleteMascota = (idPerfil) => {
+  swal({
+    title: "Eliminar",
+    text: "Seguro desea eliminar?",
+    icon: "warning"
+  })
+  .then(willDelete => {
+    if (willDelete) {
+      axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
+    }
   });
+  
+ 
 };
 //---------Mensaje de Eliminar Mascota-------------------
 
@@ -139,25 +141,26 @@ const columns = [
 //---------Columnas de la tabla------------------
 
 //-------------------Datos de las Mascotas-------
-const mascotas = [
-  {
+const generateMascota = (mascota,thiss) => { 
+  console.log('mascota ' + JSON.stringify(mascota));
+  return {
     fotoMascota: (
       <h6 class="m-0">
         <img
           className="media-object img-radius"
-          src={userProfile1}
+          src={mascota.Imagen || userProfile1}
           alt="Generic placeholder"
         />
       </h6>
     ),
-    nombre: "Lola",
-    tipoMascota: "Perro",
-    raza: "Labrador",
-    edad: "10",
+    nombre: mascota.Nombre,
+    tipoMascota: mascota.Raza.Animal.Descripcion,
+    raza: mascota.Raza.Descripcion,
+    edad: mascota.Edad,
     acciones: (
       <div>
         {/* Boton ver mascota */}
-        <a class="Ver" href="/PetProfile">
+        <a class="Ver" onClick={()=>{thiss.props.history.push('/PetProfile',{mascotaSeleccionada: mascota.Id_perfil})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -172,7 +175,7 @@ const mascotas = [
         {/* Boton ver mascota */}
         &nbsp;
         {/* Boton editar mascota */}
-        <a class="Editar" href="/PetProfile">
+        <a class="Editar"  onClick={()=>{thiss.props.history.push('/PetProfile',{mascotaSeleccionada: mascota.Id_perfil})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}
@@ -190,7 +193,7 @@ const mascotas = [
           class="Eliminar"
           style={{ cursor: "pointer" }}
           onClick={function() {
-            deleteMascota();
+            deleteMascota(mascota.Id_perfil);
           }}
         >
           <OverlayTrigger
@@ -208,7 +211,7 @@ const mascotas = [
       </div>
     )
   }
-];
+};
 //-------------------Datos de los mascotas-------
 
 const rutaApi = config.rutaApi;
@@ -224,18 +227,29 @@ const setTargetProfile = (Usr_cod, Id_perfil) => {
     .catch(e => {});
 };
 
+
 class AdministrarMascotas extends React.Component {
+  state = {mascotas: []}
   componentDidMount() {
-    axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
-      this.setState({
-        Usr_cod: response.data.Usr_cod,
-        perfiles: response.data.Perfils
-      });
-      console.log("state 1" + JSON.stringify(this.state));
+    const uID = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
+  
+   let a = [];
+
+    axios.get(rutaApi + "usuario/" + uID).then(response => {      
+      const perfiles =  response.data.Perfils; 
+      for (let i=0; i <perfiles.length ; i++){
+        a.push(generateMascota(perfiles[i], this));
+      }     
+
+     // console.log("perfiles " + JSON.stringify(perfiles));
+     this.setState({mascotas: a, userId: uID},()=>{ console.log(this.state.mascotas)}) 
     });
+      
+
   }
 
   render() {
+    console.log('m' + JSON.stringify(this.state.mascotas))
     return (
       <Aux>
         <Row>
@@ -248,7 +262,7 @@ class AdministrarMascotas extends React.Component {
                 {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="nombre"
-                  data={mascotas}
+                  data={this.state.mascotas}
                   columns={columns}
                   search
                 >
@@ -274,7 +288,9 @@ class AdministrarMascotas extends React.Component {
                             type="button"
                             class="btn-rounded btn btn-primary"
                             onClick={() => {
-                              this.props.history.replace("/NewPet");
+                              
+                              this.props.history.push('/NewPet',{adminUser: this.state.userId});
+
                             }}
                           >
                             <i class="feather icon-plus"></i>Mascota
@@ -290,7 +306,7 @@ class AdministrarMascotas extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="nombre"
-                        data={mascotas}
+                        data={this.state.mascotas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"

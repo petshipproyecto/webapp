@@ -11,7 +11,7 @@ import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import config from "../../config";
-
+import swal from 'sweetalert';
 
 //-----------------Libreria del popup o modal------------------------
 import Dialog from "react-bootstrap-dialog";
@@ -37,17 +37,20 @@ const defaultSorted = [
 //-----------EL sort por default de la tabla----------
 
 //---------Mensaje de Eliminar Tipo de Animal-------------------
-const deleteTipoAnimal = () => {
-  Swal.fire({
-    title: "Eliminar Tipo de Mascota",
-    text: "¿Está seguro de que desea eliminarlo?",
-    type: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#8BC3FF",
-    cancelButtonColor: "#BFBFBF ",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "OK"
-  });
+const deleteTipoAnimal = (idAnimal) => {
+  swal({
+    title: "Eliminar",
+    text: "Seguro desea eliminar?",
+    icon: "warning"
+  }).then(willDelete => {
+    if (willDelete) {
+      axios.delete(rutaApi + "animal/" + idAnimal)
+    .then(()=>{
+      console.log('workds');
+      window.location.replace("/AdministrarTiposDeMascotas");
+    }).catch(e =>{console.log(e)}); 
+    }
+  })
 };
 //---------Mensaje de Eliminar Tipo de Animal-------------------
 
@@ -120,207 +123,82 @@ class AdminTipoMascota extends React.Component {
     super();
     this.onAgregar = this.onAgregar.bind(this);
     this.onEditar = this.onEditar.bind(this);
+    this.generateRecord = this.generateRecord.bind(this);
 
     //-------------------Datos de los tipos de Mascotas-------
-    this.tiposMascotas = [
-      {
-        idTipoMascota: 1,
-        tipoMascota: "Gato",
-        acciones: (
-          <div>
-            {/* Boton de ver razas */}
-            <a class="Razas" href="/AdministrarRazas">
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Razas</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-plus"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de ver razas */}
-            {/* Boton de editar tipo de mascota*/}
-            <a
-              class="Edit"
-              onClick={this.onEditar}
-              style={{ cursor: "pointer" }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Editar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-edit-2"
-                />
-              </OverlayTrigger>
-            </a>
-            <Dialog
-              ref={component => {
-                this.dialog = component;
-              }}
-            />
-            {/* Boton de editar tipo de mascota*/}
-            {/* Boton de eliminar tipo de mascota*/}
-            <a
-              class="Eliminar"
-              style={{ cursor: "pointer" }}
-              onClick={function() {
-                deleteTipoAnimal();
-              }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Eliminar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-trash-2"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de eliminar tipo de mascota*/}
-          </div>
-        )
-      },
-      {
-        idTipoMascota: 2,
-        tipoMascota: "Perro",
-        acciones: (
-          <div>
-        {/* Boton de ver razas */}
-            <a class="Razas" href="/AdministrarRazas">
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Razas</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-plus"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de ver razas */}
-            {/* Boton de editar tipo de mascota*/}
-            <a
-              class="Edit"
-              onClick={this.onEditar}
-              style={{ cursor: "pointer" }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Editar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-edit-2"
-                />
-              </OverlayTrigger>
-            </a>
-            <Dialog
-              ref={component => {
-                this.dialog = component;
-              }}
-            />
-            {/* Boton de editar tipo de mascota*/}
-            {/* Boton de eliminar tipo de mascota*/}
-            <a
-              class="Eliminar"
-              style={{ cursor: "pointer" }}
-              onClick={function() {
-                deleteTipoAnimal();
-              }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Eliminar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-trash-2"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de eliminar tipo de mascota*/}
-          </div>
-        )
-      },
-      {
-        idTipoMascota: 3,
-        tipoMascota: "Ave",
-        acciones: (
-          <div>
-            {/* Boton de ver razas */}
-            <a class="Razas" href="/AdministrarRazas">
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Razas</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-plus"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de ver razas */}
-            {/* Boton de editar tipo de mascota*/}
-            <a
-              class="Edit"
-              onClick={this.onEditar}
-              style={{ cursor: "pointer" }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Editar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-edit-2"
-                />
-              </OverlayTrigger>
-            </a>
-            <Dialog
-              ref={component => {
-                this.dialog = component;
-              }}
-            />
-            {/* Boton de editar tipo de mascota*/}
-            {/* Boton de eliminar tipo de mascota*/}
-            <a
-              class="Eliminar"
-              style={{ cursor: "pointer" }}
-              onClick={function() {
-                deleteTipoAnimal();
-              }}
-            >
-              <OverlayTrigger
-                placement="left"
-                delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Eliminar</Tooltip>}
-              >
-                <i
-                  style={{ fontSize: 24, color: "#f47386" }}
-                  className="icon feather icon-trash-2"
-                />
-              </OverlayTrigger>
-            </a>
-            {/* Boton de eliminar tipo de mascota*/}
-          </div>
-        )
-      }
-    ];
+    
     //-------------------Datos de los tipos de mascotas-------
   }
+  generateRecord(tipoMascota,thiss){
+
+    return {
+      idTipoMascota: tipoMascota.Id_animal,
+      tipoMascota: tipoMascota.Descripcion,
+      acciones: (
+        <div>
+          {/* Boton de ver razas */}
+          <a class="Razas" onClick={()=>{thiss.props.history.push('/AdministrarRazas',{tipoMascota: tipoMascota.Id_animal})}}>
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip>Razas</Tooltip>}
+            >
+              <i
+                style={{ fontSize: 24, color: "#f47386" }}
+                className="icon feather icon-plus"
+              />
+            </OverlayTrigger>
+          </a>
+          {/* Boton de ver razas */}
+          {/* Boton de editar tipo de mascota*/}
+          <a
+            class="Edit"
+            onClick={()=>{this.onEditar(tipoMascota.Id_animal)}}
+            style={{ cursor: "pointer" }}
+          >
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip>Editar</Tooltip>}
+            >
+              <i
+                style={{ fontSize: 24, color: "#f47386" }}
+                className="icon feather icon-edit-2"
+              />
+            </OverlayTrigger>
+          </a>
+          <Dialog
+            ref={component => {
+              this.dialog = component;
+            }}
+          />
+          {/* Boton de editar tipo de mascota*/}
+          {/* Boton de eliminar tipo de mascota*/}
+          <a
+            class="Eliminar"
+            style={{ cursor: "pointer" }}
+            onClick={function() {
+              deleteTipoAnimal(tipoMascota.Id_animal);
+            }}
+          >
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip>Eliminar</Tooltip>}
+            >
+              <i
+                style={{ fontSize: 24, color: "#f47386" }}
+                className="icon feather icon-trash-2"
+              />
+            </OverlayTrigger>
+          </a>
+          {/* Boton de eliminar tipo de mascota*/}
+        </div>
+      )
+    }
+  
+  }
+  
 
   //-------------- Modal de agregar nuevo tipo de mascota--------
   onAgregar() {
@@ -332,7 +210,10 @@ class AdminTipoMascota extends React.Component {
         initialValue: "",
         required: true
       }),
-      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{
+        axios.post(rutaApi+'animal', {idRaza:this.state.tipoMascota,Descripcion: dialog.value }).then(()=>{console.log('works'); window.location.replace("/AdministrarTiposDeMascotas");})
+        
+      })],
       bsSize: "small",
       onHide: dialog => {
         dialog.hide();
@@ -343,7 +224,7 @@ class AdminTipoMascota extends React.Component {
   //-------------- Modal de agregar nuevo tipo de mascota--------
 
   //-------------- Modal de editar tipo de mascota--------
-  onEditar() {
+  onEditar(idAnimal) {
     this.dialog.show({
       title: "Editar Tipo de Mascota",
       body: "Ingrese el nombre del tipo de mascota:",
@@ -352,7 +233,10 @@ class AdminTipoMascota extends React.Component {
         initialValue: "",
         required: true
       }),
-      actions: [Dialog.CancelAction(), Dialog.OKAction()],
+      actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{
+        axios.put(rutaApi+'animal/'+idAnimal, {Descripcion: dialog.value }).then(()=>{console.log('works');window.location.replace("/AdministrarTiposDeMascotas");})
+        
+      })],
       bsSize: "small",
       onHide: dialog => {
         dialog.hide();
@@ -362,14 +246,24 @@ class AdminTipoMascota extends React.Component {
   }
   //-------------- Modal de editar tipo de mascota--------
 
+  state = {tipoMascotas:[]};
   componentDidMount() {
     axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
       this.setState({
         Usr_cod: response.data.Usr_cod,
         perfiles: response.data.Perfils
       });
-      console.log("state 1" + JSON.stringify(this.state));
+      //console.log("state 1" + JSON.stringify(this.state));
     });
+
+    axios.get(rutaApi + 'animal').then((animales)=>{
+      let tipoMascotas = [];
+      for(let i=0; i < animales.data.length; i++){
+        tipoMascotas.push(this.generateRecord(animales.data[i], this));
+      }
+     this.setState({tipoMascotas})
+
+    }).catch(e=> console.log(e))
   }
 
   render() {
@@ -385,7 +279,7 @@ class AdminTipoMascota extends React.Component {
                 {/* Tool para la tabla */}
                 <ToolkitProvider
                   keyField="nombre"
-                  data={this.tiposMascotas}
+                  data={this.state.tipoMascotas}
                   columns={columns}
                   search
                 >
@@ -432,7 +326,7 @@ class AdminTipoMascota extends React.Component {
                         {...props.baseProps}
                         hover
                         keyField="idTipoMascota"
-                        data={this.tiposMascotas}
+                        data={this.state.tipoMascotas}
                         columns={columns}
                         pagination={paginationFactory()}
                         wrapperClasses="table-responsive"
