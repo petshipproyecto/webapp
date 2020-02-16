@@ -7,21 +7,6 @@ export default {
       icon: "icon-navigation",
       children: [
         {
-          id: "inicio",
-          title: "Inicio",
-          type: "item",
-          url: "/dashboard",
-          icon: "feather icon-home"
-        },
-        {
-          id: "nuevaMascota",
-          title: "Agregar Mascota",
-          type: "item",
-          url: "/NewPet",
-          classes: "nav-item",
-          icon: "feather icon-plus-circle"
-        },
-        {
           id: "forms",
           title: "Ver Perfiles",
           type: "collapse",
@@ -40,53 +25,48 @@ export default {
               type: "item",
               icon: "feather icon-user",
               url: "/VerUserProfile"
-            },
-            {
-              id: "perfilMascota",
-              title: "Ver Perfil de Mascota",
-              type: "item",
-              icon: "feather icon-github",
-              url: "/PetProfile"
             }
           ]
         },
-        {
-          id: "buscarPareja",
-          title: "Buscar Pareja o Amigo",
-          type: "item",
-          url: "/Swipe",
-          icon: "feather icon-heart-on"
-        },
-        {
-          id: "favoritos",
-          title: "Favoritos",
-          type: "item",
-          icon: "feather icon-star-on",
-          url: "/GaleriaMascotas"
-        },
-
-        ,
-        {
-          id: "notificaciones",
-          title: "Notificaciones",
-          type: "item",
-          icon: "feather icon-bell",
-          url: "/Notificaciones"
-        },
+        /*{
+            id: "buscarPareja",
+            title: "Buscar Pareja o Amigo",
+            type: "item",
+            url: "/Swipe",
+            icon: "feather icon-heart-on"
+          },
+          {
+            id: "favoritos",
+            title: "Favoritos",
+            type: "item",
+            icon: "feather icon-star-on",
+            url: "/GaleriaMascotas"
+          },
+  
+          ,
+          {
+            id: "notificaciones",
+            title: "Notificaciones",
+            type: "item",
+            icon: "feather icon-bell",
+            url: "/Notificaciones"
+          }
+          */
+         /*
         {
           id: "administrarMascotas",
           title: "Mis Mascotas",
           type: "item",
           icon: "fa fa-paw",
           url: "/TablaMascotas"
-        },
-        {
+        },*/
+        /*{
           id: "configuracionBusqueda",
           title: "Preferencias de Búsqueda",
           type: "item",
           icon: "feather icon-filter",
-          url: "/ConfiguracionBusqueda",
-        },
+          url: "/ConfiguracionBusqueda"
+        }, */
         // {
         //   id: "choosePet",
         //   title: "Eleguir Mascota",
@@ -98,21 +78,20 @@ export default {
         //     type: "label-danger"
         //   },
         // },
-      /*  {
-        id: "adminUsers",
-        title: "Administrar Usuarios",
-        type: "item",
-        icon: "fa fa-group",
-        url: "/AdministrarUsuarios",
-         },
-           {
-            id: "adminTipoMascotas",
-            title: "Administrar Tipos de Mascotas",
-            type: "item",
-            icon: "fa fa-paw",
-            url: "/AdministrarTiposDeMascotas",
-             },
-             */
+        {
+          id: "adminUsers",
+          title: "Administrar Usuarios",
+          type: "item",
+          icon: "fa fa-group",
+          url: "/AdministrarUsuarios"
+        },
+        {
+          id: "adminTipoMascotas",
+          title: "Administrar Tipos de Mascotas",
+          type: "item",
+          icon: "fa fa-paw",
+          url: "/AdministrarTiposDeMascotas"
+        }
         // {
         //   id: "inputDate",
         //   title: "Cargar Datos",
@@ -128,6 +107,3 @@ export default {
     }
   ]
 };
-      
-        
-        
