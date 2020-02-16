@@ -129,7 +129,7 @@ class AdminTipoMascota extends React.Component {
     
     //-------------------Datos de los tipos de mascotas-------
   }
-  generateRecord(tipoMascota){
+  generateRecord(tipoMascota,thiss){
 
     return {
       idTipoMascota: tipoMascota.Id_animal,
@@ -137,7 +137,7 @@ class AdminTipoMascota extends React.Component {
       acciones: (
         <div>
           {/* Boton de ver razas */}
-          <a class="Razas" href="/AdministrarRazas">
+          <a class="Razas" onClick={()=>{thiss.props.history.push('/AdministrarRazas',{tipoMascota: tipoMascota.Id_animal})}}>
             <OverlayTrigger
               placement="left"
               delay={{ show: 250, hide: 400 }}
@@ -211,7 +211,7 @@ class AdminTipoMascota extends React.Component {
         required: true
       }),
       actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{
-        axios.post(rutaApi+'animal', {Descripcion: dialog.value }).then(()=>{console.log('works'); window.location.replace("/AdministrarTiposDeMascotas");})
+        axios.post(rutaApi+'animal', {idRaza:this.state.tipoMascota,Descripcion: dialog.value }).then(()=>{console.log('works'); window.location.replace("/AdministrarTiposDeMascotas");})
         
       })],
       bsSize: "small",
@@ -253,13 +253,13 @@ class AdminTipoMascota extends React.Component {
         Usr_cod: response.data.Usr_cod,
         perfiles: response.data.Perfils
       });
-      console.log("state 1" + JSON.stringify(this.state));
+      //console.log("state 1" + JSON.stringify(this.state));
     });
 
     axios.get(rutaApi + 'animal').then((animales)=>{
       let tipoMascotas = [];
       for(let i=0; i < animales.data.length; i++){
-        tipoMascotas.push(this.generateRecord(animales.data[i]));
+        tipoMascotas.push(this.generateRecord(animales.data[i], this));
       }
      this.setState({tipoMascotas})
 
