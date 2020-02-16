@@ -37,6 +37,23 @@ class FormNewPet extends React.Component {
   };
 
   componentDidMount() {
+    axios.get(rutaApi + "usuario/" + this.props.userId).then((user)=>{
+      console.log(user.data.Perfils.length)
+      if (user.data.Perfils.length > 4){
+        console.log('hola')
+        swal({
+          title: "Error",
+          text: "Limite de Perfiles excedido",
+          icon: "error",
+          timer: 3000,
+          button: false
+        }).then(()=>{
+          window.location.replace('/Dashboard');
+        });        
+      }
+    });
+    
+    
     // Obtiene TODOS los tipos de animales
    axios.get(rutaApi + "animal").then(response => {
       var Razas_disponibles = null;
