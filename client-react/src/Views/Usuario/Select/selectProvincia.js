@@ -9,6 +9,10 @@ var emptyOption = (
 );
 
 class ProvinciaSelect extends Component {
+  constructor(props) {
+    super(props);
+    // No hagas esto!
+   }
   //On the change event for the select box pass the selected value back to the parent
   handleChange = event => {
     console.log(this.props)
@@ -36,7 +40,8 @@ class ProvinciaSelect extends Component {
         name="Provincia"
         className={"form-control" + this.props.className}
         disabled={arrayOfData ? false : true}        
-        onChange={this.handleChange}
+        onChange={this.handleChange}                              
+        value = {this.props.value}
         required 
       >
        

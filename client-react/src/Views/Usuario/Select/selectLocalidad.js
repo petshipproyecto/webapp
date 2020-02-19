@@ -33,6 +33,8 @@ class LocalidadSelect extends Component {
         className={"form-control" + this.props.className}
         disabled={arrayOfData ? false : true}
         onChange={this.handleChange}
+        value={this.props.value}
+        
       >
        
         {options}

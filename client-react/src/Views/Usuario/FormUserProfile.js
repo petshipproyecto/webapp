@@ -5,7 +5,7 @@ import Aux from "../../hoc/_Aux";
 import axios from "axios";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
-import config from '../../config'
+import config from "../../config";
 
 import { connect } from "react-redux";
 
@@ -15,13 +15,15 @@ import * as Yup from "yup";
 //---------------------------------------------------------------------
 
 import UpdatePassword from "../Autenticacion/UpdatePassword/UpdatePassword";
-import Img_usuario_anonimo from "../../assets/images/user/usuario_anonimo.png"
-import Axios from "axios";
+import Img_usuario_anonimo from "../../assets/images/user/usuario_anonimo.png";
+
+import ProvinciaSelect from "./Select/selectProvincia";
+import LocalidadSelect from "./Select/selectLocalidad";
 
 // Sweet Alert para los mensajes de exito y error
 import swal from "sweetalert";
 
-var rutaApi = config.rutaApi
+var rutaApi = config.rutaApi;
 
 class FormUserProfile extends React.Component {
   state = {
@@ -31,13 +33,22 @@ class FormUserProfile extends React.Component {
     Email: "",
     urlImagen: null,
     Ubicacion: [],
-    userId: null/* ,
+    userId: null,
+    provinciaSeleccionada: "", 
+    Provincias: [],
+    localidades: [],
+    localidadSeleccionada: ""
+     /* ,
     Email: "" */
   };
   componentDidMount() {
+    let provinciaInicial = "";
+    let localidadInicial = "";
     // Obtiene los datos de usuario
-    const uID = this.props.history.location.state ? this.props.history.location.state.adminUser : this.props.userId;
-    this.setState({userId: uID})
+    const uID = this.props.history.location.state
+      ? this.props.history.location.state.adminUser
+      : this.props.userId;
+    this.setState({ userId: uID });
     //console.log(JSON.stringify(this.props.history.location.state.adminUser) + 'adminUser')
     axios.get(rutaApi + "usuario/" + uID).then(response => {
       this.setState({
@@ -45,8 +56,76 @@ class FormUserProfile extends React.Component {
         Apellido: response.data.Apellido,
         urlImagen: response.data.Imagen
       });
+      provinciaInicial = response.data.Localidad.Provincia.Id_provincia;
+      localidadInicial = response.data.Localidad.Id_localidad;
+      console.log('hola');
+      axios.get(rutaApi + "provincia").then(response => {
+        this.setState({
+          Provincias: response.data
+        });
+      });
+      axios.get(rutaApi + "localidad/" + provinciaInicial).then(response => {
+        //console.log(JSON.stringify(response.data));
+  
+        var localidades = response.data;
+        console.log(localidades[0] + "localidad");
+        this.setState({
+          localidades,
+          provinciaSeleccionada: {
+            Id_provincia: provinciaInicial
+          },
+          localidadSeleccionada: {
+            Id_localidad: localidadInicial
+          }
+        });
+        console.log(
+          JSON.stringify(this.state.provinciaSeleccionada) + "on mount"
+        );
+      });
     });
+    
+    
+   
   }
+
+  
+  _handleChangeProvincia = e => {
+    var provinciaSeleccionada = this.state.Provincias.find(
+      Provincia => Provincia.Id_provincia === e,
+      null
+    );
+    console.log(provinciaSeleccionada);
+    console.log(JSON.stringify(e));
+
+    // call to API and save
+    
+    axios.get(rutaApi + "localidad/" + provinciaSeleccionada.Id_provincia).then(response => {
+      //console.log(JSON.stringify(response.data));
+      var localidades = response.data;
+      this.setState({
+        localidades,
+        provinciaSeleccionada,
+        localidadSeleccionada:localidades[0]
+      });
+      console.log('state' + JSON.stringify(this.state.provinciaSeleccionada))
+    });  
+  
+    
+  };
+
+  _handleLocalidadChange = e => {
+    var localidadSeleccionada = this.state.localidades.find(
+      Localidad => Localidad.Id_localidad === e,
+      null
+    );
+      this.setState({
+        localidadSeleccionada
+      });
+      alert(JSON.stringify(localidadSeleccionada));
+     
+  
+    
+  };
 
   handleUploadSuccess = filename => {
     this.setState({ avatar: filename, progress: 100, isUploading: false });
@@ -67,18 +146,18 @@ class FormUserProfile extends React.Component {
           Nombre: this.state.Nombre,
           Apellido: this.state.Apellido
         }}
-       
-        onSubmit={fields => { 
-          alert('here');
+        onSubmit={fields => {
+          
           axios
             .put(rutaApi + "usuario/" + this.state.userId, {
               //this.props.userId
               /* Email: fields.Email, */
               Nombre: fields.Nombre,
               Apellido: fields.Apellido,
-              Imagen: this.state.urlImagen
+              Imagen: this.state.urlImagen,
+              Id_localidad: this.state.localidadSeleccionada.Id_localidad
             })
-            .then(function (response) {
+            .then(function(response) {
               // handle success
               console.log(response);
               swal({
@@ -88,10 +167,8 @@ class FormUserProfile extends React.Component {
                 timer: 2000,
                 button: false
               });
-              window.location.replace('/Dashboard')
-
             })
-            .catch(function (error) {
+            .catch(function(error) {
               // handle error
               console.log(error);
               swal({
@@ -130,7 +207,7 @@ class FormUserProfile extends React.Component {
                               color: "white",
                               padding: 10,
                               borderRadius: 4,
-                              cursor: "pointer",
+                              cursor: "pointer"
                             }}
                           >
                             Seleccionar Foto de Perfil
@@ -202,7 +279,44 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-                            
+
+                            {/* Select Provincia */}
+                            <div class="form-group">
+                              <ProvinciaSelect
+                                className={
+                                  errors.Provincia ? " is-invalid" : ""
+                                }
+                                arrayOfData={this.state.Provincias}
+                                name="Provincia"
+                                onSelectChange={this._handleChangeProvincia}                                
+                                value = {this.state.provinciaSeleccionada.Id_provincia}
+                                do={this.log}
+                              />
+                              <ErrorMessage
+                                name="Provincia"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+
+                            {/* Select Localidad */}
+                            <div class="form-group">
+                              <LocalidadSelect
+                                className={
+                                  errors.Localidad ? " is-invalid" : ""
+                                }
+                                arrayOfData={this.state.localidades}
+                                onSelectChange={this._handleLocalidadChange}
+                                value = {this.state.localidadSeleccionada.Id_localidad}
+                                
+                              />
+                              <ErrorMessage
+                                name="Localidad"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+
                             {/*
                             <div className="form-group">
                               <label>

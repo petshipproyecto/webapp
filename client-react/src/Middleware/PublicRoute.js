@@ -1,14 +1,16 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const PublicRoute = ({ component: Component, user, ...rest }) => (
+const PublicRoute = ({ component: Component, user,isAdmin, ...rest }) => (
   <Route
     {...rest}
     render={(props) => (
       
       user.isEmpty === true 
       ? <Component {...props} /> 
-      : <Redirect to={{
+      : isAdmin ? <Redirect to={{
+        pathname:  '/Dashboard'
+      }}/> : <Redirect to={{
         pathname:  '/choosePet'
       }}/>
     )}   
