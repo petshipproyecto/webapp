@@ -261,16 +261,15 @@ class SignUp extends React.Component {
                           className="invalid-feedback"
                         />
                       </div>
-
+ 
                        {/* Select Provincia */}
-                       <div class="form-group">
+                    <div class="form-group">
                       
                        <ProvinciaSelect
                          className={errors.Provincia ? " is-invalid" : ""}
                          arrayOfData={this.state.Provincias}
                          name="Provincia"
-                         onSelectChange={this._handleChangeProvincia}
-                         
+                         onSelectChange={this._handleChangeProvincia}                         
                        />
                        <ErrorMessage
                          name="Provincia"
@@ -280,7 +279,7 @@ class SignUp extends React.Component {
                      </div>
 
                      {/* Select Localidad */}
-                     <div class="form-group">
+                    <div class="form-group">
                       
                      <LocalidadSelect
                        className={errors.Localidad ? " is-invalid" : ""}

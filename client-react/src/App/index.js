@@ -11,6 +11,10 @@ import Loader from './layout/Loader'
 import Aux from "../hoc/_Aux";
 import ScrollToTop from './layout/ScrollToTop';
 import routes from "../route";
+import axios from 'axios'
+import config from "./../config";
+const rutaApi = config.rutaApi;
+
 
 const AdminLayout = Loadable({
     loader: () => import('./layout/AdminLayout'),
@@ -18,11 +22,28 @@ const AdminLayout = Loadable({
 });
 
 class App extends Component {
-    render() {
-        //console.log("app props" + JSON.stringify(this.props))
+    state = {isAdmin: false};
+
+    isAdmin = ()=>{
+        
+    }
+    componentDidMount(){
+        axios.get(rutaApi + "usuario/" + this.props.userId)
+        .then((user)=>{
+            const isAdmin = user.data.Is_admin;
+            this.setState({isAdmin})
+            console.log('se repite  src/App/index.js')
+        });
+
+    }
+
+     render() {
+        //this.isAdmin();
+        console.log('algo')
+        
+       
         const menu = routes.map((route, index) => {
         if (route.path === '/ChoosePet'){
-            console.log('llega')
             return (route.component) ? (
                 <PrivateRoute                  
                     key={index}
@@ -31,6 +52,7 @@ class App extends Component {
                     name={route.name}
                     user={this.props.auth}
                     component={route.component}
+                    isAdmin={this.state.isAdmin}
                     />
             ) : (null);
 
@@ -43,7 +65,8 @@ class App extends Component {
                   exact={route.exact}
                   name={route.name}
                   user={this.props.auth}
-                  component={route.component}
+                  component={route.component}                  
+                  isAdmin={this.state.isAdmin}
                   />
           ) : (null);
         });
@@ -55,7 +78,7 @@ class App extends Component {
                         <Switch>
                             {menu}
                             
-                            <PrivateRoute path="/" component={AdminLayout}  user={this.props.auth}  />
+                            <PrivateRoute path="/" component={AdminLayout}  user={this.props.auth} isAdmin={this.state.isAdmin}  />
                         </Switch>
                     </Suspense>
                 </ScrollToTop>
@@ -69,7 +92,8 @@ const mapStateToProps = (state) => {
     //console.log("auth" + JSON.stringify(state.firebase.auth))
     return{ 
       authError: state.auth.authError,
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      userId: state.firebase.auth.uid,
     }
   }
   
