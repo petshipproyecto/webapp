@@ -43,10 +43,12 @@ console.log('deleteUsuario: ' + idBBDD + idFirebase)
 swal({
   title: "Eliminar",
   text: "Seguro desea eliminar?",
-  icon: "warning"
+  icon: "warning",
+  buttons: ["Cancelar", true],
 }).then(willDelete => {
   if (willDelete) {
-    axios.delete(rutaApi + "usuario/" + idFirebase)
+    axios.delete(rutaApi + "usuario/" + idFirebase).then(()=>{ window.location.reload()})
+  
   .then(()=>{
     console.log('workds')
   }).catch(e =>{console.log(e)}); 
@@ -237,7 +239,7 @@ class AdministrarUsuarios extends React.Component {
     let usersAux = [];
     for (let i=0; i < users.data.length; i++){
       
-      if (!users[i].data.Is_admin){
+      if (!users.data[i].Is_admin){
         userAux = generateRecord(users.data[i], this);
         usersAux.push(userAux)
       }

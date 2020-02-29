@@ -31,11 +31,12 @@ const deleteMascota = (idPerfil) => {
   swal({
     title: "Eliminar",
     text: "Seguro desea eliminar?",
-    icon: "warning"
+    icon: "warning",
+    buttons: ["Cancelar", true]
   })
   .then(willDelete => {
     if (willDelete) {
-      axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{console.log('borrado')}).catch(e =>{console.log(e)})
+      axios.delete(rutaApi + "perfil/" + idPerfil).then(()=>{window.location.reload()})
     }
   });
   
