@@ -18,7 +18,6 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 import swal from 'sweetalert';
 // Libreria de la tabla: react-boostrap-table-2
-import serviceAccount from "./petship-front-firebase";
 
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
