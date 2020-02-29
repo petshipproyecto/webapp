@@ -18,7 +18,6 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 import swal from 'sweetalert';
 // Libreria de la tabla: react-boostrap-table-2
-import serviceAccount from "./petship-front-firebase";
 
 import userProfile1 from "../../assets/images/user/avatar1.jpg";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
@@ -43,10 +42,12 @@ console.log('deleteUsuario: ' + idBBDD + idFirebase)
 swal({
   title: "Eliminar",
   text: "Seguro desea eliminar?",
-  icon: "warning"
+  icon: "warning",
+  buttons: ["Cancelar", true],
 }).then(willDelete => {
   if (willDelete) {
-    axios.delete(rutaApi + "usuario/" + idFirebase)
+    axios.delete(rutaApi + "usuario/" + idFirebase).then(()=>{ window.location.reload()})
+  
   .then(()=>{
     console.log('workds')
   }).catch(e =>{console.log(e)}); 
@@ -131,10 +132,11 @@ const generateRecord = (user,thiss) => {
       <div>
         {/* Boton mascotas del usuario */}
         <a class="Mascotas"  onClick={()=>{
-          
+          thiss.props.history.push('/AdministrarMascotas',{adminUser: user.Usr_cod});
+            /*
             console.log(user.Perfils.length)
             if (user.Perfils.length > 4){
-              console.log('hola')
+              console.log('hola test')
               swal({
                 title: "Error",
                 text: "Limite de Perfiles excedido",
@@ -143,8 +145,8 @@ const generateRecord = (user,thiss) => {
                 button: false
               })       
             } else {
-              thiss.props.history.push('/AdministrarMascotas',{adminUser: user.Usr_cod})
-            }
+              
+            }*/
         }}>
           <OverlayTrigger
             placement="left"
@@ -235,8 +237,12 @@ class AdministrarUsuarios extends React.Component {
     let userAux = {}
     let usersAux = [];
     for (let i=0; i < users.data.length; i++){
-      userAux = generateRecord(users.data[i], this);
-      usersAux.push(userAux)
+      
+      if (!users.data[i].Is_admin){
+        userAux = generateRecord(users.data[i], this);
+        usersAux.push(userAux)
+      }
+     
     }
     this.setState({usuarios:usersAux})
     //console.log(JSON.stringify(this.usuarios))

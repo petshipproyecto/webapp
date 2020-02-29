@@ -2,17 +2,28 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import config from '../../../../config';
-import navigation from '../../../../menu-items';
+import navigationUser from '../../../../menu-items'; 
+import navigationAdmin from '../../../../menu-items-admin'; 
 import DEMO from "../../../../store/constant";
 import Aux from "../../../../hoc/_Aux";
+import axios from 'axios'
+import { connect } from "react-redux";
+const rutaApi = config.rutaApi;
 
 class Breadcrumb extends Component {
     state = {
         main: [],
-        item: []
+        item: [],
+        isAdmin: false
     };
 
-    componentDidMount() {
+    async componentDidMount() {
+        console.log(JSON.stringify(this.props) + ' breadcrumb')
+        const user = await axios.get(rutaApi + 'usuario/' + this.props.userId);
+        const isAdmin = user.data.Is_admin;
+        this.setState({isAdmin})
+       
+        const navigation = isAdmin ? navigationAdmin : navigationUser;
         (navigation.items).map((item, index) => {
             if (item.type && item.type === 'group') {
                 this.getCollapse(item, index);
@@ -22,6 +33,7 @@ class Breadcrumb extends Component {
     };
 
     componentWillReceiveProps = () => {
+        const navigation = this.state.isAdmin ? navigationAdmin : navigationUser;
         (navigation.items).map((item, index) => {
             if (item.type && item.type === 'group') {
                 this.getCollapse(item);
@@ -100,4 +112,12 @@ class Breadcrumb extends Component {
     }
 }
 
-export default Breadcrumb;
+const mapStateToProps = state => {
+    //console.log("user profile" + JSON.stringify(state.firebase.auth.uid))
+    return {
+      userId: state.firebase.auth.uid,
+      authError: state.auth.authError
+    };
+  };
+  
+  export default connect(mapStateToProps)(Breadcrumb);

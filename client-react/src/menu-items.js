@@ -34,13 +34,13 @@ export default {
               icon: "feather icon-user",
               url: "/UserProfile"
             },
-            {
+          /*  {
               id: "verPerfilUsuario",
               title: "Ver  Usuario",
               type: "item",
               icon: "feather icon-user",
               url: "/VerUserProfile"
-            },
+            },*/
             {
               id: "perfilMascota",
               title: "Ver Perfil de Mascota",

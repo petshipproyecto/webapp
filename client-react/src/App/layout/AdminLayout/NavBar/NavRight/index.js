@@ -196,7 +196,8 @@ onPareja(info,targetProfile) {
           loading: false,
           usuario: response.data,
           imagen: response.data.Imagen,
-          idPerfilActivo: response.data.Id_perfil_activo
+          idPerfilActivo: response.data.Id_perfil_activo,
+          isAdmin: response.data.Is_admin
         });
         axios
           .get(rutaApi + "perfil/" + response.data.Id_perfil_activo)
@@ -255,10 +256,74 @@ onPareja(info,targetProfile) {
       
 
     }
+    if (this.state.isAdmin) return (
+      <Aux>
+      <ul className="navbar-nav ml-auto">
+      <li>
+            <Dropdown
+              alignRight={!this.props.rtlLayout}
+              className="drp-user"
 
+            >
+              <Dropdown.Toggle variant={"link"} id="dropdown-basic">
+                <i className="icon feather icon-settings" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu alignRight className="profile-notification">
+                <div className="pro-head">
+                  <img
+                    src={
+                       Img_mascota_anonima
+                    }
+                    className="img-radius"
+                    alt="User Profile"
+                  />
+                  <span>
+                   Administrador
+                  </span>
+                </div>
+                <ul className="pro-body">
+                  <li>
+                    <a href="/UserProfile" className="dropdown-item">
+                      <i className="feather icon-user" />
+                      Perfil de Usuario
+                    </a>
+                  </li>
+                  {/*
+                  <li> 
+                    <a href="/TablaMascotas" className="dropdown-item">
+                      <i className="feather icon-settings" />
+                      Administrar Mascotas
+                    </a>
+                  </li>
+                */}
+                  <li>
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={this.props.signOut}
+                    >
+                      <i className="feather icon-lock" />
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </ul>
+              </Dropdown.Menu>
+            </Dropdown>
+          </li>
+        
+      </ul>
+      <ChatList
+          listOpen={this.state.listOpen}
+          closed={() => {
+            this.setState({ listOpen: false });
+          }}
+        />
+      </Aux>
+    )
     return (
       <Aux>
-        <ul className="navbar-nav ml-auto">
+
+      <ul className="navbar-nav ml-auto">
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
             <a href="/NewPet">
               <OverlayTrigger
@@ -449,14 +514,16 @@ onPareja(info,targetProfile) {
             </Dropdown>
           </li>
         </ul>
-        <ChatList
+       
+            <ChatList
           listOpen={this.state.listOpen}
           closed={() => {
             this.setState({ listOpen: false });
           }}
         />
       </Aux>
-    );
+   
+        );
   }
 }
 

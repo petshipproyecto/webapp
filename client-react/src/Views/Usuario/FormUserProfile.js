@@ -239,7 +239,7 @@ class FormUserProfile extends React.Component {
                           <Form>
                             <div className="form-group">
                               <label>
-                                Nombre <span style={{ color: "red" }}>*</span>{" "}
+                                Nombre
                               </label>
                               <Field
                                 placeholder="Nombre"
@@ -260,7 +260,7 @@ class FormUserProfile extends React.Component {
                             </div>
                             <div className="form-group">
                               <label>
-                                Apellido <span style={{ color: "red" }}>*</span>{" "}
+                                Apellido 
                               </label>
                               <Field
                                 placeholder="Apellido"
@@ -282,6 +282,9 @@ class FormUserProfile extends React.Component {
 
                             {/* Select Provincia */}
                             <div class="form-group">
+                            <label>
+                                Provincia 
+                              </label>
                               <ProvinciaSelect
                                 className={
                                   errors.Provincia ? " is-invalid" : ""
@@ -301,6 +304,9 @@ class FormUserProfile extends React.Component {
 
                             {/* Select Localidad */}
                             <div class="form-group">
+                            <label>
+                                Localidad 
+                              </label>
                               <LocalidadSelect
                                 className={
                                   errors.Localidad ? " is-invalid" : ""

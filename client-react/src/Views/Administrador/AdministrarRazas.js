@@ -91,7 +91,8 @@ const deleteRaza = (idRaza) => {
   swal({
     title: "Eliminar",
     text: "Seguro desea eliminar?",
-    icon: "warning"
+    icon: "warning",    
+    buttons: ["Cancelar", true]
   })
   .then(willDelete => {
     if (willDelete) {
