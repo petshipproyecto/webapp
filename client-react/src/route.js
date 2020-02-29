@@ -7,10 +7,12 @@ const ComingSoon = React.lazy(() => import('./Views/Mantenimiento/ComingSoon'));
 const ChoosePet = React.lazy(() => import('./Views/Mascota/ChoosePet'));
 const LandingPage = React.lazy(() => import('./Views/LandingPage/LandingPage'));
 const FormNewPet = React.lazy(() => import('./Views/Mascota/FormNewPet'));
+const landing = React.lazy(() => import('./Views/LandingPage/LandingPage'));
 
 
 
 const route = [
+    { path: '/welcome', exact: true, name: 'welcome', component: landing },
     { path: '/signUp', exact: true, name: 'Signup', component: SignUp },
     { path: '/signIn', exact: true, name: 'Signin', component: Signin },
     { path: '/ChoosePet', exact: true, name: 'Signin', component: ChoosePet },
