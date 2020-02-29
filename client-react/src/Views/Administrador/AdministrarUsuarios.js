@@ -131,10 +131,11 @@ const generateRecord = (user,thiss) => {
       <div>
         {/* Boton mascotas del usuario */}
         <a class="Mascotas"  onClick={()=>{
-          
+          thiss.props.history.push('/AdministrarMascotas',{adminUser: user.Usr_cod});
+            /*
             console.log(user.Perfils.length)
             if (user.Perfils.length > 4){
-              console.log('hola')
+              console.log('hola test')
               swal({
                 title: "Error",
                 text: "Limite de Perfiles excedido",
@@ -143,8 +144,8 @@ const generateRecord = (user,thiss) => {
                 button: false
               })       
             } else {
-              thiss.props.history.push('/AdministrarMascotas',{adminUser: user.Usr_cod})
-            }
+              
+            }*/
         }}>
           <OverlayTrigger
             placement="left"

@@ -142,6 +142,7 @@ const columns = [
 
 //-------------------Datos de las Mascotas-------
 const generateMascota = (mascota,thiss) => { 
+
   console.log('mascota ' + JSON.stringify(mascota));
   return {
     fotoMascota: (
@@ -236,7 +237,8 @@ class AdministrarMascotas extends React.Component {
    let a = [];
 
     axios.get(rutaApi + "usuario/" + uID).then(response => {      
-      const perfiles =  response.data.Perfils; 
+      const perfiles =  response.data.Perfils;
+      this.setState({cantidadPerfiles: perfiles.length}) 
       for (let i=0; i <perfiles.length ; i++){
         a.push(generateMascota(perfiles[i], this));
       }     
@@ -288,8 +290,20 @@ class AdministrarMascotas extends React.Component {
                             type="button"
                             class="btn-rounded btn btn-primary"
                             onClick={() => {
+
+                              if (this.state.cantidadPerfiles > 4){
+                                console.log('hola test')
+                                swal({
+                                  title: "Error",
+                                  text: "Limite de Perfiles excedido",
+                                  icon: "error",
+                                  timer: 3000,
+                                  button: false
+                                })       
+                              } else {
                               
                               this.props.history.push('/NewPet',{adminUser: this.state.userId});
+                              }
 
                             }}
                           >
