@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, user, ...rest }) => (
             pathname: "/welcome"
           }}
         />
-      )
+      ) 
     }
   />
 );

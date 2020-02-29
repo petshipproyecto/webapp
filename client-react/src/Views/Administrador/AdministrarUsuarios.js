@@ -236,8 +236,12 @@ class AdministrarUsuarios extends React.Component {
     let userAux = {}
     let usersAux = [];
     for (let i=0; i < users.data.length; i++){
-      userAux = generateRecord(users.data[i], this);
-      usersAux.push(userAux)
+      
+      if (!users[i].data.Is_admin){
+        userAux = generateRecord(users.data[i], this);
+        usersAux.push(userAux)
+      }
+     
     }
     this.setState({usuarios:usersAux})
     //console.log(JSON.stringify(this.usuarios))
