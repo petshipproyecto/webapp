@@ -39,7 +39,7 @@ class Swipe extends React.Component {
 
   }
 
-  onBeforeSwipe = (swipe, direction, state, id) => {
+  onBeforeSwipe = (swipe, direction, state, id, handleRemove) => {
 
     console.log('direction', direction);
     console.log('direction', id);
@@ -52,6 +52,7 @@ class Swipe extends React.Component {
     }
 
     swipe();
+    handleRemove(id);
     console.log('state', state);
   }
 
