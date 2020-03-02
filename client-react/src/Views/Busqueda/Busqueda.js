@@ -99,7 +99,7 @@ class FormNewPet extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const razas = this.state.selectedOption ? [] : this.state.selectedOption;
+    const razas = this.state.selectedOption ?  this.state.selectedOption : [];
     console.log(razas)
     let auxRazas = [];
     for (let i = 0; i < razas.length; i++) {
