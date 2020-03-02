@@ -308,7 +308,7 @@ class AdminTipoMascota extends React.Component {
                             class="btn-rounded btn btn-primary"
                             onClick={this.onAgregar}
                           >
-                            <i class="feather icon-plus"></i>Tipo de Mascota
+                            <i class="feather icon-plus"></i>Tipo&nbsp;de&nbsp;Mascota
                           </button>
                           <Dialog
                             ref={component => {
