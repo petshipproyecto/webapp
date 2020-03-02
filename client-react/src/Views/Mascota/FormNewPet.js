@@ -158,7 +158,7 @@ class FormNewPet extends React.Component {
                 title: "Exito!",
                 text: "Se agrego correctamente la mascota",
                 icon: "success",
-                timer: 2000,
+                timer: 3000,
                 button: false
               });
               window.location.replace('/Dashboard')

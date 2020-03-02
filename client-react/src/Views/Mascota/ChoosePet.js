@@ -121,25 +121,25 @@ class ChoosePet extends React.Component {
                       <i class="feather icon-plus"></i>
                     </button>
                   </a>
-                  <p style={{ width: 350 }}>
-                    <center>Agregar Nueva Mascota</center>
+                  <p style={{ width: 100 }}>
+                    <center>Agregar Mascota</center>
                   </p>
                 </Col>
               </Row>
               <br></br>
               <Row style={{ alignItems: "center" }}>
-                {/*
+              
                 <div class="col text-center">
                   <a href="/TablaMascotas">
                     <button
                       type="button"
                       class="btn btn-outline-primary btn-lg"
                     >
-                      <i class="feather icon-settings"></i>Administrar Perfiles
+                      <i class="feather icon-settings"></i>Administrar Mascotas
                     </button>
                   </a>
                 </div>
-              */}
+            
               </Row>
             </Container>
           </div>

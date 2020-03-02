@@ -340,7 +340,7 @@ onPareja(info,targetProfile) {
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
-                overlay={<Tooltip>Filtrar Busqueda</Tooltip>}
+                overlay={<Tooltip>Filtrar Búsqueda</Tooltip>}
               >
                 <i className="icon feather icon-filter" />
               </OverlayTrigger>
