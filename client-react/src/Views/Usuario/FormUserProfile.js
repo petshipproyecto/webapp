@@ -121,7 +121,7 @@ class FormUserProfile extends React.Component {
       this.setState({
         localidadSeleccionada
       });
-      alert(JSON.stringify(localidadSeleccionada));
+      // alert(JSON.stringify(localidadSeleccionada));
      
   
     

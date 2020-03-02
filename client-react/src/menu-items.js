@@ -57,15 +57,13 @@ export default {
           url: "/Swipe",
           icon: "feather icon-heart-on"
         },
-        {
-          id: "favoritos",
-          title: "Favoritos",
-          type: "item",
-          icon: "feather icon-star-on",
-          url: "/GaleriaMascotas"
-        },
-
-        ,
+        // {
+        //   id: "favoritos",
+        //   title: "Favoritos",
+        //   type: "item",
+        //   icon: "feather icon-star-on",
+        //   url: "/GaleriaMascotas"
+        // },
         {
           id: "notificaciones",
           title: "Notificaciones",
