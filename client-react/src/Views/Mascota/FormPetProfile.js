@@ -151,10 +151,10 @@ class FormPetProfile extends React.Component {
               // handle success
               console.log(response);
               swal({
-                title: "Exito!",
-                text: "Los datos de la mascota se guardaron correctamentes",
+                title: "Éxito!",
+                text: "Los datos de la mascota se guardaron correctamente",
                 icon: "success",
-                timer: 2500,
+                timer: 3000,
                 button: false
               });
               window.location.replace('/Dashboard')
@@ -166,7 +166,7 @@ class FormPetProfile extends React.Component {
                 title: "Error!",
                 text: "Error al guardar los datos de la mascota",
                 icon: "error",
-                timer: 2500,
+                timer: 3000,
                 button: false
               });
             });

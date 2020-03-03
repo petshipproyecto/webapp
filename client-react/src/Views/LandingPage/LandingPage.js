@@ -55,7 +55,7 @@ class LandingPage extends React.Component {
                     }}
                     class="btn btn-lg btn-primary shadow-2 mb-4"
                   >
-                    <i class="fa fa-paw"></i>Registrate
+                    <i class="fa fa-paw"></i>Regístrate
                   </button>
                 </div>
               </div>

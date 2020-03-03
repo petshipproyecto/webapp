@@ -159,6 +159,22 @@ const generateRecord = (user,thiss) => {
             />
           </OverlayTrigger>
         </a>
+        &nbsp;
+        {/* Boton ver Usuario */}
+        <a class="Ver" onClick={()=>{}}>
+          <OverlayTrigger
+            placement="left"
+            delay={{ show: 250, hide: 400 }}
+            overlay={<Tooltip>Ver</Tooltip>}
+          >
+            <i
+              style={{ fontSize: 24, color: "#f47386" }}
+              className="fa fa-eye"
+            />
+          </OverlayTrigger>
+        </a>
+        {/* Boton ver usuario */}
+        &nbsp;
         {/* Boton mascotas del usuario */}
         &nbsp;
         {/* Boton editar usuario */}

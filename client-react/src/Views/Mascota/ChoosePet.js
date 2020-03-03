@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import avatar1 from "../../assets/images/user/avatarCat.jpg";
 import avatar2 from "../../assets/images/user/avatarDog.jpg";
 import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
@@ -24,7 +24,7 @@ class ChoosePet extends React.Component {
   state = {
     perfiles: [],
     loading: true,
-    cantidadDePerfiles:0
+    cantidadDePerfiles: 0
   };
 
   componentDidMount() {
@@ -33,7 +33,7 @@ class ChoosePet extends React.Component {
       .then(response => {
         this.setState({ perfiles: response.data.Perfils, loading: false });
         console.log("loader" + this.state);
-        this.setState({cantidadDePerfiles: response.data.Perfils.length })
+        this.setState({ cantidadDePerfiles: response.data.Perfils.length });
       })
       .catch(e => {
         this.setState({ perfiles: [], loading: false });
@@ -59,7 +59,7 @@ class ChoosePet extends React.Component {
         <div className="auth-wrapper aut-bg-img-new">
           <div class="content">
             <Container>
-            <center>
+              <center>
                 <Loader
                   type="Hearts"
                   color="#f47386"
@@ -67,7 +67,7 @@ class ChoosePet extends React.Component {
                   width={190}
                   timeout={3000} //3 secs
                 />
-                </center>
+              </center>
               <Row>
                 {this.state.perfiles.map(element => {
                   return (
@@ -98,37 +98,33 @@ class ChoosePet extends React.Component {
                   <br />
                   <br />
                   <br />
-                  <a onClick={
-                    ()=>{
-                      if (this.state.cantidadDePerfiles> 4){
-                        
+                  <a
+                    onClick={() => {
+                      if (this.state.cantidadDePerfiles > 4) {
                         swal({
                           title: "Error",
                           text: "Limite de Perfiles excedido",
                           icon: "error",
                           timer: 3000,
                           button: false
-                        })       
+                        });
                       } else {
-                        window.location.replace('/NewPet')
+                        window.location.replace("/NewPet");
                       }
-                    }
-                  }>
+                    }}
+                  >
                     <button
                       type="button"
                       class="btn-icon btn-rounded btn btn-primary  "
                     >
                       <i class="feather icon-plus"></i>
                     </button>
-                  </a>
-                  <p style={{ width: 100 }}>
                     <center>Agregar Mascota</center>
-                  </p>
+                  </a>
                 </Col>
               </Row>
               <br></br>
               <Row style={{ alignItems: "center" }}>
-              
                 <div class="col text-center">
                   <a href="/TablaMascotas">
                     <button
@@ -139,7 +135,6 @@ class ChoosePet extends React.Component {
                     </button>
                   </a>
                 </div>
-            
               </Row>
             </Container>
           </div>
@@ -158,7 +153,4 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChoosePet);
+export default connect(mapStateToProps, mapDispatchToProps)(ChoosePet);

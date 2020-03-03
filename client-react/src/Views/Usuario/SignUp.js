@@ -263,9 +263,11 @@ class SignUp extends React.Component {
                       </div>
  
                        {/* Select Provincia */}
+                 
                     <div class="form-group">
-                      
+                    <label style={{textAlign: "left",display: "block"}}>Provincia</label>
                        <ProvinciaSelect
+                      placeholder='Provincia'
                          className={errors.Provincia ? " is-invalid" : ""}
                          arrayOfData={this.state.Provincias}
                          name="Provincia"
@@ -279,9 +281,11 @@ class SignUp extends React.Component {
                      </div>
 
                      {/* Select Localidad */}
+                     
                     <div class="form-group">
-                      
+                    <label style={{textAlign: "left",display: "block"}}>Localidad</label>
                      <LocalidadSelect
+                     placeholder='Localidad'
                        className={errors.Localidad ? " is-invalid" : ""}
                        arrayOfData={this.state.localidades}
                        onSelectChange={this._handleLocalidadChange}

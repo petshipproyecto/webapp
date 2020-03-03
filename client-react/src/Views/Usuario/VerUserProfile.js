@@ -84,7 +84,7 @@ class VerUserProfile extends React.Component {
                           </div>
                           {/* Ubicacion */}
                           <div className="form-group">
-                            <label>Ubicacion</label>
+                            <label>Ubicación</label>
                             <Field
                               readOnly
                               placeholder="Ubicacion"

@@ -155,7 +155,7 @@ class FormNewPet extends React.Component {
               // this.setState({ mensaje: "exito" });
               // handle success
               swal({
-                title: "Exito!",
+                title: "Éxito!",
                 text: "Se agrego correctamente la mascota",
                 icon: "success",
                 timer: 3000,

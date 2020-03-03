@@ -161,10 +161,10 @@ class FormUserProfile extends React.Component {
               // handle success
               console.log(response);
               swal({
-                title: "Exito!",
+                title: "Éxito!",
                 text: "Los datos del usuario se guardaron correctamente",
                 icon: "success",
-                timer: 2000,
+                timer: 3000,
                 button: false
               });
             })
@@ -175,7 +175,7 @@ class FormUserProfile extends React.Component {
                 title: "Error!",
                 text: "Error al guardar los datos del usuario",
                 icon: "error",
-                timer: 2000,
+                timer: 3000,
                 button: false
               });
             });
@@ -358,10 +358,8 @@ class FormUserProfile extends React.Component {
                         </Col>
                       </Row>
                     </Card.Body>
-                  </Card>
-                  {/*
-                  <UpdatePassword></UpdatePassword>
-                */}
+                  </Card>  
+                  {/* <UpdatePassword></UpdatePassword> */}
                 </Col>
               </Row>
             </Aux>

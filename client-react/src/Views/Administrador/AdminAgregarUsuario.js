@@ -119,7 +119,7 @@ class AdminAgregarUsuario extends React.Component {
                 "Id_localidad": this.state.localidadSeleccionada.Id_localidad
               }).then(() => {
                 swal({
-                  title: "Exito!",
+                  title: "Éxito!",
                   text: "Los datos del usuario se guardaron correctamente",
                   icon: "success",
                   timer: 3000,
@@ -226,7 +226,7 @@ class AdminAgregarUsuario extends React.Component {
                           </div>
                           {/* Select Provincia */}
                           <div class="form-group">
-
+                          <label>Provincia</label>
                             <ProvinciaSelect
                               className={errors.Provincia ? " is-invalid" : ""}
                               arrayOfData={this.state.Provincias}
@@ -240,10 +240,9 @@ class AdminAgregarUsuario extends React.Component {
                               className="invalid-feedback"
                             />
                           </div>
-
                           {/* Select Localidad */}
                           <div class="form-group">
-
+                          <label>Localidad</label>
                             <LocalidadSelect
                               className={errors.Localidad ? " is-invalid" : ""}
                               arrayOfData={this.state.localidades}
