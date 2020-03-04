@@ -34,6 +34,14 @@ class MotionStack extends React.Component {
     };
   }
 
+  eliminateElement(id){
+    console.log('state antes' + JSON.stringify(this.state))
+    let myArray = this.state.data.filter(function( obj ) {
+      return obj.id !== id;
+  });
+  this.setState({data:myArray},()=>{console.log('state despues' + JSON.stringify(this.state))})
+  }
+
   componentDidMount() {
     window.addEventListener('touchmove', this.handleTouchMove);
     window.addEventListener('touchend', this.handleMouseUp);
@@ -93,7 +101,7 @@ class MotionStack extends React.Component {
   };
 
   handleTouchMove = e => {
-    e.preventDefault();
+    //e.preventDefault();
     if (this.el) {
       this.handleMouseMove(e.touches[0]);
     }
@@ -104,9 +112,12 @@ class MotionStack extends React.Component {
 
     if (this.props.onBeforeSwipe) {
       this.handleMouseUp();
-      this.props.onBeforeSwipe((_direction) => this.swipe(_direction || direction, id), direction, this.state,id)
+      this.props.onBeforeSwipe((_direction) => this.swipe(_direction || direction, id), direction, this.state,id, this.handleRemove)
+      
+      //this.eliminateElement(id);
     } else {
       this.swipe(direction, id)
+      
     }
   };
 
@@ -116,14 +127,25 @@ class MotionStack extends React.Component {
       swiped: true,
       swipedId: id
     });
+    console.log('eliminate')
+    this.eliminateElement(id);
   }
 
   accept = () => {
-    this.handleSwipe(1, this.state.data[0].id);
+   
+    if( this.state.data[0]){
+      this.handleSwipe(1, this.state.data[0].id);
+    console.log('accept')
+    }
+    
+
   };
 
   reject = () => {
+    if( this.state.data[0]){
     this.handleSwipe(-1, this.state.data[0].id);
+    console.log('reject')
+    }
   };
 
   handleRemove = id => {
@@ -248,7 +270,7 @@ class MotionStack extends React.Component {
           )}
         </div>
 
-        {renderButtons &&
+        {this.state.data.length !== 0  && renderButtons &&
           renderButtons({ accept: this.accept, reject: this.reject, preferenciaBusqueda: preferenciaBusqueda })}
       </Fragment>
     );

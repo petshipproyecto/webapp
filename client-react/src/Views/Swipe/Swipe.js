@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import MotionStack from "./swipeCard";
 import "react-motion-stack/build/motion-stack.css";
 import config from '../../config'
+import swal from 'sweetalert';
 const swipeUtilities = require('./swipeUtilities').default;
 var rutaApi = config.rutaApi
 
@@ -39,7 +40,7 @@ class Swipe extends React.Component {
 
   }
 
-  onBeforeSwipe = (swipe, direction, state, id) => {
+  onBeforeSwipe = (swipe, direction, state, id, handleRemove) => {
 
     console.log('direction', direction);
     console.log('direction', id);
@@ -52,11 +53,26 @@ class Swipe extends React.Component {
     }
 
     swipe();
+    handleRemove(id);
     console.log('state', state);
+    
   }
 
   onSwipeEnd = ({ data }) => {
-    // console.log("data", data);
+    console.log("onSwipeEnd");
+    console.log(data);
+   
+    if(!data.length){
+      swal({
+            title: "Atención!",
+             text: "No hay mascotas para mostrar",
+            icon: "error",
+             timer: 3000,
+             button: false
+           })
+         
+
+    }
   };
 
   async componentDidMount() {
@@ -71,7 +87,19 @@ class Swipe extends React.Component {
       swipeUtilities.getCardDetails(perfilActivo.data.Id_perfil_activo).then(aux => {
         //console.log('aux' + aux);
         this.setState({ aux: aux });
-        console.log(this.state + 'getCardDetails')
+        console.log(aux + 'getCardDetails')
+        if(aux.length === 0){
+          console.log('entra')
+          swal({
+            title: "Atención!",
+             text: "No hay mascotas para mostrar",
+            icon: "error",
+             timer: 3000,
+             button: false
+           })
+         
+
+        }
       });
 
     });
