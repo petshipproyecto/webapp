@@ -6,34 +6,34 @@ export default {
       type: "group",
       icon: "icon-navigation",
       children: [
-        {
-          id: "forms",
-          title: "Ver Perfiles",
-          type: "collapse",
-          icon: "fa fa-id-card-o",
-          children: [
-            {
-              id: "perfilUsuario",
-              title: "Ver Perfil de Usuario",
-              type: "item",
-              icon: "feather icon-user",
-              url: "/UserProfile"
-            } /*,
-            {
-              id: "verPerfilUsuario",
-              title: "Ver  Usuario",
-              type: "item",
-              icon: "feather icon-user",
-              url: "/VerUserProfile"
-            } */
-          ]
-        },
+        // {
+        //   id: "forms",
+        //   title: "Ver Perfiles",
+        //   type: "collapse",
+        //   icon: "fa fa-id-card-o",
+        //   children: [
+        //     {
+        //       id: "perfilUsuario",
+        //       title: "Ver Perfil de Usuario",
+        //       type: "item",
+        //       icon: "feather icon-user",
+        //       url: "/UserProfile"
+        //     } /*,
+        //     {
+        //       id: "verPerfilUsuario",
+        //       title: "Ver  Usuario",
+        //       type: "item",
+        //       icon: "feather icon-user",
+        //       url: "/VerUserProfile"
+        //     } */
+        //   ]
+        // },
         /*{
-            id: "buscarPareja",
-            title: "Buscar Pareja o Amigo",
+            id: "perfilUsuario",
+            title: "Ver Perfil de Admin.",
             type: "item",
-            url: "/Swipe",
-            icon: "feather icon-heart-on"
+            url: "/UserProfil",
+            icon: "feather icon-user"
           },
           {
             id: "favoritos",

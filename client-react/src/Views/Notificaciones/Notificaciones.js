@@ -41,9 +41,9 @@ const imagen = {
 
 
 //--------Color de los iconos-------------------------
-const colorEstrella = {color: "#f7bd0f"};
-const colorCalendario ={color:"red"}
-//----------------------------------------------------
+const colorEstrella = { color: "#f47386" };
+const colorCalendario = { color: "#f47386" }
+//---------------------------------------------
 
 
 //Constantes para la busqueda y el boton de borrar busqueda
@@ -252,36 +252,46 @@ class Notificaciones extends React.Component {
                                 </Badge>
                             </h3>
                         </center>
+                        <br/>
                         <Card.Text>
-                            <p className="pGaleria">
-                                <i class="fa fa-paw m-r-5"></i>
-                                <b>Raza:</b> {infoPerfil.Raza.Descripcion}
-                            </p>
-                            <p className="pGaleria">
-                                <i
-                                    style={colorCalendario}
-                                    class="fa fa-calendar m-r-5"
-                                ></i>
-                                <b>Edad:</b> {infoPerfil.Edad} años
-              </p>
-                            <p className="pGaleria">
-                                <i
-                                    style={colorEstrella}
-                                    class="fa fa-star m-r-5"
-                                ></i>
-                                <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
-                            </p>
+                                <p style={{fontSize:"16px"}}  className="pGaleria">
+                                    <i style={{color: "#f47386"}} class="fa fa-paw m-r-5"></i>
+                                    <b>Raza:</b> {infoPerfil.Raza.Descripcion}
+                                </p>
+                                <p style={{fontSize:"16px"}} className="pGaleria">
+                                    <i
+                                        style={colorCalendario}
+                                        class="fa fa-calendar m-r-5"
+                                    ></i>
+                                    <b>Edad:</b> {infoPerfil.Edad} años
+                  </p>
+                                <p style={{fontSize:"16px"}} className="pGaleria">
+                                    <i
+                                        style={colorEstrella}
+                                        class="fa fa-star m-r-5"
+                                    ></i>
+                                    <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
+                                </p>
 
-                            <p >
-                                <b style={{color: 'black'}}>Info del Dueño:</b>
-                                <p className="pGaleria">
-                                    <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
+                                <p >
+                                    <p style={{color: 'black',fontSize:"18px"}}className="pGaleria">Información de Contacto</p>
+                                   
+                                    <p style={{fontSize:"16px"}}className="pGaleria">
+                                    <i
+                                        style={colorEstrella}
+                                        class="fa fa-user"
+                                    ></i>
+                                        <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
+                                    </p>
+                                    <p style={{fontSize:"16px"}} className="pGaleria">
+                                    <i
+                                        style={colorEstrella}
+                                        class="fa fa-envelope "
+                                    ></i>
+                                        <b>Email:</b> {}
+                                    </p>
                                 </p>
-                                <p className="pGaleria">
-                                    <b>Email:</b> {user.email}
-                                </p>
-                            </p>
-                        </Card.Text>
+                            </Card.Text>
                     </Card.Body>
                 </Card>
             </div>

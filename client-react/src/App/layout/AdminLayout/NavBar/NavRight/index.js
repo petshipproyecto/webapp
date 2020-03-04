@@ -432,18 +432,11 @@ onPareja(info,targetProfile) {
               <Dropdown.Menu alignRight className="notification">
                 <div className="noti-head">
                   <h6 className="d-inline-block m-b-0">Notificaciones</h6>
-                  <div className="float-right">
-                    <a href={DEMO.BLANK_LINK} className="m-r-10">
-                      marcar como leido
-                    </a> 
-                    <a href={DEMO.BLANK_LINK}>Eliminar Todos</a>
-                  </div>
                 </div>
                 <ul className="noti-body">
                   {this.state.notificaciones.map(notificacion =>{
                       return (<li style={{padding: 0}} onClick={ function(){ console.log('click notificacion'); setVisto(notificacion.Id_notificacion)}}><Notificacion info={notificacion} /></li>)
                   }) }
-                  
                 </ul>
                 <div className="noti-footer">
                   <a href="/Notificaciones">ver todo</a>

@@ -104,7 +104,7 @@ class TablaMascotas extends React.Component {
                       <th>Nombre</th>
                       <th>Tipo de Animal</th>
                       <th>Raza</th>
-                      <th>Genero</th>
+                      <th>Género</th>
                       <th>Edad</th>
                       <th>Acciones</th>
                     </tr>
