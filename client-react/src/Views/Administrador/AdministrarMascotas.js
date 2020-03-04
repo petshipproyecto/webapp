@@ -259,7 +259,7 @@ class AdministrarMascotas extends React.Component {
           <Col>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Administrar Mascotas</Card.Title>
+                <Card.Title as="h5">Administrar Mascotas de ...... </Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Tool para la tabla */}

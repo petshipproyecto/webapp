@@ -10,8 +10,8 @@ import firebase from '../../../../../configs/fbConfigs'
 
 
 //--------Color de los iconos-------------------------
-const colorEstrella = { color: "#f7bd0f" };
-const colorCalendario = { color: "red" }
+const colorEstrella = { color: "#f47386" };
+const colorCalendario = { color: "#f47386" }
 //----------------------------------------------------
 
 const imagen = {
@@ -48,19 +48,20 @@ class Notificacion extends React.Component {
                                     </Badge>
                                 </h3>
                             </center>
+                            <br/>
                             <Card.Text>
-                                <p className="pGaleria">
-                                    <i class="fa fa-paw m-r-5"></i>
+                                <p style={{fontSize:"16px"}}  className="pGaleria">
+                                    <i style={{color: "#f47386"}} class="fa fa-paw m-r-5"></i>
                                     <b>Raza:</b> {infoPerfil.Raza.Descripcion}
                                 </p>
-                                <p className="pGaleria">
+                                <p style={{fontSize:"16px"}} className="pGaleria">
                                     <i
                                         style={colorCalendario}
                                         class="fa fa-calendar m-r-5"
                                     ></i>
                                     <b>Edad:</b> {infoPerfil.Edad} años
                   </p>
-                                <p className="pGaleria">
+                                <p style={{fontSize:"16px"}} className="pGaleria">
                                     <i
                                         style={colorEstrella}
                                         class="fa fa-star m-r-5"
@@ -69,12 +70,21 @@ class Notificacion extends React.Component {
                                 </p>
 
                                 <p >
-                                    <b style={{color: 'black'}}>Info del Dueño:</b>
-                                    <p className="pGaleria">
+                                    <p style={{color: 'black',fontSize:"18px"}}className="pGaleria">Información de Contacto</p>
+                                   
+                                    <p style={{fontSize:"16px"}}className="pGaleria">
+                                    <i
+                                        style={colorEstrella}
+                                        class="fa fa-user"
+                                    ></i>
                                         <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
                                     </p>
-                                    <p className="pGaleria">
-                                        <b>Email:</b> {user.email}
+                                    <p style={{fontSize:"16px"}} className="pGaleria">
+                                    <i
+                                        style={colorEstrella}
+                                        class="fa fa-envelope "
+                                    ></i>
+                                        <b>Email:</b> {}
                                     </p>
                                 </p>
                             </Card.Text>

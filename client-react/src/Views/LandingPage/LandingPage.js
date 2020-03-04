@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar, Nav, Button ,Form} from "react-bootstrap";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import "./../../assets/scss/style.scss";
 import Aux from "../../hoc/_Aux";
 import { connect } from "react-redux";
 import "./../../assets/scss/partials/theme-elements/landingPage.scss";
-
+import logoP from "./../../assets/images/logoP.png";
+import nombreP from "./../../assets/images/nombreP.png";
 
 class LandingPage extends React.Component {
   render() {
@@ -25,25 +26,36 @@ class LandingPage extends React.Component {
             <Nav.Link href="#pricing"></Nav.Link>
           </Nav>
           <Form inline>
-            <Button onClick={() => {
-                              this.props.history.replace("/signIn");
-                            }} className="btn btn-primary">Iniciar Sesión</Button>
+            <Button
+              onClick={() => {
+                this.props.history.replace("/signIn");
+              }}
+              className="btn btn-primary"
+            >
+              Iniciar Sesión
+            </Button>
           </Form>
         </Navbar>
         <div class="wrapper">
           <div class="container">
             <div class="row">
               <div class="col-lg-12">
-                <div id="content">
-                  <h1>Petship!!!</h1>
+                <div style={{ paddingTop: 80 }} id="content">
                   <h3>
-                    Queres encontrar una pareja o un amigo para tu mascota
+                    <img style={{ height: 200 }} src={logoP} />
+                  </h3>
+                  <img style={{ height: 100 }} src={nombreP} />
+                  <h3>
+                    Querés encontrar una pareja o un amigo para tu mascota?
                   </h3>
                   <hr />
-                  <button onClick={() => {
-                              this.props.history.replace("/signUp");
-                            }} class="btn btn-lg btn-primary shadow-2 mb-4">
-                    <i class="fa fa-paw"></i>Registrate
+                  <button
+                    onClick={() => {
+                      this.props.history.replace("/signUp");
+                    }}
+                    class="btn btn-lg btn-primary shadow-2 mb-4"
+                  >
+                    <i class="fa fa-paw"></i>Regístrate
                   </button>
                 </div>
               </div>
@@ -61,5 +73,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default connect(
-)(LandingPage);
+export default connect()(LandingPage);

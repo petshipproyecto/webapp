@@ -87,14 +87,13 @@ class FormNewPet extends React.Component {
   };
   handleChangeSlider = value => {
     this.setState({ defaultDistanciaMax: parseInt(value) });
-    console.log( typeof value); //eslint-disable-line
-    console.log(JSON.stringify(this.state))
+    console.log(typeof value); //eslint-disable-line
+    console.log(JSON.stringify(this.state));
   };
   handleChangeRange = value => {
-    this.setState({ defaultEdad: [parseInt(value[0]),parseInt(value[1])] });
+    this.setState({ defaultEdad: [parseInt(value[0]), parseInt(value[1])] });
     console.log(value);
-    console.log(JSON.stringify(this.state))
-    
+    console.log(JSON.stringify(this.state));
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -104,79 +103,75 @@ class FormNewPet extends React.Component {
     let auxRazas = [];
     for (let i = 0; i < razas.length; i++) {
       auxRazas.push(razas[i].value);
-      console.log(razas[i].value)
+      console.log(razas[i].value);
     }
 
-    if (!(this.state.interesMacho || this.state.interesHembra)){
-
+    if (!(this.state.interesMacho || this.state.interesHembra)) {
       swal({
         title: "Error!",
         text: "Ingrese preferencia de género",
         icon: "error",
-        timer: 4000,
+        timer: 3000,
         button: false
       });
+    } else {
+      const idPreferencia =
+        this.state.opcionPreferencia === 1
+          ? this.state.PreferenciaPareja.Id_preferencia
+          : this.state.PreferenciaAmistad.Id_preferencia;
+      let payload = {
+        Id_preferencia: idPreferencia,
+        Interes_macho: this.state.interesMacho,
+        Interes_hembra: this.state.interesHembra,
+        Edad_min: this.state.defaultEdad[0],
+        Edad_max: this.state.defaultEdad[1],
+        Distancia_max: this.state.defaultDistanciaMax,
+        Razas: auxRazas
+      };
 
-    } else
-    {
+      console.log(this.state.opcionPreferencia);
 
-    
+      const urlPerfil = rutaApi + "perfil/" + this.state.Perfil_activo;
+      const payloadPerfil = {
+        Interes_pareja: this.state.opcionPreferencia == 1 ? true : false,
+        Interes_amistad: this.state.opcionPreferencia != 1 ? true : false
+      };
+      axios
+        .put(urlPerfil, payloadPerfil)
+        .then(console.log("Se modificó la preferencia de busqueda"))
+        .catch();
 
-    const idPreferencia =
-      this.state.opcionPreferencia === 1
-        ? this.state.PreferenciaPareja.Id_preferencia
-        : this.state.PreferenciaAmistad.Id_preferencia;
-    let payload = { 
-      Id_preferencia: idPreferencia,
-      Interes_macho: this.state.interesMacho,
-      Interes_hembra: this.state.interesHembra,
-      Edad_min: this.state.defaultEdad[0],
-      Edad_max: this.state.defaultEdad[1],
-      Distancia_max: this.state.defaultDistanciaMax,
-      Razas: auxRazas
-    };
-
-    console.log(this.state.opcionPreferencia)
-
-    const urlPerfil = rutaApi + 'perfil/' + this.state.Perfil_activo;
-    const payloadPerfil = {
-      Interes_pareja: this.state.opcionPreferencia == 1 ? true : false,
-      Interes_amistad: this.state.opcionPreferencia != 1 ? true : false
+      axios
+        .put(rutaApi + "preferencia/" + idPreferencia, payload)
+        .then(function(response) {
+          console.log(response);
+          swal({
+            title: "Éxito!",
+            text: "Se registró correctamente la preferencia",
+            icon: "success",
+            timer: 3000,
+            button: false
+          });
+        })
+        .catch(function(error) {
+          swal({
+            title: "Error!",
+            text: "Se registró correctamente su preferencia",
+            icon: "error",
+            timer: 3000,
+            button: false
+          });
+          console.log(error);
+        });
+      console.log(payload);
     }
-    axios.put(urlPerfil,payloadPerfil).then(console.log('Se modificó la preferencia de busqueda')).catch()
-    
-
-    axios
-      .put(rutaApi + "preferencia/" + idPreferencia, payload)
-      .then(function(response) {
-        console.log(response);
-        swal({
-          title: "Exito!",
-          text: "Se registró correctamente la preferencia",
-          icon: "success",
-          timer: 2000,
-          button: false
-        });
-      })
-      .catch(function(error) {
-        swal({
-          title: "Error!",
-          text: "Se registró correctamente su preferencia",
-          icon: "error",
-          timer: 3000,
-          button: false
-        });
-        console.log(error);
-      });
-    console.log(payload);
-  }
   };
 
   handleChangePreferencia = e => {
     console.log(this.state);
     console.log(this.state.PreferenciaPareja.Edad_min);
 
-    let opcion = e.target.value
+    let opcion = e.target.value;
     let edadMin =
       opcion === "1"
         ? this.state.PreferenciaPareja.Edad_min
@@ -228,7 +223,7 @@ class FormNewPet extends React.Component {
                 label: razas[i].Descripcion
               });
             }
-            
+
             console.log("Razas: " + JSON.stringify(razas));
             razas = this.state.PreferenciaPareja.Razas;
             for (let i = 0; i < razas.length; i++) {
@@ -237,8 +232,8 @@ class FormNewPet extends React.Component {
                 label: razas[i].Descripcion
               });
             }
-            
-            console.log('component did mount' + JSON.stringify(aux2));
+
+            console.log("component did mount" + JSON.stringify(aux2));
             this.setState({
               selectedOption: aux2,
               razasAmistad: aux,
@@ -253,10 +248,7 @@ class FormNewPet extends React.Component {
             });
 
             axios
-              .get(
-                rutaApi +"animal/" +
-                  r.data.Perfil_activo.Raza.Id_animal
-              )
+              .get(rutaApi + "animal/" + r.data.Perfil_activo.Raza.Id_animal)
               .then(r => {
                 console.log(r.data);
 
@@ -286,16 +278,15 @@ class FormNewPet extends React.Component {
   handleChange = selectedOption => {
     this.setState({ selectedOption });
 
-    
     if (parseInt(this.state.opcionPreferencia) === 1) {
-      this.setState({razasPareja: selectedOption})
-      console.log('handleChange' + ' if')
+      this.setState({ razasPareja: selectedOption });
+      console.log("handleChange" + " if");
     } else {
-      this.setState({razasAmistad: selectedOption})
-      console.log('handleChange' + ' else')
+      this.setState({ razasAmistad: selectedOption });
+      console.log("handleChange" + " else");
     }
     console.log(this.state);
-    console.log('Option selected:', selectedOption);
+    console.log("Option selected:", selectedOption);
   };
   //------Para el select multiple---------------
   render() {
@@ -318,7 +309,6 @@ class FormNewPet extends React.Component {
                         <div>
                           <h6>Buscar:</h6>
                         </div>
-                        
                       </div>
                       <hr></hr>
                       {opcionesPreferencias.map(choice => {
@@ -350,7 +340,6 @@ class FormNewPet extends React.Component {
                         <div>
                           <h6>Mostrar Genero:</h6>
                         </div>
-                        
                       </div>
                       <hr></hr>
                       <fieldset>
@@ -499,6 +488,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(FormNewPet);
+export default connect(mapStateToProps)(FormNewPet);

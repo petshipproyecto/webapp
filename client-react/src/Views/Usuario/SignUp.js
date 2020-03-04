@@ -171,7 +171,7 @@ class SignUp extends React.Component {
                       <div className="mb-4">
                         <i className="feather icon-user-plus auth-icon" />
                       </div>
-                      <h3 className="mb-4">Registrarse con</h3>
+                      {/* <h3 className="mb-4">Registrarse con</h3>
                       <div className="form-group">
                         <SocialIcon
                           network="facebook"
@@ -184,7 +184,7 @@ class SignUp extends React.Component {
                           url="http://google.com"
                           style={{ height: 32, width: 32 }}
                         />
-                      </div>
+                      </div> */}
                       <h7>
                         Todos los campos son obligatorios
                         <span style={{ color: "red" }}> *</span>
@@ -263,9 +263,11 @@ class SignUp extends React.Component {
                       </div>
  
                        {/* Select Provincia */}
+                 
                     <div class="form-group">
-                      
+                    <label style={{textAlign: "left",display: "block"}}>Provincia</label>
                        <ProvinciaSelect
+                      placeholder='Provincia'
                          className={errors.Provincia ? " is-invalid" : ""}
                          arrayOfData={this.state.Provincias}
                          name="Provincia"
@@ -279,9 +281,11 @@ class SignUp extends React.Component {
                      </div>
 
                      {/* Select Localidad */}
+                     
                     <div class="form-group">
-                      
+                    <label style={{textAlign: "left",display: "block"}}>Localidad</label>
                      <LocalidadSelect
+                     placeholder='Localidad'
                        className={errors.Localidad ? " is-invalid" : ""}
                        arrayOfData={this.state.localidades}
                        onSelectChange={this._handleLocalidadChange}

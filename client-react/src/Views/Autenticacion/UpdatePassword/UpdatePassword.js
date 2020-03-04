@@ -36,7 +36,7 @@ class UpdatePassword extends React.Component {
               [Yup1.ref("password"), null],
               "Las contraseñas deben ser iguales"
             )
-            .required("La confirmacion de la contraseña es obligatoria")
+            .required("La confirmación de la contraseña es obligatoria")
         })}
         render={({ errors, status, touched, setFieldValue, handleSubmit }) => (
           <Form1 onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ class UpdatePassword extends React.Component {
                 <Row>
                   <Col md={12}>
                   <div className="form-group">
-                              <label>Contraseña</label>
+                              <label>Nueva Contraseña</label>
                       <Field1
                         name="password"
                         type="password"

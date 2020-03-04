@@ -21,35 +21,35 @@ export default {
           classes: "nav-item",
           icon: "feather icon-plus-circle"
         },
-        {
-          id: "forms",
-          title: "Ver Perfiles",
-          type: "collapse",
-          icon: "fa fa-id-card-o",
-          children: [
-            {
-              id: "perfilUsuario",
-              title: "Ver Perfil de Usuario",
-              type: "item",
-              icon: "feather icon-user",
-              url: "/UserProfile"
-            },
-          /*  {
-              id: "verPerfilUsuario",
-              title: "Ver  Usuario",
-              type: "item",
-              icon: "feather icon-user",
-              url: "/VerUserProfile"
-            },*/
-            {
-              id: "perfilMascota",
-              title: "Ver Perfil de Mascota",
-              type: "item",
-              icon: "feather icon-github",
-              url: "/PetProfile"
-            }
-          ]
-        },
+        // {
+        //   id: "forms",
+        //   title: "Ver Perfiles",
+        //   type: "collapse",
+        //   icon: "fa fa-id-card-o",
+        //   children: [
+        //     {
+        //       id: "perfilUsuario",
+        //       title: "Ver Perfil de Usuario",
+        //       type: "item",
+        //       icon: "feather icon-user",
+        //       url: "/UserProfile"
+        //     },
+        //   /*  {
+        //       id: "verPerfilUsuario",
+        //       title: "Ver  Usuario",
+        //       type: "item",
+        //       icon: "feather icon-user",
+        //       url: "/VerUserProfile"
+        //     },*/
+        //     {
+        //       id: "perfilMascota",
+        //       title: "Ver Perfil de Mascota",
+        //       type: "item",
+        //       icon: "feather icon-github",
+        //       url: "/PetProfile"
+        //     }
+        //   ]
+        // },
         {
           id: "buscarPareja",
           title: "Buscar Pareja o Amigo",
@@ -57,15 +57,13 @@ export default {
           url: "/Swipe",
           icon: "feather icon-heart-on"
         },
-        {
-          id: "favoritos",
-          title: "Favoritos",
-          type: "item",
-          icon: "feather icon-star-on",
-          url: "/GaleriaMascotas"
-        },
-
-        ,
+        // {
+        //   id: "favoritos",
+        //   title: "Favoritos",
+        //   type: "item",
+        //   icon: "feather icon-star-on",
+        //   url: "/GaleriaMascotas"
+        // },
         {
           id: "notificaciones",
           title: "Notificaciones",

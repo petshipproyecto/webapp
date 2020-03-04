@@ -29,7 +29,7 @@ class ResetPassword extends React.Component {
     if (emailAddress){
       auth.sendPasswordResetEmail(emailAddress).then(function() {
         swal({
-          title: "Exito!",
+          title: "Éxito!",
           text: "Mail para recuperar contraseña enviado a " + emailAddress,
           icon: "success",
           timer: 2000,
