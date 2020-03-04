@@ -270,7 +270,7 @@ class MotionStack extends React.Component {
           )}
         </div>
 
-        {renderButtons &&
+        {this.state.data.length !== 0  && renderButtons &&
           renderButtons({ accept: this.accept, reject: this.reject, preferenciaBusqueda: preferenciaBusqueda })}
       </Fragment>
     );
