@@ -239,7 +239,7 @@ class AdministrarMascotas extends React.Component {
 
     axios.get(rutaApi + "usuario/" + uID).then(response => {      
       const perfiles =  response.data.Perfils;
-      this.setState({cantidadPerfiles: perfiles.length}) 
+      this.setState({apellido:response.data.Apellido, nombre:response.data.Nombre , cantidadPerfiles: perfiles.length}) 
       for (let i=0; i <perfiles.length ; i++){
         a.push(generateMascota(perfiles[i], this));
       }     
@@ -259,7 +259,7 @@ class AdministrarMascotas extends React.Component {
           <Col>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Administrar Mascotas de ...... </Card.Title>
+                <Card.Title as="h5">Administrar Mascotas de {this.state.apellido}&nbsp;{this.state.nombre}</Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Tool para la tabla */}

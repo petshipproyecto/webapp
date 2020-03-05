@@ -253,13 +253,13 @@ class AdministrarRazas extends React.Component {
     */
    const tipoMascota = this.props.history.location.state ? this.props.history.location.state.tipoMascota : null;
    this.setState({tipoMascota})
-
+   
    axios.get(rutaApi + 'animal/'+tipoMascota).then((animales)=>{
       let tipoMascotas = [];
       for(let i=0; i < animales.data.Razas.length; i++){
         tipoMascotas.push(this.generateRecord(animales.data.Razas[i], this));
       }
-    this.setState({tipoMascotas})
+    this.setState({animal:animales.data.Descripcion, tipoMascotas})
     })
   
   }
@@ -271,7 +271,7 @@ class AdministrarRazas extends React.Component {
           <Col>
             <Card>
               <Card.Header>
-                <Card.Title as="h5">Administrar razas de.....</Card.Title>
+                <Card.Title as="h5">Administrar razas de {this.state.animal} </Card.Title>
               </Card.Header>
               <Card.Body>
                 {/* Tool para la tabla */}
