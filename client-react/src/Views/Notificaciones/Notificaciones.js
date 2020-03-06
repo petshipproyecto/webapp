@@ -247,7 +247,7 @@ class Notificaciones extends React.Component {
                     <Card.Body>
                         <center>
                             <h3>
-                                <Badge className="badgeGaleria" pill variant="secondary">
+                                <Badge  style={{backgroundColor: '#f47386'}}  className="badgeGaleria" pill variant="secondary">
                                     {infoPerfil.Nombre}
                                 </Badge>
                             </h3>
@@ -288,7 +288,7 @@ class Notificaciones extends React.Component {
                                         style={colorEstrella}
                                         class="fa fa-envelope "
                                     ></i>
-                                        <b>Email:</b> {}
+                                        <b>Email:</b>
                                     </p>
                                 </p>
                             </Card.Text>

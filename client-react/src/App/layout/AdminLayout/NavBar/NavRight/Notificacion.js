@@ -43,7 +43,7 @@ class Notificacion extends React.Component {
                         <Card.Body>
                             <center>
                                 <h3>
-                                    <Badge className="badgeGaleria" pill variant="secondary">
+                                    <Badge style={{backgroundColor: '#f47386'}} className="badgeGaleria" pill variant="primary">
                                         {infoPerfil.Nombre}
                                     </Badge>
                                 </h3>

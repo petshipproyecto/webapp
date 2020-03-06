@@ -36,7 +36,7 @@ const swipeUtilities = {
                   <Card.Text>
                     <p className="pGaleria">
                       <i class="fa fa-paw m-r-5"></i>
-                      <b>Raza:</b> {response.data[i].Raza.Animal.Descripcion}
+                      <b>Raza:</b> {response.data[i].Raza.Descripcion}
                     </p>
                     <p className="pGaleria">
                       <i class="fa fa-adjust m-r-5"></i>

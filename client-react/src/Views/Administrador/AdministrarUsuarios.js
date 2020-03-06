@@ -161,7 +161,7 @@ const generateRecord = (user,thiss) => {
         </a>
         &nbsp;
         {/* Boton ver Usuario */}
-        <a class="Ver" onClick={()=>{}}>
+        <a class="Ver" onClick={()=>{thiss.props.history.push('/UserProfile',{adminUser: user.Usr_cod})}}>
           <OverlayTrigger
             placement="left"
             delay={{ show: 250, hide: 400 }}

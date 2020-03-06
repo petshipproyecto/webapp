@@ -225,13 +225,13 @@ class AdminTipoMascota extends React.Component {
   //-------------- Modal de agregar nuevo tipo de mascota--------
 
   //-------------- Modal de editar tipo de mascota--------
-  onEditar(idAnimal) {
+  onEditar(idAnimal,Descripcion) {
     this.dialog.show({
       title: "Editar Tipo de Mascota",
       body: "Ingrese el nombre del tipo de mascota:",
       prompt: Dialog.TextPrompt({
-        placeholder: "Nombre del tipo de mascota",
-        initialValue: "",
+        placeholder: Descripcion,
+        initialValue: Descripcion,
         required: true
       }),
       actions: [Dialog.CancelAction(), Dialog.OKAction((dialog) =>{

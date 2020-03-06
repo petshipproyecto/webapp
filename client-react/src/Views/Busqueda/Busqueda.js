@@ -395,7 +395,7 @@ class FormNewPet extends React.Component {
                         onChange={this.handleChange}
                         options={options}
                         isMulti={true}
-                        placeholder="Seleccionar razas"
+                        placeholder="Todas las razas"
                       />
                       <br />
                       <br />
