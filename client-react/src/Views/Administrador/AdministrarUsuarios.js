@@ -19,7 +19,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import swal from 'sweetalert';
 // Libreria de la tabla: react-boostrap-table-2
 
-import userProfile1 from "../../assets/images/user/avatar1.jpg";
+import userProfile1 from "../../assets/images/user/usuario_anonimo.png";
 import userProfile2 from "../../assets/images/user/avatar2.jpg";
 
 //-------Constantes para la busqueda en la tabla------

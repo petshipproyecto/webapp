@@ -20,10 +20,7 @@ import Notificacion from './Notificacion'
 import "../../../../../assets/scss/partials/theme-elements/_tooltip.scss";
 
 import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
-import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
-import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
-import Avatar5 from "../../../../../assets/images/user/avatarDog.jpg";
-import Avatar6 from "../../../../../assets/images/user/avatarDog1.jpg";
+
 //-----------Estilo de animacion para las notificaciones--------------
 import "../../../../../assets/scss/partials/theme-elements/animacion.scss";
 

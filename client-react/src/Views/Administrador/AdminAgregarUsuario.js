@@ -12,7 +12,7 @@ import ProvinciaSelect from './Select/selectProvincia'
 import LocalidadSelect from './Select/selectLocalidad'
 import swal from "sweetalert";
 
-import Avatar1 from "../../assets/images/user/avatar1.jpg";
+import Avatar1 from "../../assets/images/user/usuario_anonimo.png";
 
 const rutaApi = config.rutaApi;
 
