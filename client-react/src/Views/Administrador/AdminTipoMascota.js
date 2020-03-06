@@ -154,7 +154,7 @@ class AdminTipoMascota extends React.Component {
           {/* Boton de editar tipo de mascota*/}
           <a
             class="Edit"
-            onClick={()=>{this.onEditar(tipoMascota.Id_animal)}}
+            onClick={()=>{this.onEditar(tipoMascota.Id_animal,tipoMascota.Descripcion)}}
             style={{ cursor: "pointer" }}
           >
             <OverlayTrigger
