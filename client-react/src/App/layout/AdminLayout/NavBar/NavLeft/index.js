@@ -2,14 +2,38 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import windowSize from "react-window-size";
-
+import axios from "axios";
 import NavSearch from "./NavSearch";
 import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions/actions";
+import Img_usuario_anonima from "../../../../../assets/images/user/usuario_anonimo.png";
+import config from "../../../../../config";
+import { Route, Redirect } from "react-router-dom";
 
-
+var rutaApi = config.rutaApi;
 class NavLeft extends Component {
+  state = {
+    usuario: {
+      Nombre: "",
+      Apellido: "",
+      Imagen: ""
+    },
+  };
+
+  componentDidMount() {
+
+    axios
+      .get(rutaApi + "usuario/" + this.props.userId)
+      .then(response => {
+        this.setState({
+          Nombre: response.data.Nombre,
+        Apellido: response.data.Apellido,
+        Imagen: response.data.Imagen
+        });  
+  })};  
+   
+  
   render() {
     // let iconFullScreen = ['feather'];
     // iconFullScreen = (this.props.isFullScreen) ? [...iconFullScreen, 'icon-minimize'] : [...iconFullScreen, 'icon-maximize'];
@@ -93,6 +117,21 @@ class NavLeft extends Component {
           {/* <li className="nav-item">
             <NavSearch />
           </li> */}
+          <li className="nav-item">
+          <img
+                    src={
+                      this.state.Imagen
+                        ? this.state.Imagen
+                        : Img_usuario_anonima
+                    }
+                    className="img-radius"
+                    alt="User Profile"
+                  />&nbsp;&nbsp;
+                 <span style={{fontWeight: "bold"}} >
+                
+                 {this.state.Apellido}&nbsp;{this.state.Nombre}
+                  </span>
+                  </li>
         </ul>
       </Aux>
     );
@@ -102,7 +141,9 @@ class NavLeft extends Component {
 const mapStateToProps = state => {
   return {
     isFullScreen: state.reducer.isFullScreen,
-    rtlLayout: state.reducer.rtlLayout
+    rtlLayout: state.reducer.rtlLayout,
+    userId: state.firebase.auth.uid,
+    authError: state.auth.authError
   };
 };
 

@@ -9,6 +9,7 @@ import axios from "axios";
 import config from "../../../../../config";
 import Loader from "react-loader-spinner";
 import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png";
+import Img_usuario_anonimo from "../../../../../assets/images/user/usuario_anonimo.png";
 import { Route, Redirect } from "react-router-dom";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
@@ -269,7 +270,7 @@ onPareja(info,targetProfile) {
                 <div className="pro-head">
                   <img
                     src={
-                       Img_mascota_anonima
+                       Img_usuario_anonimo
                     }
                     className="img-radius"
                     alt="User Profile"
@@ -448,7 +449,24 @@ onPareja(info,targetProfile) {
 
             >
               <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-                <i className="icon feather icon-settings" />
+              <img
+                    src={
+                      this.state.perfil_activo
+                        ? this.state.perfil_activo.Imagen
+                        : Img_mascota_anonima
+                    }
+                    className="img-radius"
+                    alt="User Profile"
+                  />
+                 <span style={{fontWeight: "bold"}} >
+                
+                    {" "}
+                    {this.state.perfil_activo
+                      ? this.state.perfil_activo.Nombre
+                      : ""}{" "}
+
+                  </span>
+                {/* <i className="icon feather icon-settings" /> */}
               </Dropdown.Toggle>
               <Dropdown.Menu alignRight className="profile-notification">
                 <div className="pro-head">
