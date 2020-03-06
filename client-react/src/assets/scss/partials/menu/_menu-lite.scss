@@ -1577,11 +1577,16 @@
 }
 /* main content end*/
 /* ==========================    Rsponsive Menu  start   ====================== */
+@media screen and (min-width: 0px) and (max-width: 765px) 
+{
+  .ocultar { display: none; }  
+ }
 @media only screen and (max-width: 991px) {
+    
     .pcoded-header {
         background: $header-dark-background;
         color: $header-dark-text-color;
-
+   
         .input-group-text,
         a,
         dropdown-toggle {

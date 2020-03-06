@@ -117,7 +117,7 @@ class NavLeft extends Component {
           {/* <li className="nav-item">
             <NavSearch />
           </li> */}
-          <li className="nav-item">
+          <li className="nav-item hidden-xs">
           <img
                     src={
                       this.state.Imagen
@@ -127,7 +127,7 @@ class NavLeft extends Component {
                     className="img-radius"
                     alt="User Profile"
                   />&nbsp;&nbsp;
-                 <span style={{fontWeight: "bold"}} >
+                 <span className='ocultar' style={{fontWeight: "bold"}} >
                 
                  {this.state.Apellido}&nbsp;{this.state.Nombre}
                   </span>

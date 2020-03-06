@@ -458,7 +458,7 @@ onPareja(info,targetProfile) {
                     className="img-radius"
                     alt="User Profile"
                   />
-                 <span style={{fontWeight: "bold"}} >
+                 <span className="ocultar" style={{fontWeight: "bold"}} >
                 
                     {" "}
                     {this.state.perfil_activo
