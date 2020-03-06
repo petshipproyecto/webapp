@@ -8,11 +8,6 @@ import { Image, Figure, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 
 import swal from "sweetalert";
-import avatar1 from "../../assets/images/user/avatarCat.jpg";
-import avatar2 from "../../assets/images/user/avatarDog.jpg";
-import avatar3 from "../../assets/images/user/avatarTortuga.jpg";
-import avatar4 from "../../assets/images/user/avatarChinchilla.jpg";
-import avatar5 from "../../assets/images/user/avatarHamster.jpg";
 import "../../assets/scss/partials/theme-elements/choosePet.scss";
 import Loader from "react-loader-spinner";
 import { Route, Redirect } from "react-router-dom";

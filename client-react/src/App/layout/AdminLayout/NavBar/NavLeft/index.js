@@ -8,9 +8,6 @@ import Aux from "../../../../../hoc/_Aux";
 // import DEMO from "../../../../../store/constant";
 import * as actionTypes from "../../../../../store/actions/actions";
 
-import Avatar1 from "../../../../../assets/images/user/avatarCat.jpg";
-import Avatar2 from "../../../../../assets/images/user/avatarDog.jpg";
-import Avatar3 from "../../../../../assets/images/user/avatarChinchilla.jpg";
 
 class NavLeft extends Component {
   render() {

@@ -18,10 +18,7 @@ import Dialog from "react-bootstrap-dialog";
 //--------------Avatares---------------------------------------------
 import Avatar1 from "../../assets/images/user/avatarDog.jpg";
 import Avatar2 from "../../assets/images/user/avatar2.jpg";
-import Avatar3 from "../../assets/images/user/avatar3.jpg";
-import Avatar4 from "../../assets/images/user/avatar1.jpg";
-import Avatar5 from "../../assets/images/user/avatarDog.jpg";
-import Avatar6 from "../../assets/images/user/avatarDog1.jpg";
+
 //--------------Avatares---------------------------------------------
 
 //-----------Estilo de animacion para las notificaciones--------------
