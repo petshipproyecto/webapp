@@ -40,20 +40,20 @@ export  const signUp = (newUser) => {
 
     const resp = await firebase.auth().createUserWithEmailAndPassword( newUser.email,newUser.password);
 
-     // Guarda la ubicación
-     
-          // Recupera la ubicación y la asigna al nuevo usuario
-          axios.post(rutaApi + 'usuario', {
-            "Usr_cod": resp.user.uid,
-            "Nombre": newUser.firstName,
-            "Apellido": newUser.lastName,
-            "Id_localidad": newUser.Id_localidad
-          }).then(() => {
-            dispatch({ type: 'SIGNUP_SUCCESS' });
-
-          }).catch((err) => {
-            dispatch({ type: 'SIGNUP_ERROR', err });
-          });
+    // Guarda la ubicación
+    console.log('EMAIL: '+newUser.email)
+    // Recupera la ubicación y la asigna al nuevo usuario
+    axios.post(rutaApi + 'usuario', {
+      "Usr_cod": resp.user.uid,
+      "Nombre": newUser.firstName,
+      "Apellido": newUser.lastName,
+      "Email": newUser.email,
+      "Id_localidad": newUser.Id_localidad
+    }).then(() => {
+      dispatch({ type: 'SIGNUP_SUCCESS' });
+    }).catch((err) => {
+      dispatch({ type: 'SIGNUP_ERROR', err });
+    });
         
     }
   
