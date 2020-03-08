@@ -8,7 +8,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
-import firebase from '../../configs/fbConfigs'
+import firebase from "../../configs/fbConfigs";
 //-----------------Libreria para tabla de notificaciones-------------
 
 //-----------------Libreria del popup o modal------------------------
@@ -16,8 +16,8 @@ import Dialog from "react-bootstrap-dialog";
 //-----------------Libreria del popup o modal------------------------
 
 //--------------Avatares---------------------------------------------
-import Avatar1 from "../../assets/images/user/avatarDog.jpg";
-import Avatar2 from "../../assets/images/user/avatar2.jpg";
+import Avatar1 from "../../assets/images/user/mascota_anonima.png";
+import Avatar2 from "../../assets/images/user/usuario_anonimo.png";
 
 //--------------Avatares---------------------------------------------
 
@@ -36,12 +36,10 @@ const imagen = {
   maxWidth: 140
 };
 
-
 //--------Color de los iconos-------------------------
 const colorEstrella = { color: "#f47386" };
-const colorCalendario = { color: "#f47386" }
+const colorCalendario = { color: "#f47386" };
 //---------------------------------------------
-
 
 //Constantes para la busqueda y el boton de borrar busqueda
 const { SearchBar, ClearSearchButton } = Search;
@@ -53,7 +51,6 @@ const defaultSorted = [
     order: "desc"
   }
 ];
-
 
 //-------------Columnas de la tabla-------------------------
 const columns = [
@@ -119,7 +116,7 @@ const columns = [
             &nbsp;&nbsp;Desc/<font color="#f47386">Asc</font>
           </span>
         );
-      else if (order === "desc") 
+      else if (order === "desc")
         return (
           <span style={{ cursor: "pointer" }}>
             &nbsp;&nbsp;<font color="#f47386">Desc</font>/Asc
@@ -127,7 +124,7 @@ const columns = [
         );
       return null;
     }
-  }, 
+  },
   {
     dataField: "acciones",
     text: "Acciones"
@@ -233,210 +230,233 @@ class Notificaciones extends React.Component {
   mostrarPerfil(thiss, infoPerfil) {
     var user = firebase.auth().currentUser;
     if (user) {
-        console.log(user.email);
-        // User is signed in.
+      console.log(user.email);
+      // User is signed in.
     }
     thiss.dialog.show({
-        body: (
-            <div>
-                <Card className="cardGaleria">
-                    <Card.Img className="imagenGaleria" variant="top" src={infoPerfil.Imagen} />
-                    <Card.Body>
-                        <center>
-                            <h3>
-                                <Badge  style={{backgroundColor: '#f47386'}}  className="badgeGaleria" pill variant="secondary">
-                                    {infoPerfil.Nombre}
-                                </Badge>
-                            </h3>
-                        </center>
-                        <br/>
-                        <Card.Text>
-                                <p style={{fontSize:"16px"}}  className="pGaleria">
-                                    <i style={{color: "#f47386"}} class="fa fa-paw m-r-5"></i>
-                                    <b>Raza:</b> {infoPerfil.Raza.Descripcion}
-                                </p>
-                                <p style={{fontSize:"16px"}} className="pGaleria">
-                                    <i
-                                        style={colorCalendario}
-                                        class="fa fa-calendar m-r-5"
-                                    ></i>
-                                    <b>Edad:</b> {infoPerfil.Edad} años
+      body: (
+        <div>
+          <Card className="cardGaleria">
+            <Card.Img
+              className="imagenGaleria"
+              variant="top"
+              src={infoPerfil.Imagen}
+            />
+            <Card.Body>
+              <center>
+                <h3>
+                  <Badge
+                    style={{ backgroundColor: "#f47386" }}
+                    className="badgeGaleria"
+                    pill
+                    variant="secondary"
+                  >
+                    {infoPerfil.Nombre}
+                  </Badge>
+                </h3>
+              </center>
+              <br />
+              <Card.Text>
+                <p style={{ fontSize: "16px" }} className="pGaleria">
+                  <i style={{ color: "#f47386" }} class="fa fa-paw m-r-5"></i>
+                  <b>Raza:</b> {infoPerfil.Raza.Descripcion}
+                </p>
+                <p style={{ fontSize: "16px" }} className="pGaleria">
+                  <i style={colorCalendario} class="fa fa-calendar m-r-5"></i>
+                  <b>Edad:</b> {infoPerfil.Edad} años
+                </p>
+                <p style={{ fontSize: "16px" }} className="pGaleria">
+                  <i style={colorEstrella} class="fa fa-star m-r-5"></i>
+                  <b>
+                    {infoPerfil.Interes_pareja
+                      ? "Le gustas como Pareja"
+                      : "Le gustas como Amigo"}
+                  </b>
+                </p>
+
+                <p>
+                  <p
+                    style={{ color: "black", fontSize: "18px" }}
+                    className="pGaleria"
+                  >
+                    Información de Contacto
                   </p>
-                                <p style={{fontSize:"16px"}} className="pGaleria">
-                                    <i
-                                        style={colorEstrella}
-                                        class="fa fa-star m-r-5"
-                                    ></i>
-                                    <b>{infoPerfil.Interes_pareja ? 'Le gustas como Pareja' : 'Le gustas como Amigo'}</b>
-                                </p>
 
-                                <p >
-                                    <p style={{color: 'black',fontSize:"18px"}}className="pGaleria">Información de Contacto</p>
-                                   
-                                    <p style={{fontSize:"16px"}}className="pGaleria">
-                                    <i
-                                        style={colorEstrella}
-                                        class="fa fa-user"
-                                    ></i>
-                                        <b> Nombre:</b> {infoPerfil.Usuario.Nombre} {infoPerfil.Usuario.Apellido}
-                                    </p>
-                                    <p style={{fontSize:"16px"}} className="pGaleria">
-                                    <i
-                                        style={colorEstrella}
-                                        class="fa fa-envelope "
-                                    ></i>
-                                        <b>Email:</b>{infoPerfil.Usuario.Email}
-                                    </p>
-                                </p>
-                            </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div>
-        ),
-        actions: [Dialog.OKAction()],
-        bsSize: "small",
-        onHide: dialog => {
-            dialog.hide();
-            console.log("closed by clicking background.");
-        }
-    })
-
-}
+                  <p style={{ fontSize: "16px" }} className="pGaleria">
+                    <i style={colorEstrella} class="fa fa-user"></i>
+                    <b> Nombre:</b> {infoPerfil.Usuario.Nombre}{" "}
+                    {infoPerfil.Usuario.Apellido}
+                  </p>
+                  <p style={{ fontSize: "16px" }} className="pGaleria">
+                    <i style={colorEstrella} class="fa fa-envelope "></i>
+                    <b>Email:</b>
+                    {infoPerfil.Usuario.Email}
+                  </p>
+                </p>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+      ),
+      actions: [Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
+  }
   //--------------------Mensaje para match de pareja-------------------------
- //--------------------Mensaje para match de amistad-------------------------
- onAmistad(info,targetProfile) {
-  this.dialog.show({
+  //--------------------Mensaje para match de amistad-------------------------
+  onAmistad(info, targetProfile) {
+    this.dialog.show({
       body: (
-          <div className="modal-container">
+        <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
+          </center>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={info.Match.Perfil_origen.Imagen}
+                alt="activity-user"
+              />
+              <br />
               <center>
-                  <p style={{ fontSize: 40 }}>Hay Amistad!!!</p>
+                <p style={{ fontSize: 20 }}>
+                  {info.Match.Perfil_origen.Nombre}
+                </p>
               </center>
-              <div class="d-flex justify-content-between">
-                  <div>
-                      <img
-                          style={imagen}
-                          className="img-radio"
-                          src={info.Match.Perfil_origen.Imagen}
-                          alt="activity-user"
-                      />
-                      <br />
-                      <center>
-                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
-                      </center>
-                  </div>
-                  <div>
-                      <i
-                          style={{ fontSize: 70, color: "#f47386" }}
-                          class="fa fa-soccer-ball-o bounce"
-                      ></i>
-                  </div>
-                  <div>
-                  <img
-                          style={imagen}
-                          className="img-radio"
-                          src={info.Match.Perfil_destino.Imagen}
-                          alt="activity-user"
-                      />
-                      <br />
-                      <center>
-                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
-                      </center>
-                  </div>
-              </div>
-             
-              <div class="row">
-                  <div class="col text-center">
-                      {/* Boton ver perfil de la mascota que hizo match */}
-                      
-                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
-                              <i class="feather icon-user"></i>
-                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-              </button>
-                     
-                      {/* Boton enviar email */}
-                  </div>
-              </div>
+            </div>
+            <div>
+              <i
+                style={{ fontSize: 70, color: "#f47386" }}
+                class="fa fa-soccer-ball-o bounce"
+              ></i>
+            </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={info.Match.Perfil_destino.Imagen}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>
+                  {info.Match.Perfil_destino.Nombre}
+                </p>
+              </center>
+            </div>
           </div>
+
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
+
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-lg"
+                onClick={() => this.mostrarPerfil(this, targetProfile)}
+              >
+                <i class="feather icon-user"></i>
+                &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+
+              {/* Boton enviar email */}
+            </div>
+          </div>
+        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-          dialog.hide();
-          console.log("closed by clicking background.");
+        dialog.hide();
+        console.log("closed by clicking background.");
       }
-  });
-}
-//--------------------/Mensaje para match de amistad-------------------------
+    });
+  }
+  //--------------------/Mensaje para match de amistad-------------------------
 
-//--------------------Mensaje para match de pareja-------------------------
-onPareja(info,targetProfile) {
-  this.dialog.show({
+  //--------------------Mensaje para match de pareja-------------------------
+  onPareja(info, targetProfile) {
+    this.dialog.show({
       body: (
-          <div className="modal-container">
+        <div className="modal-container">
+          <center>
+            <p style={{ fontSize: 50 }}>Hay Cita !!! </p>
+          </center>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={info.Match.Perfil_origen.Imagen}
+                alt="activity-user"
+              />
+              <br />
               <center>
-                  <p style={{ fontSize: 50 }}>Hay Cita !!! </p>
+                <p style={{ fontSize: 20 }}>
+                  {info.Match.Perfil_origen.Nombre}
+                </p>
               </center>
-              <div class="d-flex justify-content-between">
-                  <div>
-                      <img
-                          style={imagen}
-                          className="img-radio"
-                          src={info.Match.Perfil_origen.Imagen}
-                          alt="activity-user"
-                      />
-                      <br />
-                      <center>
-                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_origen.Nombre}</p>
-                      </center>
-                  </div>
-                  <div>
-                      <p class="heart">
-                          <i class="fa fa-heart fa-4x fa-beat"></i>
-                      </p>
-                  </div>
-                  <div>
-                      <img
-                          style={imagen}
-                          className="img-radio"
-                          src={info.Match.Perfil_destino.Imagen}
-                          alt="activity-user"
-                      />
-                      <br />
-                      <center>
-                          <p style={{ fontSize: 20 }}>{info.Match.Perfil_destino.Nombre}</p>
-                      </center>
-                  </div>
-              </div>
-              <div class="row">
-
-              </div>
-              <div class="row">
-                  <div class="col text-center">
-                      {/* Boton ver perfil de la mascota que hizo match */}
-                         
-                          <button type="button" class="btn btn-outline-primary btn-lg" onClick={()=> this.mostrarPerfil(this, targetProfile)}>
-                              <i class="feather icon-user"></i>
-                              &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
-              </button>
-                      
-                      {/* Boton ver perfil de la mascota que hizo match */}
-                  </div>
-              </div>
+            </div>
+            <div>
+              <p class="heart">
+                <i class="fa fa-heart fa-4x fa-beat"></i>
+              </p>
+            </div>
+            <div>
+              <img
+                style={imagen}
+                className="img-radio"
+                src={info.Match.Perfil_destino.Imagen}
+                alt="activity-user"
+              />
+              <br />
+              <center>
+                <p style={{ fontSize: 20 }}>
+                  {info.Match.Perfil_destino.Nombre}
+                </p>
+              </center>
+            </div>
           </div>
+          <div class="row"></div>
+          <div class="row">
+            <div class="col text-center">
+              {/* Boton ver perfil de la mascota que hizo match */}
+
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-lg"
+                onClick={() => this.mostrarPerfil(this, targetProfile)}
+              >
+                <i class="feather icon-user"></i>
+                &nbsp;&nbsp;Ver&nbsp;&nbsp;Perfil&nbsp;&nbsp;
+              </button>
+
+              {/* Boton ver perfil de la mascota que hizo match */}
+            </div>
+          </div>
+        </div>
       ),
       actions: [Dialog.CancelAction(), Dialog.OKAction()],
       bsSize: "small",
       onHide: dialog => {
-          dialog.hide();
-          console.log("closed by clicking background.");
+        dialog.hide();
+        console.log("closed by clicking background.");
       }
-  });
-}
+    });
+  }
 
   buildNotificacionRecord(notificacionData) {
-
-    const targetProfile = notificacionData.Id_perfil !== notificacionData.Match.Id_perfil_destino ? notificacionData.Match.Perfil_destino : notificacionData.Match.Perfil_origen;
-    const matchPareja = notificacionData.Match.Id_tipo_match === '2';
+    const targetProfile =
+      notificacionData.Id_perfil !== notificacionData.Match.Id_perfil_destino
+        ? notificacionData.Match.Perfil_destino
+        : notificacionData.Match.Perfil_origen;
+    const matchPareja = notificacionData.Match.Id_tipo_match === "2";
     return {
       fotoMascota: (
         <h6 class="m-0">
@@ -452,20 +472,29 @@ onPareja(info,targetProfile) {
         <h6 class="m-0">
           <img
             className="media-object img-radius"
-            src={targetProfile.Usuario.Imagen || Avatar2 }
+            src={targetProfile.Usuario.Imagen || Avatar2}
             alt="Generic placeholder"
           />
         </h6>
       ),
-      nombreDueño: targetProfile.Usuario.Nombre + ' ' + targetProfile.Usuario.Apellido,
-      fecha: notificacionData.createdAt.substr(0,10),
+      nombreDueño:
+        targetProfile.Usuario.Nombre + " " + targetProfile.Usuario.Apellido,
+      fecha: notificacionData.createdAt.substr(0, 10),
       acciones: (
         <div>
           {/* Boton de ver informacion */}
           <a
             style={{ cursor: "pointer" }}
             class="text-white label theme-bg2 f-12"
-            onClick={matchPareja ? ()=>{this.onPareja(notificacionData,targetProfile)} : ()=>{this.onAmistad(notificacionData,targetProfile)}}
+            onClick={
+              matchPareja
+                ? () => {
+                    this.onPareja(notificacionData, targetProfile);
+                  }
+                : () => {
+                    this.onAmistad(notificacionData, targetProfile);
+                  }
+            }
           >
             Ver Información
           </a>
@@ -477,12 +506,11 @@ onPareja(info,targetProfile) {
           {/* Boton de ver informacion */}
         </div>
       )
-    }
-
+    };
   }
-  state ={
+  state = {
     notificaciones: []
-  } 
+  };
 
   componentDidMount() {
     axios
@@ -502,29 +530,26 @@ onPareja(info,targetProfile) {
               perfil_activo: response.data
             });
             //response.data.Id_perfil
-            console.log(JSON.stringify(this.state))
+            console.log(JSON.stringify(this.state));
 
-            axios.get(rutaApi + "notificaciones/" + response.data.Id_perfil)
+            axios
+              .get(rutaApi + "notificaciones/" + response.data.Id_perfil)
               .then(notificaciones => {
-                
                 const notis = [];
                 let auxNofic = {};
-                notificaciones.data.forEach(notificacion=>{
-                  auxNofic = this.buildNotificacionRecord(notificacion)
+                notificaciones.data.forEach(notificacion => {
+                  auxNofic = this.buildNotificacionRecord(notificacion);
                   notis.push(auxNofic);
-                })
-                console.log(JSON.stringify(auxNofic))
+                });
+                console.log(JSON.stringify(auxNofic));
                 //this.notificaciones = notis;
 
-                this.setState({notificaciones:notis})
-                
-              }
-              )
+                this.setState({ notificaciones: notis });
+              });
           });
       })
-      .catch(e => { });
-  };
-  
+      .catch(e => {});
+  }
 
   render() {
     return (
@@ -591,7 +616,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(Notificaciones);
-
+export default connect(mapStateToProps)(Notificaciones);

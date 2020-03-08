@@ -38,8 +38,6 @@ class FormUserProfile extends React.Component {
     Provincias: [],
     localidades: [],
     localidadSeleccionada: ""
-     /* ,
-    Email: "" */
   };
   componentDidMount() {
     let provinciaInicial = "";
@@ -54,7 +52,8 @@ class FormUserProfile extends React.Component {
       this.setState({
         Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        urlImagen: response.data.Imagen
+        urlImagen: response.data.Imagen,
+        Email:response.data.Email,
       });
       provinciaInicial = response.data.Localidad.Provincia.Id_provincia;
       localidadInicial = response.data.Localidad.Id_localidad;
@@ -144,14 +143,14 @@ class FormUserProfile extends React.Component {
         // Setea los valores iniciales de los inputs
         initialValues={{
           Nombre: this.state.Nombre,
-          Apellido: this.state.Apellido
+          Apellido: this.state.Apellido,
+          Email:this.state.Email,
         }}
         onSubmit={fields => {
           
           axios
             .put(rutaApi + "usuario/" + this.state.userId, {
               //this.props.userId
-              /* Email: fields.Email, */
               Nombre: fields.Nombre,
               Apellido: fields.Apellido,
               Imagen: this.state.urlImagen,
@@ -279,6 +278,28 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
+                            <div className="form-group">
+                              <label>
+                                Email
+                              </label>
+                              <Field
+                                readOnly
+                                name="Email"
+                                placeholder="Email"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.Email && touched.Email
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                              />
+                              <ErrorMessage
+                                name="Email"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
 
                             {/* Select Provincia */}
                             <div class="form-group">
@@ -322,33 +343,7 @@ class FormUserProfile extends React.Component {
                                 className="invalid-feedback"
                               />
                             </div>
-
-                            {/*
-                            <div className="form-group">
-                              <label>
-                                Email <span style={{ color: "red" }}>*</span>{" "}
-                              </label>
-                              <Field
-                                readOnly
-                                name="Email"
-                                placeholder="Email"
-                                type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.Email && touched.Email
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                              />
-                              <ErrorMessage
-                                name="Email"
-                                component="div"
-                                className="invalid-feedback"
-                              />
-                            </div>
-                          */}
-
-                            <button
+                                                        <button
                               type="submit"
                               className="btn btn-primary shadow-2 mb-4"
                             >

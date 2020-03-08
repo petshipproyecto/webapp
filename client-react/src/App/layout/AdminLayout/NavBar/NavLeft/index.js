@@ -18,22 +18,20 @@ class NavLeft extends Component {
       Nombre: "",
       Apellido: "",
       Imagen: ""
-    },
+    }
   };
 
   componentDidMount() {
-
-    axios
-      .get(rutaApi + "usuario/" + this.props.userId)
-      .then(response => {
-        this.setState({
-          Nombre: response.data.Nombre,
+    axios.get(rutaApi + "usuario/" + this.props.userId).then(response => {
+      this.setState({
+        Nombre: response.data.Nombre,
         Apellido: response.data.Apellido,
-        Imagen: response.data.Imagen
-        });  
-  })};  
-   
-  
+        Imagen: response.data.Imagen,
+        isAdmin: response.data.Is_admin
+      });
+    });
+  }
+
   render() {
     // let iconFullScreen = ['feather'];
     // iconFullScreen = (this.props.isFullScreen) ? [...iconFullScreen, 'icon-minimize'] : [...iconFullScreen, 'icon-maximize'];
@@ -49,89 +47,38 @@ class NavLeft extends Component {
     return (
       <Aux>
         <ul className="navbar-nav mr-auto">
-          {/* <li><a href={DEMO.BLANK_LINK} className="full-screen" onClick={this.props.onFullScreen}><i className={iconFullScreen.join(' ')} /></a></li> */}
-          {/* <li className={navItemClass.join(" ")}>
-            <Dropdown alignRight={dropdownRightAlign}>
-              <Dropdown.Toggle variant={"link"} id="dropdown-basic">
-                Selecionar Perfil de Mascota
-              </Dropdown.Toggle>
-              <ul>
-                <Dropdown.Menu alignRight className="notification">
-                  <div className="noti-head">
-                    <h6 className="d-inline-block m-b-0">
-                      Perfiles de Mascota
-                    </h6>
-                  </div>
-                  <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar1}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Firulais</p>
-                          </div>
-                        </div>
-                      </li>
-                    </a>
-                  </ul>
-                  <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar2}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Kitty</p>
-                          </div>
-                        </div>
-                      </li>
-                    </a>
-                  </ul>
-                  <ul className="noti-body">
-                    <a href="/dashboard/default">
-                      <li className="notification">
-                        <div className="media">
-                          <img
-                            className="media-object img-radius"
-                            src={Avatar3}
-                            alt="Generic placeholder"
-                          />
-                          <div className="media-body">
-                            <p class="pt-3">Lola</p>
-                          </div>
-                        </div>
-                      </li>
-                    </a>
-                  </ul>
-                </Dropdown.Menu>
-              </ul>
-            </Dropdown>
-          </li> */}
-          {/* <li className="nav-item">
-            <NavSearch />
-          </li> */}
-          <li className="nav-item hidden-xs">
-          <img
-                    src={
-                      this.state.Imagen
-                        ? this.state.Imagen
-                        : Img_usuario_anonima
-                    }
-                    className="img-radius"
-                    alt="User Profile"
-                  />&nbsp;&nbsp;
-                 <span className='ocultar' style={{fontWeight: "bold"}} >
-                
-                 {this.state.Apellido}&nbsp;{this.state.Nombre}
-                  </span>
-                  </li>
+          <li></li>
+          {this.state.isAdmin ? (
+            <li className="nav-item hidden-xs">
+              <img
+                src={
+                  this.state.Imagen ? this.state.Imagen : Img_usuario_anonima
+                }
+                className="img-radius"
+                alt="User Profile"
+              />
+              &nbsp;&nbsp;
+              <span className="ocultar" style={{ fontWeight: "bold" }}>
+                {this.state.Apellido}&nbsp;{this.state.Nombre}
+              </span>
+            </li>
+          ) : (
+            <li className="nav-item hidden-xs">
+              <a href="/UserProfile">
+                <img
+                  src={
+                    this.state.Imagen ? this.state.Imagen : Img_usuario_anonima
+                  }
+                  className="img-radius"
+                  alt="User Profile"
+                />
+                &nbsp;&nbsp;
+                <span className="ocultar" style={{ fontWeight: "bold" }}>
+                  {this.state.Apellido}&nbsp;{this.state.Nombre}
+                </span>
+              </a>
+            </li>
+          )}
         </ul>
       </Aux>
     );

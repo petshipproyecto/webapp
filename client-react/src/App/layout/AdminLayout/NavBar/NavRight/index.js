@@ -280,13 +280,13 @@ onPareja(info,targetProfile) {
                   </span>
                 </div>
                 <ul className="pro-body">
-                  <li>
+                  {/* <li>
                     <a href="/UserProfile" className="dropdown-item">
                       <i className="feather icon-user" />
                       Perfil de Usuario
                     </a>
                   </li>
-                  {/*
+                  {/* 
                   <li> 
                     <a href="/TablaMascotas" className="dropdown-item">
                       <i className="feather icon-settings" />
