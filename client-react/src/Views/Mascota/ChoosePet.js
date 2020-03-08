@@ -19,16 +19,17 @@ class ChoosePet extends React.Component {
   state = {
     perfiles: [],
     loading: true,
-    cantidadDePerfiles: 0
+    cantidadDePerfiles: 0,
+    isAdmin: false
   };
 
   componentDidMount() {
     axios
       .get(rutaApi + "usuario/" + this.props.userId)
       .then(response => {
-        this.setState({ perfiles: response.data.Perfils, loading: false });
-        console.log("loader" + this.state);
-        this.setState({ cantidadDePerfiles: response.data.Perfils.length });
+        this.setState({  loading: false, isAdmin: response.data.Is_admin });
+       // console.log("loader" + this.state);
+        this.setState({ cantidadDePerfiles: response.data.Perfils.length, perfiles: response.data.Perfils, });
       })
       .catch(e => {
         this.setState({ perfiles: [], loading: false });
@@ -45,10 +46,13 @@ class ChoosePet extends React.Component {
         })
         .then(response => {
           window.location.replace("/PetProfile");
-          //console.log(response);
+          console.log(response);
         })
-        .catch(e => {});
+        .catch(e => { console.log(e);});
     };
+    if(this.state.isAdmin){
+     window.location.replace('dashboard')
+    }
     return (
       <Aux>
         <div className="auth-wrapper aut-bg-img-new">
@@ -108,13 +112,14 @@ class ChoosePet extends React.Component {
                       }
                     }}
                   >
-                    <button
-                      type="button"
-                      class="btn-icon btn-rounded btn btn-primary  "
-                    >
-                      <i class="feather icon-plus"></i>
-                    </button>
-                    <center>Agregar Mascota</center>
+                  {  !this.state.isAdmin ? <div><button
+                    type="button"
+                    class="btn-icon btn-rounded btn btn-primary  "
+                  >
+                    <i class="feather icon-plus"></i>
+                  </button>
+                  <center>Agregar Mascota</center></div> : <div></div>}
+                    
                   </a>
                 </Col>
               </Row>

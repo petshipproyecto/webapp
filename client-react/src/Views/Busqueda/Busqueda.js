@@ -83,17 +83,17 @@ class FormNewPet extends React.Component {
     Perfil_activo: 0
   };
   myEvento = () => {
-    console.log("hola");
+    //console.log("hola");
   };
   handleChangeSlider = value => {
     this.setState({ defaultDistanciaMax: parseInt(value) });
-    console.log(typeof value); //eslint-disable-line
-    console.log(JSON.stringify(this.state));
+    //console.log(typeof value); //eslint-disable-line
+    //console.log(JSON.stringify(this.state));
   };
   handleChangeRange = value => {
     this.setState({ defaultEdad: [parseInt(value[0]), parseInt(value[1])] });
-    console.log(value);
-    console.log(JSON.stringify(this.state));
+    //console.log(value);
+    //console.log(JSON.stringify(this.state));
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -103,9 +103,9 @@ class FormNewPet extends React.Component {
     let auxRazas = [];
     for (let i = 0; i < razas.length; i++) {
       auxRazas.push(razas[i].value);
-      console.log(razas[i].value);
+      //console.log(razas[i].value);
     }
-
+    console.log(auxRazas)
     if (!(this.state.interesMacho || this.state.interesHembra)) {
       swal({
         title: "Error!",
@@ -129,7 +129,7 @@ class FormNewPet extends React.Component {
         Razas: auxRazas
       };
 
-      console.log(this.state.opcionPreferencia);
+      //console.log(this.state.opcionPreferencia);
 
       const urlPerfil = rutaApi + "perfil/" + this.state.Perfil_activo;
       const payloadPerfil = {
@@ -144,7 +144,7 @@ class FormNewPet extends React.Component {
       axios
         .put(rutaApi + "preferencia/" + idPreferencia, payload)
         .then(function(response) {
-          console.log(response);
+          //console.log(response);
           swal({
             title: "Éxito!",
             text: "Se registró correctamente la preferencia",
@@ -161,15 +161,15 @@ class FormNewPet extends React.Component {
             timer: 3000,
             button: false
           });
-          console.log(error);
+          //console.log(error);
         });
-      console.log(payload);
+      //console.log(payload);
     }
   };
 
   handleChangePreferencia = e => {
-    console.log(this.state);
-    console.log(this.state.PreferenciaPareja.Edad_min);
+    console.log(typeof e.target.value + ' tipo');
+    //console.log(this.state.PreferenciaPareja.Edad_min);
 
     let opcion = e.target.value;
     let edadMin =
@@ -199,18 +199,20 @@ class FormNewPet extends React.Component {
           : this.state.PreferenciaAmistad.Interes_macho
     });
     console.log(JSON.stringify(this.state) + "estado");
-    console.log(opcion + "opcion");
+    //console.log(opcion + "opcion");
   };
   componentDidMount() {
     axios
       .get(rutaApi + "usuario/" + this.props.userId)
       .then(r => {
-        console.log(r.data);
+        //console.log(r.data);
         this.setState(
           {
             PreferenciaAmistad: r.data.Perfil_activo.Preferencia_amistad,
             PreferenciaPareja: r.data.Perfil_activo.Preferencia_pareja,
-            Perfil_activo: r.data.Id_perfil_activo
+            Perfil_activo: r.data.Id_perfil_activo,
+            interesActualPareja: r.data.Perfil_activo.Interes_pareja,
+            opcionPreferencia:r.data.Perfil_activo.Interes_pareja ? 1 : 2
           },
           function() {
             // map with select opctions
@@ -224,7 +226,7 @@ class FormNewPet extends React.Component {
               });
             }
 
-            console.log("Razas: " + JSON.stringify(razas));
+            ////console.log("Razas: " + JSON.stringify(razas));
             razas = this.state.PreferenciaPareja.Razas;
             for (let i = 0; i < razas.length; i++) {
               aux2.push({
@@ -232,25 +234,29 @@ class FormNewPet extends React.Component {
                 label: razas[i].Descripcion
               });
             }
-
-            console.log("component did mount" + JSON.stringify(aux2));
+            
+            console.log(this.state.interesActualPareja)
+            console.log(this.state.opcionPreferencia)
+            console.log('aux2' + JSON.stringify(aux2))
+            console.log('aux' + JSON.stringify(aux))
+            ////console.log("component did mount" + JSON.stringify(aux2));
             this.setState({
-              selectedOption: aux2,
-              razasAmistad: aux,
-              razasPareja: aux2,
-              defaultDistanciaMax: this.state.PreferenciaPareja.Distancia_max,
+              selectedOption: this.state.interesActualPareja ? aux2 : aux,
+              razasAmistad:  aux,
+              razasPareja:  aux2,
+              defaultDistanciaMax: this.state.interesActualPareja ? this.state.PreferenciaPareja.Distancia_max : this.state.PreferenciaAmistad.Distancia_max,
               defaultEdad: [
-                this.state.PreferenciaPareja.Edad_min,
-                this.state.PreferenciaPareja.Edad_max
+                this.state.interesActualPareja ? this.state.PreferenciaPareja.Edad_min : this.state.PreferenciaAmistad.Edad_min,
+                this.state.interesActualPareja ? this.state.PreferenciaPareja.Edad_max :  this.state.PreferenciaAmistad.Edad_max
               ],
-              interesMacho: this.state.PreferenciaPareja.Interes_macho,
-              interesHembra: this.state.PreferenciaPareja.Interes_hembra
+              interesMacho: this.state.interesActualPareja ?  this.state.PreferenciaPareja.Interes_macho : this.state.PreferenciaAmistad.Interes_macho,
+              interesHembra: this.state.interesActualPareja ? this.state.PreferenciaPareja.Interes_hembra : this.state.PreferenciaAmistad.Interes_macho
             });
 
             axios
               .get(rutaApi + "animal/" + r.data.Perfil_activo.Raza.Id_animal)
               .then(r => {
-                console.log(r.data);
+                ////console.log(r.data);
 
                 for (let i = 0; i < r.data.Razas.length; i++) {
                   options.push({
@@ -260,7 +266,7 @@ class FormNewPet extends React.Component {
                 }
               })
               .catch();
-            console.log(this.state);
+            //console.log(this.state);
           }
         );
       })
@@ -280,13 +286,13 @@ class FormNewPet extends React.Component {
 
     if (parseInt(this.state.opcionPreferencia) === 1) {
       this.setState({ razasPareja: selectedOption });
-      console.log("handleChange" + " if");
+        console.log("selectedOption" + JSON.stringify(selectedOption));
     } else {
       this.setState({ razasAmistad: selectedOption });
-      console.log("handleChange" + " else");
+      //console.log("handleChange" + " else");
     }
-    console.log(this.state);
-    console.log("Option selected:", selectedOption);
+    //console.log(this.state);
+    //console.log("Option selected:", selectedOption);
   };
   //------Para el select multiple---------------
   render() {
@@ -323,7 +329,7 @@ class FormNewPet extends React.Component {
                                   value={choice.value}
                                   id={choice.text}
                                   checked={
-                                    this.state.opcionPreferencia == choice.value
+                                    this.state.opcionPreferencia === choice.value
                                   }
                                   onClick={this.handleChangePreferencia}
                                 />
@@ -481,7 +487,7 @@ class FormNewPet extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
+  // //console.log("pet profile" + JSON.stringify(state.firebase.auth.uid))
   return {
     userId: state.firebase.auth.uid,
     authError: state.auth.authError
