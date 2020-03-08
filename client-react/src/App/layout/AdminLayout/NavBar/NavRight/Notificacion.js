@@ -84,7 +84,7 @@ class Notificacion extends React.Component {
                                         style={colorEstrella}
                                         class="fa fa-envelope "
                                     ></i>
-                                        <b>Email:</b> {}
+                                        <b>Email:</b> {infoPerfil.Usuario.Email}
                                     </p>
                                 </p>
                             </Card.Text>
