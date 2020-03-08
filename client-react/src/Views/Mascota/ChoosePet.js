@@ -19,15 +19,16 @@ class ChoosePet extends React.Component {
   state = {
     perfiles: [],
     loading: true,
-    cantidadDePerfiles: 0
+    cantidadDePerfiles: 0,
+    isAdmin: false
   };
 
   componentDidMount() {
     axios
       .get(rutaApi + "usuario/" + this.props.userId)
       .then(response => {
-        this.setState({ perfiles: response.data.Perfils, loading: false });
-        console.log("loader" + this.state);
+        this.setState({ perfiles: response.data.Perfils, loading: false, isAdmin: response.data.Is_admin });
+       // console.log("loader" + this.state);
         this.setState({ cantidadDePerfiles: response.data.Perfils.length });
       })
       .catch(e => {
@@ -45,9 +46,9 @@ class ChoosePet extends React.Component {
         })
         .then(response => {
           window.location.replace("/PetProfile");
-          //console.log(response);
+          console.log(response);
         })
-        .catch(e => {});
+        .catch(e => { console.log(e);});
     };
     return (
       <Aux>
