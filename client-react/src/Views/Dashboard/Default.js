@@ -17,8 +17,8 @@ class Dashboard extends React.Component {
           <div className="wow bounceIn">
             <img
               style={{
-                maxHeight: 380,
-                minHeight: 380
+                maxHeight: 360,
+                minHeight: 360
               }}
               src={logo}
             />
@@ -26,7 +26,13 @@ class Dashboard extends React.Component {
         </Row>
         <Row className=" justify-content-md-center">
           <div className="wow slideInRight">
-            <img src={nombre} />
+            <img
+              style={{
+                maxWidth: 360,
+                minWidtht: 360
+              }}
+              src={nombre}
+            />
           </div>
         </Row>
       </Aux>

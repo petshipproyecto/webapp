@@ -30,10 +30,10 @@ var rutaApi = config.rutaApi;
 
 //---Estilo de las imagenes--
 const imagen = {
-  minWidth: 140,
-  maxHeight: 140,
-  minHeight: 140,
-  maxWidth: 140
+  minWidth: 110,
+  maxHeight: 110,
+  minHeight: 110,
+  maxWidth: 110
 };
 
 //--------Color de los iconos-------------------------
@@ -236,19 +236,28 @@ class Notificaciones extends React.Component {
     thiss.dialog.show({
       body: (
         <div>
-          <Card className="cardGaleria">
-            <Card.Img style={{ 
-    maxHeight: 230,
-    minHeight: 230,
-    }}
+          <Card
+            className="cardGaleria"
+            style={{
+              maxHeight: 530,
+              minHeight: 530
+            }}
+          >
+            <Card.Img
+              style={{
+                maxHeight: 200,
+                minHeight: 200
+              }}
               className="imagenGaleria"
               variant="top"
               src={infoPerfil.Imagen}
             />
-            <Card.Body style={{   
-    maxHeight: 273,
-    minHeight: 273,
-    }}>
+            <Card.Body
+              style={{
+                maxHeight: 320,
+                minHeight: 320
+              }}
+            >
               <center>
                 <h3>
                   <Badge
@@ -282,7 +291,7 @@ class Notificaciones extends React.Component {
 
                 <p>
                   <p
-                    style={{ color: "black", fontSize: "18px" }}
+                    style={{ color: "black", fontSize: "17px" }}
                     className="pGaleria"
                   >
                     Información de Contacto
