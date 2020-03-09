@@ -50,7 +50,7 @@ class AdminAgregarUsuario extends React.Component {
             "Id_localidad": "579"
           }
         });
-        console.log(JSON.stringify(this.state.provinciaSeleccionada) + 'on mount')
+        //console.log(JSON.stringify(this.state.provinciaSeleccionada) + 'on mount')
       });
     });
   }
@@ -116,7 +116,8 @@ class AdminAgregarUsuario extends React.Component {
                 "Nombre": fields.Nombre,
                 "Apellido": fields.Apellido,
                 "Imagen": this.state.urlImagen,
-                "Id_localidad": this.state.localidadSeleccionada.Id_localidad
+                "Id_localidad": this.state.localidadSeleccionada.Id_localidad,
+                "Email": fields.Email
               }).then(() => {
                 swal({
                   title: "Éxito!",
@@ -125,7 +126,8 @@ class AdminAgregarUsuario extends React.Component {
                   timer: 3000,
                   button: false
                 });
-                window.location.replace('/AdministrarUsuarios')
+                
+                //window.location.reload();
               }).catch((err) => {
                 swal({
                   title: "Error!",

@@ -21,6 +21,7 @@ class Breadcrumb extends Component {
         console.log(JSON.stringify(this.props) + ' breadcrumb')
         const user = await axios.get(rutaApi + 'usuario/' + this.props.userId);
         const isAdmin = user.data.Is_admin;
+        console.log('isAdmin' + isAdmin)
         this.setState({isAdmin})
        
         const navigation = isAdmin ? navigationAdmin : navigationUser;
