@@ -39,8 +39,14 @@ class Notificacion extends React.Component {
             body: (
                 <div>
                     <Card className="cardGaleria">
-                        <Card.Img className="imagenGaleria" variant="top" src={infoPerfil.Imagen} />
-                        <Card.Body>
+                        <Card.Img style={{ 
+    maxHeight: 230,
+    minHeight: 230,
+    }} className="imagenGaleria" variant="top" src={infoPerfil.Imagen} />
+                        <Card.Body style={{   
+    maxHeight: 273,
+    minHeight: 273,
+    }}>
                             <center>
                                 <h3>
                                     <Badge style={{backgroundColor: '#f47386'}} className="badgeGaleria" pill variant="primary">

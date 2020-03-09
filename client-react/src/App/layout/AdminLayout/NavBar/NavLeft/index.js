@@ -9,7 +9,7 @@ import Aux from "../../../../../hoc/_Aux";
 import * as actionTypes from "../../../../../store/actions/actions";
 import Img_usuario_anonima from "../../../../../assets/images/user/usuario_anonimo.png";
 import config from "../../../../../config";
-import { Route, Redirect } from "react-router-dom";
+import { Link, Route, Redirect } from "react-router-dom";
 
 var rutaApi = config.rutaApi;
 class NavLeft extends Component {
@@ -64,7 +64,7 @@ class NavLeft extends Component {
             </li>
           ) : (
             <li className="nav-item hidden-xs">
-              <a href="/UserProfile">
+              <Link to="/UserProfile">
                 <img
                   src={
                     this.state.Imagen ? this.state.Imagen : Img_usuario_anonima
@@ -76,7 +76,7 @@ class NavLeft extends Component {
                 <span className="ocultar" style={{ fontWeight: "bold" }}>
                   {this.state.Apellido}&nbsp;{this.state.Nombre}
                 </span>
-              </a>
+              </Link>
             </li>
           )}
         </ul>

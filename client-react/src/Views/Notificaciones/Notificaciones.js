@@ -237,12 +237,18 @@ class Notificaciones extends React.Component {
       body: (
         <div>
           <Card className="cardGaleria">
-            <Card.Img
+            <Card.Img style={{ 
+    maxHeight: 230,
+    minHeight: 230,
+    }}
               className="imagenGaleria"
               variant="top"
               src={infoPerfil.Imagen}
             />
-            <Card.Body>
+            <Card.Body style={{   
+    maxHeight: 273,
+    minHeight: 273,
+    }}>
               <center>
                 <h3>
                   <Badge

@@ -10,7 +10,7 @@ import config from "../../../../../config";
 import Loader from "react-loader-spinner";
 import Img_mascota_anonima from "../../../../../assets/images/user/mascota_anonima.png";
 import Img_usuario_anonimo from "../../../../../assets/images/user/usuario_anonimo.png";
-import { Route, Redirect } from "react-router-dom";
+import { Link, Route, Redirect } from "react-router-dom";
 import NotificationBadge from "react-notification-badge";
 import { Effect } from "react-notification-badge";
 //-----------------Libreria del popup o modal------------------------
@@ -323,7 +323,7 @@ onPareja(info,targetProfile) {
 
       <ul className="navbar-nav ml-auto">
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
-            <a href="/NewPet">
+          <Link to="/NewPet">
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
@@ -331,10 +331,10 @@ onPareja(info,targetProfile) {
               >
                 <i className="icon feather icon-plus-circle" />
               </OverlayTrigger>
-            </a>
+              </Link>
           </li>
           <li className={this.props.rtlLayout ? "m-r-15" : "m-l-15"}>
-            <a href="/ConfiguracionBusqueda">
+            <Link to="/ConfiguracionBusqueda">
               <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
@@ -342,7 +342,7 @@ onPareja(info,targetProfile) {
               >
                 <i className="icon feather icon-filter" />
               </OverlayTrigger>
-            </a>
+            </Link>
           </li>
           <li>
             <Dropdown alignRight={!this.props.rtlLayout} >
@@ -437,7 +437,7 @@ onPareja(info,targetProfile) {
                   }) }
                 </ul>
                 <div className="noti-footer">
-                  <a href="/Notificaciones">ver todo</a>
+                  <Link to="/Notificaciones">ver todo</Link>
                 </div>
               </Dropdown.Menu>
             </Dropdown>
@@ -488,16 +488,16 @@ onPareja(info,targetProfile) {
                 </div>
                 <ul className="pro-body">
                   <li>
-                    <a href="/PetProfile" className="dropdown-item">
+                    <Link to="/PetProfile" className="dropdown-item">
                       <i className="feather icon-github" />
                       Perfil de Mascota
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/UserProfile" className="dropdown-item">
+                    <Link to="/UserProfile" className="dropdown-item">
                       <i className="feather icon-user" />
                       Perfil de Usuario
-                    </a>
+                    </Link>
                   </li>
                   {/*
                   <li> 
