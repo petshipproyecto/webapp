@@ -34,15 +34,15 @@ const swipeUtilities = {
                     </h3>
                   </center>
                   <Card.Text>
-                    <p className="pGaleria">
+                    <p className="pswipe">
                       <i class="fa fa-paw m-r-5"></i>
                       <b>Raza:</b> {response.data[i].Raza.Descripcion}
                     </p>
-                    <p className="pGaleria">
+                    <p className="pswipe">
                       <i class="fa fa-adjust m-r-5"></i>
                       <b>Género:</b> {response.data[i].Id_genero == 1 ? 'Macho' : 'Hembra'}
                     </p>
-                    <p className="pGaleria">
+                    <p className="pswipe">
                       <i class="fa fa-clock-o m-r-5"></i>
                       <b>Edad:</b> {response.data[i].Edad} { response.data[i].Edad > 1 ? 'años' : 'año'}
                     </p>
