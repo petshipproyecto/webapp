@@ -28,7 +28,7 @@ const swipeUtilities = {
                 <Card.Body className="cardBody">
                   <center>
                     <h3 class = "marg">
-                      <Badge className="badgeGaleria" pill variant="secondary">
+                      <Badge style={{backgroundColor: "#f47386"}}className="badgeGaleria" pill variant="secondary">
                       {response.data[i].Nombre}
                       </Badge>
                     </h3>

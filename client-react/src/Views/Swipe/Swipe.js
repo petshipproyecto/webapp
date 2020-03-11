@@ -4,7 +4,7 @@ import "../../assets/scss/partials/theme-elements/swipe.scss";
 import Aux from "../../hoc/_Aux";
 import like from "../../assets/images/user/si.png";
 import notlike from "../../assets/images/user/no.png";
-import "./../../assets/scss/partials/theme-elements/galeria.scss";
+//import "./../../assets/scss/partials/theme-elements/galeria.scss";
 import axios from 'axios'
 import { connect } from "react-redux";
 import MotionStack from "./swipeCard";
