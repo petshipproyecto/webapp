@@ -277,7 +277,7 @@ class AdministrarUsuarios extends React.Component {
               <Card.Body>
                 {/* Tool para la tabla */}
                 <ToolkitProvider
-                  keyField="apellido"
+                  keyField="Email"
                   data={this.state.usuarios}
                   columns={columns}
                   search
@@ -321,7 +321,7 @@ class AdministrarUsuarios extends React.Component {
                         bordered={false}
                         {...props.baseProps}
                         hover
-                        keyField="apellido"
+                        keyField="Email"
                         data={this.state.usuarios}
                         columns={columns}
                         pagination={paginationFactory()}
